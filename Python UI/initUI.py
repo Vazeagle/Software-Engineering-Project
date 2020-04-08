@@ -75,8 +75,8 @@ def main():
     
     label_ru_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#hmerologio gramma + hmerologio
     label_rur_up = Label(intro_Frame,text="Ημερολόγιο\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 18))#hmerologio gramma 
-    label_rur_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1") hmerologio
-
+    label_rur_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1") #hmerologio
+    
     label_r_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#sunoptiko profil
     label_rd_up = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#sunoptiko profil
     label_rd_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#onoma xrhsth kai alla
