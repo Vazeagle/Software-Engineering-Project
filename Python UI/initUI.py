@@ -69,10 +69,13 @@ def main():
     label_ruu_up = Label(intro_Frame,text="Καλώς ήρθατε στον Παρμενίδη!\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 24,"bold"))
     label_ruu_down = Label(intro_Frame,text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 18))
 
-    label_ru_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#eniaio susthma bla bla
+    label_ru_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#foto parmenidi+ desription parmenidi
     label_rul_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#foto parmenidi
     label_rul_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#eniaio susthma bla bla
-    label_ru_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#hmerologio
+    
+    label_ru_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#hmerologio gramma + hmerologio
+    label_rur_up = Label(intro_Frame,text="Ημερολόγιο\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 18))#hmerologio gramma 
+    label_rur_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1") hmerologio
 
     label_r_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#sunoptiko profil
     label_rd_up = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#sunoptiko profil
