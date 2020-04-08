@@ -65,8 +65,13 @@ def main():
     
     label_right = Label(init_Label,borderwidth=0,highlightthickness=0, bg="salmon1")#dexio menu
     label_r_up = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#panw meros me perilipsh kai hmerologio
-    label_ru_up = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#kalos orisate
+    label_ru_up = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#kalos orisate+ to eniaio susthma klp
+    label_ruu_up = Label(intro_Frame,text="Καλώς ήρθατε στον Παρμενίδη!\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 24,"bold"))
+    label_ruu_down = Label(intro_Frame,text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n",borderwidth=0,highlightthickness=0, bg="salmon1",font=("Calibri", 18))
+
     label_ru_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#eniaio susthma bla bla
+    label_rul_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#foto parmenidi
+    label_rul_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#eniaio susthma bla bla
     label_ru_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#hmerologio
 
     label_r_down = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#sunoptiko profil
@@ -87,8 +92,8 @@ def main():
     label_rddrrd_left = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#kateu8unsh text
     label_rddrrd_right = Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="salmon1")#kateu8unsh input
 
-    descriptionText=Text(topLabel2,height=7,bg="salmon1",borderwidth=0,highlightthickness=0,font=("Calibri", 14), width = 100)
-    descriptionText.insert(INSERT,"Περιγραφή S-DES:\nΟ αλγόριθμος κρυπτογράφησης Simplified Data Encryption Standard (S-DES) βασίζεται στην κρυπτογράφηση μπλοκ.\n Παίρνει σαν είσοδο ένα μπλοκ 8-bit απλού κειμένου ή 8-bit και ένα κλειδί μεγέθους  10-bit και τελικά παράγει ένα\n κρυπτογραφημένο μπλοκ 8-bit ciphertext ως έξοδο.Πρόκειται για ένα συμμετρικό κρυπτογράφο που έχει δύο επαναλήψεις,\n ενώ για την κρυπτογράφηση\αποκρυπτογράφηση χρησιμοποιούνται συγκεκριμένες μεταθέσεις των bits που ορίζονται από τον ίδιο τον αλγόριθμο.\n")
+    #descriptionText=Text(topLabel2,height=7,bg="salmon1",borderwidth=0,highlightthickness=0,font=("Calibri", 14), width = 100)
+    #descriptionText.insert(INSERT,"Περιγραφή S-DES:\nΟ αλγόριθμος κρυπτογράφησης Simplified Data Encryption Standard (S-DES) βασίζεται στην κρυπτογράφηση μπλοκ.\n Παίρνει σαν είσοδο ένα μπλοκ 8-bit απλού κειμένου ή 8-bit και ένα κλειδί μεγέθους  10-bit και τελικά παράγει ένα\n κρυπτογραφημένο μπλοκ 8-bit ciphertext ως έξοδο.Πρόκειται για ένα συμμετρικό κρυπτογράφο που έχει δύο επαναλήψεις,\n ενώ για την κρυπτογράφηση\αποκρυπτογράφηση χρησιμοποιούνται συγκεκριμένες μεταθέσεις των bits που ορίζονται από τον ίδιο τον αλγόριθμο.\n")
 
 
 
@@ -104,7 +109,7 @@ def main():
     #butttonNext7=Button(label_l_down,text="Προβλήματα",command=lambda:raise_frame(problems_Frame),bg="SteelBlue3")#,height = 2, width = 7
     #butttonNext8=Button(label_l_down,text="Έξοδος",command=lambda:raise_frame(problems_Frame),bg="SteelBlue3")#,height = 2, width = 7
 
-    bottomLabel=Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="white")
+    #bottomLabel=Label(intro_Frame,borderwidth=0,highlightthickness=0, bg="white")
     #P1 = Label(bottomLabel,image=render0,borderwidth=0,highlightthickness=0)
     #P2 = Label(bottomLabel,image=render0,borderwidth=0,highlightthickness=0)
     #P3 = Label(bottomLabel,image=render0,borderwidth=0,highlightthickness=0)
