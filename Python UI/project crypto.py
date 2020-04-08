@@ -317,7 +317,7 @@ def main_Encrypt_window():
     main_window.configure(background='salmon1')
     #---------------------------------------------------
     container = ttk.Frame(main_window,width=getRes[0], height=getRes[1])
-    canvas = Canvas(container, bg="salmon1",width=getRes[0]-50, height=getRes[1]-70,borderwidth=0,highlightthickness=0)
+    canvas = Canvas(container, bg="salmon1",width=getRes[0]-200, height=getRes[1]-70,borderwidth=0,highlightthickness=0)
     scrollbarv = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
     scrollbarh = ttk.Scrollbar(container, orient="vertical", command=canvas.xview)
     scrollable_frame = ttk.Frame(canvas)
