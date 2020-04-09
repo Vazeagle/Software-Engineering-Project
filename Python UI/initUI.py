@@ -12,14 +12,23 @@ from tkcalendar import Calendar, DateEntry
 
 getRes = pyautogui.size()
 #resolution = str(getRes[0]-100) + "x" + str(getRes[1]-100)
+main_window = Tk()
+
 
 def raise_frame(frame):
     frame.tkraise()
     frame.grid(row=int(getRes[0]), column=0, sticky="news")
 
+def ExitApp():
+    MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;',
+                                       icon='warning')
+    if MsgBox == 'yes':
+        main_window.destroy()
+    else:
+        messagebox.showinfo('Επιστροφή', 'Θα επιστραφείτε στην προηγούμενη σας οθόνη !')
 
 def main():
-    main_window = Tk()
+    #main_window = Tk()
     #main_window.geometry(resolution) ###########################################resolution
     main_window.title("Parmenidis")
     main_window.configure()
@@ -131,7 +140,7 @@ def main():
     butttonNext5 = Button(label_l_down, text="Πληροφορίες Χρήστη", command=lambda: raise_frame(intro_Frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext6 = Button(label_l_down, text="Ανακοινώσεις", command=lambda: raise_frame(intro_Frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext7 = Button(label_l_down, text="Προβλήματα", command=lambda: raise_frame(intro_Frame) , bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext8 = Button(label_l_down, text="Έξοδος", command=lambda: raise_frame(intro_Frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext8 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     ############## CALENDAR################
     cal = Calendar(label_rur_down, selectmode='none')
