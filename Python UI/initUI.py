@@ -166,7 +166,7 @@ def main():
 
     label_right.pack(side=LEFT,ipady=40,ipadx=100)
     label_r_up.pack(side=TOP,ipady=10)#kalos hr8ate+eniaio susthma+perilhpsh+calendar
-    label_ru_up.pack(side=TOP,ipady=100)
+    label_ru_up.pack(side=TOP,ipady=60)
     label_ruu_up.pack(side=TOP,pady=10)
     label_ruu_down.pack(side=TOP)
 
@@ -177,7 +177,7 @@ def main():
 
     label_ru_right.pack(side=LEFT)
     label_rur_up.pack(side=TOP)#hmerologio gramma
-    label_rur_down.pack(side=TOP,padx=40)#,ipadx=40,ipady=30)#calendar
+    label_rur_down.pack(side=TOP,padx=50,ipady=30,ipadx=30)#,ipadx=40,ipady=30)#calendar
 
     label_r_down.pack(side=TOP,ipadx=50)
     label_rd_up.pack(side=TOP)
