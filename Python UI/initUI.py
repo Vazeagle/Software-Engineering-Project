@@ -54,8 +54,8 @@ def main():
 
     init_Label = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="salmon1")
 
-    label_left = Label(init_Label, text="Simplified-DES Encryption\Decryption\n", bg="gray17",font=("Calibri", 24, "bold"))  # aristero menu
-    label_l_up = Label(label_left, borderwidth=1, highlightthickness=0, bg="gray17")  # photo parmenidi
+    label_left = Label(init_Label, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray17",font=("Calibri", 24, "bold"))  # aristero menu
+    label_l_up = Label(label_left, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray17")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray17")  # button gia menu kai alla frames
 
     label_right = Label(init_Label, borderwidth=1, highlightthickness=0, bg="salmon1")  # dexio menu
