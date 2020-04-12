@@ -266,7 +266,7 @@ def main():
     scrollbarh = Scrollbar(container_list, orient="horizontal", command=announcement_list.xview)
     scrollbarv= Scrollbar(container_list, orient="vertical", command=announcement_list.yview)
     container_list.bind("<Configure>",lambda e: announcement_list.configure(scrollregion=announcement_list.bbox("all")))
-    announcement_list.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set, font=("Calibri", 40))
+    announcement_list.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set, font=("Calibri", 36))
     container_list.bind("<MouseWheel>", scrollbarv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
 
 
