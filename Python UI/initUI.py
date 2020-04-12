@@ -57,7 +57,7 @@ weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="salm
 results_Frame=Frame(all_Frame, bg="salmon1",width=getRes[0], height=getRes[1])
 institutions_Frame = Frame(all_Frame, bg="salmon1", width=getRes[0], height=getRes[1])
 info_Frame = Frame(all_Frame, bg="salmon1", width=getRes[0], height=getRes[1])
-announcements_Frame = Frame(all_Frame, bg="black", width=getRes[0]-1600, height=getRes[1])
+announcements_Frame = Frame(all_Frame, bg="floral white", width=getRes[0]-1600, height=getRes[1])
 problems_Frame = Frame(all_Frame, bg="salmon1", width=getRes[0], height=getRes[1])
 #problems_Frame = Frame(scrollable_frame, bg="salmon1", width=getRes[0], height=getRes[1])
 
@@ -252,14 +252,81 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
+    #announcements_Frame
+    
+    label_Announce = Label(announcements_Frame, text="Ανακοινώσεις", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_sortBy = Label(announcements_Frame, bg="floral white")
+    label_sortBy1 = Label(label_sortBy, text="Ταξινόμηση κατά: ", bg="floral white", font=("Calibri", 18, "bold"))
+    label_sortBy2 = Label(label_sortBy, bg="floral white")
+    label_left = Label(announcements_Frame, bg="floral white")
+    container_list = Frame(announcements_Frame)
+    announcement_list  = Listbox (container_list, bg="floral white", borderwidth=2, highlightthickness=0)#width=getRes[0]-50, height=getRes[1]-70
+
+    scrollbarh = Scrollbar(container_list, orient="horizontal", command=announcement_list.xview)
+    scrollbarv= Scrollbar(container_list, orient="vertical", command=announcement_list.yview)
+    container_list.bind("<Configure>",lambda e: announcement_list.configure(scrollregion=announcement_list.bbox("all")))
+    announcement_list.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set, font=("Calibri", 40))
+    container_list.bind("<MouseWheel>", scrollbarv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
 
 
+    #####SOS SOS SOS selectmode  σαν atribute για επιλογη ανακοινωσεις απο λιστα και αντιστοιχο ανοιγμα αν πχ λινκ κλπ
 
 
-    #container.pack(side=TOP)
-    #canvas.pack(side=LEFT, fill = BOTH, expand = True)
-    #scrollbarv.pack(side=RIGHT, fill="y")
-    #scrollbarh.pack(side=LEFT, fill="y")
+    #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
+    sort_options=["Νεότερα", "Παλαιότερα", "Πιο Δημοφιλή"]
+    sortBy_var = StringVar(label_sortBy2)
+    sortBy_var.set(sort_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    sort_choice = OptionMenu(label_sortBy2, sortBy_var, *sort_options)
+    buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements, bg="gray26",font=("Calibri", 14, "bold"))
+    
+    #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
+    def sort_announcements():
+    
+        sort=sortBy_var.get()
+        announcement_list.delete(0, END)#DELETE ΠΑΛΙΩΝ ΔΕΔΟΜΕΝΩΝ ΑΠΟ ΛΙΣΤΑ
+        if sort=="Παλαιότερα":
+            #ΕΝΤΟΛΕΣ ΔΙΑΣΥΝΔΕΣΗΣ ΜΕ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΜΕ SELECT ΜΕ ΒΑΣΗ ΗΜΕΡΟΜΗΝΙΑ ΑΝΑΚΟΙΝΩΣΕΩΝ
+            #listbox.insert(position,item-string) #ισως να θελει for
+            print("old news")
+        elif sort=="Πιο Δημοφιλή":
+            #ΕΝΤΟΛΕΣ ΔΙΑΣΥΝΔΕΣΗΣ ΜΕ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΜΕ SELECT ΜΕ ΒΑΣΗ ΗΜΕΡΟΜΗΝΙΑ ΑΝΑΚΟΙΝΩΣΕΩΝ
+            #listbox.insert(position,item-string) #ισως να θελει for
+            print("popular news")
+        else: #sort==Νεότερα
+            #ΕΝΤΟΛΕΣ ΔΙΑΣΥΝΔΕΣΗΣ ΜΕ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΜΕ SELECT ΜΕ ΒΑΣΗ ΗΜΕΡΟΜΗΝΙΑ ΑΝΑΚΟΙΝΩΣΕΩΝ
+            #listbox.insert(position,item-string) #ισως να θελει for
+            print("new news")
+
+
+    #Εμφάνιση Labels κλπ στο frame ανακοινωσεων
+    label_Announce.pack(side=TOP,ipady=10)
+    label_sortBy.pack(side=TOP,pady=20)
+    label_sortBy1.pack(side=LEFT)
+    label_sortBy2.pack(side=LEFT)
+    sort_choice.pack(side=LEFT,padx=20)
+    buttton_sort.pack(side=LEFT,padx=20)
+    container_list.pack(side=LEFT, fill=BOTH, expand=1)
+    scrollbarv.pack(side=RIGHT, fill=Y)
+    scrollbarh.pack(side=BOTTOM, fill=X)
+    announcement_list.pack(side=LEFT, fill=BOTH, expand=1)
+    
+    ###Test of insertion to ListBox ΚΑΝΟΝΙΚΑ ΑΥΤΑ ΘΑ ΤΑ ΠΑΡΕΙ ΜΕ SELECT ΑΠΟ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΜΑΣ
+    #ΕΔΩ ΘΑ ΚΑΝΕΙ ΑΡΧΙΚΟ INSERT ΑΠΟ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΜΕ ΣΥΝΑΡΤΗΣΗ ΕΙΤΕ ΚΑΙ TRIGGER UPDATE ΑΠΟ ΕΝΗΜΕΡΩΣΕΙΣ TABLE
+    announcement_list.insert(1, "This is a test to see if the listBox works as it should be")
+    announcement_list.insert(2, "Ανακοινωση Ημερομηνίας Δηλώσεων")
+    announcement_list.insert(3, "Πρόγραμμα εξεταστικής έτους 2020-2021")
+    announcement_list.insert(4, "#ΜΕΝΟΥΜΕ_ΣΠΙΤΙ")
+    announcement_list.insert(5, "PYTHON")
+    announcement_list.insert(6, "ΠΑΡΜΕΝΙΔΗΣ ΜΕ TKINTER ΓΙΑ GUI")
+    announcement_list.insert(7, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(8, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(9, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(10, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(11, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(12, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(13, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(14, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    announcement_list.insert(15, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
