@@ -343,6 +343,10 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #statement_Frame
 
+    ####sos sos sos sos SOS SOS SOS SOS ΝΑ ΦΤΙΑΞΩ ΣΥΝΑΡΤΗΣΗ ΓΙΑ ΝΑ ΠΑΊΡΝΙΕ ΤΑ DATES ΠΡΟΘΕΣΜΙΑΣ ΑΠΟ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
+    #ΚΑΙ ΜΕΤΑ ΝΑ ΤΑ ΜΕΤΑΤΡΕΠΕΙ ΣΕ ΝΟΥΜΕΡΑ 
+    #ΚΑΙ ΝΑ ΣΥΓΚΡΙΝΕΙ ΜΕ ΤΗΝ ΤΡΕΧΟΥΣΑ ΗΜΕΡΟΜΗΝΙΑ ΑΝ > Η < ΚΑΙ ΑΝ > ΝΑ ΚΑΝΕΙ ΤΟ BUTTON UNPRESSABLE
+
     label_Statement_all = Label(statement_Frame, bg="floral white")
     label_Statement_all_top = Label(label_Statement_all, bg="floral white")
     label_Statement_all_t_top = Label(label_Statement_all_top, text="Δηλώσεις", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
