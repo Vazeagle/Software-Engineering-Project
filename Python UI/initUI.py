@@ -53,9 +53,10 @@ all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
 statement_Frame=Frame(all_Frame, bg="floral white")
-statement_Frame1=Frame(all_Frame, bg="floral white")
-statement_Frame2=Frame(all_Frame, bg="floral white")
-statement_Frame3=Frame(all_Frame, bg="floral white")
+statement_Frame1=Frame(all_Frame, bg="floral white")#δηλωση συμμετοχης μαθητη
+statement_Frame2=Frame(all_Frame, bg="floral white")#δηλωση μαθημάτων μαθητη
+statement_Frame3=Frame(all_Frame, bg="floral white")#δήλωση  μηχανογραφικού μαθητη
+statement_Frame4=Frame(all_Frame, bg="floral white")#Τελικές Δηλώσεις
 
 weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="floral white")
 results_Frame=Frame(all_Frame, bg="floral white",width=getRes[0], height=getRes[1])
@@ -371,6 +372,12 @@ def main():
     label_Statement_b3_r_right = Label(label_Statement_b3, bg="floral white",text="Προθεσμία: ",font=("Calibri", 16, "bold"))
     label_Statement_b3_rr_right = Label(label_Statement_b3, bg="green2",text="26/05/2020",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
 
+    label_Statement_b4 = Label(label_Statement_all_topd, bg="floral white")
+    label_Statement_b4_left = Label(label_Statement_b4, bg="floral white")
+    #label_Statement_b4_right = Label(label_Statement_b4, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    #label_Statement_b4_r_right = Label(label_Statement_b4, bg="floral white",text="Κατέβασμα: ",font=("Calibri", 16, "bold"))
+    #label_Statement_b4_rr_right = Label(label_Statement_b4, bg="floral white",text="AM1054284.pdf",font=("Calibri", 16, "bold"),fg='blue')#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+
     #state_Text1 = Text(label_Statement_b1_right, bg="floral white", fg="black", borderwidth=0, highlightthickness=2,font=("Calibri", 12),width=5)
     #state_Text1.insert(INSERT,"Εκκρεμης/Ολοκληρώθηκε")#εισαγωγη απο ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΤΩΡΑ ΕΙΝΑΙ ΠΡΟΧΕΙΡΑ
     #state_Text1.config(state=DISABLED)#to be un editable
@@ -378,6 +385,7 @@ def main():
     butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement4 = Button(label_Statement_b4_left, text="Τελικές Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame4,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
 
     label_Statement_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
     label_Statement_all_top.pack(side=TOP,fill=BOTH, expand=1)
@@ -385,28 +393,35 @@ def main():
     label_Statement_all_t_down.pack(side=BOTTOM)
     label_Statement_all_topd.pack(side=TOP,fill=BOTH, expand=1)
 
-    label_Statement_b1.pack(side=TOP,pady=30)
+    label_Statement_b1.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
     label_Statement_b1_left.pack(side=LEFT)
-    label_Statement_b1_rr_right.pack(side=RIGHT,padx=5)
-    label_Statement_b1_r_right.pack(side=RIGHT,padx=5)
-    label_Statement_b1_right.pack(side=RIGHT,padx=50)
+    label_Statement_b1_right.pack(side=LEFT,padx=50)
+    label_Statement_b1_r_right.pack(side=LEFT,padx=5)
+    label_Statement_b1_rr_right.pack(side=LEFT,padx=5)
 
-    label_Statement_b2.pack(side=TOP,pady=30)
+    label_Statement_b2.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
     label_Statement_b2_left.pack(side=LEFT)
-    label_Statement_b2_rr_right.pack(side=RIGHT,padx=5)
-    label_Statement_b2_r_right.pack(side=RIGHT,padx=5)
-    label_Statement_b2_right.pack(side=RIGHT,padx=50)
+    label_Statement_b2_right.pack(side=LEFT,padx=50)
+    label_Statement_b2_r_right.pack(side=LEFT,padx=5)
+    label_Statement_b2_rr_right.pack(side=LEFT,padx=5)##########################sos sos sos παιξε με τοποθετησεις και με left right κανονικα το ειχα right + htan allh h 8esh pou kalousa ta pack logo right(an side- right prwta to rr meta to r kai mtelos to right se kalesma)
 
-    label_Statement_b3.pack(side=TOP,pady=30)
+    label_Statement_b3.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
     label_Statement_b3_left.pack(side=LEFT)
-    label_Statement_b3_rr_right.pack(side=RIGHT,padx=5)
-    label_Statement_b3_r_right.pack(side=RIGHT,padx=5)
-    label_Statement_b3_right.pack(side=RIGHT,padx=50)
+    label_Statement_b3_right.pack(side=LEFT,padx=50)
+    label_Statement_b3_r_right.pack(side=LEFT,padx=5)
+    label_Statement_b3_rr_right.pack(side=LEFT,padx=5)
+
+    label_Statement_b4.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
+    label_Statement_b4_left.pack(side=LEFT)
+    #label_Statement_b4_rr_right.pack(side=RIGHT,padx=5)
+    #label_Statement_b4_r_right.pack(side=RIGHT,padx=5)
+    #label_Statement_b4_right.pack(side=RIGHT,padx=50)
     #state_Text1.pack()#side=RIGHT EINAI HDH RIGHT APO THN MAMA LABEL POU ANHKOYN
 
     butttonStatement1.pack()
     butttonStatement2.pack()
     butttonStatement3.pack()#TA SIDE EDW EINAI HDH LEFT APO THN MAMA LABEL POU ANHKOYN
+    butttonStatement4.pack()
 
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
