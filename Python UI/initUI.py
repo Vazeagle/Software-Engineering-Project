@@ -3,6 +3,7 @@
 ######---------Packages Needed
 import os, sys
 from tkinter import *
+from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 from PIL import Image, ImageTk, ImageDraw, ImageFilter
@@ -19,6 +20,10 @@ main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
 none="none"
+month_options=[]
+date_options=[]
+year_options=[]
+
 
 #Picture Insertion & Resize
 
@@ -69,6 +74,54 @@ problems_Frame = Frame(all_Frame, bg="floral white", width=getRes[0], height=get
 
 #Needed Functions
 
+def browse_ID():
+    # Allow user to select a directory and store it in global var
+    global folder_path_ID
+    filename_ID = filedialog.askdirectory()
+    folder_path_ID.set(filename_ID)
+    print(filename)
+
+def browse_form():
+    # Allow user to select a directory and store it in global var
+    global folder_path_form
+    filename = filedialog.askdirectory()
+    folder_path_form.set(filename)
+    print(filename)
+
+
+def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui στις ανακοινώσεις
+    i=0
+    global month_options
+    global date_options
+    global year_options
+
+    while (i<=12):  #month
+        if(i==0):
+            month_options.insert(0,"-")
+        else:
+            month_options.append(i)
+            i+=1
+
+    i=0
+    while (i<=31):  #date
+        if(i==0):
+            date_options.insert(0,"-")
+        else:
+            date_options.append(i)
+        i+=1
+
+    i=0
+    now = datetime.datetime.now() ##current
+    current_year=int(now.year)
+    start_year=current_year-100
+    while (i<=start_year):  #year
+        if(i==0):
+            date_options.insert(0,"-")
+        else:
+            date_options.append(i)
+        i+=1
+
+
 def raiseNdrop_frame(frameUp,frameDown):
     if(frameDown!="none"):
         #frameDown.pack_forget(frameDown)
@@ -93,7 +146,9 @@ def ExitApp():
 
 def main():
     
-
+    #global month_options
+    #global date_options
+    #global year_options
     # ---------------------------------------------------
     #container = ttk.Frame(main_window)
     #canvas = Canvas(container, bg="white", borderwidth=2, highlightthickness=0)#-50 -70
@@ -396,7 +451,7 @@ def main():
     label_Statement_b1.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
     label_Statement_b1_left.pack(side=LEFT)
     label_Statement_b1_right.pack(side=LEFT,padx=50)
-    label_Statement_b1_r_right.pack(side=LEFT,padx=5)
+    label_Statement_b1_r_right.pack(side =LEFT,padx=5)
     label_Statement_b1_rr_right.pack(side=LEFT,padx=5)
 
     label_Statement_b2.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
@@ -436,14 +491,146 @@ def main():
     label_Statement1_all = Label(statement_Frame1, bg="floral white")
     label_Statement1_all_top = Label(label_Statement1_all, text="Δήλωση Συμμετοχής",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_Statement1_all_mid_top = Label(label_Statement1_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
-    label_Statement1_all_down = Label(label_Statement1_all, bg="floral white")
+    label_Statement1_all_down = Label(label_Statement1_all_mid_top, bg="floral white")
 
+    label_Statement1_all_m_t1 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt1_left = Label(label_Statement1_all_m_t1, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_name = Text(label_Statement1_all_m_t1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    #info_text_name.insert(INSERT,"geia")
+    #info_text_name.config(state=DISABLED)#to be un editable
+
+    label_Statement1_all_m_t2 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt2_left = Label(label_Statement1_all_m_t2, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_surname = Text(label_Statement1_all_m_t2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    label_Statement1_all_m_t3 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt3_left = Label(label_Statement1_all_m_t3, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt3l_l = Label(label_Statement1_all_m_t3, bg="floral white")
+    label_Statement1_all_mt3ll_l = Label(label_Statement1_all_m_t3, bg="floral white")
+    label_Statement1_all_mt3lll_l = Label(label_Statement1_all_m_t3, bg="floral white")
+
+    label_Statement1_all_m_t4 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt4_left = Label(label_Statement1_all_m_t4, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Fname = Text(label_Statement1_all_m_t4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    label_Statement1_all_m_t5 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt5_left = Label(label_Statement1_all_m_t5, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Fsurname = Text(label_Statement1_all_m_t5, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
+    label_Statement1_all_m_t6 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt6_left = Label(label_Statement1_all_m_t6, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Mname = Text(label_Statement1_all_m_t6, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    label_Statement1_all_m_t7 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt7_left = Label(label_Statement1_all_m_t7, text="Επώνυμο Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Msurname = Text(label_Statement1_all_m_t7, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
+
+    ##### METABLHTES GIA DIRECTORY ARXEIWN 
+    folder_path_form = StringVar()#(label_Statement1_all_mt8l_left)
+    folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
+
+    label_Statement1_all_m_t8 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt8_left = Label(label_Statement1_all_m_t8, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt8l_left =  Label(label_Statement1_all_m_t8, bg="floral white",textvariable=folder_path_form)
+    #pdf selected from user browse
+
+    label_Statement1_all_m_t9 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt9_left = Label(label_Statement1_all_m_t9, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, bg="floral white",textvariable=folder_path_ID)
+
+    #pdf selected from user browse
+    
+    #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
+
+    #datetime_initialise()
+    date_options=["-", "00", "01","02","03","04","05","06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+    date_val = StringVar(label_Statement1_all_mt3l_l)
+    date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    date_choice = OptionMenu(label_Statement1_all_mt3l_l, date_val, *date_options)
+
+    month_options=["-","Ιανουάριος", "Φεβρουάριος", "Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"]
+    month_val = StringVar(label_Statement1_all_mt3ll_l)
+    month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    month_choice = OptionMenu(label_Statement1_all_mt3ll_l, month_val, *month_options)
+
+
+    year_options=["-", "Παλαιότερα", "2020","2021","1998","1990","1996"]
+    year_val = StringVar(label_Statement1_all_mt3lll_l)
+    year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    year_choice = OptionMenu(label_Statement1_all_mt3lll_l, year_val, *year_options)
+
+    #browse_ID
+    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="gray26",font=("Calibri", 14, "bold"))
+    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="gray26",font=("Calibri", 14, "bold"))
+
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="gray26",font=("Calibri", 14, "bold"))
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="gray26",font=("Calibri", 14, "bold"))
+    
+    #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
+    def confirm_choice():
+        date_save=date_choice.get()
+        month_save=month_choice.get()
+        year_save=year_choice.get()
+        print(date_save)
+        print(month_save)
+        print(year_save)
+        MsgBox = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
+        if MsgBox == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+        else:
+            messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης δήλωσης!')
+        print("end")
+
+
+    ###EMFANISH LABELS BUTTONS MENU KLP
     label_Statement1_all.pack(side=TOP, expand=1, fill=BOTH)
     label_Statement1_all_top.pack(side=TOP)
-    label_Statement1_all_mid_top.pack(side=TOP, expand=1, fill=BOTH, pady=100)
+    label_Statement1_all_mid_top.pack(side=LEFT, expand=1, fill=BOTH, pady=100)
     label_Statement1_all_down.pack(side=BOTTOM, expand=1, fill=BOTH)
 
+    label_Statement1_all_m_t1.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt1_left.pack(side=LEFT,padx=10)
+    info_text_name.pack(side=LEFT)
 
+    label_Statement1_all_m_t2.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt2_left.pack(side=LEFT,padx=10)
+    info_text_surname.pack(side=LEFT)
+
+    label_Statement1_all_m_t3.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt3_left.pack(side=LEFT,padx=10)
+    label_Statement1_all_mt3l_l.pack(side=LEFT,padx=5)
+    label_Statement1_all_mt3ll_l.pack(side=LEFT,padx=5)
+    label_Statement1_all_mt3lll_l.pack(side=LEFT,padx=5)
+    date_choice.pack(side=LEFT, ipadx=50, padx=5)
+    month_choice.pack(side=LEFT, ipadx=50, padx=5)
+    year_choice.pack(side=LEFT, ipadx=50, padx=5)
+
+    label_Statement1_all_m_t4.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt4_left.pack(side=LEFT,padx=10)
+    info_text_Fname.pack(side=LEFT)
+
+    label_Statement1_all_m_t5.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt5_left.pack(side=LEFT,padx=10)
+    info_text_Fsurname.pack(side=LEFT)
+
+    label_Statement1_all_m_t6.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt6_left.pack(side=LEFT,padx=10)
+    info_text_Mname.pack(side=LEFT)
+
+    label_Statement1_all_m_t7.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt7_left.pack(side=LEFT,padx=10)
+    info_text_Msurname.pack(side=LEFT)
+
+    label_Statement1_all_m_t8.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt8_left.pack(side=LEFT,padx=10)
+
+    label_Statement1_all_m_t9.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt9_left.pack(side=LEFT,padx=10)
+
+    buttton_browse_ID.pack(side=LEFT)
+    buttton_browse_form.pack(side=LEFT)
+    buttton_confirm.pack(side=RIGHT,padx=50)
+    buttton_back_to_statement.pack(side=RIGHT)
 
     # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
     #---------------------------------------------------------------------------------------------------
