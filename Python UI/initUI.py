@@ -72,22 +72,37 @@ problems_Frame = Frame(all_Frame, bg="floral white", width=getRes[0], height=get
 #problems_Frame = Frame(scrollable_frame, bg="salmon1", width=getRes[0], height=getRes[1])
 
 
+##### METABLHTES GIA DIRECTORY ARXEIWN 
+folder_path_form = StringVar()#(label_Statement1_all_mt8l_left)
+folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
+folder_path_form.set("")
+folder_path_ID.set("")
+
+
 #Needed Functions
 
-def browse_ID():
-    # Allow user to select a directory and store it in global var
+def browse_ID():    #filedialog documentation  για λεπτομερειες
+    # Allow user to select a directory and store it in global variable folder_path_ID και ασφάλεια από λάθος αρχείο
     global folder_path_ID
-    filename_ID = filedialog.askdirectory()
-    folder_path_ID.set(filename_ID)
-    print(filename)
+    filename_ID = filedialog.askopenfilename()
+    file_type1=filename_ID.split(".")
+    if(file_type1[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
+        folder_path_ID.set(filename_ID)
+    else:
+        msg_error_ID = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει αντίγραφο της ταυτότητας σας!',icon='warning')
+        filename_ID=""
 
-def browse_form():
-    # Allow user to select a directory and store it in global var
+
+def browse_form():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
     global folder_path_form
-    filename = filedialog.askdirectory()
-    folder_path_form.set(filename)
-    print(filename)
-
+    filename_form = filedialog.askopenfilename()
+    file_type2=filename_form.split(".")
+    if(file_type2[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
+        folder_path_form.set(filename_form)
+    else:
+        msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας',icon='warning')
+        filename_ID=""
 
 def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui στις ανακοινώσεις
     i=0
@@ -100,7 +115,7 @@ def datetime_initialise(): #### χρειάζεται για το drop down menu 
             month_options.insert(0,"-")
         else:
             month_options.append(i)
-            i+=1
+        i=i+1
 
     i=0
     while (i<=31):  #date
@@ -108,18 +123,18 @@ def datetime_initialise(): #### χρειάζεται για το drop down menu 
             date_options.insert(0,"-")
         else:
             date_options.append(i)
-        i+=1
+        i=i+1
 
-    i=0
-    now = datetime.datetime.now() ##current
+    now = datetime.now() ##current
     current_year=int(now.year)
     start_year=current_year-100
-    while (i<=start_year):  #year
-        if(i==0):
-            date_options.insert(0,"-")
+    i=current_year-16   #-16 επειδη ειναι το μιν για επιλογη κατευθυνσης κλπ  για να βαλει αρχικα μια - στην λιστα
+    while (i>=start_year):  #year 
+        if(i==current_year-16  ):
+            year_options.insert(0,"-")
         else:
-            date_options.append(i)
-        i+=1
+            year_options.append(i)
+        i=i-1
 
 
 def raiseNdrop_frame(frameUp,frameDown):
@@ -525,36 +540,32 @@ def main():
     label_Statement1_all_mt7_left = Label(label_Statement1_all_m_t7, text="Επώνυμο Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     info_text_Msurname = Text(label_Statement1_all_m_t7, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
 
-    ##### METABLHTES GIA DIRECTORY ARXEIWN 
-    folder_path_form = StringVar()#(label_Statement1_all_mt8l_left)
-    folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
 
     label_Statement1_all_m_t8 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt8_left = Label(label_Statement1_all_m_t8, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement1_all_mt8l_left =  Label(label_Statement1_all_m_t8, bg="floral white",textvariable=folder_path_form)
+    label_Statement1_all_mt8l_left =  Label(label_Statement1_all_m_t8, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_form)# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
     #pdf selected from user browse
 
     label_Statement1_all_m_t9 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt9_left = Label(label_Statement1_all_m_t9, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, bg="floral white",textvariable=folder_path_ID)
-
+    label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_ID)
     #pdf selected from user browse
     
     #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
 
-    #datetime_initialise()
-    date_options=["-", "00", "01","02","03","04","05","06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+    datetime_initialise()
+    #date_options=["-", "00", "01","02","03","04","05","06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     date_val = StringVar(label_Statement1_all_mt3l_l)
     date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(label_Statement1_all_mt3l_l, date_val, *date_options)
 
-    month_options=["-","Ιανουάριος", "Φεβρουάριος", "Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"]
+    #month_options=["-","Ιανουάριος", "Φεβρουάριος", "Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"]
     month_val = StringVar(label_Statement1_all_mt3ll_l)
     month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(label_Statement1_all_mt3ll_l, month_val, *month_options)
 
 
-    year_options=["-", "Παλαιότερα", "2020","2021","1998","1990","1996"]
+    #year_options=["-", "Παλαιότερα", "2020","2021","1998","1990","1996"]
     year_val = StringVar(label_Statement1_all_mt3lll_l)
     year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(label_Statement1_all_mt3lll_l, year_val, *year_options)
@@ -574,8 +585,8 @@ def main():
         print(date_save)
         print(month_save)
         print(year_save)
-        MsgBox = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
-        if MsgBox == 'yes':
+        Msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
+        if Msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
         else:
             messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης δήλωσης!')
@@ -588,15 +599,15 @@ def main():
     label_Statement1_all_mid_top.pack(side=LEFT, expand=1, fill=BOTH, pady=100)
     label_Statement1_all_down.pack(side=BOTTOM, expand=1, fill=BOTH)
 
-    label_Statement1_all_m_t1.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t1.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt1_left.pack(side=LEFT,padx=10)
     info_text_name.pack(side=LEFT)
 
-    label_Statement1_all_m_t2.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t2.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt2_left.pack(side=LEFT,padx=10)
     info_text_surname.pack(side=LEFT)
 
-    label_Statement1_all_m_t3.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t3.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt3_left.pack(side=LEFT,padx=10)
     label_Statement1_all_mt3l_l.pack(side=LEFT,padx=5)
     label_Statement1_all_mt3ll_l.pack(side=LEFT,padx=5)
@@ -605,27 +616,29 @@ def main():
     month_choice.pack(side=LEFT, ipadx=50, padx=5)
     year_choice.pack(side=LEFT, ipadx=50, padx=5)
 
-    label_Statement1_all_m_t4.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t4.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt4_left.pack(side=LEFT,padx=10)
     info_text_Fname.pack(side=LEFT)
 
-    label_Statement1_all_m_t5.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t5.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt5_left.pack(side=LEFT,padx=10)
     info_text_Fsurname.pack(side=LEFT)
 
-    label_Statement1_all_m_t6.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t6.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt6_left.pack(side=LEFT,padx=10)
     info_text_Mname.pack(side=LEFT)
 
-    label_Statement1_all_m_t7.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t7.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt7_left.pack(side=LEFT,padx=10)
     info_text_Msurname.pack(side=LEFT)
 
-    label_Statement1_all_m_t8.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t8.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt8_left.pack(side=LEFT,padx=10)
+    label_Statement1_all_mt8l_left.pack(side=LEFT,padx=10)
 
-    label_Statement1_all_m_t9.pack(side=TOP,pady=10,expand=1,fill=X, padx=30)
+    label_Statement1_all_m_t9.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt9_left.pack(side=LEFT,padx=10)
+    label_Statement1_all_mt9l_left.pack(side=LEFT,padx=10)
 
     buttton_browse_ID.pack(side=LEFT)
     buttton_browse_form.pack(side=LEFT)
