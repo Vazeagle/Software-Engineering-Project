@@ -511,8 +511,6 @@ def main():
     label_Statement1_all_m_t1 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt1_left = Label(label_Statement1_all_m_t1, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     info_text_name = Text(label_Statement1_all_m_t1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    #info_text_name.insert(INSERT,"geia")
-    #info_text_name.config(state=DISABLED)#to be un editable
 
     label_Statement1_all_m_t2 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt2_left = Label(label_Statement1_all_m_t2, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -523,7 +521,9 @@ def main():
     label_Statement1_all_mt3l_l = Label(label_Statement1_all_m_t3, bg="floral white")
     label_Statement1_all_mt3ll_l = Label(label_Statement1_all_m_t3, bg="floral white")
     label_Statement1_all_mt3lll_l = Label(label_Statement1_all_m_t3, bg="floral white")
-
+    label_Statement1_all_mt3_space1 = Label(label_Statement1_all_m_t3, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt3_space2 = Label(label_Statement1_all_m_t3, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    
     label_Statement1_all_m_t4 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt4_left = Label(label_Statement1_all_m_t4, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     info_text_Fname = Text(label_Statement1_all_m_t4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
@@ -558,23 +558,26 @@ def main():
     date_val = StringVar(label_Statement1_all_mt3l_l)
     date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(label_Statement1_all_mt3l_l, date_val, *date_options)
+    date_choice.config(bg="snow")
 
     month_val = StringVar(label_Statement1_all_mt3ll_l)
     month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(label_Statement1_all_mt3ll_l, month_val, *month_options)
+    month_choice.config(bg="snow")
 
 
     year_val = StringVar(label_Statement1_all_mt3lll_l)
     year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(label_Statement1_all_mt3lll_l, year_val, *year_options)
+    year_choice.config(bg="snow")
 
 
     #browse_ID
-    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="gray26",font=("Calibri", 14, "bold"))
-    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="gray26",font=("Calibri", 14, "bold"))
+    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
+    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Calibri", 14, "bold"))
 
-    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="gray26",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="gray26",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def confirm_choice():
@@ -615,11 +618,15 @@ def main():
     label_Statement1_all_m_t3.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt3_left.pack(side=LEFT,padx=10)
     label_Statement1_all_mt3l_l.pack(side=LEFT,padx=5)
+    label_Statement1_all_mt3_space1.pack(side=LEFT)
     label_Statement1_all_mt3ll_l.pack(side=LEFT,padx=5)
+    label_Statement1_all_mt3_space2.pack(side=LEFT)
     label_Statement1_all_mt3lll_l.pack(side=LEFT,padx=5)
-    date_choice.pack(side=LEFT, ipadx=50, padx=5)
-    month_choice.pack(side=LEFT, ipadx=50, padx=5)
-    year_choice.pack(side=LEFT, ipadx=50, padx=5)
+    date_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
+    month_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
+    year_choice.pack(side=LEFT, ipadx=15, ipady=2, padx=5)
+    
+    
 
     label_Statement1_all_m_t4.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     label_Statement1_all_mt4_left.pack(side=LEFT,padx=10)
