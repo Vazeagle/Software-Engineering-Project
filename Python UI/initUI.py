@@ -551,43 +551,48 @@ def main():
     label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_ID)
     #pdf selected from user browse
     
-    #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
+    #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ -----------------------------
 
-    datetime_initialise()
-    #date_options=["-", "00", "01","02","03","04","05","06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+    datetime_initialise()#kalesma synarthshs gia hmeromhnia
+
     date_val = StringVar(label_Statement1_all_mt3l_l)
     date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(label_Statement1_all_mt3l_l, date_val, *date_options)
 
-    #month_options=["-","Ιανουάριος", "Φεβρουάριος", "Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"]
     month_val = StringVar(label_Statement1_all_mt3ll_l)
     month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(label_Statement1_all_mt3ll_l, month_val, *month_options)
 
 
-    #year_options=["-", "Παλαιότερα", "2020","2021","1998","1990","1996"]
     year_val = StringVar(label_Statement1_all_mt3lll_l)
     year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(label_Statement1_all_mt3lll_l, year_val, *year_options)
+
 
     #browse_ID
     buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="gray26",font=("Calibri", 14, "bold"))
     buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="gray26",font=("Calibri", 14, "bold"))
 
-    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="gray26",font=("Calibri", 14, "bold"))
-    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="gray26",font=("Calibri", 14, "bold"))
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="gray26",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="gray26",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def confirm_choice():
-        date_save=date_choice.get()
-        month_save=month_choice.get()
-        year_save=year_choice.get()
-        print(date_save)
-        print(month_save)
-        print(year_save)
-        Msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
-        if Msg_confirmation == 'yes':
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
+        if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+            date_save=date_choice.get()
+            month_save=month_choice.get()
+            year_save=year_choice.get()
+            print(date_save)
+            print(month_save)
+            print(year_save)
+            info_text_name.config(state=DISABLED)#to be un editable
+            info_text_surname.config(state=DISABLED)#to be un editable
+            info_text_Fname.config(state=DISABLED)#to be un editable
+            info_text_Fsurname.config(state=DISABLED)#to be un editable
+            info_text_Mname.config(state=DISABLED)#to be un editable
+            info_text_Msurname.config(state=DISABLED)#to be un editable
         else:
             messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης δήλωσης!')
         print("end")
