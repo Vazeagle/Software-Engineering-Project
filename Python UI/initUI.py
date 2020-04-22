@@ -576,7 +576,7 @@ def main():
     buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
     buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Calibri", 14, "bold"))
 
-    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice, bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
@@ -584,9 +584,9 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
-            date_save=date_choice.get()
-            month_save=month_choice.get()
-            year_save=year_choice.get()
+            date_save=date_val.get()
+            month_save=month_val.get()
+            year_save=year_val.get()
             print(date_save)
             print(month_save)
             print(year_save)
@@ -598,7 +598,7 @@ def main():
             info_text_Msurname.config(state=DISABLED)#to be un editable
         else:
             messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης δήλωσης!')
-        print("end")
+
 
 
     ###EMFANISH LABELS BUTTONS MENU KLP
