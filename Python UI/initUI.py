@@ -666,6 +666,57 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #statement_Frame2 δηλωση μαθημάτων
 
+    label_Statement2_all = Label(statement_Frame2, bg="floral white")
+    label_Statement2_all_top = Label(label_Statement2_all, text="Δήλωση Μαθημάτων",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_Statement2_all_mid = Label(label_Statement2_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
+    label_Statement2_m_top = Label(label_Statement2_all_mid, bg="red")
+    label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="green")
+    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="blue")
+
+    label_Statement2_info_top = Label(label_Statement2_m_top, bg="yellow")
+    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ')
+    label_Statement2_name = Label(label_Statement2_info_top, bg="yellow")
+    label_Statement2_surname = Label(label_Statement2_info_top, bg="yellow")
+
+    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="yellow")
+    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ')
+    label_Statement2_date = Label(label_Statement2_info_mid, bg="yellow")
+    label_Statement2_month = Label(label_Statement2_info_mid, bg="yellow")
+    label_Statement2_year = Label(label_Statement2_info_mid, bg="yellow")
+
+    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="yellow")
+    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ')
+    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="yellow")
+
+
+    #ONAMATEPWNUMO
+    label_Statement2_info_top.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_fullname.pack(side=LEFT)
+    label_Statement2_name.pack(side=LEFT)
+    label_Statement2_surname.pack(side=LEFT)
+
+    #HMEROMHNIA GENNHSHS
+    label_Statement2_info_mid.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_birth.pack(side=LEFT)
+    label_Statement2_date.pack(side=LEFT)
+    label_Statement2_month.pack(side=LEFT)
+    label_Statement2_year.pack(side=LEFT)
+
+    #LYKEIO
+    label_Statement2_info_bottom.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_school.pack(side=LEFT)
+    label_Statement2_school_name.pack(side=LEFT)
+
+
+
+
+    label_Statement2_all.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_all_top.pack(side=TOP)
+    label_Statement2_all_mid.pack(side=LEFT, expand=1, fill=BOTH, pady=100)
+    label_Statement2_m_top.pack(side=TOP, expand=1, fill=BOTH, pady=10)
+    label_Statement2_m_mid.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_m_bottom.pack(side=BOTTOM, expand=1, fill=BOTH)
+
 
 
     # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
