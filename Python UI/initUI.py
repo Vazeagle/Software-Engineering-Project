@@ -23,6 +23,115 @@ none="none"
 month_options=[]
 date_options=[]
 year_options=[]
+exam_list=[]
+lessons=[]
+special_lessons=[]
+directions=[]
+exam_list.append("system1")######GIA DELETE MOLIS FTIXNEI TO UI TOU ADMIN GIA PROS8HKH SYSTEM EXETASHS
+exam_list.append("system2")
+
+globals()[exam_list[0]]={}#dhmiourgia pseutikh edw gia test an douleuei
+globals()[exam_list[1]]={}
+a1="Μαθηματικά Κατεύθυνσης,Βιολογία,Φυσική,Χημεία,Νεοελληνική Γλώσσα και Λογοτεχνία"
+a2="Αρχαια,Ιστορια,Μαθηματικα γεν,Οικονομικά"
+a3="Καμία Επιλογή,Ελεύθερο Σχέδιο, Γραμμικό Σχέδιο"
+globals()[exam_list[0]].update({"Θετική": a1})
+globals()[exam_list[0]].update({"Θεωρητική": a2})
+globals()[exam_list[0]].update({"Μαθήματα Ειδικής Κατηγορίας": a3})
+
+#globals()[exam_list[0]].update({"Θετική": a1}) sos sos globals αν οριστει μεσα σε συνάρτηση
+#globals()[exam_list[0]].update({"Θεωρητική": a2})
+
+
+def add_exam_system():
+    #####system_name=StringVar.get() h tetoio anti gia insert se function
+    system_name=""
+    global exam_list
+    exist_count=0
+    for x in exam_list:
+        if(x==system_name):
+            exist_count=1
+        else:
+            exist_count=0
+    if(exist_count==0):
+        exam_list.append(system_name)
+    else:
+        print("Error System Already Exist !!!")
+        #####   messageBOX
+    
+    for exam_name in exam_list:################################### sos sos ISWS NA MHN XREIAZETAI  EDW H FOR  ALLA THN AFHNW PROSOREINA
+        if globals()[exam_name] in globals():
+            print(globals()[exam_name], " system already exists")
+        else:
+            globals()[exam_name]={}
+            print(exam_name)
+
+    return(system_name)
+
+#function for student to access direction on Optionmenu direction trexei prin emfanish dropmenu
+def exam_system():
+    global directions
+    directions.clear()
+    directions.append("-")
+    #EPEIDH O ADMIN DEN MPOREI NA KANEI SET KANW PSEUTIKA EISAGWGH EGW EDW GIA TEST
+    ####StringVar.get() na pairnei system exetashs apo DATABASE
+    #TOU DINW PSEUTIKA system1 gia eisagwgh --------------------------------------------------------------------------------------------
+    keys_temp=globals()[exam_list[0]].keys()
+    directions_temp=list(keys_temp)
+    if ("Μαθήματα Ειδικής Κατηγορίας"in directions_temp):
+        directions_temp.remove("Μαθήματα Ειδικής Κατηγορίας")# sos sos δενθέλουμε να περιλαμβάνει μαθήματα ειδικής κατηγορίας
+    i=0
+    while i<len(directions_temp): 
+        directions.append(directions_temp[i])
+        i+=1
+
+    
+    
+
+    #exam_system_verify=StringVar #επιβεβαιωση συστηματος
+    #if exam_system_verify in exam_list:
+    ####StringVar.get() na pairnei metablhtes apo ui admin gia onomata systematos kai na ta apo8hkeuei se lista
+    #a1="Μαθηματικά Κατεύθυνσης"
+    #a2="Φυσική"
+    #a3="Χημεία"
+    #a4="Νεοελληνική Γλώσσα και Λογοτεχνία"
+    #lesson_sum=""
+    #temp_lesson_list=[]
+    #temp_lesson_list.append(a1)
+    #temp_lesson_list.append(a2)
+    #temp_lesson_list.append(a3)
+    #temp_lesson_list.append(a4)
+    #i=0
+    #while i<len(temp_lesson_list): #DIAXVRISMOS ME KOMMA
+        #if (i==temp_lesson_list-1): #AN EINAI TELEUTAIO STOIXEIO
+            #lesson_sum=lesson_sum + temp_lesson_list[i]
+        #else:
+            #lesson_sum =temp_lesson_list[i] +","
+
+#function for admin to edit exams and lessons
+#def exam_system_edit():
+    #global exam_list
+    #####StringVar.get() na pairnei metablhtes apo ui admin gia onomata systematos kai na ta apo8hkeuei se lista
+    #a1="Μαθηματικά Κατεύθυνσης"
+    #a2="Φυσική"
+    #a3="Χημεία"
+    #a4="Νεοελληνική Γλώσσα και Λογοτεχνία"
+    #temp_lesson_list=[]
+    
+    #for exam_name in exam_list:
+        #if globals()[exam_name] in globals():
+            #print(globals()[exam_name] " system already exists")
+        #else:
+            #globals()[exam_name]={}
+            #print(exam_name)
+
+#def exam_system_creation():
+    #add_exam_system()
+
+
+
+
+
 
 
 #Picture Insertion & Resize
@@ -352,6 +461,7 @@ def main():
     sortBy_var = StringVar(label_sortBy2)
     sortBy_var.set(sort_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     sort_choice = OptionMenu(label_sortBy2, sortBy_var, *sort_options)
+    sort_choice.config(bg="snow", width=20)
     buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements, bg="gray26",font=("Calibri", 14, "bold"))
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
@@ -669,57 +779,189 @@ def main():
     label_Statement2_all = Label(statement_Frame2, bg="floral white")
     label_Statement2_all_top = Label(label_Statement2_all, text="Δήλωση Μαθημάτων",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_Statement2_all_mid = Label(label_Statement2_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
-    label_Statement2_m_top = Label(label_Statement2_all_mid, bg="red")
-    label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="green")
+    label_Statement2_m_top = Label(label_Statement2_all_mid, bg="floral white")
+    label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="floral white")
     label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="blue")
 
+
+    # sos sos sos sos sos sos προσθήκη textvariable ώστε να ανανεώνεται από δεδομένα ΄βασης δεδομένων 
+
+    #onoma hmeromhnia lukeio
     label_Statement2_info_top = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ')
+    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_name = Label(label_Statement2_info_top, bg="yellow")
     label_Statement2_surname = Label(label_Statement2_info_top, bg="yellow")
 
     label_Statement2_info_mid = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ')
+    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_date = Label(label_Statement2_info_mid, bg="yellow")
     label_Statement2_month = Label(label_Statement2_info_mid, bg="yellow")
     label_Statement2_year = Label(label_Statement2_info_mid, bg="yellow")
 
     label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ')
+    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="yellow")
 
+    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="yellow")
+    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="yellow",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="yellow")
+
+
+    ### MIDDLE LABELS LESSONS
+    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="green") #panw meros middle kateyuynsh : 8etikh klp
+    label_Statement2_mmt_left = Label(label_Statement2_mm_top, text="Κατεύθυνση: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_mmt_right = Label(label_Statement2_mm_top, bg="floral white",fg="black") #option menu για κατευθυνσεις και κουμπι για επιβεβαιωση-συναρτηση αλλαγης textvariables kai pack labels
+    #epishs isws na xreiazetai synarthsh poy me bash ta stoixeia tou root na allazei ta posa label exoume me textvariables me bash to ka8e systhma 
+
+    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="green") #ma8hmata kai ma8hmata eidikhw kathgorias
+
+    #ΑΡΙΣΤΕΡΑ ΜΑΘΗΜΑΤΑ
+    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmml_top = Label(label_Statement2_mmm_left, text="Μαθήματα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_mmml_top1 = Label(label_Statement2_mmm_left, bg="floral white")
+    
+    #ΕΞΤΡΑ ΜΑΘΗΜΑΤΑ
+    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmmr_top = Label(label_Statement2_mmm_right, text="Μαθήματα Ειδικής Κατηγορίας",  bg="floral white",font=("Times New Roman (Times)", 20, "bold"),fg="black")
+    label_Statement2_mmmr_top1 = Label(label_Statement2_mmm_right, bg="floral white")
+
+    #Option Menu  για τα Μαθήματα 
+    lessons_list  = Listbox (label_Statement2_mmml_top1, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='multiple', export=FALSE, activestyle=none, width = 30, height=6)
+    scrollbarh2 = Scrollbar(label_Statement2_mmml_top1, orient="horizontal", command=lessons_list.xview)
+    scrollbarv2= Scrollbar(label_Statement2_mmml_top1, orient="vertical", command=lessons_list.yview)
+    label_Statement2_mmml_top1.bind("<Configure>",lambda e: lessons_list.configure(scrollregion=lessons_list.bbox("all")))
+    lessons_list.configure(yscrollcommand=scrollbarv2.set, xscrollcommand=scrollbarh2.set, font=("Times New Roman (Times)", 18,"bold"))
+    label_Statement2_mmml_top1.bind("<MouseWheel>", scrollbarv2)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+
+    #Option Menu  για τα Μαθήματα Ειδικής Κατηγορίας
+    special_lessons_list  = Listbox (label_Statement2_mmmr_top1, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='multiple', export=FALSE, activestyle=none, width = 30, height=6)
+    scrollbarh3 = Scrollbar(label_Statement2_mmmr_top1, orient="horizontal", command=special_lessons_list.xview)
+    scrollbarv3= Scrollbar(label_Statement2_mmmr_top1, orient="vertical", command=special_lessons_list.yview)
+    label_Statement2_mmmr_top1.bind("<Configure>",lambda e: special_lessons_list.configure(scrollregion=special_lessons_list.bbox("all")))
+    special_lessons_list.configure(yscrollcommand=scrollbarv3.set, xscrollcommand=scrollbarh3.set, font=("Times New Roman (Times)", 18,"bold"))
+    label_Statement2_mmmr_top1.bind("<MouseWheel>", scrollbarv3)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+
+
+
+    #function call for directions
+    exam_system()#kalesma synarthshs gia κατεύθυνση sos sos sos sos ίσως το κάλεσμα να γίνεται μέσα στο προηγούμενο κουμπί που μπαινει στο παράθυρο δήλωση
+
+    direction_val = StringVar(label_Statement2_mmt_right)
+    direction_val.set(directions[0])#ΑΡΧΙΚΗ ΤΙΜΗ Κατέυθυνσης
+    direction_choice = OptionMenu(label_Statement2_mmt_right, direction_val, *directions)
+    direction_choice.config(bg="snow", width=20)
+
+    btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    def refresh_choice_exams(): #sos sos proxeira topo8ethsh
+        global lessons
+        global special_lessons
+        lessons.clear()
+        special_lessons.clear
+        lessons_list.delete(0,'end')
+        special_lessons_list.delete(0,'end')
+        ###StringVar  για να πάρει το τρεχον σύστημα και με  βαση αυτό και την κατεύθυνση να πάρει τα elements απο το dictionary
+        direction_save= direction_val.get()#τρέχουσα επιλεγμενη κατεύθυνση
+        if (direction_save== "-"):
+            lessons_list.insert(1,"Eπιλέξτε μια έγκυρη κατευθυνση!")
+            special_lessons_list.insert(1,"Eπιλέξτε μια έγκυρη κατευθυνση!")
+            msg_error_choice = messagebox.showerror('Πρόβλημα Επιλογής!', 'Παρακαλώ επιλέξτε μια έγκυρη κατεύθυνση και συνεχίστε την δήλωση μαθημάτων!',icon='warning')
+        else:
+            lessons_get= globals()[exam_list[0]][direction_save]
+            lessons=lessons_get.split(",")
+            print(lessons)
+            z=1
+            while (z<=len(lessons)):
+                lessons_list.insert(z,lessons[z-1])
+                z+=1
+            special_lessons_get= globals()[exam_list[0]]["Μαθήματα Ειδικής Κατηγορίας"]
+            special_lessons=special_lessons_get.split(",")
+            print(special_lessons)
+            w=1
+            while (w<=len(special_lessons)):
+                special_lessons_list.insert(w,special_lessons[w-1])
+                w+=1
+        
+
+        print("lesson to appear")
+        #which lesson areconfirmed from this direction from database DB
+
+    def confirm_choice_exam():#sos sos επιλογή μαθημάτων max min κλπ proxeira topo9ethsh
+        print("lessons-kateyuynsh")
+        #get exams- lessons
+        #get all data
+        #messagebox for confirmation
+
+
+    #pack -emfanish stoixeiwn selidas-frame
 
     #ONAMATEPWNUMO
-    label_Statement2_info_top.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_info_top.pack(side=TOP, expand=1, fill=BOTH,padx=20)
     label_Statement2_fullname.pack(side=LEFT)
     label_Statement2_name.pack(side=LEFT)
     label_Statement2_surname.pack(side=LEFT)
 
     #HMEROMHNIA GENNHSHS
-    label_Statement2_info_mid.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_info_mid.pack(side=TOP, expand=1, fill=BOTH,padx=20)
     label_Statement2_birth.pack(side=LEFT)
     label_Statement2_date.pack(side=LEFT)
     label_Statement2_month.pack(side=LEFT)
     label_Statement2_year.pack(side=LEFT)
 
     #LYKEIO
-    label_Statement2_info_bottom.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement2_info_bottom.pack(side=TOP, expand=1, fill=BOTH,padx=20)
     label_Statement2_school.pack(side=LEFT)
     label_Statement2_school_name.pack(side=LEFT)
 
+    #SYSTEM EXETASHS
+    label_Statement2_info_exams.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_exams_sys .pack(side=LEFT)
+    label_Statement2_sys_name.pack(side=LEFT)
+    direction_choice.pack()
+
+    #MIDDLE KATEYUYNSH- MAUHMATA SYNOLIKA
+    label_Statement2_mm_top.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_mmt_left.pack(side=LEFT)
+    label_Statement2_mmt_right.pack(side=LEFT, padx=5)
+    direction_choice.pack()
+    label_Statement2_mm_mid.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    
+    #MIDDLE MA8HAMATA ARISTERA
+    label_Statement2_mmm_left.pack(side=LEFT)
+    label_Statement2_mmml_top.pack(side=TOP)
+    label_Statement2_mmml_top1.pack(side=TOP)
+    #Εμφάνιση ListBox
+    scrollbarv2.pack(side=RIGHT, fill=Y)
+    scrollbarh2.pack(side=BOTTOM, fill=X)
+    lessons_list.pack(side=LEFT, fill=BOTH, expand=1)
+
+
+    #MIDDLE MA8HMATA DEXIA
+    label_Statement2_mmm_right.pack(side=LEFT,padx=30)
+    label_Statement2_mmmr_top.pack(side=TOP)
+    label_Statement2_mmmr_top1.pack(side=TOP)
+    #Εμφάνιση ListBox
+    scrollbarv3.pack(side=RIGHT, fill=Y)
+    scrollbarh3.pack(side=BOTTOM, fill=X)
+    special_lessons_list.pack(side=LEFT, fill=BOTH, expand=1)
 
 
 
+    #EXWTERIKA LABELS SYNOLIKA FATHER LABELS OF FRAME
     label_Statement2_all.pack(side=TOP, expand=1, fill=BOTH)
     label_Statement2_all_top.pack(side=TOP)
-    label_Statement2_all_mid.pack(side=LEFT, expand=1, fill=BOTH, pady=100)
+    label_Statement2_all_mid.pack(side=LEFT, expand=1, fill=BOTH, pady=50)
     label_Statement2_m_top.pack(side=TOP, expand=1, fill=BOTH, pady=10)
     label_Statement2_m_mid.pack(side=TOP, expand=1, fill=BOTH)
-    label_Statement2_m_bottom.pack(side=BOTTOM, expand=1, fill=BOTH)
+    label_Statement2_m_bottom.pack(side=BOTTOM, expand=1, fill=BOTH,padx=20)
 
+    btn_conf_direction.pack(side=LEFT, padx=50)
+    btn_confirm2.pack(side=RIGHT,padx=50)
+    btn_back_to_statement2.pack(side=RIGHT)
 
-
-    # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
+    # --------------------------------------------------------------------------------------------------statement_Frame2 END, Start of PAGE δηλωση μηχανογραφικού
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -729,7 +971,7 @@ def main():
     #statement_Frame3 δηλωση μηχανογραφικού
 
 
-    # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
+    # --------------------------------------------------------------------------------------------------statement_Frame3 END, Start of PAGE Τελικες Δηλώσεις
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
