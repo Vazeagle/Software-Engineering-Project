@@ -889,10 +889,29 @@ def main():
         #which lesson areconfirmed from this direction from database DB
 
     def confirm_choice_exam():#sos sos επιλογή μαθημάτων max min κλπ proxeira topo9ethsh
-        print("lessons-kateyuynsh")
-        #get exams- lessons
-        #get all data
-        #messagebox for confirmation
+        #.get  τρέχον σύστημα εξέτασης
+        direction_final= direction_val.get() #κατευθυνση τιμή
+        if (direction_final !="-"):
+            #lessons_list.get(lessons_list.curselection()) # επιλεγμένα μαθήματα τιμες για μία τιμή μόνο
+            lessons_list_values = [lessons_list.get(idx) for idx in lessons_list.curselection()]# επιλεγμένα μαθήματα τιμες σε πίνακα
+            print(lessons_list_values)
+            special_lessons_list_values = [special_lessons_list.get(idx) for idx in special_lessons_list.curselection()]# επιλεγμένα ειδικά μαθήματα τιμες σε πίνακα
+            print(special_lessons_list_values)
+            #messagebox for confirmation
+            conf_text="Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;\n"
+            conf_text1="Κατεύθυνση: "+ "".join(direction_final) + ".\n"
+            conf_text2="Μαθήματα Επιλογής: " + ", ".join(lessons_list_values) + ".\n"
+            conf_text3="Μαθήματα Ειδικής Κατηγορίας: " + ", ".join(special_lessons_list_values) + "."
+            conf_text_final=conf_text+conf_text1+conf_text2+conf_text3
+            msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final ,icon='warning')
+            if msg_confirm_exam == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+                #########sos sos sos insert σε βαση δεδομένων
+                ######### sos sos επιστροφη στην αρχικη σελίδα! ίσως όχι απαραίτητο μιας κια έχει πρόσβαση στο menu
+            else:
+                messagebox.showinfo('Αποτυχία', 'Ακύρωση καταχώρησης δήλωσης!')
+        else:
+            messagebox.showinfo('Αποτυχία', 'Λάθος στοιχεία δήλωσης!\nΠαρακαλώ ελέγξτε τα στοιχεία της δήλωσης σας και προσπαθήστε ξανά!')
 
 
     #pack -emfanish stoixeiwn selidas-frame
