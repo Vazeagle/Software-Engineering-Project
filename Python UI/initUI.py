@@ -903,13 +903,20 @@ def main():
             conf_text2="Μαθήματα Επιλογής: " + ", ".join(lessons_list_values) + ".\n"
             conf_text3="Μαθήματα Ειδικής Κατηγορίας: " + ", ".join(special_lessons_list_values) + "."
             conf_text_final=conf_text+conf_text1+conf_text2+conf_text3
-            msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final ,icon='warning')
-            if msg_confirm_exam == 'yes':
-                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
-                #########sos sos sos insert σε βαση δεδομένων
-                ######### sos sos επιστροφη στην αρχικη σελίδα! ίσως όχι απαραίτητο μιας κια έχει πρόσβαση στο menu
+            if  ((len(lessons_list_values)==0) & (len(special_lessons_list_values)>=1)):
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης! ')
+            elif ((len(special_lessons_list_values)==0) & (len(lessons_list_values)>=1)):
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε μια έγκυρη επιλογή για τα μαθήματα ειδικής κατηγορίας!')
+            elif ((len(lessons_list_values)==0) &  (len(special_lessons_list_values)==0)):
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης και τα μαθήματα ειδικής κατηγορίας!')
             else:
-                messagebox.showinfo('Αποτυχία', 'Ακύρωση καταχώρησης δήλωσης!')
+                msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final ,icon='warning')
+                if msg_confirm_exam == 'yes':
+                    messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+                    #########sos sos sos insert σε βαση δεδομένων
+                    ######### sos sos επιστροφη στην αρχικη σελίδα! ίσως όχι απαραίτητο μιας κια έχει πρόσβαση στο menu
+                else:
+                    messagebox.showinfo('Αποτυχία', 'Ακύρωση καταχώρησης δήλωσης!')
         else:
             messagebox.showinfo('Αποτυχία', 'Λάθος στοιχεία δήλωσης!\nΠαρακαλώ ελέγξτε τα στοιχεία της δήλωσης σας και προσπαθήστε ξανά!')
 
