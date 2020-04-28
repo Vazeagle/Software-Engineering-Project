@@ -198,7 +198,7 @@ def browse_ID():    #filedialog documentation  για λεπτομερειες
     if(file_type1[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
         folder_path_ID.set(filename_ID)
     else:
-        msg_error_ID = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει αντίγραφο της ταυτότητας σας!',icon='warning')
+        msg_error_ID = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει αντίγραφο της ταυτότητας σας!', icon='warning')
         filename_ID=""
 
 
@@ -210,7 +210,7 @@ def browse_form():  #filedialog documentation  για λεπτομερειες
     if(file_type2[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
         folder_path_form.set(filename_form)
     else:
-        msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας',icon='warning')
+        msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας', icon='warning')
         filename_ID=""
 
 def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui στις ανακοινώσεις
@@ -261,8 +261,7 @@ def raiseNdrop_frame(frameUp,frameDown):
 
 
 def ExitApp():
-    MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;',
-                                       icon='warning')
+    MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
     if MsgBox == 'yes':
         main_window.destroy()
     else:
@@ -867,7 +866,7 @@ def main():
         if (direction_save== "-"):
             lessons_list.insert(1,"Eπιλέξτε μια έγκυρη κατευθυνση!")
             special_lessons_list.insert(1,"Eπιλέξτε μια έγκυρη κατευθυνση!")
-            msg_error_choice = messagebox.showerror('Πρόβλημα Επιλογής!', 'Παρακαλώ επιλέξτε μια έγκυρη κατεύθυνση και συνεχίστε την δήλωση μαθημάτων!',icon='warning')
+            msg_error_choice = messagebox.showerror('Πρόβλημα Επιλογής!', 'Παρακαλώ επιλέξτε μια έγκυρη κατεύθυνση και συνεχίστε την δήλωση μαθημάτων!', icon='warning')
         else:
             lessons_get= globals()[exam_list[0]][direction_save]
             lessons=lessons_get.split(",")
@@ -904,13 +903,13 @@ def main():
             conf_text3="Μαθήματα Ειδικής Κατηγορίας: " + ", ".join(special_lessons_list_values) + "."
             conf_text_final=conf_text+conf_text1+conf_text2+conf_text3
             if  ((len(lessons_list_values)==0) & (len(special_lessons_list_values)>=1)):
-                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης! ')
+                messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης! ')
             elif ((len(special_lessons_list_values)==0) & (len(lessons_list_values)>=1)):
-                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε μια έγκυρη επιλογή για τα μαθήματα ειδικής κατηγορίας!')
+                messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε μια έγκυρη επιλογή για τα μαθήματα ειδικής κατηγορίας!')
             elif ((len(lessons_list_values)==0) &  (len(special_lessons_list_values)==0)):
-                messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης και τα μαθήματα ειδικής κατηγορίας!')
+                messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης και τα μαθήματα ειδικής κατηγορίας!')
             else:
-                msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final ,icon='warning')
+                msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final , icon='warning')
                 if msg_confirm_exam == 'yes':
                     messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                     #########sos sos sos insert σε βαση δεδομένων
