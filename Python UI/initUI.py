@@ -1041,7 +1041,7 @@ def main():
     btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
     #conf-exit btns
     btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame3), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
     #sos sos sos sos ΚΑΛΕΣΜΑ ΣΥΝΑΡΤΗΣΗΣ ΠΟΥ ΣΥΝΔΕΕΤΑΙ ΜΕ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
@@ -1084,6 +1084,8 @@ def main():
             z+=1
             
     get_departments()
+
+
     def add_department():
         #list_counter=1 san object na arxikopoieitai  san 0 kai na pros8etei kai na exafanizetai
         global list_counter
@@ -1100,7 +1102,7 @@ def main():
             choosen_department_list.insert(list_counter,add_temp)
             print(list_counter)
             list_counter=list_counter+1
-            choosen_department_list.select_clear(END)
+            department_list.select_clear(0,END)
         check_if_exist=0
 
         print("add")
@@ -1123,7 +1125,16 @@ def main():
         print("remove")
 
     def confirm_department_choice():
-        print("departments")
+        msg_conf_department = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
+        if msg_conf_department == 'yes':
+            choosen_department_list.select_set(0, END)
+            conf_department=[choosen_department_list.get(idx) for idx in choosen_department_list.curselection()]
+            choosen_department_list.select_clear(0,END)
+            print("Δήλωση Μηχανογραφικού:",conf_department)
+        else:
+            messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της δήλωσής σας!')
+            print("Ακύρωση από χρήστη της δήλωσης μηχανογραφικού")
+        
 
 
 
