@@ -1036,16 +1036,12 @@ def main():
 
     #BUTTONS
     #arrow button add remove university
-    ### sos sos sos TO DO να φτιαξω συναρτησεις που να βαζουν και να βγαζουν inputs στις λίστες
     btn_add = Button(label_Statement3_amt_mid, image=render5, command=lambda: add_department())
     btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
     #conf-exit btns
     btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame3), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
-
-    #sos sos sos sos ΚΑΛΕΣΜΑ ΣΥΝΑΡΤΗΣΗΣ ΠΟΥ ΣΥΝΔΕΕΤΑΙ ΜΕ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
-    #FUNCTION TO ADD TO LIST OF SCHOOLS BASED ON LESSONS AND DIRECTION CHOICE
 
     #LIST  για τα διαθεσιμα τμηματα 
     department_list  = Listbox (label_Statement3_amtl_bottom, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='single', export=FALSE, activestyle=none)
@@ -1084,12 +1080,14 @@ def main():
             z+=1
             
     get_departments()
+##########################################################------------------------------------------------------------------------------------------------
+
 
 
     def add_department():
         #list_counter=1 san object na arxikopoieitai  san 0 kai na pros8etei kai na exafanizetai
-        global list_counter
-        add_temp=department_list.get(department_list.curselection())
+        global list_counter #list counter se poia 8esh apo8hkeuei sto listbox
+        add_temp=department_list.get(department_list.curselection())# epilegei string pros save
         check_if_exist=0
         k=0
         while k<= choosen_department_list.size():
