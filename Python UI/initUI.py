@@ -19,7 +19,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-none="none"
+none="none" # προσωρινο για μεταβαση σε frames
 month_options=[]
 date_options=[]
 year_options=[]
@@ -27,6 +27,8 @@ exam_list=[]
 lessons=[]
 special_lessons=[]
 directions=[]
+departments=[]
+list_counter=1
 exam_list.append("system1")######GIA DELETE MOLIS FTIXNEI TO UI TOU ADMIN GIA PROS8HKH SYSTEM EXETASHS
 exam_list.append("system2")
 
@@ -57,7 +59,7 @@ def add_exam_system():
         exam_list.append(system_name)
     else:
         print("Error System Already Exist !!!")
-        #####   messageBOX
+        #####   messageBOX#   messageBOX
     
     for exam_name in exam_list:################################### sos sos ISWS NA MHN XREIAZETAI  EDW H FOR  ALLA THN AFHNW PROSOREINA
         if globals()[exam_name] in globals():
@@ -87,7 +89,6 @@ def exam_system():
 
     
     
-
     #exam_system_verify=StringVar #επιβεβαιωση συστηματος
     #if exam_system_verify in exam_list:
     ####StringVar.get() na pairnei metablhtes apo ui admin gia onomata systematos kai na ta apo8hkeuei se lista
@@ -155,8 +156,16 @@ load3 = load3.resize((100, 100), Image.ANTIALIAS)
 render3 = ImageTk.PhotoImage(load3)
 
 load4 = Image.open('gr.jpg')
-load4 = load3.resize((100, 100), Image.ANTIALIAS)
+load4 = load4.resize((100, 100), Image.ANTIALIAS)
 render4 = ImageTk.PhotoImage(load4)
+
+load5 = Image.open('arrowr.png')
+load5 = load5.resize((100, 80), Image.ANTIALIAS)
+render5 = ImageTk.PhotoImage(load5)
+
+load6 = Image.open('arrowl.png')
+load6 = load6.resize((100, 80), Image.ANTIALIAS)
+render6 = ImageTk.PhotoImage(load6)
 
 ####END PICTURES
 
@@ -213,7 +222,7 @@ def browse_form():  #filedialog documentation  για λεπτομερειες
         msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας', icon='warning')
         filename_ID=""
 
-def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui στις ανακοινώσεις
+def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui δηλωση συμμετοχης
     i=0
     global month_options
     global date_options
@@ -994,6 +1003,179 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #statement_Frame3 δηλωση μηχανογραφικού
+
+    #all label container
+    label_Statement3_all = Label(statement_Frame3, bg="floral white")
+    #top label- title
+    label_Statement3_a_top = Label(label_Statement3_all, text='Δήλωση Μηχανογραφικού ',  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    #middle container
+    label_Statement3_a_mid = Label(label_Statement3_all, bg="red")
+    #middle container top side -lists and 2 buttons
+    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="yellow") 
+    #left list of universities +text title
+    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="red")
+    # left list title
+    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    #list container
+    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="red")
+    #buttons container add- remove university from list
+    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="red")
+    #right list of universities +text title
+    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="red")
+    # right list title
+    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    #right list container
+    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="red")
+    #note- rule text label
+    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="green",font=("Times New Roman (Times)", 14), fg="black")
+    #button label confirm exit
+    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="blue")
+
+
+
+
+    #BUTTONS
+    #arrow button add remove university
+    ### sos sos sos TO DO να φτιαξω συναρτησεις που να βαζουν και να βγαζουν inputs στις λίστες
+    btn_add = Button(label_Statement3_amt_mid, image=render5, command=lambda: add_department())
+    btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
+    #conf-exit btns
+    btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+    #sos sos sos sos ΚΑΛΕΣΜΑ ΣΥΝΑΡΤΗΣΗΣ ΠΟΥ ΣΥΝΔΕΕΤΑΙ ΜΕ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
+    #FUNCTION TO ADD TO LIST OF SCHOOLS BASED ON LESSONS AND DIRECTION CHOICE
+
+    #LIST  για τα διαθεσιμα τμηματα 
+    department_list  = Listbox (label_Statement3_amtl_bottom, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='single', export=FALSE, activestyle=none)
+    scrollbarh5 = Scrollbar(label_Statement3_amtl_bottom, orient="horizontal", command=department_list.xview)
+    scrollbarv5= Scrollbar(label_Statement3_amtl_bottom, orient="vertical", command=department_list.yview)
+    label_Statement3_amtl_bottom.bind("<Configure>",lambda e: department_list.configure(scrollregion=department_list.bbox("all")))
+    department_list.configure(yscrollcommand=scrollbarv5.set, xscrollcommand=scrollbarh5.set, font=("Times New Roman (Times)", 18,"bold"))
+    label_Statement3_amtl_bottom.bind("<MouseWheel>", scrollbarv5)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+
+    #LIST  για τα επιλεγμένα τμήματα
+    choosen_department_list  = Listbox (label_Statement3_amtr_bottom, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='multiple', export=FALSE, activestyle=none)#, width = 30, height=6
+    scrollbarh6 = Scrollbar(label_Statement3_amtr_bottom, orient="horizontal", command=choosen_department_list.xview)
+    scrollbarv6= Scrollbar(label_Statement3_amtr_bottom, orient="vertical", command=choosen_department_list.yview)
+    label_Statement3_amtr_bottom.bind("<Configure>",lambda e: choosen_department_list.configure(scrollregion=choosen_department_list.bbox("all")))
+    choosen_department_list.configure(yscrollcommand=scrollbarv6.set, xscrollcommand=scrollbarh6.set, font=("Times New Roman (Times)", 18,"bold"))
+    label_Statement3_amtr_bottom.bind("<MouseWheel>", scrollbarv6)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+
+
+    ########σοσ sos sos sos sos sos sos sos sos sos  λάθος τοποθετηση είνια προσωρινά εδω η get_departments()!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    def get_departments():
+        ##### sos sos sos Διαβασε από βαση δεδομενων με βαση τα μαθηματα επιλογης  τα τμηματα-σχολες 
+        #####  sos sos sos θα καλειται μόλις πατήσει να μπει στην σελίδα δήλωσης μηχανογραφικού
+        global departments
+        departments.clear()
+        department_list.delete(0,'end')
+        departments.append("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ")
+        departments.append("Φυσικο(Αθήνας)")
+        departments.append("Φυσικο(Πάτρας)")
+        departments.append("Χημικό(Αθήνας)")
+        departments.append("Χημικό(Πάτρας)")
+        departments.append("Μαθηματικό(Αθήνας)")
+        departments.append("Μαθηματικό(Πάτρας)")
+        z=1
+        while (z<=len(departments)):
+            department_list.insert(z,departments[z-1])
+            z+=1
+            
+    get_departments()
+    def add_department():
+        #list_counter=1 san object na arxikopoieitai  san 0 kai na pros8etei kai na exafanizetai
+        global list_counter
+        add_temp=department_list.get(department_list.curselection())
+        check_if_exist=0
+        k=0
+        while k<= choosen_department_list.size():
+            if(add_temp==choosen_department_list.get(k)):
+                check_if_exist=1
+                messagebox.showinfo('Σφάλμα!', 'Έχετε επιλέξει ήδη αυτό το τμήμα!\nΠαρακαλώ επιλέξτε κάποιο από τα υπόλοιπα!')
+            k=k+1
+        k=0
+        if(check_if_exist ==0):
+            choosen_department_list.insert(list_counter,add_temp)
+            print(list_counter)
+            list_counter=list_counter+1
+            choosen_department_list.select_clear(END)
+        check_if_exist=0
+
+        print("add")
+
+    def remove_department():
+        #####sos sos sos ΙΣΩΣ na xreiastei refresh h lista giati diagrafw indexes
+        department_to_remove = [choosen_department_list.get(idx) for idx in choosen_department_list.curselection()]
+        w=1
+        while (w<=len(department_to_remove)):
+            idx_counter=0
+            remove_temp=department_to_remove[w-1]
+            while idx_counter<=choosen_department_list.size():
+                if(remove_temp==choosen_department_list.get(idx_counter)):
+                    print(idx_counter,"idxc")
+                    choosen_department_list.delete(idx_counter)
+                idx_counter=idx_counter+1
+
+            w=w+1
+
+        print("remove")
+
+    def confirm_department_choice():
+        print("departments")
+
+
+
+    #pack- ΕΜΦΑΝΙΣΗ LABELS-BUTTONS-LISTS
+
+    #all label container
+    label_Statement3_all.pack(side=TOP, expand=1, fill=BOTH)
+    #top label- title
+    label_Statement3_a_top.pack(side=TOP)
+    #middle container
+    label_Statement3_a_mid.pack(side=TOP, expand=1, fill=BOTH,pady=50)
+    #middle container top side -lists and 2 buttons
+    label_Statement3_am_top.pack(side=TOP, expand=1, fill=BOTH)
+    #left list of universities +text title
+    label_Statement3_amt_left.pack(side=LEFT, expand=1, fill=BOTH,)
+    # left list title
+    label_Statement3_amtl_top.pack(side=TOP)
+    #list container
+    label_Statement3_amtl_bottom.pack(side=TOP, fill=BOTH, expand=1)
+    #buttons container add- remove university from list
+    label_Statement3_amt_mid.pack(side=LEFT,padx=20)
+    #right list of universities +text title
+    label_Statement3_amt_right.pack(side=LEFT, expand=1, fill=BOTH,)
+    # right list title
+    label_Statement3_amtr_top.pack(side=TOP)
+    #right list container
+    label_Statement3_amtr_bottom.pack(side=TOP, fill=BOTH, expand=1)
+    #note- rule text label
+    label_Statement3_am_mid.pack(side=TOP)
+    #button label confirm exit
+    label_Statement3_am_bottom.pack(side=BOTTOM, expand=1, fill=BOTH)
+
+
+    #Εμφάνιση ListBox DEPARTMENTS ARISTERA
+    scrollbarv5.pack(side=RIGHT, fill=Y)
+    scrollbarh5.pack(side=BOTTOM, fill=X)
+    department_list.pack(side=LEFT, fill=BOTH, expand=1)
+
+    #Εμφάνιση ListBox DEPARTMENTS DEXIA
+    scrollbarv6.pack(side=RIGHT, fill=Y)
+    scrollbarh6.pack(side=BOTTOM, fill=X)
+    choosen_department_list.pack(side=LEFT, fill=BOTH, expand=1)
+
+    #BYTTONS
+    #arrow button add remove university
+    btn_add.pack(side=TOP, pady=10)
+    btn_remove.pack(side=TOP, pady=10)
+    #conf-exit btns
+    btn_confirm3.pack(side=RIGHT,padx=50)
+    btn3_back_to_statement.pack(side=RIGHT)
+
+
 
 
     # --------------------------------------------------------------------------------------------------statement_Frame3 END, Start of PAGE Τελικες Δηλώσεις
