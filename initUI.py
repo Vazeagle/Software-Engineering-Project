@@ -2,8 +2,6 @@
 
 ######---------Packages Needed
 import os, sys
-from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -34,84 +32,62 @@ list_counter=1
 exam_list.append("system1")######GIA DELETE MOLIS FTIXNEI TO UI TOU ADMIN GIA PROS8HKH SYSTEM EXETASHS
 exam_list.append("system2")
 
-#-------------------------------------<CLASSES------------------------------------------------------
+globals()[exam_list[0]]={}#dhmiourgia pseutikh edw gia test an douleuei
+globals()[exam_list[1]]={}
+a1="Μαθηματικά Κατεύθυνσης,Βιολογία,Φυσική,Χημεία,Νεοελληνική Γλώσσα και Λογοτεχνία"
+a2="Αρχαια,Ιστορια,Μαθηματικα γεν,Οικονομικά"
+a3="Καμία Επιλογή,Ελεύθερο Σχέδιο, Γραμμικό Σχέδιο"
+globals()[exam_list[0]].update({"Θετική": a1})
+globals()[exam_list[0]].update({"Θεωρητική": a2})
+globals()[exam_list[0]].update({"Μαθήματα Ειδικής Κατηγορίας": a3})
 
-physics = Lesson("Φυσική")
-chemistry = Lesson("Χημεία")
-language = Lesson("Νεοελληνική Γλώσσα και Λογοτεχνία")
-math_dir = Lesson("Μαθηματικά Κατεύθυνσης")
-biology = Lesson("Βιολογία")
-history = Lesson("Ιστορία")
-ancient = Lesson("Αρχαία Ελλήνικα")
+#globals()[exam_list[0]].update({"Θετική": a1}) sos sos globals αν οριστει μεσα σε συνάρτηση
+#globals()[exam_list[0]].update({"Θεωρητική": a2})
 
-positive = Direction("Θετική",[physics,chemistry,language])
-theoritical = Direction("Θεωρητική",[history,ancient,language])
-
-pos_sciences = Orientation("Θετικών Επιστημών",positive,math_dir)
-med_sciences = Orientation("Επιστήμες Υγείας",positive,biology)
-
-orientations = [med_sciences,pos_sciences]
-
-special_lessons_get = ["Καμία Επιλογή","Ελεύθερο Σχέδιο", "Γραμμικό Σχέδιο"]
-
-cur_school = School("1ο Λύκειο Καισαριανής")
-cur_student = Student("ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[Department("Μαθηματικό(Αθήνας)",[pos_sciences])])
-
-#-------------------------------------</CLASSES>------------------------------------------------------
-
-# globals()[exam_list[0]]={}#dhmiourgia pseutikh edw gia test an douleuei
-# globals()[exam_list[1]]={}
-# a1="Φυσική,Χημεία,Νεοελληνική Γλώσσα και Λογοτεχνία,Μαθηματικά Κατεύθυνσης,Βιολογία"
-# a2="Αρχαια,Ιστορια,Μαθηματικα γεν,Οικονομικά"
-# a3="Καμία Επιλογή,Ελεύθερο Σχέδιο, Γραμμικό Σχέδιο"
-# globals()[exam_list[0]].update({"Θετική": a1})
-# globals()[exam_list[0]].update({"Θεωρητική": a2})
-# globals()[exam_list[0]].update({"Μαθήματα Ειδικής Κατηγορίας": a3})
-directions = [positive,theoritical]
 
 def add_exam_system():
-    # #####system_name=StringVar.get() h tetoio anti gia insert se function
-    # system_name=""
-    # global exam_list
-    # exist_count=0
-    # for x in exam_list:
-    #     if(x==system_name):
-    #         exist_count=1
-    #     else:
-    #         exist_count=0
-    # if(exist_count==0):
-    #     exam_list.append(system_name)
-    # else:
-    #     print("Error System Already Exist !!!")
-    #     #####   messageBOX#   messageBOX
+    #####system_name=StringVar.get() h tetoio anti gia insert se function
+    system_name=""
+    global exam_list
+    exist_count=0
+    for x in exam_list:
+        if(x==system_name):
+            exist_count=1
+        else:
+            exist_count=0
+    if(exist_count==0):
+        exam_list.append(system_name)
+    else:
+        print("Error System Already Exist !!!")
+        #####   messageBOX#   messageBOX
     
-    # for exam_name in exam_list:################################### sos sos ISWS NA MHN XREIAZETAI  EDW H FOR  ALLA THN AFHNW PROSOREINA
-    #     if globals()[exam_name] in globals():
-    #         print(globals()[exam_name], " system already exists")
-    #     else:
-    #         globals()[exam_name]={}
-    #         print(exam_name)
+    for exam_name in exam_list:################################### sos sos ISWS NA MHN XREIAZETAI  EDW H FOR  ALLA THN AFHNW PROSOREINA
+        if globals()[exam_name] in globals():
+            print(globals()[exam_name], " system already exists")
+        else:
+            globals()[exam_name]={}
+            print(exam_name)
 
-    # return(system_name)
-    print("doing job")
+    return(system_name)
+
 #function for student to access direction on Optionmenu direction trexei prin emfanish dropmenu
 def exam_system():
-    # global directions
-    # directions.clear()
-    # directions.append("-")
-    # #EPEIDH O ADMIN DEN MPOREI NA KANEI SET KANW PSEUTIKA EISAGWGH EGW EDW GIA TEST
-    # ####StringVar.get() na pairnei system exetashs apo DATABASE
-    # #TOU DINW PSEUTIKA system1 gia eisagwgh --------------------------------------------------------------------------------------------
-    # keys_temp=globals()[exam_list[0]].keys()
-    # directions_temp=list(keys_temp)
-    # if ("Μαθήματα Ειδικής Κατηγορίας"in directions_temp):
-    #     directions_temp.remove("Μαθήματα Ειδικής Κατηγορίας")# sos sos δενθέλουμε να περιλαμβάνει μαθήματα ειδικής κατηγορίας
-    # i=0
-    # while i<len(directions_temp): 
-    #     directions.append(directions_temp[i])
-    #     i+=1
-    print("doing job")
-   
+    global directions
+    directions.clear()
+    directions.append("-")
+    #EPEIDH O ADMIN DEN MPOREI NA KANEI SET KANW PSEUTIKA EISAGWGH EGW EDW GIA TEST
+    ####StringVar.get() na pairnei system exetashs apo DATABASE
+    #TOU DINW PSEUTIKA system1 gia eisagwgh --------------------------------------------------------------------------------------------
+    keys_temp=globals()[exam_list[0]].keys()
+    directions_temp=list(keys_temp)
+    if ("Μαθήματα Ειδικής Κατηγορίας"in directions_temp):
+        directions_temp.remove("Μαθήματα Ειδικής Κατηγορίας")# sos sos δενθέλουμε να περιλαμβάνει μαθήματα ειδικής κατηγορίας
+    i=0
+    while i<len(directions_temp): 
+        directions.append(directions_temp[i])
+        i+=1
+
+    
     
     #exam_system_verify=StringVar #επιβεβαιωση συστηματος
     #if exam_system_verify in exam_list:
@@ -132,6 +108,31 @@ def exam_system():
             #lesson_sum=lesson_sum + temp_lesson_list[i]
         #else:
             #lesson_sum =temp_lesson_list[i] +","
+
+#function for admin to edit exams and lessons
+#def exam_system_edit():
+    #global exam_list
+    #####StringVar.get() na pairnei metablhtes apo ui admin gia onomata systematos kai na ta apo8hkeuei se lista
+    #a1="Μαθηματικά Κατεύθυνσης"
+    #a2="Φυσική"
+    #a3="Χημεία"
+    #a4="Νεοελληνική Γλώσσα και Λογοτεχνία"
+    #temp_lesson_list=[]
+    
+    #for exam_name in exam_list:
+        #if globals()[exam_name] in globals():
+            #print(globals()[exam_name] " system already exists")
+        #else:
+            #globals()[exam_name]={}
+            #print(exam_name)
+
+#def exam_system_creation():
+    #add_exam_system()
+
+
+
+
+
 
 
 #Picture Insertion & Resize
@@ -221,7 +222,6 @@ def browse_form():  #filedialog documentation  για λεπτομερειες
         msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας', icon='warning')
         filename_ID=""
 
-
 def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui δηλωση συμμετοχης
     i=0
     global month_options
@@ -267,6 +267,8 @@ def raiseNdrop_frame(frameUp,frameDown):
         frameUp.pack(expand=1,fill=BOTH)   
     
 
+
+
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
     if MsgBox == 'yes':
@@ -276,6 +278,33 @@ def ExitApp():
 
 def main():
     
+    #global month_options
+    #global date_options
+    #global year_options
+    # ---------------------------------------------------
+    #container = ttk.Frame(main_window)
+    #canvas = Canvas(container, bg="white", borderwidth=2, highlightthickness=0)#-50 -70
+    #container = ttk.Frame(main_window)#, width=getRes[0]-100, height=getRes[1]-100)
+    #canvas = Canvas(container, bg="white", borderwidth=2, highlightthickness=0)#-50 -70
+    #scrollbarv = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+    #scrollbarh = ttk.Scrollbar(container, orient="vertical", command=canvas.xview)
+    #scrollable_frame = ttk.Frame(canvas)
+
+    #scrollable_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+    #canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+
+    #canvas.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set)
+
+    # ---------------------------------------------------
+    #all_Frame=Frame(main_window, bg="white")
+    #menu_Frame=Frame(all_Frame, bg="gray26")
+    #intro_Frame = Frame(all_Frame, bg="white")#, width=getRes[0], height=getRes[1])
+
+
+
+    #init_Label = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="SkyBlue1") MALLON DELETE
+
     label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
@@ -287,10 +316,12 @@ def main():
     label_ruu_down = Label(label_ru_up, text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Calibri", 18))
 
     # isws na 8elei up kai oxi left
+    ####### kanoniko #####label_ru_left = Label(label_r_up, borderwidth=1, highlightthickness=0,bg="salmon1")  # foto parmenidi+ desription parmenidi
     label_ru_left = Label(label_ru_up, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi+ desription parmenidi
     label_rul_left = Label(label_ru_left, image=render1, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi
     label_rul_right = Label(label_ru_left, borderwidth=1, highlightthickness=0,bg="floral white")  # Ο παρμενιδης ειναι bla bla
 
+    ########## KANONIKA ####label_ru_right = Label(label_r_up, borderwidth=0, highlightthickness=1,bg="salmon1")  # hmerologio gramma + hmerologio
     label_ru_right = Label(label_ru_up, borderwidth=0, highlightthickness=1,bg="floral white")  # hmerologio gramma + hmerologio
     label_rur_up = Label(label_ru_right, text="Ημερολόγιο\n", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # hmerologio gramma
     label_rur_down = Label(label_ru_right, borderwidth=1, highlightthickness=0, bg="floral white")  # hmerologio
@@ -302,7 +333,7 @@ def main():
     label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth status lukeio kai alla
 
     label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai status
-    label_rddrl_up = Label(label_rddr_left, text=cur_student.name, borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
+    label_rddrl_up = Label(label_rddr_left, text="ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
     label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # katastash
     label_rddrld_left = Label(label_rddrl_down, text="Κατάσταση: ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 14))  # katastash text
     label_rddrld_right = Label(label_rddrl_down, text="Προς Εξέταση", borderwidth=1, highlightthickness=1, relief="groove",bg="green2",font=("Calibri", 14))  # input katastashs apo data base
@@ -310,10 +341,10 @@ def main():
     label_rddr_right = Label(label_rdd_right, borderwidth=1, highlightthickness=1,bg="floral white")  # lukeio kai kateu8unsh
     label_rddrr_up = Label(label_rddr_right, borderwidth=1, highlightthickness=1, bg="floral white")  # lukeio genika
     label_rddrru_left = Label(label_rddrr_up, text=" Λύκειο: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Calibri", 14))  # lukeio gramma
-    label_rddrru_right = Label(label_rddrr_up,text = cur_school.name, borderwidth=1, highlightthickness=0,bg="floral white", font=("Calibri", 14)) # lukeio input from db
+    label_rddrru_right = Label(label_rddrr_up,text="1ο Λύκειο Καισαριανής", borderwidth=1, highlightthickness=0,bg="floral white", font=("Calibri", 14)) # lukeio input from db
     label_rddrr_down = Label(label_rddr_right, borderwidth=1, highlightthickness=1, bg="floral white")  # katey8unsh
     label_rddrrd_left = Label(label_rddrr_down, text=" Κατεύθυνση: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Calibri", 14))  # kateu8unsh text
-    label_rddrrd_right = Label(label_rddrr_down,text = cur_student.direction.name, borderwidth=2, highlightthickness=1, relief="sunken", bg="floral white", font=("Calibri", 14))  # kateu8unsh input
+    label_rddrrd_right = Label(label_rddrr_down, text="Θετική", borderwidth=2, highlightthickness=1, relief="sunken", bg="floral white", font=("Calibri", 14))  # kateu8unsh input
 
     descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Calibri", 12), width=55)
     descriptionText.insert(INSERT,"Ο Παρμενίδης ήταν αρχαίος έλληνας φιλόσοφος. Γεννήθηκε στην \nΕλέα της Μεγάλης Ελλάδας στα τέλη του 6ου αιώνα π.Χ., σε ένα \nπεριβάλλον επηρεασμένο από τις απόψεις του Πυθαγόρα και του Ξενοφάνη. Ο Παρμενίδης υποστήριξε ότι η πολλαπότητα των \nυπάρχοντων πραγμάτων, οι μεταβαλλόμενες μορφές και η κίνηση τους δεν είναι παρά μια εμφάνιση μιας ενιαίας αιώνιας \nπραγματικότητα (<<Όν>>), οδηγώντας έτσι στην παρμενίδια αρχή \nότι <<όλα είναι ένα>>.")
@@ -406,16 +437,15 @@ def main():
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)   
     raiseNdrop_frame(all_Frame,none)
-
-    # -------------------------------First Frame END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ------------------------
+    # --------------------------------------------------------------------------------------------------First Frame END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    
     #announcements_Frame
+    
     label_Announce = Label(announcements_Frame, text="Ανακοινώσεις", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_sortBy = Label(announcements_Frame, bg="floral white")
     label_sortBy1 = Label(label_sortBy, text="Ταξινόμηση κατά: ", bg="floral white", font=("Calibri", 18, "bold"))
@@ -493,19 +523,19 @@ def main():
 
 
 
-    # -----------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ-------------------------
+    # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    
+    #statement_Frame
+
     ####sos sos sos sos SOS SOS SOS SOS ΝΑ ΦΤΙΑΞΩ ΣΥΝΑΡΤΗΣΗ ΓΙΑ ΝΑ ΠΑΊΡΝΙΕ ΤΑ DATES ΠΡΟΘΕΣΜΙΑΣ ΑΠΟ ΤΗΝ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
     #ΚΑΙ ΜΕΤΑ ΝΑ ΤΑ ΜΕΤΑΤΡΕΠΕΙ ΣΕ ΝΟΥΜΕΡΑ 
     #ΚΑΙ ΝΑ ΣΥΓΚΡΙΝΕΙ ΜΕ ΤΗΝ ΤΡΕΧΟΥΣΑ ΗΜΕΡΟΜΗΝΙΑ ΑΝ > Η < ΚΑΙ ΑΝ > ΝΑ ΚΑΝΕΙ ΤΟ BUTTON UNPRESSABLE
 
-    #statement_Frame
     label_Statement_all = Label(statement_Frame, bg="floral white")
     label_Statement_all_top = Label(label_Statement_all, bg="floral white")
     label_Statement_all_t_top = Label(label_Statement_all_top, text="Δηλώσεις", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
@@ -532,7 +562,14 @@ def main():
 
     label_Statement_b4 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b4_left = Label(label_Statement_b4, bg="floral white")
-    
+    #label_Statement_b4_right = Label(label_Statement_b4, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    #label_Statement_b4_r_right = Label(label_Statement_b4, bg="floral white",text="Κατέβασμα: ",font=("Calibri", 16, "bold"))
+    #label_Statement_b4_rr_right = Label(label_Statement_b4, bg="floral white",text="AM1054284.pdf",font=("Calibri", 16, "bold"),fg='blue')#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+
+    #state_Text1 = Text(label_Statement_b1_right, bg="floral white", fg="black", borderwidth=0, highlightthickness=2,font=("Calibri", 12),width=5)
+    #state_Text1.insert(INSERT,"Εκκρεμης/Ολοκληρώθηκε")#εισαγωγη απο ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΤΩΡΑ ΕΙΝΑΙ ΠΡΟΧΕΙΡΑ
+    #state_Text1.config(state=DISABLED)#to be un editable
+
     butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
@@ -564,22 +601,26 @@ def main():
 
     label_Statement_b4.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
     label_Statement_b4_left.pack(side=LEFT)
-    
+    #label_Statement_b4_rr_right.pack(side=RIGHT,padx=5)
+    #label_Statement_b4_r_right.pack(side=RIGHT,padx=5)
+    #label_Statement_b4_right.pack(side=RIGHT,padx=50)
+    #state_Text1.pack()#side=RIGHT EINAI HDH RIGHT APO THN MAMA LABEL POU ANHKOYN
+
     butttonStatement1.pack()
     butttonStatement2.pack()
     butttonStatement3.pack()#TA SIDE EDW EINAI HDH LEFT APO THN MAMA LABEL POU ANHKOYN
     butttonStatement4.pack()
 
 
-    # -------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ-----------------------
+    # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    
     #statement_Frame1 δηλωση Συμμετοχής
+
     label_Statement1_all = Label(statement_Frame1, bg="floral white")
     label_Statement1_all_top = Label(label_Statement1_all, text="Δήλωση Συμμετοχής",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_Statement1_all_mid_top = Label(label_Statement1_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
@@ -734,61 +775,61 @@ def main():
     buttton_confirm.pack(side=RIGHT,padx=50)
     buttton_back_to_statement.pack(side=RIGHT)
 
-    # ---------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ---------------------------
+    # --------------------------------------------------------------------------------------------------ΑΝΑΚΟΙΝΩΣΕΙΣ END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    
     #statement_Frame2 δηλωση μαθημάτων
+
     label_Statement2_all = Label(statement_Frame2, bg="floral white")
     label_Statement2_all_top = Label(label_Statement2_all, text="Δήλωση Μαθημάτων",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_Statement2_all_mid = Label(label_Statement2_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
     label_Statement2_m_top = Label(label_Statement2_all_mid, bg="floral white")
     label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="floral white")
-    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="blue")
+    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="floral white")
 
 
     # sos sos sos sos sos sos προσθήκη textvariable ώστε να ανανεώνεται από δεδομένα ΄βασης δεδομένων 
 
     #onoma hmeromhnia lukeio
-    label_Statement2_info_top = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_name = Label(label_Statement2_info_top, bg="yellow")
-    label_Statement2_surname = Label(label_Statement2_info_top, bg="yellow")
+    label_Statement2_info_top = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_fullname = Label(label_Statement2_info_top, bg="floral white",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_name = Label(label_Statement2_info_top, bg="floral white",text='ΣΤΥΛΙΑΝΟΣ ',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
+    label_Statement2_surname = Label(label_Statement2_info_top, bg="floral white",text='ΒΑΖΑΙΟΣ ',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
 
-    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_date = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_month = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_year = Label(label_Statement2_info_mid, bg="yellow")
+    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_birth = Label(label_Statement2_info_mid, bg="floral white",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_date = Label(label_Statement2_info_mid, bg="floral white", text='01 /',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
+    label_Statement2_month = Label(label_Statement2_info_mid, bg="floral white", text='04 /',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
+    label_Statement2_year = Label(label_Statement2_info_mid, bg="floral white", text='1998',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
 
-    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="yellow")
+    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_school = Label(label_Statement2_info_bottom, bg="floral white",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="floral white", text='1ο Λύκειο Καισαριανής',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
 
-    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="yellow",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="yellow")
+    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="floral white",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="floral white", text='2016',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
 
 
     ### MIDDLE LABELS LESSONS
-    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="green") #panw meros middle kateyuynsh : 8etikh klp
+    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="floral white") #panw meros middle kateyuynsh : 8etikh klp
     label_Statement2_mmt_left = Label(label_Statement2_mm_top, text="Κατεύθυνση: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmt_right = Label(label_Statement2_mm_top, bg="floral white",fg="black") #option menu για κατευθυνσεις και κουμπι για επιβεβαιωση-συναρτηση αλλαγης textvariables kai pack labels
     #epishs isws na xreiazetai synarthsh poy me bash ta stoixeia tou root na allazei ta posa label exoume me textvariables me bash to ka8e systhma 
 
-    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="green") #ma8hmata kai ma8hmata eidikhw kathgorias
+    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="floral white") #ma8hmata kai ma8hmata eidikhw kathgorias
 
     #ΑΡΙΣΤΕΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmml_top = Label(label_Statement2_mmm_left, text="Μαθήματα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmml_top1 = Label(label_Statement2_mmm_left, bg="floral white")
     
     #ΕΞΤΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmmr_top = Label(label_Statement2_mmm_right, text="Μαθήματα Ειδικής Κατηγορίας",  bg="floral white",font=("Times New Roman (Times)", 20, "bold"),fg="black")
     label_Statement2_mmmr_top1 = Label(label_Statement2_mmm_right, bg="floral white")
 
@@ -812,10 +853,10 @@ def main():
 
     #function call for directions
     exam_system()#kalesma synarthshs gia κατεύθυνση sos sos sos sos ίσως το κάλεσμα να γίνεται μέσα στο προηγούμενο κουμπί που μπαινει στο παράθυρο δήλωση
-    direction_names = ['-'] + [direction.name for direction in directions]
+
     direction_val = StringVar(label_Statement2_mmt_right)
-    direction_val.set(direction_names[0])#ΑΡΧΙΚΗ ΤΙΜΗ Κατέυθυνσης
-    direction_choice = OptionMenu(label_Statement2_mmt_right, direction_val, *direction_names)
+    direction_val.set(directions[0])#ΑΡΧΙΚΗ ΤΙΜΗ Κατέυθυνσης
+    direction_choice = OptionMenu(label_Statement2_mmt_right, direction_val, *directions)
     direction_choice.config(bg="snow", width=20)
 
     btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
@@ -836,29 +877,15 @@ def main():
             special_lessons_list.insert(1,"Eπιλέξτε μια έγκυρη κατευθυνση!")
             msg_error_choice = messagebox.showerror('Πρόβλημα Επιλογής!', 'Παρακαλώ επιλέξτε μια έγκυρη κατεύθυνση και συνεχίστε την δήλωση μαθημάτων!', icon='warning')
         else:
-            #lessons_get= globals()[exam_list[0]][direction_save]
-            lessons_get = []
-            for i in range(len(directions)):
-                if direction_save == directions[i].name:
-                    cur_direction = directions[i]
-                    for j in range(len(directions[i].lessons)):
-                        lessons_get.append(directions[i].lessons[j].name)
-                    break
-            for i in range(len(orientations)):
-                if orientations[i].direction == cur_direction:
-                    lessons_get.append(orientations[i].lesson.name)
-
-            
+            lessons_get= globals()[exam_list[0]][direction_save]
+            lessons=lessons_get.split(",")
+            print(lessons)
             z=1
-            while (z<=len(lessons_get)):
-                lessons_list.insert(z,lessons_get[z-1])
+            while (z<=len(lessons)):
+                lessons_list.insert(z,lessons[z-1])
                 z+=1
-            z=1
-            
-            lessons_list.selection_set(0,2)
-            
-            #special_lessons_get= globals()[exam_list[0]]["Μαθήματα Ειδικής Κατηγορίας"]
-            special_lessons=special_lessons_get
+            special_lessons_get= globals()[exam_list[0]]["Μαθήματα Ειδικής Κατηγορίας"]
+            special_lessons=special_lessons_get.split(",")
             print(special_lessons)
             w=1
             while (w<=len(special_lessons)):
@@ -882,32 +909,18 @@ def main():
             conf_text="Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;\n"
             conf_text1="Κατεύθυνση: "+ "".join(direction_final) + ".\n"
             conf_text2="Μαθήματα Επιλογής: " + ", ".join(lessons_list_values) + ".\n"
-            conf_text3="Μαθήματα Ειδικής Κατηγορίας: " + ", ".join(special_lessons_list_values) + ".\n"
+            conf_text3="Μαθήματα Ειδικής Κατηγορίας: " + ", ".join(special_lessons_list_values) + "."
             conf_text_final=conf_text+conf_text1+conf_text2+conf_text3
             if  ((len(lessons_list_values)==0) & (len(special_lessons_list_values)>=1)):
                 messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης! ')
-            elif not all(lesson.name in lessons_list_values  for lesson in cur_student.direction.lessons):
-                messagebox.showinfo('Σφάλμα!', 'Δεν έχετε επιλέξει τα μαθήματα κορμού σας!')
-            elif len(lessons_list_values)<=3:
-                messagebox.showinfo('Σφάλμα!', 'Δεν έχετε επιλέξει τα μαθήματα προσανατολισμού σας!')
             elif ((len(special_lessons_list_values)==0) & (len(lessons_list_values)>=1)):
                 messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε μια έγκυρη επιλογή για τα μαθήματα ειδικής κατηγορίας!')
             elif ((len(lessons_list_values)==0) &  (len(special_lessons_list_values)==0)):
                 messagebox.showinfo('Σφάλμα!', 'Παρακαλώ επιλέξτε κατάλληλα τα μαθήματα κατεύθυνσης και τα μαθήματα ειδικής κατηγορίας!')
             else:
-                cur_orientations = []
-                for i in range(len(lessons_list_values)):
-                    if not lessons_list_values[i] in [lesson.name  for lesson in cur_student.direction.lessons]:
-                        for j in range(len(orientations)):
-                            if (direction_final == orientations[j].direction.name) & (lessons_list_values[i] == orientations[j].lesson.name):
-                                cur_orientations.append(orientations[j])
-                                
-                conf_text4 = "Προσανατολισμοί: " + ", ".join([orientation.name for orientation in cur_orientations]) + ".\n"
-                msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final+conf_text4, icon='warning')
+                msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final , icon='warning')
                 if msg_confirm_exam == 'yes':
                     messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
-                    cur_student.orientations = cur_orientations
-
                     #########sos sos sos insert σε βαση δεδομένων
                     ######### sos sos επιστροφη στην αρχικη σελίδα! ίσως όχι απαραίτητο μιας κια έχει πρόσβαση στο menu
                 else:
@@ -982,41 +995,41 @@ def main():
     btn_confirm2.pack(side=RIGHT,padx=50)
     btn_back_to_statement2.pack(side=RIGHT)
 
-    # ------------------statement_Frame2 END, Start of PAGE δηλωση μηχανογραφικού-----------------------
+    # --------------------------------------------------------------------------------------------------statement_Frame2 END, Start of PAGE δηλωση μηχανογραφικού
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    
     #statement_Frame3 δηλωση μηχανογραφικού
+
     #all label container
     label_Statement3_all = Label(statement_Frame3, bg="floral white")
     #top label- title
     label_Statement3_a_top = Label(label_Statement3_all, text='Δήλωση Μηχανογραφικού ',  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     #middle container
-    label_Statement3_a_mid = Label(label_Statement3_all, bg="red")
+    label_Statement3_a_mid = Label(label_Statement3_all, bg="floral white")
     #middle container top side -lists and 2 buttons
-    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="yellow") 
+    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="floral white") 
     #left list of universities +text title
-    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="floral white", relief='groove')
     # left list title
-    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #list container
-    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="red")
+    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="floral white")
     #buttons container add- remove university from list
-    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="floral white")
     #right list of universities +text title
-    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="floral white", relief='groove')
     # right list title
-    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #right list container
-    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="red")
+    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="floral white")
     #note- rule text label
-    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="green",font=("Times New Roman (Times)", 14), fg="black")
+    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="floral white",font=("Times New Roman (Times)", 14), fg="black")
     #button label confirm exit
-    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="blue")
+    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="floral white")
 
 
 
@@ -1054,23 +1067,22 @@ def main():
         global departments
         departments.clear()
         department_list.delete(0,'end')
-        departments.append(Department("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ",[pos_sciences]))
-        departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
-        departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
-        departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
-        departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
-        departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
-        departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
-        z=0
-        while (z<len(departments)):
-            if any(orientation in cur_student.orientations for orientation in departments[z].orientations):
-                department_list.insert(z+1,departments[z].name)
+        departments.append("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ")
+        departments.append("Φυσικο(Αθήνας)")
+        departments.append("Φυσικο(Πάτρας)")
+        departments.append("Χημικό(Αθήνας)")
+        departments.append("Χημικό(Πάτρας)")
+        departments.append("Μαθηματικό(Αθήνας)")
+        departments.append("Μαθηματικό(Πάτρας)")
+        z=1
+        while (z<=len(departments)):
+            department_list.insert(z,departments[z-1])
             z+=1
-        for i in range(1,len(cur_student.departments)+1):
-            choosen_department_list.insert(i,cur_student.departments[i-1].name)
-
+            
     get_departments()
 ##########################################################------------------------------------------------------------------------------------------------
+
+
 
     def add_department():
         #list_counter=1 san object na arxikopoieitai  san 0 kai na pros8etei kai na exafanizetai
@@ -1107,16 +1119,16 @@ def main():
                 idx_counter=idx_counter+1
 
             w=w+1
-        print(choosen_department_list)
+
         print("remove")
 
     def confirm_department_choice():
         if (choosen_department_list.size()>=1):
             msg_conf_department = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
             if msg_conf_department == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                 choosen_department_list.select_set(0, END)
                 conf_department=[choosen_department_list.get(idx) for idx in choosen_department_list.curselection()]
-                cur_student.departments = conf_department
                 choosen_department_list.select_clear(0,END)
                 print("Δήλωση Μηχανογραφικού:",conf_department)
             else:
@@ -1179,7 +1191,7 @@ def main():
 
 
 
-    # --------------------statement_Frame3 END, Start of PAGE Τελικες Δηλώσεις--------------------------
+    # --------------------------------------------------------------------------------------------------statement_Frame3 END, Start of PAGE Τελικες Δηλώσεις
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
