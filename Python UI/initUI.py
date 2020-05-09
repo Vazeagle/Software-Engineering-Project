@@ -789,47 +789,47 @@ def main():
     label_Statement2_all_mid = Label(label_Statement2_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
     label_Statement2_m_top = Label(label_Statement2_all_mid, bg="floral white")
     label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="floral white")
-    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="blue")
+    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="floral white")
 
 
     # sos sos sos sos sos sos προσθήκη textvariable ώστε να ανανεώνεται από δεδομένα ΄βασης δεδομένων 
 
     #onoma hmeromhnia lukeio
-    label_Statement2_info_top = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_name = Label(label_Statement2_info_top, bg="yellow")
-    label_Statement2_surname = Label(label_Statement2_info_top, bg="yellow")
+    label_Statement2_info_top = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_fullname = Label(label_Statement2_info_top, bg="floral white",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_name = Label(label_Statement2_info_top, bg="floral white",text='ΣΤΥΛΙΑΝΟΣ ',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
+    label_Statement2_surname = Label(label_Statement2_info_top, bg="floral white",text='ΒΑΖΑΙΟΣ ',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
 
-    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_date = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_month = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_year = Label(label_Statement2_info_mid, bg="yellow")
+    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_birth = Label(label_Statement2_info_mid, bg="floral white",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_date = Label(label_Statement2_info_mid, bg="floral white", text='01 /',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
+    label_Statement2_month = Label(label_Statement2_info_mid, bg="floral white", text='04 /',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
+    label_Statement2_year = Label(label_Statement2_info_mid, bg="floral white", text='1998',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")
 
-    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="yellow")
+    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_school = Label(label_Statement2_info_bottom, bg="floral white",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="floral white", text='1ο Λύκειο Καισαριανής',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
 
-    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="yellow",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="yellow")
+    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="floral white",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="floral white", text='2016',font=("Times New Roman (Times)", 18, "bold"),fg="gray40")# sos sos sos textvariable κανονικά με insert απο την βαση δεδομενων
 
 
     ### MIDDLE LABELS LESSONS
-    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="green") #panw meros middle kateyuynsh : 8etikh klp
+    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="floral white") #panw meros middle kateyuynsh : 8etikh klp
     label_Statement2_mmt_left = Label(label_Statement2_mm_top, text="Κατεύθυνση: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmt_right = Label(label_Statement2_mm_top, bg="floral white",fg="black") #option menu για κατευθυνσεις και κουμπι για επιβεβαιωση-συναρτηση αλλαγης textvariables kai pack labels
     #epishs isws na xreiazetai synarthsh poy me bash ta stoixeia tou root na allazei ta posa label exoume me textvariables me bash to ka8e systhma 
 
-    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="green") #ma8hmata kai ma8hmata eidikhw kathgorias
+    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="floral white") #ma8hmata kai ma8hmata eidikhw kathgorias
 
     #ΑΡΙΣΤΕΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmml_top = Label(label_Statement2_mmm_left, text="Μαθήματα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmml_top1 = Label(label_Statement2_mmm_left, bg="floral white")
     
     #ΕΞΤΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmmr_top = Label(label_Statement2_mmm_right, text="Μαθήματα Ειδικής Κατηγορίας",  bg="floral white",font=("Times New Roman (Times)", 20, "bold"),fg="black")
     label_Statement2_mmmr_top1 = Label(label_Statement2_mmm_right, bg="floral white")
 
@@ -1009,27 +1009,27 @@ def main():
     #top label- title
     label_Statement3_a_top = Label(label_Statement3_all, text='Δήλωση Μηχανογραφικού ',  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     #middle container
-    label_Statement3_a_mid = Label(label_Statement3_all, bg="red")
+    label_Statement3_a_mid = Label(label_Statement3_all, bg="floral white")
     #middle container top side -lists and 2 buttons
-    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="yellow") 
+    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="floral white") 
     #left list of universities +text title
-    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="floral white", relief='groove')
     # left list title
-    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #list container
-    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="red")
+    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="floral white")
     #buttons container add- remove university from list
-    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="floral white")
     #right list of universities +text title
-    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="floral white", relief='groove')
     # right list title
-    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #right list container
-    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="red")
+    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="floral white")
     #note- rule text label
-    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="green",font=("Times New Roman (Times)", 14), fg="black")
+    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="floral white",font=("Times New Roman (Times)", 14), fg="black")
     #button label confirm exit
-    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="blue")
+    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="floral white")
 
 
 
@@ -1126,6 +1126,7 @@ def main():
         if (choosen_department_list.size()>=1):
             msg_conf_department = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
             if msg_conf_department == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                 choosen_department_list.select_set(0, END)
                 conf_department=[choosen_department_list.get(idx) for idx in choosen_department_list.curselection()]
                 choosen_department_list.select_clear(0,END)
@@ -1179,7 +1180,7 @@ def main():
     scrollbarh6.pack(side=BOTTOM, fill=X)
     choosen_department_list.pack(side=LEFT, fill=BOTH, expand=1)
 
-    #BYTTONS
+    #BUTTONS
     #arrow button add remove university
     btn_add.pack(side=TOP, pady=10)
     btn_remove.pack(side=TOP, pady=10)
