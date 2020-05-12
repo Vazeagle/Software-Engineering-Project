@@ -177,19 +177,15 @@ statement_Frame3=Frame(all_Frame, bg="floral white")#δήλωση  μηχανο�
 statement_Frame4=Frame(all_Frame, bg="floral white")#Τελικές Δηλώσεις
 
 #weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="floral white")
+all_programs_Frame=Frame(all_Frame, bg="floral white")
 weekly_program_Frame=Frame(all_Frame, bg="floral white")
+exams_program_Frame=Frame(all_Frame, bg="floral white")
+
 results_Frame=Frame(all_Frame, bg="floral white")
 institutions_Frame = Frame(all_Frame, bg="floral white")
 info_Frame = Frame(all_Frame, bg="floral white")
 announcements_Frame = Frame(all_Frame, bg="floral white")
 problems_Frame = Frame(all_Frame, bg="floral white")
-print(frame_temp)
-print(frame_to_delete)
-print(all_Frame)
-print(menu_Frame)
-print(intro_Frame)
-print(statement_Frame)
-print(statement_Frame1)
 
 
 ##### METABLHTES GIA DIRECTORY ARXEIWN 
@@ -437,7 +433,6 @@ def main():
     raiseNdrop_frame(all_Frame,none)
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)   
-    #raiseNdrop_frame(all_Frame,none)
 
     # -------------------------------First Frame END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ------------------------
     #---------------------------------------------------------------------------------------------------
@@ -565,10 +560,10 @@ def main():
     label_Statement_b4 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b4_left = Label(label_Statement_b4, bg="floral white")
     
-    butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement4 = Button(label_Statement_b4_left, text="Τελικές Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame4,statement_Frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement4 = Button(label_Statement_b4_left, text="Τελικές Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame4,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
 
     label_Statement_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
     label_Statement_all_top.pack(side=TOP,fill=BOTH, expand=1)
@@ -686,7 +681,7 @@ def main():
     buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Calibri", 14, "bold"))
 
     buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def confirm_choice():
@@ -780,47 +775,47 @@ def main():
     label_Statement2_all_mid = Label(label_Statement2_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
     label_Statement2_m_top = Label(label_Statement2_all_mid, bg="floral white")
     label_Statement2_m_mid = Label(label_Statement2_all_mid, bg="floral white")
-    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="blue")
+    label_Statement2_m_bottom = Label(label_Statement2_all_mid, bg="floral white")
 
 
     # sos sos sos sos sos sos προσθήκη textvariable ώστε να ανανεώνεται από δεδομένα ΄βασης δεδομένων 
 
     #onoma hmeromhnia lukeio
-    label_Statement2_info_top = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_fullname = Label(label_Statement2_info_top, bg="yellow",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_name = Label(label_Statement2_info_top, bg="yellow")
-    label_Statement2_surname = Label(label_Statement2_info_top, bg="yellow")
+    label_Statement2_info_top = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_fullname = Label(label_Statement2_info_top, bg="floral white",text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_name = Label(label_Statement2_info_top, bg="floral white")
+    label_Statement2_surname = Label(label_Statement2_info_top, bg="floral white")
 
-    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_birth = Label(label_Statement2_info_mid, bg="yellow",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_date = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_month = Label(label_Statement2_info_mid, bg="yellow")
-    label_Statement2_year = Label(label_Statement2_info_mid, bg="yellow")
+    label_Statement2_info_mid = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_birth = Label(label_Statement2_info_mid, bg="floral white",text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_date = Label(label_Statement2_info_mid, bg="floral white")
+    label_Statement2_month = Label(label_Statement2_info_mid, bg="floral white")
+    label_Statement2_year = Label(label_Statement2_info_mid, bg="floral white")
 
-    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_school = Label(label_Statement2_info_bottom, bg="yellow",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="yellow")
+    label_Statement2_info_bottom = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_school = Label(label_Statement2_info_bottom, bg="floral white",text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_school_name = Label(label_Statement2_info_bottom, bg="floral white")
 
-    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="yellow")
-    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="yellow",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="yellow")
+    label_Statement2_info_exams = Label(label_Statement2_m_top, bg="floral white")
+    label_Statement2_exams_sys = Label(label_Statement2_info_exams, bg="floral white",text='Σύστημα εξέτασης : ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement2_sys_name = Label(label_Statement2_info_exams, bg="floral white")
 
 
     ### MIDDLE LABELS LESSONS
-    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="green") #panw meros middle kateyuynsh : 8etikh klp
+    label_Statement2_mm_top = Label(label_Statement2_m_mid, bg="floral white") #panw meros middle kateyuynsh : 8etikh klp
     label_Statement2_mmt_left = Label(label_Statement2_mm_top, text="Κατεύθυνση: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmt_right = Label(label_Statement2_mm_top, bg="floral white",fg="black") #option menu για κατευθυνσεις και κουμπι για επιβεβαιωση-συναρτηση αλλαγης textvariables kai pack labels
     #epishs isws na xreiazetai synarthsh poy me bash ta stoixeia tou root na allazei ta posa label exoume me textvariables me bash to ka8e systhma 
 
-    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="green") #ma8hmata kai ma8hmata eidikhw kathgorias
+    label_Statement2_mm_mid = Label(label_Statement2_m_mid, bg="floral white") #ma8hmata kai ma8hmata eidikhw kathgorias
 
     #ΑΡΙΣΤΕΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_left = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmml_top = Label(label_Statement2_mmm_left, text="Μαθήματα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Statement2_mmml_top1 = Label(label_Statement2_mmm_left, bg="floral white")
     
     #ΕΞΤΡΑ ΜΑΘΗΜΑΤΑ
-    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white")
+    label_Statement2_mmm_right = Label(label_Statement2_mm_mid, bg="floral white",relief='groove')
     label_Statement2_mmmr_top = Label(label_Statement2_mmm_right, text="Μαθήματα Ειδικής Κατηγορίας",  bg="floral white",font=("Times New Roman (Times)", 20, "bold"),fg="black")
     label_Statement2_mmmr_top1 = Label(label_Statement2_mmm_right, bg="floral white")
 
@@ -843,7 +838,9 @@ def main():
 
 
     #function call for directions
-    exam_system()#kalesma synarthshs gia κατεύθυνση sos sos sos sos ίσως το κάλεσμα να γίνεται μέσα στο προηγούμενο κουμπί που μπαινει στο παράθυρο δήλωση
+    
+    #exam_system()#kalesma synarthshs gia κατεύθυνση sos sos sos sos ίσως το κάλεσμα να γίνεται μέσα στο προηγούμενο κουμπί που μπαινει στο παράθυρο δήλωση
+    
     direction_names = ['-'] + [direction.name for direction in directions]
     direction_val = StringVar(label_Statement2_mmt_right)
     direction_val.set(direction_names[0])#ΑΡΧΙΚΗ ΤΙΜΗ Κατέυθυνσης
@@ -852,7 +849,7 @@ def main():
 
     btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame1), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
     def refresh_choice_exams(): #sos sos proxeira topo8ethsh
         global lessons
@@ -947,35 +944,34 @@ def main():
         else:
             messagebox.showinfo('Αποτυχία', 'Λάθος στοιχεία δήλωσης!\nΠαρακαλώ ελέγξτε τα στοιχεία της δήλωσης σας και προσπαθήστε ξανά!')
 
-
     #pack -emfanish stoixeiwn selidas-frame
 
     #ONAMATEPWNUMO
-    label_Statement2_info_top.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_info_top.pack(side=TOP, expand=1, fill=BOTH,padx=0)
     label_Statement2_fullname.pack(side=LEFT)
     label_Statement2_name.pack(side=LEFT)
     label_Statement2_surname.pack(side=LEFT)
 
     #HMEROMHNIA GENNHSHS
-    label_Statement2_info_mid.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_info_mid.pack(side=TOP, expand=1, fill=BOTH,padx=0)
     label_Statement2_birth.pack(side=LEFT)
     label_Statement2_date.pack(side=LEFT)
     label_Statement2_month.pack(side=LEFT)
     label_Statement2_year.pack(side=LEFT)
 
     #LYKEIO
-    label_Statement2_info_bottom.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_info_bottom.pack(side=TOP, expand=1, fill=BOTH,padx=0)
     label_Statement2_school.pack(side=LEFT)
     label_Statement2_school_name.pack(side=LEFT)
 
     #SYSTEM EXETASHS
-    label_Statement2_info_exams.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_info_exams.pack(side=TOP, expand=1, fill=BOTH,padx=0)
     label_Statement2_exams_sys .pack(side=LEFT)
     label_Statement2_sys_name.pack(side=LEFT)
     direction_choice.pack()
 
     #MIDDLE KATEYUYNSH- MAUHMATA SYNOLIKA
-    label_Statement2_mm_top.pack(side=TOP, expand=1, fill=BOTH,padx=20)
+    label_Statement2_mm_top.pack(side=TOP, expand=1, fill=BOTH,padx=10)
     label_Statement2_mmt_left.pack(side=LEFT)
     label_Statement2_mmt_right.pack(side=LEFT, padx=5)
     direction_choice.pack()
@@ -1028,28 +1024,27 @@ def main():
     #top label- title
     label_Statement3_a_top = Label(label_Statement3_all, text='Δήλωση Μηχανογραφικού ',  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     #middle container
-    label_Statement3_a_mid = Label(label_Statement3_all, bg="red")
+    label_Statement3_a_mid = Label(label_Statement3_all, bg="floral white")
     #middle container top side -lists and 2 buttons
-    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="yellow") 
+    label_Statement3_am_top = Label(label_Statement3_a_mid, bg="floral white") 
     #left list of universities +text title
-    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_left = Label(label_Statement3_am_top, bg="floral white",relief='groove')
     # left list title
-    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtl_top = Label(label_Statement3_amt_left, text="Διαθέσιμα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #list container
-    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="red")
+    label_Statement3_amtl_bottom = Label(label_Statement3_amt_left, bg="floral white")
     #buttons container add- remove university from list
-    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_mid = Label(label_Statement3_am_top, bg="floral white")
     #right list of universities +text title
-    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="red")
+    label_Statement3_amt_right = Label(label_Statement3_am_top, bg="floral white",relief='groove')
     # right list title
-    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="red")
+    label_Statement3_amtr_top = Label(label_Statement3_amt_right, text="Επιλεγμένα Τμήματα", font=("Times New Roman (Times)", 14,"bold"), bg="floral white")
     #right list container
-    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="red")
+    label_Statement3_amtr_bottom = Label(label_Statement3_amt_right, bg="floral white")
     #note- rule text label
-    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="green",font=("Times New Roman (Times)", 14), fg="black")
+    label_Statement3_am_mid = Label(label_Statement3_a_mid, text="Παρακαλώ επιλέξτε με την σειρά προτίμησης σας τα τμηματα που επιθυμείτε και επιβεβαιώστε την αίτηση σας!", bg="floral white",font=("Times New Roman (Times)", 14), fg="black")
     #button label confirm exit
-    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="blue")
-
+    label_Statement3_am_bottom = Label(label_Statement3_a_mid, bg="floral white")
 
 
 
@@ -1059,7 +1054,7 @@ def main():
     btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
     #conf-exit btns
     btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,statement_Frame3), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
     #LIST  για τα διαθεσιμα τμηματα 
@@ -1201,7 +1196,7 @@ def main():
     scrollbarh6.pack(side=BOTTOM, fill=X)
     choosen_department_list.pack(side=LEFT, fill=BOTH, expand=1)
 
-    #BYTTONS
+    #BUTTONS
     #arrow button add remove university
     btn_add.pack(side=TOP, pady=10)
     btn_remove.pack(side=TOP, pady=10)
