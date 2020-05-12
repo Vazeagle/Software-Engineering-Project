@@ -175,11 +175,11 @@ statement_Frame1=Frame(all_Frame, bg="floral white")#δηλωση συμμετο
 statement_Frame2=Frame(all_Frame, bg="floral white")#δηλωση μαθημάτων μαθητη
 statement_Frame3=Frame(all_Frame, bg="floral white")#δήλωση  μηχανογραφικού μαθητη
 statement_Frame4=Frame(all_Frame, bg="floral white")#Τελικές Δηλώσεις
+all_programs_Frame=Frame(all_Frame, bg="floral white")#,width=getRes[0], height=getRes[0] #Προγράμματα
+weekly_program_Frame=Frame(all_Frame, bg="floral white")# Εβδομαδιαιο Πρόγραμμα Σχολείου
+school_exams_program_Frame=Frame(all_Frame, bg="floral white")#Πρόγραμμα Εξεταστικής Σχολείου
+nationwide_exams_program_Frame=Frame(all_Frame, bg="floral white")#Πρόγραμμα Εξεταστικής Πανελληνιων
 
-#weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="floral white")
-all_programs_Frame=Frame(all_Frame, bg="floral white")
-weekly_program_Frame=Frame(all_Frame, bg="floral white")
-exams_program_Frame=Frame(all_Frame, bg="floral white")
 
 results_Frame=Frame(all_Frame, bg="floral white")
 institutions_Frame = Frame(all_Frame, bg="floral white")
@@ -343,8 +343,7 @@ def main():
     ###sos gia na mhn bgalei erro bazw proxeira mono to prwto frame pou einia etoimo
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext1 = Button(label_l_down, text="Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    #TO DO
-    butttonNext2 = Button(label_l_down, text="Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext2 = Button(label_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     #TO DO
     butttonNext3 = Button(label_l_down, text="Αποτελέσματα", command=lambda: raiseNdrop_frame(results_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     #TO DO
@@ -1206,7 +1205,6 @@ def main():
 
 
 
-
     # --------------------statement_Frame3 END, Start of PAGE Τελικες Δηλώσεις--------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -1216,9 +1214,7 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #statement_Frame4 Τελικες Δηλώσεις
 
-
-
-
+    #sos sos sos zisi add τελικες δηλώσεις με βάση όχι label αλλά canva σαν container για τα scrollbars όπως ανακοινωσεις
 
 
     # --------------------statement_Frame4 END, Start of PAGE Αποτελέσματα------------------------------
@@ -1228,8 +1224,9 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-
-
+    #results_Frame
+    
+    #stelios αποτελέσματα
 
 
     
@@ -1240,16 +1237,174 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
+   
+    #all_programs_Frame
+    label_Program_all = Label(all_programs_Frame, bg="floral white")
+    label_Program_all_top = Label(label_Program_all, bg="floral white")
+    label_Program_all_t_top = Label(label_Program_all_top, text="Προγράμματα", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_Program_all_t_down = Label(label_Program_all_top, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
+    label_Program_all_topd = Label(label_Program_all,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+
+    label_Program_b1 = Label(label_Program_all_topd, bg="floral white")
+    label_Program_b1_left = Label(label_Program_b1, bg="floral white")
+  
+
+    label_Program_b2 = Label(label_Program_all_topd, bg="floral white")
+    label_Program_b2_left = Label(label_Program_b2, bg="floral white")
+
+    label_Program_b3 = Label(label_Program_all_topd, bg="floral white")
+    label_Program_b3_left = Label(label_Program_b3, bg="floral white")
+
+    
+    butttonProgram1 = Button(label_Program_b1_left, text="Σχολικό Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonProgram2 = Button(label_Program_b2_left, text="Πρόγραμμα Σχολικής Εξέταστικής", command=lambda: raiseNdrop_frame(school_exams_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonProgram3 = Button(label_Program_b3_left, text="Πρόγραμμα Πανελλήνιων Εξετάσεων", command=lambda: raiseNdrop_frame(nationwide_exams_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+
+    label_Program_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
+    label_Program_all_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_Program_all_t_top.pack(side=TOP)
+    label_Program_all_t_down.pack(side=BOTTOM)
+    label_Program_all_topd.pack(side=TOP,fill=BOTH, expand=1)
+
+    label_Program_b1.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
+    label_Program_b1_left.pack(side=LEFT)
+
+
+    label_Program_b2.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
+    label_Program_b2_left.pack(side=LEFT)
+    
+    label_Program_b3.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
+    label_Program_b3_left.pack(side=LEFT)
+
+    
+    butttonProgram1.pack()
+    butttonProgram2.pack()
+    butttonProgram3.pack()#TA SIDE EDW EINAI HDH LEFT APO THN MAMA LABEL POU ANHKOYN
+
+    # --------------------Εβδομαδιαίο Πρόγραμμα END, Start of PAGE Σχολικό Πρόγραμμα Εβδομάδας-------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+    #weekly_program_Frame
+    label_weekly_all = Label(weekly_program_Frame, bg="floral white")
+    label_weekly_a_top = Label(label_weekly_all, bg="floral white")
+    label_weekly_at_top = Label(label_weekly_a_top, bg="floral white", text="Σχολικό Πρόγραμμα Εβδομάδας",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_weekly_at_bottom = Label(label_weekly_a_top, bg="white",relief="groove")
+    label_weekly_a_bottom = Label(label_weekly_at_bottom, bg="floral white")
+
+    #return button
+    btn1_return_program = Button(label_weekly_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    #sos sos zisis add pinaka mesa se pinaka me data gia programma treeview or tktreectrl
+
+    #pack
+    label_weekly_all.pack(side=TOP,fill=BOTH, expand=1)
+    label_weekly_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_weekly_at_top.pack(side=TOP)
+    label_weekly_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_weekly_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    btn1_return_program.pack(side=RIGHT)
 
 
 
-    # --------------------Πληροφορίες Χρήστη END, Start of PAGE Εβδομαδιαίο Πρόγραμμα-------------------
+    # --------------------Σχολικό Πρόγραμμα Εβδομάδας END, Start of PAGE Πρόγραμμα Εξεταστικής Ενδοσχολικών-------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
+
+    #school_exams_program_Frame
+    label_school_exams_all = Label(school_exams_program_Frame, bg="floral white")
+    label_school_exams_a_top = Label(label_school_exams_all, bg="floral white")
+    label_school_exams_at_top = Label(label_school_exams_a_top, bg="floral white", text="Πρόγραμμα Εξεταστικής Ενδοσχολικών",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_school_exams_at_bottom = Label(label_school_exams_a_top, bg="floral white")
+    label_school_exams_a_bottom = Label(label_school_exams_at_bottom, bg="floral white")
+
+    btn2_return_program = Button(label_school_exams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+    #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
+
+    ############## CALENDAR################
+    cal_school_exams = Calendar(label_school_exams_at_bottom, selectmode='none')
+    date = cal_school_exams.datetime.today() + cal_school_exams.timedelta(days=2)
+    cal_school_exams.calevent_create(date, 'Hello World', 'message')
+    cal_school_exams.calevent_create(date, 'Reminder 2', 'reminder')
+    cal_school_exams.calevent_create(date + cal_school_exams.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal_school_exams.calevent_create(date + cal_school_exams.timedelta(days=3), 'Message', 'message')
+
+    cal_school_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    #pack()
+    cal_school_exams.pack(fill="both", expand=1)
+    ttk.Label(label_school_exams_at_bottom, text="Hover over the events.").pack()
+
+    label_school_exams_all.pack(side=TOP,fill=BOTH, expand=1)
+    label_school_exams_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_school_exams_at_top.pack(side=TOP)
+    label_school_exams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_school_exams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    btn2_return_program.pack(side=RIGHT)
+
+
+
+    # --------------------Πρόγραμμα Εξεταστικής Ενδοσχολικών END, Start of PAGE Πρόγραμμα Εξεταστικής Πανελληνίων-------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+    #nationwide_exams_program_Frame
+    label_nationwide_exams_all = Label(nationwide_exams_program_Frame, bg="floral white")
+    label_nationwide_exams_a_top = Label(label_nationwide_exams_all, bg="floral white")
+    label_nationwide_exams_at_top = Label(label_nationwide_exams_a_top, bg="floral white", text="Πρόγραμμα Εξεταστικής Πανελληνίων",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_nationwide_exams_at_bottom = Label(label_nationwide_exams_a_top, bg="floral white")
+    label_nationwide_exams_a_bottom = Label(label_nationwide_exams_at_bottom, bg="floral white")
+
+    btn3_return_program = Button(label_nationwide_exams_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    #sos sos zisis input data στο calendar για ημερομηνια εξετασης πανελληνιων
+
+    ############## CALENDAR################
+    cal_nationwide_exams = Calendar(label_nationwide_exams_at_bottom, selectmode='none')
+    date = cal_nationwide_exams.datetime.today() + cal_nationwide_exams.timedelta(days=2)
+    cal_nationwide_exams.calevent_create(date, 'Hello World', 'message')
+    cal_nationwide_exams.calevent_create(date, 'Reminder 2', 'reminder')
+    cal_nationwide_exams.calevent_create(date + cal_nationwide_exams.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal_nationwide_exams.calevent_create(date + cal_nationwide_exams.timedelta(days=3), 'Message', 'message')
+
+    cal_nationwide_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    #pack()
+    cal_nationwide_exams.pack(fill="both", expand=1)
+    ttk.Label(label_nationwide_exams_at_bottom, text="Hover over the events.").pack()
+
+    label_nationwide_exams_all.pack(side=TOP,fill=BOTH, expand=1)
+    label_nationwide_exams_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_nationwide_exams_at_top.pack(side=TOP)
+    label_nationwide_exams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_nationwide_exams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    btn3_return_program.pack(side=RIGHT)
+
+
+
+
+    # -------------------Πρόγραμμα Εξεταστικής Πανελληνίων END, Start of PAGE Πληροφορίες Χρήστη-------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #info_Frame
 
 
     # --------------------Πληροφορίες Χρήστη END, Start of PAGE Ιδρύματα--------------------------------
@@ -1259,7 +1414,7 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-
+    #institutions_Frame
 
 
     # --------------------Ιδρύματα END, Start of PAGE Προβλήματα----------------------------------------
@@ -1269,6 +1424,9 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
+    #problems_Frame
+
+
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
