@@ -22,6 +22,7 @@ main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
 none="none" # προσωρινο για μεταβαση σε frames
+previous_frame="previous_frame"
 month_options=[]
 date_options=[]
 year_options=[]
@@ -33,6 +34,8 @@ departments=[]
 list_counter=1
 exam_list.append("system1")######GIA DELETE MOLIS FTIXNEI TO UI TOU ADMIN GIA PROS8HKH SYSTEM EXETASHS
 exam_list.append("system2")
+frame_counter=0
+init_pass=0
 
 #-------------------------------------<CLASSES------------------------------------------------------
 
@@ -59,14 +62,7 @@ cur_student = Student("ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_scienc
 
 #-------------------------------------</CLASSES>------------------------------------------------------
 
-# globals()[exam_list[0]]={}#dhmiourgia pseutikh edw gia test an douleuei
-# globals()[exam_list[1]]={}
-# a1="Φυσική,Χημεία,Νεοελληνική Γλώσσα και Λογοτεχνία,Μαθηματικά Κατεύθυνσης,Βιολογία"
-# a2="Αρχαια,Ιστορια,Μαθηματικα γεν,Οικονομικά"
-# a3="Καμία Επιλογή,Ελεύθερο Σχέδιο, Γραμμικό Σχέδιο"
-# globals()[exam_list[0]].update({"Θετική": a1})
-# globals()[exam_list[0]].update({"Θεωρητική": a2})
-# globals()[exam_list[0]].update({"Μαθήματα Ειδικής Κατηγορίας": a3})
+
 directions = [positive,theoritical]
 
 def add_exam_system():
@@ -170,7 +166,8 @@ render6 = ImageTk.PhotoImage(load6)
 
 
 #Frames For Main Window
-
+frame_temp=Frame()
+frame_to_delete=Frame()
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
@@ -180,13 +177,20 @@ statement_Frame2=Frame(all_Frame, bg="floral white")#δηλωση μαθημάτ
 statement_Frame3=Frame(all_Frame, bg="floral white")#δήλωση  μηχανογραφικού μαθητη
 statement_Frame4=Frame(all_Frame, bg="floral white")#Τελικές Δηλώσεις
 
-weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="floral white")
-results_Frame=Frame(all_Frame, bg="floral white",width=getRes[0], height=getRes[1])
-institutions_Frame = Frame(all_Frame, bg="floral white", width=getRes[0], height=getRes[1])
-info_Frame = Frame(all_Frame, bg="floral white", width=getRes[0], height=getRes[1])
+#weekly_program_Frame=Frame(all_Frame,width=getRes[0], height=getRes[0], bg="floral white")
+weekly_program_Frame=Frame(all_Frame, bg="floral white")
+results_Frame=Frame(all_Frame, bg="floral white")
+institutions_Frame = Frame(all_Frame, bg="floral white")
+info_Frame = Frame(all_Frame, bg="floral white")
 announcements_Frame = Frame(all_Frame, bg="floral white")
-problems_Frame = Frame(all_Frame, bg="floral white", width=getRes[0], height=getRes[1])
-#problems_Frame = Frame(scrollable_frame, bg="salmon1", width=getRes[0], height=getRes[1])
+problems_Frame = Frame(all_Frame, bg="floral white")
+print(frame_temp)
+print(frame_to_delete)
+print(all_Frame)
+print(menu_Frame)
+print(intro_Frame)
+print(statement_Frame)
+print(statement_Frame1)
 
 
 ##### METABLHTES GIA DIRECTORY ARXEIWN 
@@ -256,16 +260,35 @@ def datetime_initialise(): #### χρειάζεται για το drop down menu 
 
 
 def raiseNdrop_frame(frameUp,frameDown):
+    global frame_counter
+    global init_pass #flag to see if menu frame has appeared (0 is  no, 1 is yes)
+    global frame_temp #απλα οριζω οτι το frame temp εινια τυπου frame γιατι αλλιως προβλημα στο forget γτ το διαβάζει ως string
+    global frame_to_delete
+    print(frameDown)
+    if(frame_counter==0 and init_pass==1):   #frame to close (memory)
+        frame_counter=1
+        frame_temp=frameUp
+        print("memory",frame_temp)
+        #print(frame_temp)
+    
     if(frameDown!="none"):
-        #frameDown.pack_forget(frameDown)
-        frameDown.destroy()
+        if(frameDown=="previous_frame"):#forget previous frame
+            #frame_temp=intro_Frame
+            print("going to delete frame: ",frame_temp)
+            frame_temp.pack_forget()
+            #frame_temp.destroy()
+
+
     if(frameUp==menu_Frame):
         frameUp.tkraise()
         frameUp.pack(side=LEFT, fill=Y)
+        init_pass=1
     else:
         frameUp.tkraise()
         frameUp.pack(expand=1,fill=BOTH)   
-    
+        frame_counter=0
+    print("fcount",frame_counter)
+    print("passmenu",init_pass)
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -320,14 +343,20 @@ def main():
     descriptionText.config(state=DISABLED)#to be un editable
 
     ###sos gia na mhn bgalei erro bazw proxeira mono to prwto frame pou einia etoimo
-    butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,none), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext1 = Button(label_l_down, text="Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame,intro_Frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext2 = Button(label_l_down, text="Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(intro_Frame,none), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext3 = Button(label_l_down, text="Αποτελέσματα", command=lambda: raiseNdrop_frame(intro_Frame,none), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext4 = Button(label_l_down, text="Πανεπιστημιακά Ιδρύματα", command=lambda: raiseNdrop_frame(intro_Frame,none), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext5 = Button(label_l_down, text="Πληροφορίες Χρήστη", command=lambda: raiseNdrop_frame(intro_Frame,none), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext6 = Button(label_l_down, text="Ανακοινώσεις", command=lambda: raiseNdrop_frame(announcements_Frame,intro_Frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext7 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,announcements_Frame) , bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext1 = Button(label_l_down, text="Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #TO DO
+    butttonNext2 = Button(label_l_down, text="Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #TO DO
+    butttonNext3 = Button(label_l_down, text="Αποτελέσματα", command=lambda: raiseNdrop_frame(results_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #TO DO
+    butttonNext4 = Button(label_l_down, text="Πανεπιστημιακά Ιδρύματα", command=lambda: raiseNdrop_frame(institutions_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #TO DO
+    butttonNext5 = Button(label_l_down, text="Πληροφορίες Χρήστη", command=lambda: raiseNdrop_frame(info_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext6 = Button(label_l_down, text="Ανακοινώσεις", command=lambda: raiseNdrop_frame(announcements_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #TO DO
+    butttonNext7 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(problems_Frame,previous_frame) , bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    
     butttonNext8 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     ############## CALENDAR################
@@ -402,6 +431,7 @@ def main():
 
     descriptionText.pack()
     #init_Label.pack(fill=BOTH,expand=1)
+
 
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)   
@@ -1188,6 +1218,60 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #statement_Frame4 Τελικες Δηλώσεις
+
+
+
+
+
+
+    # --------------------statement_Frame4 END, Start of PAGE Αποτελέσματα------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+
+
+
+    
+    # --------------------Αποτελέσματα END, Start of PAGE Εβδομαδιαίο Πρόγραμμα-------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+
+
+    # --------------------Πληροφορίες Χρήστη END, Start of PAGE Εβδομαδιαίο Πρόγραμμα-------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+
+    # --------------------Πληροφορίες Χρήστη END, Start of PAGE Ιδρύματα--------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+
+
+    # --------------------Ιδρύματα END, Start of PAGE Προβλήματα----------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
