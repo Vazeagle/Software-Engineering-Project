@@ -166,8 +166,7 @@ render6 = ImageTk.PhotoImage(load6)
 
 
 #Frames For Main Window
-frame_temp=Frame()
-frame_to_delete=Frame()
+frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
@@ -258,26 +257,27 @@ def datetime_initialise(): #### χρειάζεται για το drop down menu 
             year_options.append(i)
         i=i-1
 
-
 def raiseNdrop_frame(frameUp,frameDown):
     global frame_counter
     global init_pass #flag to see if menu frame has appeared (0 is  no, 1 is yes)
     global frame_temp #απλα οριζω οτι το frame temp εινια τυπου frame γιατι αλλιως προβλημα στο forget γτ το διαβάζει ως string
-    global frame_to_delete
-    print(frameDown)
-    if(frame_counter==0 and init_pass==1):   #frame to close (memory)
-        frame_counter=1
-        frame_temp=frameUp
-        print("memory",frame_temp)
-        #print(frame_temp)
-    
+    #print(frameDown)
+
     if(frameDown!="none"):
         if(frameDown=="previous_frame"):#forget previous frame
-            #frame_temp=intro_Frame
-            print("going to delete frame: ",frame_temp)
-            frame_temp.pack_forget()
-            #frame_temp.destroy()
-
+            frame_counter=0
+            #print("going to delete frame: ",frame_temp)
+            frame_temp.pack_forget()    
+        else:
+            frameDown.pack_forget()
+    
+    if(frame_counter==0 and init_pass==1 ):   #frame to close (memory)
+        temp2=0
+        frame_counter=1
+        frame_temp=frameUp
+        #print("memory",frame_temp)
+    
+ 
 
     if(frameUp==menu_Frame):
         frameUp.tkraise()
@@ -286,10 +286,12 @@ def raiseNdrop_frame(frameUp,frameDown):
     else:
         frameUp.tkraise()
         frameUp.pack(expand=1,fill=BOTH)   
-        frame_counter=0
-    print("fcount",frame_counter)
-    print("passmenu",init_pass)
-
+        
+    
+    #print("temp2=",temp2)    
+    #print("fcount",frame_counter)
+    #print("passmenu",init_pass)
+    
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
     if MsgBox == 'yes':
@@ -432,10 +434,10 @@ def main():
     descriptionText.pack()
     #init_Label.pack(fill=BOTH,expand=1)
 
-
+    raiseNdrop_frame(all_Frame,none)
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)   
-    raiseNdrop_frame(all_Frame,none)
+    #raiseNdrop_frame(all_Frame,none)
 
     # -------------------------------First Frame END, Start of PAGE ΑΝΑΚΟΙΝΩΣΕΙΣ------------------------
     #---------------------------------------------------------------------------------------------------
