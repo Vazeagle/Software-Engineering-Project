@@ -1226,8 +1226,97 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #results_Frame
     
-    #stelios αποτελέσματα
+    #stelios αποτελέσματα++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+
+    label_Results_all = Label(results_Frame, bg="cyan3")
+    #top label- title
+    label_Results_a_top = Label(label_Results_all, text='Αποτελέσματα',  bg="yellow",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    #middle container
+    label_Results_a_mid = Label(label_Results_all, bg="blue")
+    #student information
+    label_Results_am_top = Label(label_Results_a_mid, bg="red")
+    #student name
+    label_Results_amt_top = Label(label_Results_am_top, bg="floral white")
+    label_Results_amtt_left = Label(label_Results_amt_top, bg="floral white", text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_amtt_right = Label(label_Results_amt_top, bg="floral white")
+    #student birth date
+    label_Results_amt_mid = Label(label_Results_am_top, bg="floral white")
+    label_Results_amtm_left = Label(label_Results_amt_mid, bg="floral white", text='Ημερομηνία Γέννησης: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_amtm_right = Label(label_Results_amt_mid, bg="floral white")
+    #student school
+    label_Results_amt_bot = Label(label_Results_am_top, bg="floral white")
+    label_Results_amtb_left = Label(label_Results_amt_bot, bg="floral white", text='Λύκειο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_amtb_right = Label(label_Results_amt_bot, bg="floral white")
+    #student id
+    label_Results_amt_bot2 = Label(label_Results_am_top, bg="floral white")
+    label_Results_amtb2_left = Label(label_Results_amt_bot2, bg="floral white", text='Κωδικός Υποψηφίου: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_amtb2_right = Label(label_Results_amt_bot2, bg="floral white")
+
+    #mid label-rop info mid lessons bot school
+    label_Results_am_mid = Label(label_Results_a_mid, bg="green")#-----------------------
+    #κατευθυνση
+    label_Results_amm_top = Label(label_Results_am_mid, bg="floral white")
+    label_Results_ammt_left = Label(label_Results_amm_top, bg="floral white", text='Κατεύθυνση: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_ammt_right = Label(label_Results_amm_top, bg="floral white", text='ΘΕΤΙΚΗ',font=("Times New Roman (Times)", 18, "bold"),fg="black") # sos sos zisis INPUT APO DATABASE? ΜΕ TEXTVARIABLE?
+    #pinakes me ma8hmata epiloghs
+    label_Results_amm_mid = Label(label_Results_am_mid, bg="floral white")
+    label_Results_ammm_left = Label(label_Results_amm_mid, bg="floral white", text='ZISIS1')# sos sos zisis array
+    label_Results_ammm_right = Label(label_Results_amm_mid, bg="gold", text='ZISIS2')# sos sos zisis array
+
+    #αποτελεσματα σχολης!
+    label_Results_am_bot = Label(label_Results_a_mid, bg="purple")
+    label_Results_amb_top = Label(label_Results_am_bot, bg="floral white")
+    label_Results_ambt_left = Label(label_Results_amb_top, bg="floral white", text='Τμήμα Επιτυχίας: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Results_amb_bot = Label(label_Results_am_bot, bg="floral white")  # sos sos zisis array sxolhs
+
+    #### sos sos sos zisis θα πρεπει να μην μπορει να επιλεξει τα αποτελεσματα μεχρι να βγουν !!! και αν τα επιλέγει να βγαζει messagebox?????
+
+
+    #pack εμφανιση
+    
+    label_Results_all.pack(side=TOP, expand=1, fill=BOTH)
+    #top label- title
+    label_Results_a_top.pack(side=TOP)
+    #middle container
+    label_Results_a_mid.pack(side=LEFT, expand=1, fill=BOTH, pady=50)
+    #student information
+    label_Results_am_top.pack(side=TOP, fill=X, ipady=15)
+    #student name
+    label_Results_amt_top.pack(side=TOP, fill=X)
+    label_Results_amtt_left.pack(side=LEFT)
+    label_Results_amtt_right.pack(side=LEFT)
+    #student birth date
+    label_Results_amt_mid.pack(side=TOP, fill=X)
+    label_Results_amtm_left.pack(side=LEFT)
+    label_Results_amtm_right.pack(side=LEFT)
+    #student school
+    label_Results_amt_bot.pack(side=TOP, fill=X)
+    label_Results_amtb_left.pack(side=LEFT)
+    label_Results_amtb_right.pack(side=LEFT)
+    #student id
+    label_Results_amt_bot2.pack(side=TOP, fill=X)
+    label_Results_amtb2_left.pack(side=LEFT)
+    label_Results_amtb2_right.pack(side=LEFT)
+
+    #mid label-Top info mid l
+    label_Results_am_mid.pack(side=TOP, expand=1, fill=BOTH)#pady=10 or do  label_Results_am_top ipady bigger
+    #κατευθυνση
+    label_Results_amm_top.pack(side=TOP,fill=X)
+    label_Results_ammt_left.pack(side=LEFT)
+    label_Results_ammt_right.pack(side=LEFT, padx=10)
+    #pinakes me ma8hmata epil
+    label_Results_amm_mid.pack(side=TOP, expand=1)
+    label_Results_ammm_left.pack(side=LEFT, expand=1)
+    label_Results_ammm_right.pack(side=LEFT, expand=1, padx=20)
+
+    #αποτελεσματα σχολης!
+    label_Results_am_bot.pack(side=TOP, expand=1, fill=BOTH)#BOTTOM
+    label_Results_amb_top.pack(side=TOP, fill=X)
+    label_Results_ambt_left.pack(side=LEFT)
+    label_Results_amb_bot.pack(side=TOP, expand=1, fill=BOTH)
+
+    
 
     
     # --------------------Αποτελέσματα END, Start of PAGE Εβδομαδιαίο Πρόγραμμα-------------------------
