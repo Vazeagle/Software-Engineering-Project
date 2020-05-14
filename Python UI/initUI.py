@@ -1275,7 +1275,7 @@ def main():
 
     #pack εμφανιση
     
-    label_Results_all.pack(side=TOP, expand=1, fill=BOTH)
+    label_Results_all.pack(side=TOP, expand=1, fill=BOTH) 
     #top label- title
     label_Results_a_top.pack(side=TOP)
     #middle container
@@ -1495,6 +1495,134 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #info_Frame
 
+    label_student_info_all = Label(info_Frame, bg="floral white")
+    label_student_info_a_top = Label(label_student_info_all, bg="floral white", text="Πληροφορίες Χρήστη",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_student_info_a_mid = Label(label_student_info_all, bg="red")#info
+    label_student_info_a_bot = Label(label_student_info_a_mid, bg="floral white")# buttons
+
+    label_student_info_am_general = Label(label_student_info_a_mid, bg="green")
+    label_student_info_am_gen_title = Label(label_student_info_am_general, bg="white", text="Γενικά:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_am_gen_info = Label(label_student_info_am_general, bg="floral white")# containt text and photo
+
+    label_student_info_am_gen_info_left = Label(label_student_info_am_gen_info, bg="floral white")#text info container
+    #id
+    label_student_info_id = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_id_left = Label(label_student_info_id, bg="floral white", text="ID Χρήστη:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_id_right = Label(label_student_info_id, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #password
+    label_student_info_password = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_pass_left = Label(label_student_info_password, bg="floral white", text="Κωδικός:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_pass_right = Label(label_student_info_password, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #fullname
+    label_student_info_fullname = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_fullname_left = Label(label_student_info_fullname, bg="floral white", text="Ονοματεπώνυμο:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_fullname_right = Label(label_student_info_fullname, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #birthdate
+    label_student_info_birth = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_birth_left = Label(label_student_info_birth, bg="floral white", text="Ημερομηνία Γέννησης:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_birth_right = Label(label_student_info_birth, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #school
+    label_student_info_school = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_school_left = Label(label_student_info_school, bg="floral white", text="Σχολείο:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_school_right = Label(label_student_info_school, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #direction
+    label_student_info_direction = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_direction_left = Label(label_student_info_direction, bg="floral white", text="Κατεύθυνση:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_direction_right = Label(label_student_info_direction, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #status
+    label_student_info_status = Label(label_student_info_am_gen_info_left, bg="floral white")
+    label_student_info_status_left = Label(label_student_info_status, bg="floral white", text="Κατάσταση:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_status_right = Label(label_student_info_status, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+
+    #photo
+    label_student_info_am_gen_info_right = Label(label_student_info_am_gen_info, bg="floral white")#photo info container
+    label_student_info_photo_top = Label(label_student_info_am_gen_info_right, bg="floral white", text="Εικόνα Προφιλ:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_info_photo_mid = Label(label_student_info_am_gen_info_right, bg="floral white",image=render3)
+    label_student_info_photo_bot = Label(label_student_info_am_gen_info_right, bg="floral white")#button change invisible
+
+    #contact information
+    label_student_info_am_contact_info = Label(label_student_info_a_mid, bg="floral white")
+    label_student_contact = Label(label_student_info_am_contact_info, bg="white", text="Επικοινωνία:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_student_contact_all = Label(label_student_info_am_contact_info, bg="blue")#contain email and number
+    #email
+    label_student_contact_email = Label(label_student_contact_all, bg="floral white")#email container
+    label_student_contact_email_left = Label(label_student_contact_email, bg="floral white", text="E-mail: ",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_contact_email_right = Label(label_student_contact_email, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+    #number
+    label_student_contact_number = Label(label_student_contact_all, bg="floral white")#contain number
+    label_student_contact_number_left = Label(label_student_contact_number, bg="floral white", text="Αριθμός Τηλεφώνου:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_student_contact_number_right = Label(label_student_contact_number, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
+
+    btn_student_info_edit = Button(label_student_info_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    def edit_profile():
+        #kane editable ta Text 
+        #Emfanise duo koympia stis 8eseis pou prepei cancel kai save
+        #pop-ups gia la8oi xrhsth
+        #old password confirmation
+        #password_btn)change
+        print("edit")
+
+
+    #pack reveal
+    #general labels
+    label_student_info_all.pack(side=TOP, expand=1, fill=BOTH)
+    label_student_info_a_top.pack(side=TOP)
+    label_student_info_a_mid.pack(side=LEFT, expand=1, fill=BOTH, pady=50)
+    label_student_info_a_bot.pack(side=BOTTOM, fill=X)
+    #student
+    label_student_info_am_general.pack(side=TOP, expand=1, fill=BOTH)
+    label_student_info_am_gen_title.pack(side=TOP, fill=X)
+    label_student_info_am_gen_info.pack(side=TOP, fill=X)
+    label_student_info_am_gen_info_left.pack(side=LEFT)
+    #id
+    label_student_info_id.pack(side=TOP, fill=X)
+    label_student_info_id_left.pack(side=LEFT)
+    label_student_info_id_right.pack(side=LEFT)
+    #password
+    label_student_info_password.pack(side=TOP, fill=X)
+    label_student_info_pass_left.pack(side=LEFT)
+    label_student_info_pass_right.pack(side=LEFT)
+    #fullname
+    label_student_info_fullname.pack(side=TOP, fill=X)
+    label_student_info_fullname_left.pack(side=LEFT)
+    label_student_info_fullname_right.pack(side=LEFT)
+    #birthdate
+    label_student_info_birth.pack(side=TOP, fill=X)
+    label_student_info_birth_left.pack(side=LEFT)
+    label_student_info_birth_right.pack(side=LEFT)
+    #school
+    label_student_info_school.pack(side=TOP, fill=X)
+    label_student_info_school_left.pack(side=LEFT)
+    label_student_info_school_right.pack(side=LEFT)
+    #direction
+    label_student_info_direction.pack(side=TOP, fill=X)
+    label_student_info_direction_left.pack(side=LEFT)
+    label_student_info_direction_right.pack(side=LEFT)
+    #status
+    label_student_info_status.pack(side=TOP, fill=X)
+    label_student_info_status_left.pack(side=LEFT)
+    label_student_info_status_right.pack(side=LEFT)
+    #photo
+    label_student_info_am_gen_info_right.pack(side=RIGHT,ipadx=100, fill=Y)
+    label_student_info_photo_top.pack(side=TOP)
+    label_student_info_photo_mid.pack(side=TOP)
+    label_student_info_photo_bot.pack(side=TOP)
+    #contact information
+    label_student_info_am_contact_info.pack(side=TOP, expand=1, fill=BOTH)
+    label_student_contact.pack(side=TOP, fill=X)
+    label_student_contact_all.pack(side=LEFT, expand=1, fill=BOTH)
+    #email
+    label_student_contact_email.pack(side=TOP, fill=X)
+    label_student_contact_email_left.pack(side=LEFT)
+    label_student_contact_email_right.pack(side=LEFT)
+    #number
+    label_student_contact_number.pack(side=TOP, fill=X)
+    label_student_contact_number_left.pack(side=LEFT)
+    label_student_contact_number_right.pack(side=LEFT)
+    #button edit
+    btn_student_info_edit.pack(side=RIGHT, padx=50)
 
     # --------------------Πληροφορίες Χρήστη END, Start of PAGE Ιδρύματα--------------------------------
     #---------------------------------------------------------------------------------------------------
