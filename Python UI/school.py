@@ -8,6 +8,8 @@ from datetime import datetime
 from tkcalendar import Calendar, DateEntry
 
 
+
+
 #Initialisation
 getRes = pyautogui.size()
 resolution = str(getRes[0]) + "x" + str(getRes[1])
@@ -21,16 +23,15 @@ previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
 
-
 #Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 school_Frame=Frame(main_window, bg="white")
 school_menu_Frame=Frame(school_Frame, bg="gray26")
 school_intro_Frame = Frame(school_Frame, bg="floral white")
-school_Dates_Frame = Frame(school_Frame, bg="floral white")
-school_exams_Frame = Frame(school_Frame, bg="floral white")
-school_program_Frame = Frame(school_Frame, bg="floral white")
-school_student_reg = Frame(school_Frame, bg="floral white")
+school_Dates_Frame = Frame(school_Frame, bg="green")
+school_exams_Frame = Frame(school_Dates_Frame, bg="floral white")
+school_program_Frame = Frame(school_Dates_Frame, bg="floral white")
+school_student_reg = Frame(school_Frame, bg="blue")
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -59,7 +60,6 @@ def raiseNdrop_frame(frameUp,frameDown):
         frame_temp=frameUp
         #print("memory",frame_temp)
     
- 
 
     if(frameUp==school_menu_Frame):
         frameUp.tkraise()
@@ -80,42 +80,73 @@ def main():
     smenu_l_up = Label(school_menu, image=render2, borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     smenu_l_down = Label(school_menu, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
-    initialSchool_all = Label(school_intro_Frame, borderwidth=1, highlightthickness=0, bg="red")  # dexia arxikh selida
+    initialSchool_all = Label(school_intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexia arxikh selida
     #add labels for this initial page and then pack to reveal 
+    #add announcements listbox
+    #add calendar
 
+
+
+
+    #orismos buttons
     btn_next0 = Button(smenu_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(school_intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_next1 = Button(smenu_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_next2 = Button(smenu_l_down, text="Εγγραφές", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
+    btn_next1 = Button(smenu_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_next2 = Button(smenu_l_down, text="Εγγραφές", command=lambda: raiseNdrop_frame(school_student_reg,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
     btn_next3 = Button(smenu_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
-    #packs
-    initialSchool_all.pack(side=TOP,fill=BOTH,expand=1)
+    
+    
+    #packs εμφάνιση στοιχείων
     school_menu.pack(side=LEFT,expand=1,fill=Y)
     smenu_l_up.pack(side=TOP,pady=50)#PARMENIDIS LOGO
     smenu_l_down.pack(side=TOP)#CONTAINS BUTTONS
-    #buttons
+    initialSchool_all.pack(side=TOP,fill=BOTH,expand=1)#δεξιο μενου-αρχικη σελίδα
+    
+
+    #buttons MENU
     btn_next0.pack(side=TOP,pady=2,ipady=5)
     btn_next1.pack(side=TOP,pady=2,ipady=5)
     btn_next2.pack(side=TOP,pady=2,ipady=5)
     btn_next3.pack(side=TOP,pady=2,ipady=5)    
 
 
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-
-
-
+    #ΑΡΧΙΚΑ FRAMES ΕΜΦΑΝΙΣΗ
     raiseNdrop_frame(school_Frame,none)
     raiseNdrop_frame(school_menu_Frame,none)
     raiseNdrop_frame(school_intro_Frame,none)  
 
 
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_Dates_Frame
 
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_exams_Frame
 
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_program_Frame
+
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_student_reg
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
