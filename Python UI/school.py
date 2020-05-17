@@ -81,9 +81,39 @@ def main():
     smenu_l_down = Label(school_menu, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
     initialSchool_all = Label(school_intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexia arxikh selida
-    #add labels for this initial page and then pack to reveal 
-    #add announcements listbox
-    #add calendar
+    initialSchool_all_top = Label(initialSchool_all, text='Καλώς ορίσατε στον Παρμενίδη!',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 36, "bold"))
+    initialSchool_all_bot = Label(initialSchool_all, borderwidth=1, highlightthickness=0, bg="red")
+    initialSchool_ab_top = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="green")#include user name and calendar
+    initialSchool_abt_left = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="black")#user school name left side
+    initialSchool_abtl_top = Label(initialSchool_abt_left, borderwidth=1, highlightthickness=0, bg="yellow")#user school name top left previous side
+    initialSchool_abtlt_left = Label(initialSchool_abtl_top, borderwidth=1, highlightthickness=0, bg="yellow")#user school name top of left side
+    initialSchool_abtltl_left = Label(initialSchool_abtlt_left, text='Είστε συνδεδεμένοι ως: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
+    initialSchool_abtltl_right = Label(initialSchool_abtlt_left, text='1o Γενικό Λύκειο Κλειτορίας',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
+    initialSchool_abt_right = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="purple")#calenar and text include
+    initialSchool_abtr_top = Label(initialSchool_abt_right, text='Ημερολόγιο', borderwidth=1, highlightthickness=0, bg="purple",font=("Times New Roman (Times)", 18, "bold"))#calendar text
+    initialSchool_abtr_bot = Label(initialSchool_abt_right, borderwidth=1, highlightthickness=0, bg="red3")#calendar
+    initialSchool_ab_bot = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="blue")#include announcements
+    initialSchool_abb_top = Label(initialSchool_ab_bot, borderwidth=1, highlightthickness=0, bg="blue")
+    initialSchool_abbt_left = Label(initialSchool_abb_top, text='Ανακοινώσεις',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
+    initialSchool_abb_bot = Frame(initialSchool_ab_bot, bg="cyan2")#announcement box
+
+    #orismos listbox anakoinwsewn
+    ministry_news_list  = Listbox (initialSchool_abb_bot, bg="floral white", borderwidth=2, highlightthickness=0)#width=getRes[0]-50, height=getRes[1]-70
+    
+    scrollh = Scrollbar(initialSchool_abb_bot, orient="horizontal", command=ministry_news_list.xview)
+    scrollv= Scrollbar(initialSchool_abb_bot, orient="vertical", command=ministry_news_list.yview)
+    initialSchool_abb_bot.bind("<Configure>",lambda e: ministry_news_list.configure(scrollregion=ministry_news_list.bbox("all")))
+    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Calibri", 36))
+    initialSchool_abb_bot.bind("<MouseWheel>", scrollv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+    
+    #ορισμος ημερολογιου
+    cal_intro = Calendar(initialSchool_abtr_bot, selectmode='none')
+    date = cal_intro.datetime.today() + cal_intro.timedelta(days=2)
+    cal_intro.calevent_create(date, 'Hello World', 'message')
+    cal_intro.calevent_create(date, 'Reminder 2', 'reminder')
+    cal_intro.calevent_create(date + cal_intro.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal_intro.calevent_create(date + cal_intro.timedelta(days=3), 'Message', 'message')
+    cal_intro.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
 
 
@@ -101,7 +131,30 @@ def main():
     smenu_l_up.pack(side=TOP,pady=50)#PARMENIDIS LOGO
     smenu_l_down.pack(side=TOP)#CONTAINS BUTTONS
     initialSchool_all.pack(side=TOP,fill=BOTH,expand=1)#δεξιο μενου-αρχικη σελίδα
-    
+    initialSchool_all_top.pack(side=TOP,fill=X,pady=50)
+    initialSchool_all_bot.pack(side=LEFT, expand=1, fill=BOTH)
+    initialSchool_ab_top.pack(side=TOP, expand=1, fill=BOTH, ipady=100)
+    #αριστερη πλευρα με ονομα σχολειου-χρηστη
+    initialSchool_abt_left.pack(side=LEFT, fill=Y, padx=50)
+    initialSchool_abtl_top.pack(side=TOP, fill=X)
+    initialSchool_abtlt_left.pack(side=LEFT)
+    initialSchool_abtltl_left.pack(side=TOP, pady=20)
+    initialSchool_abtltl_right.pack(side=TOP)
+    #δεξια πλευρα με ημερολογιο
+    initialSchool_abt_right.pack(side=RIGHT, expand=1, fill=BOTH, padx=40)
+    initialSchool_abtr_top.pack(side=TOP, fill=X) 
+    initialSchool_abtr_bot.pack(side=TOP, fill=BOTH, expand=1)#hmerologio
+    cal_intro.pack(fill=BOTH, expand=1)
+    ttk.Label(initialSchool_abtr_bot, text="Hover over the events.").pack()
+    #κατω πλευρα με ανακοινωσεις
+    initialSchool_ab_bot.pack(side=TOP, expand=1, fill=BOTH)
+    initialSchool_abb_top.pack(side=TOP, fill=X)
+    initialSchool_abbt_left.pack(side=LEFT)
+    initialSchool_abb_bot.pack(side=TOP, expand=1, fill=BOTH)
+    scrollv.pack(side=RIGHT, fill=Y)
+    scrollh.pack(side=BOTTOM, fill=X)
+    ministry_news_list.pack(side=BOTTOM, expand=1, fill=BOTH)
+    initialSchool_abb_bot.pack(side=BOTTOM, expand=1, fill=BOTH)
 
     #buttons MENU
     btn_next0.pack(side=TOP,pady=2,ipady=5)
@@ -109,6 +162,14 @@ def main():
     btn_next2.pack(side=TOP,pady=2,ipady=5)
     btn_next3.pack(side=TOP,pady=2,ipady=5)    
 
+    #add elements to announcements
+    ministry_news_list.insert(1, "This is a test to see if the announcements works as it should be")
+    ministry_news_list.insert(2, "Ανακοινωση Ημερομηνίας Δηλώσεων")
+    ministry_news_list.insert(3, "Πρόγραμμα εξεταστικής έτους 2020-2021")
+    ministry_news_list.insert(4, "#ΜΕΝΟΥΜΕ_ΣΠΙΤΙ")
+    ministry_news_list.insert(5, "Έναρξη δηλώσεων μαθητών")
+    ministry_news_list.insert(6, "ΠΑΡΜΕΝΙΔΗΣ ΜΕ TKINTER ΓΙΑ GUI")
+    ministry_news_list.insert(7, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
 
     #ΑΡΧΙΚΑ FRAMES ΕΜΦΑΝΙΣΗ
     raiseNdrop_frame(school_Frame,none)
