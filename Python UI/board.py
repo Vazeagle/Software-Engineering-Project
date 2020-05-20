@@ -55,7 +55,8 @@ def main():
     butttonNext4.pack(side=TOP,pady=2,ipady=5)
     
 
-    label_left.pack(side=LEFT)
+    label_left.pack(side=TOP)
+    
     label_l_up.pack(side=TOP)#PARMENIDIS LOGO
     label_l_down.pack(side=BOTTOM)#CONTAINS BUTTONS
     label_right.pack(side=RIGHT)
