@@ -28,10 +28,10 @@ frame_temp=Frame()#Frame to get as temp to successfull change between frames
 school_Frame=Frame(main_window, bg="white")
 school_menu_Frame=Frame(school_Frame, bg="gray26")
 school_intro_Frame = Frame(school_Frame, bg="floral white")
-school_Dates_Frame = Frame(school_Frame, bg="green")
+school_Dates_Frame = Frame(school_Frame, bg="floral white")
 school_exams_Frame = Frame(school_Dates_Frame, bg="floral white")
 school_program_Frame = Frame(school_Dates_Frame, bg="floral white")
-school_student_reg = Frame(school_Frame, bg="blue")
+school_student_reg = Frame(school_Frame, bg="floral white")
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -73,6 +73,10 @@ def raiseNdrop_frame(frameUp,frameDown):
 load2 = Image.open('P2.gif')
 load2 = load2.resize((100, 100), Image.ANTIALIAS)
 render2 = ImageTk.PhotoImage(load2)
+
+load0 = Image.open('backround2.jpg')
+load0 = load0.resize((getRes[0], getRes[1]), Image.ANTIALIAS)
+render0 = ImageTk.PhotoImage(load0)
 
 def main():
 
@@ -184,6 +188,35 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #school_Dates_Frame
+
+    dates_all = Label(school_Dates_Frame, bg="floral white")
+    dates_all_top = Label(dates_all, bg="floral white")
+    dates_at_top = Label(dates_all_top, text="Πρόγραμμα", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    dates_all_mid = Label(dates_all, bg="floral white")
+    dates_am_top = Label(dates_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
+    dates_am_bot = Label(dates_all_mid,bg="green",image=render0, borderwidth=2, highlightthickness=2, relief="groove")
+    #dates_amb_top = Label(dates_am_bot, bg="red")
+    #dates_ambt_left = Label(dates_amb_top, bg="floral white")
+    #dates_ambtl_top = Label(dates_ambt_left, bg="floral white")
+    #dates_ambtl_bot = Label(dates_ambt_left, bg="floral white")
+    btn_school_program = Button(dates_am_bot, text="Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(school_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_school_exams = Button(dates_am_bot, text="Πρόγραμμα Εξεταστικής", command=lambda: raiseNdrop_frame(school_exams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+
+    #pack-εμφάνιση στοιχείων
+    dates_all.pack(side = TOP, fill=BOTH, expand=1)
+    dates_all_top.pack(side = TOP, fill=X, ipady=50)
+    dates_at_top.pack(side = TOP)
+    dates_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    dates_am_top.pack(side = TOP)
+    dates_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    #dates_amb_top.pack(side = TOP, fill=X)
+    #dates_ambt_left.pack(side = LEFT, padx=50)
+    #dates_ambtl_top.pack(side = TOP, pady=50)
+    #dates_ambtl_bot.pack(side = TOP)
+    #Buttons pack
+    btn_school_program.pack(side = TOP,pady=100)
+    btn_school_exams.pack(side = TOP)
+
 
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
