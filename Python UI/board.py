@@ -34,29 +34,26 @@ frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
-statement_Frame1=Frame(all_Frame, bg="floral white")
-Applications=Frame(all_Frame, bg="floral white")
-HistoryApps=Frame(all_Frame, bg="floral white")
-PendingApps=Frame(all_Frame, bg="floral white")
-States=Frame(all_Frame, bg="floral white")
-Apply=Frame(all_Frame, bg="floral white")
-FinalStates=Frame(all_Frame, bg="floral white")
-PanhellenicExams=Frame(all_Frame, bg="floral white")
-Program=Frame(all_Frame, bg="floral white")
-GradingCenterSubmission=Frame(all_Frame, bg="floral white")
-SupervisorsList=Frame(all_Frame, bg="floral white")
-AcceptDeny=Frame(all_Frame, bg="floral white")
-Processing=Frame(all_Frame, bg="floral white")
-HistoryList=Frame(all_Frame, bg="floral white")
-Shuffle=Frame(all_Frame, bg="floral white")
-Problems=Frame(all_Frame, bg="floral white")
-Exitt=Frame(all_Frame, bg="floral white")
+statement_Frame=Frame(all_Frame, bg="floral white")
+statement_Frame1=Frame(all_Frame, bg="floral white") #aitiseis
+statement_Frame2=Frame(all_Frame, bg="floral white")#pendingaitiseis
+statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
+statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
+statement_Frame5=Frame(all_Frame, bg="floral white")#panellhnies
+statement_Frame6=Frame(all_Frame, bg="floral white")#programma
+statement_Frame7=Frame(all_Frame, bg="floral white")#eksetastiko kentro
+statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
+statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
+statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
+statement_Frame11=Frame(all_Frame, bg="floral white") #provlimata
+statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
 
 
 
 
 
 def main():
+    
 label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
