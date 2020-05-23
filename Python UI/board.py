@@ -5,8 +5,8 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
-from TkTreectrl import *
-import TkTreectrl as treectrl
+#from TkTreectrl import *
+#import TkTreectrl as treectrl
 from PIL import Image, ImageTk, ImageDraw, ImageFilter
 import pyautogui
 from datetime import datetime
@@ -198,7 +198,7 @@ def confirm_choice():
 
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
-    main_window.mainloop()
+main_window.mainloop()
 
 
 def raiseNdrop_frame(frameUp,frameDown):
