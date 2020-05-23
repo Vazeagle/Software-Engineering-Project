@@ -1,6 +1,6 @@
 import os, sys
 from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
+from Classes import Lesson,Orientation,Direction,Department,Student,School,Boardofeducation
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -80,7 +80,10 @@ def main():
     label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth
 
     
-    
+    label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai anafora
+    label_rddrl_up = Label(label_rddr_left, text=cur_Boardofeducation, borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
+    label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # anafora
+    label_rddrld_left = Label(label_rddrl_down, text="Υπουργείο Παιδείας και Θρησκευμάτων ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 14))  # anafora text
 
     descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Calibri", 12), width=55)
     descriptionText.insert(INSERT,"Ο Παρμενίδης ήταν αρχαίος έλληνας φιλόσοφος. Γεννήθηκε στην \nΕλέα της Μεγάλης Ελλάδας στα τέλη του 6ου αιώνα π.Χ., σε ένα \nπεριβάλλον επηρεασμένο από τις απόψεις του Πυθαγόρα και του Ξενοφάνη. Ο Παρμενίδης υποστήριξε ότι η πολλαπότητα των \nυπάρχοντων πραγμάτων, οι μεταβαλλόμενες μορφές και η κίνηση τους δεν είναι παρά μια εμφάνιση μιας ενιαίας αιώνιας \nπραγματικότητα (<<Όν>>), οδηγώντας έτσι στην παρμενίδια αρχή \nότι <<όλα είναι ένα>>.")
