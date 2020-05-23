@@ -1,6 +1,6 @@
 import os, sys
 from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
+from Classes import Lesson,Orientation,Direction,Department,Student,School #,Boardofeducation
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -29,6 +29,13 @@ load2 = Image.open('P2.gif')
 load2 = load2.resize((100, 100), Image.ANTIALIAS)
 render2 = ImageTk.PhotoImage(load2)
 
+####classes#####
+
+cur_Boardofeducation="Γεώργιος Δημητρόπουλος"
+
+######################
+
+
 ###frames
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
@@ -47,7 +54,6 @@ statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi
 statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
 statement_Frame11=Frame(all_Frame, bg="floral white") #provlimata
 statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
-
 
 
 
@@ -80,12 +86,14 @@ def main():
     label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth
 
     
-    
+    label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai anafora
+    label_rddrl_up = Label(label_rddr_left, text="cur_Boardofeducation", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
+    label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # anafora
+    label_rddrld_left = Label(label_rddrl_down, text="Υπουργείο Παιδείας και Θρησκευμάτων ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 14))  # anafora text
 
     descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Calibri", 12), width=55)
     descriptionText.insert(INSERT,"Ο Παρμενίδης ήταν αρχαίος έλληνας φιλόσοφος. Γεννήθηκε στην \nΕλέα της Μεγάλης Ελλάδας στα τέλη του 6ου αιώνα π.Χ., σε ένα \nπεριβάλλον επηρεασμένο από τις απόψεις του Πυθαγόρα και του Ξενοφάνη. Ο Παρμενίδης υποστήριξε ότι η πολλαπότητα των \nυπάρχοντων πραγμάτων, οι μεταβαλλόμενες μορφές και η κίνηση τους δεν είναι παρά μια εμφάνιση μιας ενιαίας αιώνιας \nπραγματικότητα (<<Όν>>), οδηγώντας έτσι στην παρμενίδια αρχή \nότι <<όλα είναι ένα>>.")
     descriptionText.config(state=DISABLED)#to be un editable
-
 
 
 
@@ -140,12 +148,10 @@ def main():
     label_Statement_5c = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_5c_left = Label(label_Statement_5c, bg="floral white")
 
-
     butttonStatementa = Button(label_Statement_5a_left, text="Πρόγραμμα Πανελληνίων", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatementb = Button(label_Statement_5b_left, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     butttonStatementc = Button(label_Statement_5c_left, text="Υποβολή Λίστας Επιτηρητών", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
     
-
 
 
 
@@ -162,7 +168,6 @@ def main():
 
 
 
-
 ########################################################################################################
 
     labelStatement_5c_all=Label(statement_Frame5,bg="floral white")
@@ -172,14 +177,11 @@ def main():
     labelStatement_5c_all =  Label(labelStatement_5c, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_form)# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
     #pdf selected from user browse
 
-
 #browse_ID
     buttton_browse_form = Button(labelStatement5c_all, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
 
-
     buttton_confirm = Button(labelStatement5c_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     buttton_back_to_statement = Button(labelStatement5c_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
 
 
 def confirm_choice():
@@ -196,10 +198,8 @@ def confirm_choice():
             messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης λίστας!')
 
 
-
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
 main_window.mainloop()
-
 
 def raiseNdrop_frame(frameUp,frameDown):
     global frame_counter
@@ -242,3 +242,4 @@ def ExitApp():
     else:
         messagebox.showinfo('Επιστροφή', 'Θα επιστραφείτε στην προηγούμενη σας οθόνη !') 
 main()
+
