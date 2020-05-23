@@ -54,7 +54,7 @@ statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
 
 def main():
     
-label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
+    label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
@@ -123,15 +123,64 @@ label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
 
+####################################statement_frame###############
+
+    label_Statement_all = Label(statement_Frame, bg="floral white")
+    label_Statement_all_top = Label(label_Statement_all, bg="floral white")
+    label_Statement_all_t_top = Label(label_Statement_all_top, text="Πανελλήνιες", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_Statement_all_t_down = Label(label_Statement_all_top, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
+    label_Statement_all_topd = Label(label_Statement_all,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+
+    label_Statement_5a = Label(label_Statement_all_topd, bg="floral white")
+    label_Statement_5a_left = Label(label_Statement_5a, bg="floral white")
+    
+    label_Statement_5b = Label(label_Statement_all_topd, bg="floral white")
+    label_Statement_5b_left = Label(label_Statement_5b, bg="floral white")
+   
+    label_Statement_5c = Label(label_Statement_all_topd, bg="floral white")
+    label_Statement_5c_left = Label(label_Statement_5c, bg="floral white")
+
+
+    butttonStatementa = Button(label_Statement_5a_left, text="Πρόγραμμα Πανελληνίων", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatementb = Button(label_Statement_5b_left, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatementc = Button(label_Statement_5c_left, text="Υποβολή Λίστας Επιτηρητών", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    
+
+
+
+
+
+
+
+
+    butttonStatementa.pack()
+    butttonStatementb.pack()
+    butttonStatementc.pack()
+
+
+
+
+
+
 
 ########################################################################################################
 
-GradingCenterSubmission_all=Label(GradingCenterSubmission,bg="floral white")
+    labelStatement_5c_all=Label(statement_Frame5,bg="floral white")
 
-    GradingCenterSubmission_all = Label(GradingCenterSubmission_mid_top, bg="floral white")
-    GradingCenterSubmission_all = Label(GradingCenterSubmission, text="Υποβολή Λίστας: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    GradingCenterSubmission_all =  Label(lGradingCenterSubmission, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_form)# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
+    labelStatement_5c_all = Label(labelStatement_5c_mid_top, bg="floral white")
+    labelStatement_5c_all = Label(labelStatement_5c, text="Υποβολή Λίστας: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    labelStatement_5c_all =  Label(labelStatement_5c, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_form)# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
     #pdf selected from user browse
+
+
+#browse_ID
+    buttton_browse_form = Button(labelStatement5c_all, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
+
+
+    buttton_confirm = Button(labelStatement5c_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(labelStatement5c_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
 
 def confirm_choice():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
