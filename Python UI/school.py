@@ -29,9 +29,12 @@ school_Frame=Frame(main_window, bg="white")
 school_menu_Frame=Frame(school_Frame, bg="gray26")
 school_intro_Frame = Frame(school_Frame, bg="floral white")
 school_Dates_Frame = Frame(school_Frame, bg="floral white")
-school_exams_Frame = Frame(school_Dates_Frame, bg="floral white")
-school_program_Frame = Frame(school_Dates_Frame, bg="floral white")
-school_student_reg = Frame(school_Frame, bg="floral white")
+school_exams_Frame = Frame(school_Frame, bg="floral white")
+school_program_Frame = Frame(school_Frame, bg="floral white")
+school_std_reg_Frame = Frame(school_Frame, bg="floral white")
+school_std_reg_create_Frame = Frame(school_Frame, bg="floral white")
+school_std_reg_edit_Frame = Frame(school_Frame, bg="floral white")
+school_std_reg_fin_Frame = Frame(school_Frame, bg="floral white")
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -125,11 +128,11 @@ def main():
     #orismos buttons
     btn_next0 = Button(smenu_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(school_intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_next1 = Button(smenu_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_next2 = Button(smenu_l_down, text="Εγγραφές", command=lambda: raiseNdrop_frame(school_student_reg,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
+    btn_next2 = Button(smenu_l_down, text="Εγγραφές", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
     btn_next3 = Button(smenu_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     
-    
+
     #packs εμφάνιση στοιχείων
     school_menu.pack(side=LEFT,expand=1,fill=Y)
     smenu_l_up.pack(side=TOP,pady=50)#PARMENIDIS LOGO
@@ -194,11 +197,13 @@ def main():
     dates_at_top = Label(dates_all_top, text="Πρόγραμμα", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     dates_all_mid = Label(dates_all, bg="floral white")
     dates_am_top = Label(dates_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
-    dates_am_bot = Label(dates_all_mid,bg="green",image=render0, borderwidth=2, highlightthickness=2, relief="groove")
+    dates_am_bot = Label(dates_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    #
     #dates_amb_top = Label(dates_am_bot, bg="red")
     #dates_ambt_left = Label(dates_amb_top, bg="floral white")
     #dates_ambtl_top = Label(dates_ambt_left, bg="floral white")
     #dates_ambtl_bot = Label(dates_ambt_left, bg="floral white")
+    #
     btn_school_program = Button(dates_am_bot, text="Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(school_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_school_exams = Button(dates_am_bot, text="Πρόγραμμα Εξεταστικής", command=lambda: raiseNdrop_frame(school_exams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
@@ -209,11 +214,13 @@ def main():
     dates_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
     dates_am_top.pack(side = TOP)
     dates_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    #
     #dates_amb_top.pack(side = TOP, fill=X)
     #dates_ambt_left.pack(side = LEFT, padx=50)
-    #dates_ambtl_top.pack(side = TOP, pady=50)
-    #dates_ambtl_bot.pack(side = TOP)
+    #dates_ambtl_top.pack(side = TOP, pady=50)#top btn
+    #dates_ambtl_bot.pack(side = TOP)#bot btn
     #Buttons pack
+    #
     btn_school_program.pack(side = TOP,pady=100)
     btn_school_exams.pack(side = TOP)
 
@@ -225,6 +232,15 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #school_exams_Frame
+    school_exams_all = Label(school_exams_Frame, bg="floral white")
+    school_exams_a_top = Label(school_exams_all, text="Πρόγραμμα Εξεταστικής", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    school_exams_a_mid = Label(school_exams_all, bg="floral white")
+    school_exams_a_bot = Label(school_exams_all, bg="floral white")
+    school_exams_am_top = Label(school_exams_a_mid, bg="floral white")#calendar
+    school_exams_am_mid = Label(school_exams_a_mid, bg="floral white")#add/edit calendar
+
+
+    #25LABELS SUNOLIKA ME BASH TO DIAGRAMMA
 
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -240,7 +256,75 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    #school_student_reg
+    #school_std_reg_Frame
+
+    student_reg_all = Label(school_std_reg_Frame, bg="floral white")
+    student_reg_all_top = Label(student_reg_all, bg="floral white")
+    student_reg_at_top = Label(student_reg_all_top, text="Πρόγραμμα", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    student_reg_all_mid = Label(student_reg_all, bg="floral white")
+    student_reg_am_top = Label(student_reg_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
+    student_reg_am_bot = Label(student_reg_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    #student_reg_amb_top = Label(student_reg_am_bot, bg="red")
+    #student_reg_ambt_left = Label(student_reg_amb_top, bg="floral white")
+    #student_reg_ambtl_top = Label(student_reg_ambt_left, bg="floral white")
+    #student_reg_ambtl_bot = Label(student_reg_ambt_left, bg="floral white")
+    btn_reg_create = Button(student_reg_am_bot, text="Δημιουργία Εγγραφής", command=lambda: raiseNdrop_frame(school_std_reg_create_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_reg_edit = Button(student_reg_am_bot, text="Επεξεργασία Εγγραφών", command=lambda: raiseNdrop_frame(school_std_reg_edit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_reg_spectate = Button(student_reg_am_bot, text="Ολοκληρωμένες Εγγραφές", command=lambda: raiseNdrop_frame(school_std_reg_fin_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+
+    #pack-εμφάνιση στοιχείων
+    student_reg_all.pack(side = TOP, fill=BOTH, expand=1)
+    student_reg_all_top.pack(side = TOP, fill=X, ipady=50)
+    student_reg_at_top.pack(side = TOP)
+    student_reg_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    student_reg_am_top.pack(side = TOP)
+    student_reg_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    #student_reg_amb_top.pack(side = TOP, fill=X)
+    #student_reg_ambt_left.pack(side = LEFT, padx=50)
+    #student_reg_ambtl_top.pack(side = TOP, pady=50)
+    #student_reg_ambtl_bot.pack(side = TOP)
+    #Buttons pack
+    btn_reg_create.pack(side = TOP,pady=100)
+    btn_reg_edit.pack(side = TOP)
+    btn_reg_spectate.pack(side = TOP,pady=100)
+
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_std_reg_create_Frame
+
+
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_std_reg_edit_Frame
+
+
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #school_std_reg_fin_Frame
+    
+    
+    student_reg_fin_all = Label(school_std_reg_fin_Frame, bg="floral white")
+    student_reg_fin_a_bot = Label(student_reg_fin_all, bg="floral white")
+    
+    btn_reg_spectate = Button(student_reg_fin_a_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+
+    #packs
+
+    student_reg_fin_all.pack(side = TOP, expand=1, fill=BOTH)
+    student_reg_fin_a_bot.pack(side=BOTTOM, fill=X)
+    btn_reg_spectate.pack(side=RIGHT, padx=100)
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
