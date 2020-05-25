@@ -143,12 +143,14 @@ def main():
     butttonNext1.pack(side=TOP,pady=2,ipady=5)
     butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext2.pack(side=TOP,pady=2,ipady=5)
-    butttonNext3 = Button(label_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext3 = Button(label_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext3.pack(side=TOP,pady=2,ipady=5)
     butttonNext4 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext4.pack(side=TOP,pady=2,ipady=5)
     butttonNext4 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext4.pack(side=TOP,pady=2,ipady=5)
+
+    
     
 
     label_left.pack(side=LEFT)
@@ -194,13 +196,20 @@ def main():
 
 
 
-########################################################################################################
+##########PANELLINIES###########################################################################
 
-    labelboard=Label(Panhellenic_Frame,bg="floral white")
+    panexams_all=Label(Panhellenic_Frame,bg="floral white")
 
-    labelboard1 = Label(labelboard, bg="floral white")
-    labelboard2 = Label(labelboard, text="Υποβολή Λίστας: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    labelboard3 =  Label(labelboard, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue")# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
+    panexams_all_top = Label(panexams_all, bg="floral white")
+    panexams_at_top = Label(panexams_all_top, text="Πανελλήνιες Εξετάσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    panexams_all_mid =  Label(panexams_all, bg="floral white")
+    panexams_am_top = Label(panexams_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+    panexams_am_bot = Label(panexams_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+
+    
+    
+    
+    # η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
     #pdf selected from user browse
 
 #browse_ID
@@ -209,11 +218,14 @@ def main():
     #buttton_back_to_statement = Button(labelboard3, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
-    labelboard.pack(side=TOP,expand=1,fill=BOTH)
+    panexams_all.pack(side=TOP,expand=1,fill=BOTH)
 
-    labelboard1.pack(side=TOP)
-    labelboard2.pack(side=TOP)
-    labelboard3.pack(side=TOP)
+    panexams_all.pack(side = TOP, fill=BOTH, expand=1)
+    panexams_all_top.pack(side = TOP, fill=X, ipady=50)
+    panexams_at_top.pack(side = TOP)
+    panexams_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    panexams_am_top.pack(side = TOP)
+    panexams_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
