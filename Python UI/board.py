@@ -80,7 +80,7 @@ frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
-statement_Frame=Frame(all_Frame, bg="floral white")
+application_Frame=Frame(all_Frame, bg="floral white")
 statement_Frame1=Frame(all_Frame, bg="floral white") #aitiseis
 statement_Frame2=Frame(all_Frame, bg="floral white")#pendingaitiseis
 statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
@@ -154,7 +154,7 @@ def main():
 
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext0.pack(side=TOP,pady=2,ipady=5)
-    butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext1.pack(side=TOP,pady=2,ipady=5)
     butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext2.pack(side=TOP,pady=2,ipady=5)
@@ -181,37 +181,52 @@ def main():
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
 
-####################################statement_frame###############
+# -------------------------------First Frame END, Start of ΑΙΤΗΣΕΙΣ------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
 
-    label_Statement_all = Label(statement_Frame, bg="floral white")
-    label_Statement_all_top = Label(label_Statement_all, bg="floral white")
-    label_Statement_all_t_top = Label(label_Statement_all_top, text="Πανελλήνιες", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
-    label_Statement_all_t_down = Label(label_Statement_all_top, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
-    label_Statement_all_topd = Label(label_Statement_all,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    application_all=Label(application_Frame,bg="floral white")
 
-    label_Statement_5a = Label(label_Statement_all_topd, bg="floral white")
-    label_Statement_5a_left = Label(label_Statement_5a, bg="floral white")
-    
-    label_Statement_5b = Label(label_Statement_all_topd, bg="floral white")
-    label_Statement_5b_left = Label(label_Statement_5b, bg="floral white")
-   
-    label_Statement_5c = Label(label_Statement_all_topd, bg="floral white")
-    label_Statement_5c_left = Label(label_Statement_5c, bg="floral white")
+    application_all_top = Label(application_all, bg="floral white")
+    application_at_top = Label(application_all_top, text="Αιτήσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    application_all_mid =  Label(application_all, bg="floral white")
+    application_am_top = Label(application_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+    application_am_bot = Label(application_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    application_all_mid_top= Label(application_all, bg="floral white")
 
-    butttonStatementa = Button(label_Statement_5a_left, text="Πρόγραμμα Πανελληνίων", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatementb = Button(label_Statement_5b_left, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatementc = Button(label_Statement_5c_left, text="Υποβολή Λίστας Επιτηρητών", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    
-    butttonStatementa.pack()
-    butttonStatementb.pack()
-    butttonStatementc.pack()
+    #btn_exams_program = Button(application_am_bot, text="Πρόγραμμα Πανελληνίων Εξετάσεων", command=lambda: raiseNdrop_frame(panexams_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #btn_grade_center = Button(application_am_bot, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #btn_grader = Button(application_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+
+    application_all.pack(side=TOP,expand=1,fill=BOTH)
+
+    application_all.pack(side = TOP, fill=BOTH, expand=1)
+    application_all_top.pack(side = TOP, fill=X, ipady=50)
+    application_at_top.pack(side = TOP)
+    application_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    application_am_top.pack(side = TOP)
+    application_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+
+    #btn_exams_program.pack(side = TOP,pady=80)
+    #btn_grade_center.pack(side = TOP,pady=100)
+    #btn_grader.pack(side = TOP)
 
 
 
 
 
 
-##########PANELLINIES###########################################################################
+    # -------------------------------ΑΙΤΗΣΕΙΣ END, Start of ΠΑΝΕΛΛΗΝΙΕΣ------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
 
     panexams_all=Label(Panhellenic_Frame,bg="floral white")
 
@@ -239,7 +254,13 @@ def main():
     btn_grade_center.pack(side = TOP,pady=100)
     btn_grader.pack(side = TOP)
 
-    ##########PROGRAMMA_PANELLINION###########################################################################
+    # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
 
     #school_exams_program_Frame
     label_panexams_all = Label(panexams_program_Frame, bg="floral white")
@@ -278,6 +299,5 @@ def main():
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
 
-
-
 main()
+
