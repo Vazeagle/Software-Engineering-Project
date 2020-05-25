@@ -324,42 +324,24 @@ def main():
     applic_verify_ID1 = Label(applic_verify_ID, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     applic_verify_ID2 = Label(applic_verify_ID, text="tautot.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    buttton_confirm = Button(applic_verify_a_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_accept = Button(applic_verify_a_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_deny = Button(applic_verify_a_bottom, text="Απόρριψη", command=lambda: deny(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
-    def confirm_choice():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
+    def accept():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε αποδεχτείτε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation == 'yes':
-            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
-            #get value from user
-            #std_name = info_text_name.get('1.0', 'end-1c')
-            #std_sname = info_text_surname.get('1.0', 'end-1c')
-            #std_Fname = info_text_Fname.get('1.0', 'end-1c')
-            #std_Fsname = info_text_Fsurname.get('1.0', 'end-1c')
-            #std_Mname = info_text_Mname.get('1.0', 'end-1c')
-            #std_Msuname = info_text_Msurname.get('1.0', 'end-1c')
-
-            #date_save=date_val.get()
-            #month_save=month_val.get()
-            #year_save=year_val.get()
-            #print(date_save)
-            #print(month_save)
-            #print(year_save)
-            #info_text_name.config(state=DISABLED)#to be un editable
-            #info_text_surname.config(state=DISABLED)#to be un editable
-            #info_text_Fname.config(state=DISABLED)#to be un editable
-            #info_text_Fsurname.config(state=DISABLED)#to be un editable
-            #info_text_Mname.config(state=DISABLED)#to be un editable
-            #info_text_Msurname.config(state=DISABLED)#to be un editable
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
+            raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
         else:
             raiseNdrop_frame(applic_verify_Frame,previous_frame)
 
-    def confirm_choice():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
+    def deny():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε απορρίψετε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation == 'yes':
-            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
+            raiseNdrop_frame(pending_applic_Frame,previous_frame)
         else:
             raiseNdrop_frame(applic_verify_Frame,previous_frame)
 
@@ -405,6 +387,10 @@ def main():
     applic_verify_ID.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
     applic_verify_ID1.pack(side=LEFT,padx=10)
     applic_verify_ID2.pack(side=LEFT)
+
+    buttton_accept.pack(side=RIGHT,padx=25)
+    buttton_deny.pack(side=RIGHT, padx=25)
+    buttton_back_to_statement.pack(side=RIGHT)
 
     # -------------------------------ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ----------------------
     #---------------------------------------------------------------------------------------------------
