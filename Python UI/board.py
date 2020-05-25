@@ -453,8 +453,51 @@ def main():
     department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     #department_all_mid_top= Label(department_all, bg="floral white")
 
-    btn_department_submit = Button(department_am_bot, text="Υποβολή Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    lbl_department_submit = Label(department_am_bot, text="Υποβολή Ημερομηνίας: 15/07/2020", bg="floral white",height = 2, width = 35,font=("Calibri", 25, "bold"))
+    btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: date_edit(), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
     btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+
+    def date_edit():
+        department_date_l = Label(department_sumbit_at_bottom, bg="floral white")
+        department_date_2 = Label(department_sumbit_at_bottom, bg="floral white")
+        department_date_3 = Label(department_sumbit_at_bottom, bg="floral white")
+        department_date_space1 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        department_date_space2 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+
+
+
+
+        datetime_initialise()#kalesma synarthshs gia hmeromhnia
+
+        date_val = StringVar(department_date_l)
+        date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+        date_choice = OptionMenu(department_date_l, date_val, *date_options)
+        date_choice.config(bg="snow")
+
+        month_val = StringVar(department_date_2)
+        month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+        month_choice = OptionMenu(department_date_2, month_val, *month_options)
+        month_choice.config(bg="snow")
+
+
+        year_val = StringVar(department_date_3)
+        year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+        year_choice = OptionMenu(department_date_3, year_val, *year_options)
+        year_choice.config(bg="snow")
+
+        department_date_l.pack(side=LEFT)
+        department_date_space1.pack(side=LEFT)
+        department_date_2.pack(side=LEFT)
+        department_date_space2.pack(side=LEFT)
+        department_date_3.pack(side=LEFT)
+        date_choice.pack(side=LEFT)
+        month_choice.pack(side=LEFT)
+        year_choice.pack(side=LEFT)
+
+
+
+
 
     department_all.pack(side=TOP,expand=1,fill=BOTH)
 
@@ -465,7 +508,8 @@ def main():
     department_am_top.pack(side = TOP)
     department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    btn_department_submit.pack(side = TOP,pady=80)
+    lbl_department_submit.pack(side = TOP)
+    btn_department_editdate.pack(side = TOP,pady=80)
     btn_department_history.pack(side = TOP,pady=100)
 
 
