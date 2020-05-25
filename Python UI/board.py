@@ -63,6 +63,9 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
+month_options=[]
+date_options=[]
+year_options=[]
 
 load2 = Image.open('P2.gif')
 load2 = load2.resize((100, 100), Image.ANTIALIAS)
@@ -88,7 +91,7 @@ statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
 panexams_program_Frame=Frame(all_Frame, bg="floral white")
 department_Frame=Frame(all_Frame, bg="floral white")#programma
-statement_Frame7=Frame(all_Frame, bg="floral white")#eksetastiko kentro
+department_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
 statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
 statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
 statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
@@ -100,16 +103,38 @@ folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
 folder_path_form.set("")
 folder_path_ID.set("")
 
-def browse_form():  #filedialog documentation  για λεπτομερειες 
-    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
-    global folder_path_form
-    filename_form = filedialog.askopenfilename()
-    file_type2=filename_form.split(".")
-    if(file_type2[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
-        folder_path_form.set(filename_form)
-    else:
-        msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας', icon='warning')
-        filename_ID=""
+
+def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui δηλωση συμμετοχης
+    i=0
+    global month_options
+    global date_options
+    global year_options
+
+    while (i<=12):  #month
+        if(i==0):
+            month_options.insert(0,"-")
+        else:
+            month_options.append(i)
+        i=i+1
+
+    i=0
+    while (i<=31):  #date
+        if(i==0):
+            date_options.insert(0,"-")
+        else:
+            date_options.append(i)
+        i=i+1
+
+    now = datetime.now() ##current
+    current_year=int(now.year)
+    start_year=current_year-100
+    i=current_year-16   #-16 επειδη ειναι το μιν για επιλογη κατευθυνσης κλπ  για να βαλει αρχικα μια - στην λιστα
+    while (i>=start_year):  #year 
+        if(i==current_year-16  ):
+            year_options.insert(0,"-")
+        else:
+            year_options.append(i)
+        i=i-1
 
 
 def main():
@@ -254,11 +279,11 @@ def main():
     department_all_mid =  Label(department_all, bg="floral white")
     department_am_top = Label(department_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
     department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    department_all_mid_top= Label(department_all, bg="floral white")
+    #department_all_mid_top= Label(department_all, bg="floral white")
 
-    btn_department_list = Button(department_am_bot, text="Ημερομηνία Έναρξης", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_department_submit = Button(department_am_bot, text="Υποβολή Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    
+
     department_all.pack(side=TOP,expand=1,fill=BOTH)
 
     department_all.pack(side = TOP, fill=BOTH, expand=1)
@@ -268,11 +293,57 @@ def main():
     department_am_top.pack(side = TOP)
     department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    btn_department_list.pack(side = TOP,pady=80)
+    btn_department_submit.pack(side = TOP,pady=80)
     btn_department_history.pack(side = TOP,pady=100)
 
 
 
+    # -------------------------------ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ END, Start of ΗΜΕΡΟΜΗΝΙΑ---------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+    department_sumbit= Label(department_submit_Frame, bg="floral white")
+    
+    department_date = Label(department_sumbit, text="Ημερομηνία Υποβολής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_l = Label(department_date, bg="floral white")
+    department_date_2 = Label(department_date, bg="floral white")
+    department_date_3 = Label(department_date, bg="floral white")
+    department_date_space1 = Label(department_date, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_space2 = Label(department_date, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+  
+    
+    datetime_initialise()#kalesma synarthshs gia hmeromhnia
+
+    date_val = StringVar(department_date_l)
+    date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    date_choice = OptionMenu(department_date_l, date_val, *date_options)
+    date_choice.config(bg="snow")
+
+    month_val = StringVar(department_date_2)
+    month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    month_choice = OptionMenu(department_date_2, month_val, *month_options)
+    month_choice.config(bg="snow")
+
+
+    year_val = StringVar(department_date_3)
+    year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    year_choice = OptionMenu(department_date_3, year_val, *year_options)
+    year_choice.config(bg="snow")
+
+    department_sumbit.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    department_date.pack(side=LEFT)
+    department_date_l.pack(side=LEFT,padx=50)
+    department_date_space1.pack(side=LEFT, padx=55)
+    department_date_2.pack(side=LEFT,padx=60)
+    department_date_space2.pack(side=LEFT, padx=65)
+    department_date_3.pack(side=LEFT,padx=70)
+    date_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
+    month_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
+    year_choice.pack(side=LEFT, ipadx=15, ipady=2, padx=5)
 
 
 
