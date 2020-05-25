@@ -297,15 +297,15 @@ def ExitApp():
 
 def main():
     
-    label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
+    label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Times New Roman (Times)", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
     label_right = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexio menu
     label_r_up = Label(label_right, borderwidth=1, highlightthickness=0, bg="floral white")  # panw meros me perilipsh kai hmerologio
     label_ru_up = Label(label_r_up, borderwidth=1, highlightthickness=0,bg="floral white")  # kalos orisate+ to eniaio susthma klp
-    label_ruu_up = Label(label_ru_up, text="Καλώς ήρθατε στον Παρμενίδη!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
-    label_ruu_down = Label(label_ru_up, text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Calibri", 18))
+    label_ruu_up = Label(label_ru_up, text="Καλώς ήρθατε στον Παρμενίδη!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
+    label_ruu_down = Label(label_ru_up, text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 18))
 
     # isws na 8elei up kai oxi left
     label_ru_left = Label(label_ru_up, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi+ desription parmenidi
@@ -313,48 +313,48 @@ def main():
     label_rul_right = Label(label_ru_left, borderwidth=1, highlightthickness=0,bg="floral white")  # Ο παρμενιδης ειναι bla bla
 
     label_ru_right = Label(label_ru_up, borderwidth=0, highlightthickness=1,bg="floral white")  # hmerologio gramma + hmerologio
-    label_rur_up = Label(label_ru_right, text="Ημερολόγιο\n", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # hmerologio gramma
+    label_rur_up = Label(label_ru_right, text="Ημερολόγιο\n", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18))  # hmerologio gramma
     label_rur_down = Label(label_ru_right, borderwidth=1, highlightthickness=0, bg="floral white")  # hmerologio
 
     label_r_down = Label(label_right, borderwidth=20, highlightthickness=0, relief="raised", bg="floral white")  # sunoptiko profil
-    label_rd_up = Label(label_r_down, text=" Συνοπτικό προφίλ: ",relief="groove", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18, "bold"))  # sunoptiko profil
+    label_rd_up = Label(label_r_down, text=" Συνοπτικό προφίλ: ",relief="groove", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))  # sunoptiko profil
     label_rd_down = Label(label_r_down, borderwidth=1, highlightthickness=0, bg="floral white")  # onoma xrhsth kai alla
     label_rdd_left = Label(label_rd_down,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")  # eikona user
     label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth status lukeio kai alla
 
     label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai status
-    label_rddrl_up = Label(label_rddr_left, text=cur_student.name, borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
+    label_rddrl_up = Label(label_rddr_left, text=cur_student.name, borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18))  # onoma xrhsth
     label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # katastash
-    label_rddrld_left = Label(label_rddrl_down, text="Κατάσταση: ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 14))  # katastash text
-    label_rddrld_right = Label(label_rddrl_down, text="Προς Εξέταση", borderwidth=1, highlightthickness=1, relief="groove",bg="green2",font=("Calibri", 14))  # input katastashs apo data base
+    label_rddrld_left = Label(label_rddrl_down, text="Κατάσταση: ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 14))  # katastash text
+    label_rddrld_right = Label(label_rddrl_down, text="Προς Εξέταση", borderwidth=1, highlightthickness=1, relief="groove",bg="green2",font=("Times New Roman (Times)", 14))  # input katastashs apo data base
 
     label_rddr_right = Label(label_rdd_right, borderwidth=1, highlightthickness=1,bg="floral white")  # lukeio kai kateu8unsh
     label_rddrr_up = Label(label_rddr_right, borderwidth=1, highlightthickness=1, bg="floral white")  # lukeio genika
-    label_rddrru_left = Label(label_rddrr_up, text=" Λύκειο: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Calibri", 14))  # lukeio gramma
-    label_rddrru_right = Label(label_rddrr_up,text = cur_school.name, borderwidth=1, highlightthickness=0,bg="floral white", font=("Calibri", 14)) # lukeio input from db
+    label_rddrru_left = Label(label_rddrr_up, text=" Λύκειο: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Times New Roman (Times)", 14))  # lukeio gramma
+    label_rddrru_right = Label(label_rddrr_up,text = cur_school.name, borderwidth=1, highlightthickness=0,bg="floral white", font=("Times New Roman (Times)", 14)) # lukeio input from db
     label_rddrr_down = Label(label_rddr_right, borderwidth=1, highlightthickness=1, bg="floral white")  # katey8unsh
-    label_rddrrd_left = Label(label_rddrr_down, text=" Κατεύθυνση: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Calibri", 14))  # kateu8unsh text
-    label_rddrrd_right = Label(label_rddrr_down,text = cur_student.direction.name, borderwidth=2, highlightthickness=1, relief="sunken", bg="floral white", font=("Calibri", 14))  # kateu8unsh input
+    label_rddrrd_left = Label(label_rddrr_down, text=" Κατεύθυνση: ", borderwidth=1, highlightthickness=1, bg="floral white", font=("Times New Roman (Times)", 14))  # kateu8unsh text
+    label_rddrrd_right = Label(label_rddrr_down,text = cur_student.direction.name, borderwidth=2, highlightthickness=1, relief="sunken", bg="floral white", font=("Times New Roman (Times)", 14))  # kateu8unsh input
 
-    descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Calibri", 12), width=55)
+    descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Times New Roman (Times)", 12), width=55)
     descriptionText.insert(INSERT,"Ο Παρμενίδης ήταν αρχαίος έλληνας φιλόσοφος. Γεννήθηκε στην \nΕλέα της Μεγάλης Ελλάδας στα τέλη του 6ου αιώνα π.Χ., σε ένα \nπεριβάλλον επηρεασμένο από τις απόψεις του Πυθαγόρα και του Ξενοφάνη. Ο Παρμενίδης υποστήριξε ότι η πολλαπότητα των \nυπάρχοντων πραγμάτων, οι μεταβαλλόμενες μορφές και η κίνηση τους δεν είναι παρά μια εμφάνιση μιας ενιαίας αιώνιας \nπραγματικότητα (<<Όν>>), οδηγώντας έτσι στην παρμενίδια αρχή \nότι <<όλα είναι ένα>>.")
     descriptionText.config(state=DISABLED)#to be un editable
 
     ###sos gia na mhn bgalei erro bazw proxeira mono to prwto frame pou einia etoimo
-    butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext1 = Button(label_l_down, text="Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext2 = Button(label_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
+    butttonNext1 = Button(label_l_down, text="Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
+    butttonNext2 = Button(label_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
     #TO DO
-    butttonNext3 = Button(label_l_down, text="Αποτελέσματα", command=lambda: raiseNdrop_frame(results_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext3 = Button(label_l_down, text="Αποτελέσματα", command=lambda: raiseNdrop_frame(results_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
     #TO DO
-    butttonNext4 = Button(label_l_down, text="Πανεπιστημιακά Ιδρύματα", command=lambda: raiseNdrop_frame(institutions_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext4 = Button(label_l_down, text="Πανεπιστημιακά Ιδρύματα", command=lambda: raiseNdrop_frame(institutions_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
     #TO DO
-    butttonNext5 = Button(label_l_down, text="Πληροφορίες Χρήστη", command=lambda: raiseNdrop_frame(info_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext6 = Button(label_l_down, text="Ανακοινώσεις", command=lambda: raiseNdrop_frame(announcements_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext5 = Button(label_l_down, text="Πληροφορίες Χρήστη", command=lambda: raiseNdrop_frame(info_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
+    butttonNext6 = Button(label_l_down, text="Ανακοινώσεις", command=lambda: raiseNdrop_frame(announcements_Frame,previous_frame), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
     #TO DO
-    butttonNext7 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(problems_Frame,previous_frame) , bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext7 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(problems_Frame,previous_frame) , bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
     
-    butttonNext8 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext8 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 1, width = 25,font=("Times New Roman (Times)", 14, "bold"))
 
     ############## CALENDAR################
     cal = Calendar(label_rur_down, selectmode='none')
@@ -444,7 +444,7 @@ def main():
     #announcements_Frame
     label_Announce = Label(announcements_Frame, text="Ανακοινώσεις", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     label_sortBy = Label(announcements_Frame, bg="floral white")
-    label_sortBy1 = Label(label_sortBy, text="Ταξινόμηση κατά: ", bg="floral white", font=("Calibri", 18, "bold"))
+    label_sortBy1 = Label(label_sortBy, text="Ταξινόμηση κατά: ", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
     label_sortBy2 = Label(label_sortBy, bg="floral white")
     label_left = Label(announcements_Frame, bg="floral white")
     container_list = Frame(announcements_Frame)
@@ -453,7 +453,7 @@ def main():
     scrollbarh = Scrollbar(container_list, orient="horizontal", command=announcement_list.xview)
     scrollbarv= Scrollbar(container_list, orient="vertical", command=announcement_list.yview)
     container_list.bind("<Configure>",lambda e: announcement_list.configure(scrollregion=announcement_list.bbox("all")))
-    announcement_list.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set, font=("Calibri", 36))
+    announcement_list.configure(yscrollcommand=scrollbarv.set, xscrollcommand=scrollbarh.set, font=("Times New Roman (Times)", 18))
     container_list.bind("<MouseWheel>", scrollbarv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
 
 
@@ -466,7 +466,7 @@ def main():
     sortBy_var.set(sort_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     sort_choice = OptionMenu(label_sortBy2, sortBy_var, *sort_options)
     sort_choice.config(bg="snow", width=20)
-    buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements, bg="gray26",font=("Calibri", 14, "bold"))
+    buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements, bg="red3",font=("Times New Roman (Times)", 14, "bold"))
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def sort_announcements():
@@ -540,29 +540,29 @@ def main():
 
     label_Statement_b1 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b1_left = Label(label_Statement_b1, bg="floral white")
-    label_Statement_b1_right = Label(label_Statement_b1, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Calibri", 16, "bold"))#ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ INPUT
-    label_Statement_b1_r_right = Label(label_Statement_b1, bg="floral white",text="Προθεσμία: ",font=("Calibri", 16, "bold"))
-    label_Statement_b1_rr_right = Label(label_Statement_b1, bg="red",text="01/04/2020",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    label_Statement_b1_right = Label(label_Statement_b1, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Times New Roman (Times)", 16, "bold"))#ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ INPUT
+    label_Statement_b1_r_right = Label(label_Statement_b1, bg="floral white",text="Προθεσμία: ",font=("Times New Roman (Times)", 16, "bold"))
+    label_Statement_b1_rr_right = Label(label_Statement_b1, bg="red",text="01/04/2020",font=("Times New Roman (Times)", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
 
     label_Statement_b2 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b2_left = Label(label_Statement_b2, bg="floral white")
-    label_Statement_b2_right = Label(label_Statement_b2, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
-    label_Statement_b2_r_right = Label(label_Statement_b2, bg="floral white",text="Προθεσμία: ",font=("Calibri", 16, "bold"))
-    label_Statement_b2_rr_right = Label(label_Statement_b2, bg="green2",text="10/05/2020",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    label_Statement_b2_right = Label(label_Statement_b2, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Times New Roman (Times)", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    label_Statement_b2_r_right = Label(label_Statement_b2, bg="floral white",text="Προθεσμία: ",font=("Times New Roman (Times)", 16, "bold"))
+    label_Statement_b2_rr_right = Label(label_Statement_b2, bg="green2",text="10/05/2020",font=("Times New Roman (Times)", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
 
     label_Statement_b3 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b3_left = Label(label_Statement_b3, bg="floral white")
-    label_Statement_b3_right = Label(label_Statement_b3, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
-    label_Statement_b3_r_right = Label(label_Statement_b3, bg="floral white",text="Προθεσμία: ",font=("Calibri", 16, "bold"))
-    label_Statement_b3_rr_right = Label(label_Statement_b3, bg="green2",text="26/05/2020",font=("Calibri", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    label_Statement_b3_right = Label(label_Statement_b3, bg="floral white",text="Εκκρεμεί/Ολοκληρώθηκε",font=("Times New Roman (Times)", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
+    label_Statement_b3_r_right = Label(label_Statement_b3, bg="floral white",text="Προθεσμία: ",font=("Times New Roman (Times)", 16, "bold"))
+    label_Statement_b3_rr_right = Label(label_Statement_b3, bg="green2",text="26/05/2020",font=("Times New Roman (Times)", 16, "bold"))#INPUT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΧΕΙΡΟ ΤΩΡΑ
 
     label_Statement_b4 = Label(label_Statement_all_topd, bg="floral white")
     label_Statement_b4_left = Label(label_Statement_b4, bg="floral white")
     
-    butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonStatement4 = Button(label_Statement_b4_left, text="Τελικές Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame4,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonStatement1 = Button(label_Statement_b1_left, text="Δήλωση Συμμετοχής", command=lambda: raiseNdrop_frame(statement_Frame1,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 25)
+    butttonStatement2 = Button(label_Statement_b2_left, text="Δηλώση Μαθημάτων", command=lambda: raiseNdrop_frame(statement_Frame2,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 25)
+    butttonStatement3 = Button(label_Statement_b3_left, text="Δήλωση Μηχανογραφικού", command=lambda: raiseNdrop_frame(statement_Frame3,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 25)
+    butttonStatement4 = Button(label_Statement_b4_left, text="Τελικές Δηλώσεις", command=lambda: raiseNdrop_frame(statement_Frame4,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 25)
 
     label_Statement_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
     label_Statement_all_top.pack(side=TOP,fill=BOTH, expand=1)
@@ -613,11 +613,11 @@ def main():
 
     label_Statement1_all_m_t1 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt1_left = Label(label_Statement1_all_m_t1, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_name = Text(label_Statement1_all_m_t1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    info_text_name = Text(label_Statement1_all_m_t1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     label_Statement1_all_m_t2 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt2_left = Label(label_Statement1_all_m_t2, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_surname = Text(label_Statement1_all_m_t2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    info_text_surname = Text(label_Statement1_all_m_t2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     label_Statement1_all_m_t3 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt3_left = Label(label_Statement1_all_m_t3, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -629,19 +629,19 @@ def main():
     
     label_Statement1_all_m_t4 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt4_left = Label(label_Statement1_all_m_t4, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_Fname = Text(label_Statement1_all_m_t4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    info_text_Fname = Text(label_Statement1_all_m_t4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     label_Statement1_all_m_t5 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt5_left = Label(label_Statement1_all_m_t5, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_Fsurname = Text(label_Statement1_all_m_t5, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    info_text_Fsurname = Text(label_Statement1_all_m_t5, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     
     label_Statement1_all_m_t6 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt6_left = Label(label_Statement1_all_m_t6, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_Mname = Text(label_Statement1_all_m_t6, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    info_text_Mname = Text(label_Statement1_all_m_t6, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     label_Statement1_all_m_t7 = Label(label_Statement1_all_mid_top, bg="floral white")
     label_Statement1_all_mt7_left = Label(label_Statement1_all_m_t7, text="Επώνυμο Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_text_Msurname = Text(label_Statement1_all_m_t7, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
+    info_text_Msurname = Text(label_Statement1_all_m_t7, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))  
 
 
     label_Statement1_all_m_t8 = Label(label_Statement1_all_mid_top, bg="floral white")
@@ -676,11 +676,11 @@ def main():
 
 
     #browse_ID
-    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
-    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Calibri", 14, "bold"))
+    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
+    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
 
-    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def confirm_choice():
@@ -854,9 +854,9 @@ def main():
     direction_choice = OptionMenu(label_Statement2_mmt_right, direction_val, *direction_names)
     direction_choice.config(bg="snow", width=20)
 
-    btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     def refresh_choice_exams(): #sos sos proxeira topo8ethsh
         global lessons
@@ -1060,8 +1060,8 @@ def main():
     btn_add = Button(label_Statement3_amt_mid, image=render5, command=lambda: add_department())
     btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
     #conf-exit btns
-    btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
 
     #LIST  για τα διαθεσιμα τμηματα 
@@ -1353,9 +1353,9 @@ def main():
     label_Program_b3_left = Label(label_Program_b3, bg="floral white")
 
     
-    butttonProgram1 = Button(label_Program_b1_left, text="Σχολικό Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonProgram2 = Button(label_Program_b2_left, text="Πρόγραμμα Σχολικής Εξέταστικής", command=lambda: raiseNdrop_frame(school_exams_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
-    butttonProgram3 = Button(label_Program_b3_left, text="Πρόγραμμα Πανελλήνιων Εξετάσεων", command=lambda: raiseNdrop_frame(nationwide_exams_program_Frame,previous_frame), bg="floral white",font=("Calibri", 16, "bold"),height = 2, width = 35)
+    butttonProgram1 = Button(label_Program_b1_left, text="Σχολικό Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
+    butttonProgram2 = Button(label_Program_b2_left, text="Πρόγραμμα Σχολικής Εξέταστικής", command=lambda: raiseNdrop_frame(school_exams_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
+    butttonProgram3 = Button(label_Program_b3_left, text="Πρόγραμμα Πανελλήνιων Εξετάσεων", command=lambda: raiseNdrop_frame(nationwide_exams_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
 
     label_Program_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
     label_Program_all_top.pack(side=TOP,fill=BOTH, expand=1)
@@ -1394,7 +1394,7 @@ def main():
     label_weekly_a_bottom = Label(label_weekly_at_bottom, bg="floral white")
 
     #return button
-    btn1_return_program = Button(label_weekly_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn1_return_program = Button(label_weekly_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     #sos sos zisis add pinaka mesa se pinaka me data gia programma treeview or tktreectrl
 
@@ -1423,7 +1423,7 @@ def main():
     label_school_exams_at_bottom = Label(label_school_exams_a_top, bg="floral white")
     label_school_exams_a_bottom = Label(label_school_exams_at_bottom, bg="floral white")
 
-    btn2_return_program = Button(label_school_exams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn2_return_program = Button(label_school_exams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
 
     #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
@@ -1466,10 +1466,10 @@ def main():
     label_nationwide_exams_at_bottom = Label(label_nationwide_exams_a_top, bg="floral white")
     label_nationwide_exams_a_bottom = Label(label_nationwide_exams_at_bottom, bg="floral white")
 
-    btn3_return_program = Button(label_nationwide_exams_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn3_return_program = Button(label_nationwide_exams_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     #sos sos zisis input data στο calendar για ημερομηνια εξετασης πανελληνιων
-
+=
     ############## CALENDAR################
     cal_nationwide_exams = Calendar(label_nationwide_exams_at_bottom, selectmode='none')
     date = cal_nationwide_exams.datetime.today() + cal_nationwide_exams.timedelta(days=2)
@@ -1562,7 +1562,7 @@ def main():
     label_student_contact_number_left = Label(label_student_contact_number, bg="floral white", text="Αριθμός Τηλεφώνου:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_student_contact_number_right = Label(label_student_contact_number, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
 
-    btn_student_info_edit = Button(label_student_info_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_student_info_edit = Button(label_student_info_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     def edit_profile():
         #kane editable ta Text 
