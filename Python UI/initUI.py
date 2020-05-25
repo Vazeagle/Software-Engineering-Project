@@ -1469,7 +1469,7 @@ def main():
     btn3_return_program = Button(label_nationwide_exams_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(all_programs_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     #sos sos zisis input data στο calendar για ημερομηνια εξετασης πανελληνιων
-=
+
     ############## CALENDAR################
     cal_nationwide_exams = Calendar(label_nationwide_exams_at_bottom, selectmode='none')
     date = cal_nationwide_exams.datetime.today() + cal_nationwide_exams.timedelta(days=2)

@@ -67,13 +67,21 @@ month_options=[]
 date_options=[]
 year_options=[]
 
+load1 = Image.open('P1.png')
+load1 = load1.resize((140, 160), Image.ANTIALIAS)
+render1 = ImageTk.PhotoImage(load1)
+    
 load2 = Image.open('P2.gif')
 load2 = load2.resize((100, 100), Image.ANTIALIAS)
 render2 = ImageTk.PhotoImage(load2)
 
+load3 = Image.open('user_blank.png')
+load3 = load3.resize((102, 72), Image.ANTIALIAS)
+render3 = ImageTk.PhotoImage(load3)
+
 ####classes#####
 
-cur_Boardofeducation="Γεώργιος Δημητρόπουλος"
+#cur_Admin="Γεώργιος Δημητρόπουλος"
 
 ######################
 
@@ -139,68 +147,104 @@ def datetime_initialise(): #### χρειάζεται για το drop down menu 
 
 def main():
     
-    label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
+    label_left = Label(menu_Frame, text="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", bg="gray26",font=("Times New Roman (Times)", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, text="ΦΩΤΟΓΤΑΦΙΑ\n ΠΑΡΜΕΝΊΔΗΣ", borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
     label_right = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexio menu
     label_r_up = Label(label_right, borderwidth=1, highlightthickness=0, bg="floral white")  # panw meros me perilipsh kai hmerologio
     label_ru_up = Label(label_r_up, borderwidth=1, highlightthickness=0,bg="floral white")  # kalos orisate+ to eniaio susthma klp
-    label_ruu_up = Label(label_ru_up, text="Καλώς ήρθατε στον Παρμενίδη!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
-    label_ruu_down = Label(label_ru_up, text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Calibri", 18))
+    label_ruu_up = Label(label_ru_up, text="Καλώς ήρθατε στον Παρμενίδη!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
+    label_ruu_down = Label(label_ru_up, text="Το ενιαίο σύστημα για τις Πανελλήνιες Εξετάσεις.\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 18))
 
     # isws na 8elei up kai oxi left
     label_ru_left = Label(label_ru_up, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi+ desription parmenidi
-    label_rul_left = Label(label_ru_left, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi
+    label_rul_left = Label(label_ru_left, image=render1, borderwidth=1, highlightthickness=0,bg="floral white")  # foto parmenidi
     label_rul_right = Label(label_ru_left, borderwidth=1, highlightthickness=0,bg="floral white")  # Ο παρμενιδης ειναι bla bla
 
     label_ru_right = Label(label_ru_up, borderwidth=0, highlightthickness=1,bg="floral white")  # hmerologio gramma + hmerologio
-    label_rur_up = Label(label_ru_right, text="Ημερολόγιο\n", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # hmerologio gramma
+    label_rur_up = Label(label_ru_right, text="Ημερολόγιο\n", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18))  # hmerologio gramma
     label_rur_down = Label(label_ru_right, borderwidth=1, highlightthickness=0, bg="floral white")  # hmerologio
 
     label_r_down = Label(label_right, borderwidth=20, highlightthickness=0, relief="raised", bg="floral white")  # sunoptiko profil
-    label_rd_up = Label(label_r_down, text=" Συνοπτικό προφίλ: ",relief="groove", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18, "bold"))  # sunoptiko profil
+    label_rd_up = Label(label_r_down, text=" Παρών χρήστης: ",relief="groove", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))  # sunoptiko profil
     label_rd_down = Label(label_r_down, borderwidth=1, highlightthickness=0, bg="floral white")  # onoma xrhsth kai alla
-    label_rdd_left = Label(label_rd_down, borderwidth=0, highlightthickness=0, bg="floral white")  # eikona user
-    label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth
+    label_rdd_left = Label(label_rd_down,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")  # eikona user
+    label_rdd_right = Label(label_rd_down, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth status lukeio kai alla
+
+    label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai status
+    label_rddrl_up = Label(label_rddr_left, text="Γεώργιος Δημητρόπουλος", borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18))  # onoma xrhsth
+    label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # katastash
+
+    descriptionText = Text(label_rul_right, height=8, bg="floral white", fg="gray44", borderwidth=0, highlightthickness=2,font=("Times New Roman (Times)", 12), width=55)
+    descriptionText.insert(INSERT,"Ο Παρμενίδης ήταν αρχαίος έλληνας φιλόσοφος. Γεννήθηκε στην \nΕλέα της Μεγάλης Ελλάδας στα τέλη του 6ου αιώνα π.Χ., σε ένα \nπεριβάλλον επηρεασμένο από τις απόψεις του Πυθαγόρα και του Ξενοφάνη. Ο Παρμενίδης υποστήριξε ότι η πολλαπότητα των \nυπάρχοντων πραγμάτων, οι μεταβαλλόμενες μορφές και η κίνηση τους δεν είναι παρά μια εμφάνιση μιας ενιαίας αιώνιας \nπραγματικότητα (<<Όν>>), οδηγώντας έτσι στην παρμενίδια αρχή \nότι <<όλα είναι ένα>>.")
+    descriptionText.config(state=DISABLED)#to be un editable
 
     
-    label_rddr_left = Label(label_rdd_right, borderwidth=1, highlightthickness=0,bg="floral white")  # onoma xrhsth kai anafora
-    label_rddrl_up = Label(label_rddr_left, text="cur_Boardofeducation", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 18))  # onoma xrhsth
-    label_rddrl_down = Label(label_rddr_left, borderwidth=1, highlightthickness=0, bg="floral white")  # anafora
-    label_rddrld_left = Label(label_rddrl_down, text="Υπουργείο Παιδείας και Θρησκευμάτων ", borderwidth=1, highlightthickness=0, bg="floral white",font=("Calibri", 14))  # anafora text
-
-
     label_left = Label(menu_Frame, bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
     label_l_up = Label(label_left, image=render2, borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     label_l_down = Label(label_left, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
-    label_right = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexio menu
-    label_ruu_up = Label(label_right, text="Καλώς ήρθατε!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
+    
+    #label_right = Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexio menu
+    #label_ruu_up = Label(label_right, text="Καλώς ήρθατε!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
 
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext0.pack(side=TOP,pady=2,ipady=5)
     butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext1.pack(side=TOP,pady=2,ipady=5)
     butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext2.pack(side=TOP,pady=2,ipady=5)
     butttonNext3 = Button(label_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext3.pack(side=TOP,pady=2,ipady=5)
     butttonNext4 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext4.pack(side=TOP,pady=2,ipady=5)
-    butttonNext4 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext4.pack(side=TOP,pady=2,ipady=5)
+    butttonNext5 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
-    
-    
+    cal = Calendar(label_rur_down, selectmode='none')
+    date = cal.datetime.today() + cal.timedelta(days=2)
+    cal.calevent_create(date, 'Hello World', 'message')
+    cal.calevent_create(date, 'Reminder 2', 'reminder')
+    cal.calevent_create(date + cal.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal.calevent_create(date + cal.timedelta(days=3), 'Message', 'message')
+
+    cal.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    cal.pack(fill="both", expand=True)
+    ttk.Label(label_rur_down, text="Hover over the events.").pack()
+      
 
     label_left.pack(side=LEFT)
-
-    
-
     label_l_up.pack(side=TOP)#PARMENIDIS LOGO
     label_l_down.pack(side=BOTTOM)#CONTAINS BUTTONS
-    label_right.pack(side=RIGHT)
+
+    label_right.pack(side=TOP,fill=BOTH,expand=1)#SOS SOS SOS SOS SOS SOS SOS SOS SOS SOS salmon eswteriko dexi prepei na to anrikatastisw me init_label
+    label_r_up.pack(side=TOP,fill=BOTH,expand=1)#kalos hr8ate+eniaio susthma+perilhpsh+calendar
+    label_ru_up.pack(side=TOP)
     label_ruu_up.pack(side=TOP)
+    label_ruu_down.pack(side=TOP)
+
+    # isws na 8elei up kai oxi left
+    label_ru_left.pack(side=LEFT)
+    label_rul_left.pack(side=LEFT)#eikona pamenidi
+    label_rul_right.pack(side=LEFT)#peilhpsh
+
+    label_ru_right.pack(side=LEFT)
+    label_rur_up.pack(side=TOP)#hmerologio gramma
+    label_rur_down.pack(side=TOP,padx=50,ipady=40,ipadx=40)#,ipadx=40,ipady=30)#calendar
+
+    label_r_down.pack(side=BOTTOM,fill=X,expand=1)##SYNOPTIKA
+    label_rd_up.pack(side=TOP)#SYNOPTIKA
+    label_rd_down.pack(side=TOP,pady=10)#FOTO KATASTASH KLP
+    label_rdd_left.pack(side=LEFT)
+    label_rdd_right.pack(side=RIGHT)
+
+    label_rddr_left.pack(side=LEFT)
+    label_rddrl_up.pack(side=TOP,)
+    label_rddrl_down.pack(side=BOTTOM)
+    
+    descriptionText.pack()
+    
+    butttonNext0.pack(side=TOP,pady=2,ipady=5)
+    butttonNext1.pack(side=TOP,pady=2,ipady=5)
+    butttonNext2.pack(side=TOP,pady=2,ipady=5)
+    butttonNext3.pack(side=TOP,pady=2,ipady=5)
+    butttonNext4.pack(side=TOP,pady=2,ipady=5)
+    butttonNext5.pack(side=TOP,pady=2,ipady=5)
 
     raiseNdrop_frame(all_Frame,none)
     raiseNdrop_frame(menu_Frame,none)
