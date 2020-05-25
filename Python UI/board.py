@@ -206,7 +206,7 @@ def main():
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
 
-# -------------------------------First Frame END, Start of ΑΙΤΗΣΕΙΣ------------------------
+    # -------------------------------First Frame END, Start of ΑΙΤΗΣΕΙΣ------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -334,20 +334,20 @@ def main():
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
     year_choice.config(bg="snow")
 
-    department_sumbit.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    department_sumbit.pack(side=TOP,pady=15,expand=1,fill=X, padx=30)
     department_date.pack(side=LEFT)
-    department_date_l.pack(side=LEFT,padx=50)
-    department_date_space1.pack(side=LEFT, padx=55)
-    department_date_2.pack(side=LEFT,padx=60)
-    department_date_space2.pack(side=LEFT, padx=65)
-    department_date_3.pack(side=LEFT,padx=70)
-    date_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
-    month_choice.pack(side=LEFT, ipadx=5, ipady=2, padx=5)
-    year_choice.pack(side=LEFT, ipadx=15, ipady=2, padx=5)
+    department_date_l.pack(side=LEFT)
+    department_date_space1.pack(side=LEFT)
+    department_date_2.pack(side=LEFT)
+    department_date_space2.pack(side=LEFT)
+    department_date_3.pack(side=LEFT)
+    date_choice.pack(side=LEFT)
+    month_choice.pack(side=LEFT)
+    year_choice.pack(side=LEFT)
 
 
 
-    # -------------------------------_________________ END, Start of ΠΑΝΕΛΛΗΝΙΕΣ------------------------
+    # -------------------------------ΗΜΕΡΟΜΗΝΙΑ END, Start of ΠΑΝΕΛΛΗΝΙΕΣ-------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
