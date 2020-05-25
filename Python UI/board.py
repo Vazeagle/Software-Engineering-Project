@@ -86,6 +86,7 @@ statement_Frame2=Frame(all_Frame, bg="floral white")#pendingaitiseis
 statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
 statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
+panexams_program_Frame=Frame(all_Frame, bg="floral white")
 statement_Frame6=Frame(all_Frame, bg="floral white")#programma
 statement_Frame7=Frame(all_Frame, bg="floral white")#eksetastiko kentro
 statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
@@ -94,7 +95,21 @@ statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
 statement_Frame11=Frame(all_Frame, bg="floral white") #provlimata
 statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
 
+folder_path_form = StringVar()#(ypovoli programmatos)
+folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
+folder_path_form.set("")
+folder_path_ID.set("")
 
+def browse_form():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
+    global folder_path_form
+    filename_form = filedialog.askopenfilename()
+    file_type2=filename_form.split(".")
+    if(file_type2[-1]=="pdf"): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
+        folder_path_form.set(filename_form)
+    else:
+        msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της αίτησης σας', icon='warning')
+        filename_ID=""
 
 
 def main():
@@ -205,18 +220,11 @@ def main():
     panexams_all_mid =  Label(panexams_all, bg="floral white")
     panexams_am_top = Label(panexams_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
     panexams_am_bot = Label(panexams_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    panexams_all_mid_top= Label(panexams_all, bg="floral white")
 
-    
-    
-    
-    # η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
-    #pdf selected from user browse
-
-#browse_ID
-    #buttton_browse_form = Button(labelboard2, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Calibri", 14, "bold"))
-    #buttton_confirm = Button(labelboard3, text="Επιβεβαίωση", bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    #buttton_back_to_statement = Button(labelboard3, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
+    btn_exams_program = Button(panexams_am_bot, text="Πρόγραμμα Πανελληνίων Εξετάσεων", command=lambda: raiseNdrop_frame(panexams_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_grade_center = Button(panexams_am_bot, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_grader = Button(panexams_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     panexams_all.pack(side=TOP,expand=1,fill=BOTH)
 
@@ -226,6 +234,45 @@ def main():
     panexams_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
     panexams_am_top.pack(side = TOP)
     panexams_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+
+    btn_exams_program.pack(side = TOP,pady=80)
+    btn_grade_center.pack(side = TOP,pady=100)
+    btn_grader.pack(side = TOP)
+
+    ##########PROGRAMMA_PANELLINION###########################################################################
+
+    #school_exams_program_Frame
+    label_panexams_all = Label(panexams_program_Frame, bg="floral white")
+    label_panexams_a_top = Label(label_panexams_all, bg="floral white")
+    label_panexams_at_top = Label(label_panexams_a_top, bg="floral white", text="Πρόγραμμα Πανελλήνιων Εξεταστικής ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    label_panexams_at_bottom = Label(label_panexams_a_top, bg="floral white")
+    label_panexams_a_bottom = Label(label_panexams_at_bottom, bg="floral white")
+
+    btn2_return_program = Button(label_panexams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+    #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
+
+    ############## CALENDAR################
+    cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
+    date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
+    cal_panexams.calevent_create(date, 'Hello World', 'message')
+    cal_panexams.calevent_create(date, 'Reminder 2', 'reminder')
+    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
+
+    cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    #pack()
+    cal_panexams.pack(fill="both", expand=1)
+    ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
+
+    label_panexams_all.pack(side=TOP,fill=BOTH, expand=1)
+    label_panexams_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_panexams_at_top.pack(side=TOP)
+    label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    btn2_return_program.pack(side=RIGHT)
 
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
