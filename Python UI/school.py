@@ -245,7 +245,7 @@ def main():
     school_exams_a_bot = Label(school_exams_all, bg="floral white")
     school_exams_am_top = Label(school_exams_a_mid, bg="floral white")#calendar
     school_exams_am_mid = Label(school_exams_a_mid, bg="floral white",relief="groove")#add/edit/delete calendar
-    school_exams_amm_top = Label(school_exams_am_mid, text="Επεξεργασία Προγράμματος", bg="floral white", font=("Times New Roman (Times)", 20, "bold"))#edit title
+    school_exams_amm_top = Label(school_exams_am_mid, text="Επεξεργασία Προγράμματος", bg="SkyBlue1", font=("Times New Roman (Times)", 20, "bold"))#edit title
     school_exams_amm_mid = Label(school_exams_am_mid, bg="floral white")#text - input from user
     school_exams_amm_bot = Label(school_exams_am_mid, bg="floral white")#buttons add/delete
 
@@ -278,7 +278,7 @@ def main():
     btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     
     #ορισμος ημερολογιου
-    cal_exams = Calendar(school_exams_am_top, selectmode='none')
+    cal_exams = Calendar(school_exams_am_top, selectmode='day')
     date_exams = cal_exams.datetime.today() + cal_exams.timedelta(days=2)
     cal_exams.calevent_create(date_exams, 'Hello World', 'message')
     cal_exams.calevent_create(date_exams, 'Reminder 2', 'reminder')
@@ -289,12 +289,12 @@ def main():
     #Εμφάμιση στοιχείων packs
     school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_exams_a_top.pack(side=TOP, fill=X)#title label
-    school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH)#middle labels edit etc
-    school_exams_a_bot.pack(side=TOP, expand=1, fill=BOTH)#buttons down label
-    school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH)#calendar
+    school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=50)#middle labels edit etc
+    school_exams_a_bot.pack(side=TOP, fill=X)#buttons down label
+    school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
     cal_exams.pack(side=TOP, expand=1, fill=BOTH)
     school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
-    school_exams_amm_top.pack(side=TOP, fill=X)#edit Title
+    school_exams_amm_top.pack(side=TOP, fill=X, ipady=20)#edit Title
     school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
     school_exams_amm_bot.pack(side=TOP, fill=X)
 
@@ -334,7 +334,7 @@ def main():
     school_program_a_bot = Label(school_program_all, bg="floral white")
     school_program_am_top = Label(school_program_a_mid, bg="floral white")#calendar
     school_program_am_mid = Label(school_program_a_mid, bg="floral white",relief="groove")#add/edit/delete calendar
-    school_program_amm_top = Label(school_program_am_mid, text="Επεξεργασία Προγράμματος", bg="floral white", font=("Times New Roman (Times)", 20, "bold"))#edit title
+    school_program_amm_top = Label(school_program_am_mid, text="Επεξεργασία Προγράμματος", bg="SkyBlue1", font=("Times New Roman (Times)", 20, "bold"))#edit title
     school_program_amm_mid = Label(school_program_am_mid, bg="floral white")#text - input from user
     school_program_amm_bot = Label(school_program_am_mid, bg="floral white")#buttons add/delete
 
@@ -367,7 +367,7 @@ def main():
     btn_return_cal = Button(school_program_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     
     #ορισμος ημερολογιου
-    cal_program = Calendar(school_program_am_top, selectmode='none')
+    cal_program = Calendar(school_program_am_top, selectmode='day')
     date_program = cal_program.datetime.today() + cal_program.timedelta(days=2)
     cal_program.calevent_create(date_program, 'Hello World', 'message')
     cal_program.calevent_create(date_program, 'Reminder 2', 'reminder')
@@ -378,12 +378,12 @@ def main():
     #Εμφάμιση στοιχείων packs
     school_program_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_program_a_top.pack(side=TOP, fill=X)#title label
-    school_program_a_mid.pack(side=TOP, expand=1, fill=BOTH)#middle labels edit etc
-    school_program_a_bot.pack(side=TOP, expand=1, fill=BOTH)#buttons down label
-    school_program_am_top.pack(side=TOP, expand=1, fill=BOTH)#calendar
+    school_program_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=50)#middle labels edit etc
+    school_program_a_bot.pack(side=TOP, fill=X)#buttons down label
+    school_program_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
     cal_program.pack(side=TOP, expand=1, fill=BOTH)
     school_program_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
-    school_program_amm_top.pack(side=TOP, fill=X)#edit Title
+    school_program_amm_top.pack(side=TOP, fill=X,  ipady=20)#edit Title
     school_program_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
     school_program_amm_bot.pack(side=TOP, fill=X)
 
