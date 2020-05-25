@@ -277,12 +277,22 @@ def main():
     btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     
+    #ορισμος ημερολογιου
+    cal_exams = Calendar(school_exams_am_top, selectmode='none')
+    date_exams = cal_exams.datetime.today() + cal_exams.timedelta(days=2)
+    cal_exams.calevent_create(date_exams, 'Hello World', 'message')
+    cal_exams.calevent_create(date_exams, 'Reminder 2', 'reminder')
+    cal_exams.calevent_create(date_exams + cal_exams.timedelta(days=-2), 'Reminder 1', 'reminder')
+    cal_exams.calevent_create(date_exams + cal_exams.timedelta(days=3), 'Message', 'message')
+    cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
     #Εμφάμιση στοιχείων packs
     school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_exams_a_top.pack(side=TOP, fill=X)#title label
     school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH)#middle labels edit etc
     school_exams_a_bot.pack(side=TOP, expand=1, fill=BOTH)#buttons down label
     school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH)#calendar
+    cal_exams.pack(side=TOP, expand=1, fill=BOTH)
     school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
     school_exams_amm_top.pack(side=TOP, fill=X)#edit Title
     school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
