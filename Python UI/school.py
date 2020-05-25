@@ -22,6 +22,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
+main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -243,10 +244,72 @@ def main():
     school_exams_a_mid = Label(school_exams_all, bg="floral white")
     school_exams_a_bot = Label(school_exams_all, bg="floral white")
     school_exams_am_top = Label(school_exams_a_mid, bg="floral white")#calendar
-    school_exams_am_mid = Label(school_exams_a_mid, bg="floral white")#add/edit calendar
+    school_exams_am_mid = Label(school_exams_a_mid, bg="floral white",relief="groove")#add/edit/delete calendar
+    school_exams_amm_top = Label(school_exams_am_mid, text="Επεξεργασία Προγράμματος", bg="floral white", font=("Times New Roman (Times)", 20, "bold"))#edit title
+    school_exams_amm_mid = Label(school_exams_am_mid, bg="floral white")#text - input from user
+    school_exams_amm_bot = Label(school_exams_am_mid, bg="floral white")#buttons add/delete
 
+    school_exams_ammm_top = Label(school_exams_amm_mid, bg="floral white")#message
+    school_exams_ammmt_left = Label(school_exams_ammm_top, text="Μήνυμα:\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmt_right = Text(school_exams_ammm_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
 
-    #25LABELS SUNOLIKA ME BASH TO DIAGRAMMA
+    school_exams_ammm_mid = Label(school_exams_amm_mid, bg="floral white")#reminder
+    school_exams_ammmm_left = Label(school_exams_ammm_mid, text="Υπενθύμιση:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmm_right = Text(school_exams_ammm_mid, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    school_exams_ammm_bot = Label(school_exams_amm_mid, bg="floral white")#date
+    school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmb_right = Text(school_exams_ammm_bot, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    def conf_school_exams():
+        print("school exams confirmed")
+
+    def add_school_exams():
+        print("school exams added")
+
+    def delete_school_exams():
+        print("school exams deleted")
+
+    #add 4 buttons
+    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    
+    #Εμφάμιση στοιχείων packs
+    school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
+    school_exams_a_top.pack(side=TOP, fill=X)#title label
+    school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH)#middle labels edit etc
+    school_exams_a_bot.pack(side=TOP, expand=1, fill=BOTH)#buttons down label
+    school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH)#calendar
+    school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
+    school_exams_amm_top.pack(side=TOP, fill=X)#edit Title
+    school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
+    school_exams_amm_bot.pack(side=TOP, fill=X)
+
+    #Στοιχεία προς επεξεργασία
+    #μηνυμα
+    school_exams_ammm_top.pack(side=TOP, fill=X)
+    school_exams_ammmt_left.pack(side=LEFT,padx=50)
+    school_exams_ammmt_right.pack(side=LEFT)
+    #υπενθυμιση
+    school_exams_ammm_mid.pack(side=TOP, fill=X)
+    school_exams_ammmm_left.pack(side=LEFT,padx=50)
+    school_exams_ammmm_right.pack(side=LEFT)
+    #ημερομηνία
+    school_exams_ammm_bot.pack(side=TOP, fill=X)
+    school_exams_ammmb_left.pack(side=LEFT,padx=50)
+    school_exams_ammmb_right.pack(side=LEFT)
+
+    #εμφάνιση κουμπιών 
+    #κουμπια επεξεργασίας
+    btn_add_cal.pack(side=RIGHT, padx=100)
+    btn_delete_cal.pack(side=RIGHT)
+    #κουμπιά μενού
+    btn_confirm_cal.pack(side=RIGHT, padx=100)
+    btn_return_cal.pack(side=RIGHT)
+
 
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
