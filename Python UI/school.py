@@ -9,7 +9,7 @@ import pyautogui
 from datetime import datetime
 from tkcalendar import Calendar, DateEntry
 import uuid
-#import yagmail
+import yagmail
 
 
 
