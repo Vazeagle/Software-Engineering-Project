@@ -687,6 +687,14 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+            #get value from user
+            std_name = info_text_name.get('1.0', 'end-1c')
+            std_sname = info_text_surname.get('1.0', 'end-1c')
+            std_Fname = info_text_Fname.get('1.0', 'end-1c')
+            std_Fsname = info_text_Fsurname.get('1.0', 'end-1c')
+            std_Mname = info_text_Mname.get('1.0', 'end-1c')
+            std_Msuname = info_text_Msurname.get('1.0', 'end-1c')
+
             date_save=date_val.get()
             month_save=month_val.get()
             year_save=year_val.get()
