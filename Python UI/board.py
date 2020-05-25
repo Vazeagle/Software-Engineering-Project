@@ -85,7 +85,7 @@ menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
 application_Frame=Frame(all_Frame, bg="floral white")
 pending_applic_Frame=Frame(all_Frame, bg="floral white") #aitiseis
-statement_Frame2=Frame(all_Frame, bg="floral white")#pendingaitiseis
+applic_verify_Frame=Frame(all_Frame, bg="floral white")#pendingaitiseis
 statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
 statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
@@ -252,7 +252,11 @@ def main():
     pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
     pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
 
-
+    btn_applic_1 = Button(pending_applic_at_bottom, text="Σταυρόπουλος Παναγιώτης", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    btn_applic_2 = Button(pending_applic_at_bottom, text="Βαζαίος Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    btn_applic_3 = Button(pending_applic_at_bottom, text="Σβίγγου Αναστασία", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    btn_applic_4 = Button(pending_applic_at_bottom, text="Στεργιοπούλου Φωτεινή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    btn_applic_5 = Button(pending_applic_at_bottom, text="Τράμπαρης Ζήσιμος-Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
 
     btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
@@ -261,12 +265,134 @@ def main():
     pending_applic_at_top.pack(side=TOP)
     pending_applic_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     pending_applic_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    
+    btn_applic_1.pack(side=TOP)
+    btn_applic_2.pack(side=TOP)
+    btn_applic_3.pack(side=TOP)
+    btn_applic_4.pack(side=TOP)
+    btn_applic_5.pack(side=TOP)
+    
     btn2_return_program.pack(side=RIGHT)
 
+    # -------------------------------ΕΚΚΡΕΜΕΙΣ ΑΙΤΗΣΕΙΣ END, Start of ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ-------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
 
+    applic_verify_all = Label(applic_verify_Frame, bg="floral white")
+    applic_verify_a_top = Label(applic_verify_all, bg="floral white")
+    applic_verify_at_top = Label(applic_verify_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    applic_verify_at_mid = Label(applic_verify_a_top, bg="floral white")
+    applic_verify_a_bottom = Label(applic_verify_at_mid, bg="floral white")
 
+    applic_verify_name = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_name1 = Label(applic_verify_name, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_name2 = Label(applic_verify_name, text="Παναγιώτης", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    # -------------------------------ΕΚΚΡΕΜΕΙΣ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ-------------------
+    applic_verify_surname = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_surname1 = Label(applic_verify_surname, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_surname2 = Label(applic_verify_surname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    applic_verify_birthdate = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_birthdate1 = Label(applic_verify_birthdate, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_birthdate2 = Label(applic_verify_birthdate, text="15/06/1998", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
+    applic_verify_Fname = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_Fname1 = Label(applic_verify_Fname, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_Fname2 = Label(applic_verify_Fname, text="Κωνστανίνος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    applic_verify_Fsurname = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_Fsurname1 = Label(applic_verify_Fsurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_Fsurname2 = Label(applic_verify_Fsurname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
+    applic_verify_Mname = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_Mname1 = Label(applic_verify_Mname, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_Mname2 = Label(applic_verify_Mname, text="Αναστασία", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    applic_verify_Msurname = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_Msurname1 = Label(applic_verify_Msurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_Msurname2 = Label(applic_verify_Msurname, text="Παλαιοθοδώρου", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
+
+    applic_verify_Apply = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_Apply1 = Label(applic_verify_Apply, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_Apply2 = Label(applic_verify_Apply, text="dilosi.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    applic_verify_ID = Label(applic_verify_at_mid, bg="floral white")
+    applic_verify_ID1 = Label(applic_verify_ID, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    applic_verify_ID2 = Label(applic_verify_ID, text="tautot.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    buttton_accept = Button(applic_verify_a_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_deny = Button(applic_verify_a_bottom, text="Απόρριψη", command=lambda: deny(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    
+    #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
+    def accept():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε αποδεχτείτε αυτή τη δήλωση;',icon='warning')
+        if msg_confirmation == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
+            raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+        else:
+            raiseNdrop_frame(applic_verify_Frame,previous_frame)
+
+    def deny():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε απορρίψετε αυτή τη δήλωση;',icon='warning')
+        if msg_confirmation == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
+            raiseNdrop_frame(pending_applic_Frame,previous_frame)
+        else:
+            raiseNdrop_frame(applic_verify_Frame,previous_frame)
+
+    
+    applic_verify_all.pack(side=TOP,fill=BOTH, expand=1)
+    applic_verify_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    applic_verify_at_top.pack(side=TOP)
+    applic_verify_at_mid.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    applic_verify_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+
+    applic_verify_name.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_name1.pack(side=LEFT,padx=10)
+    applic_verify_name2.pack(side=LEFT)
+
+    applic_verify_surname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_surname1.pack(side=LEFT,padx=10)
+    applic_verify_surname2.pack(side=LEFT)
+
+    applic_verify_birthdate.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_birthdate1.pack(side=LEFT,padx=10)
+    applic_verify_birthdate2.pack(side=LEFT)
+
+    applic_verify_Fname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_Fname1.pack(side=LEFT,padx=10)
+    applic_verify_Fname2.pack(side=LEFT)
+
+    applic_verify_Fsurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_Fsurname1.pack(side=LEFT,padx=10)
+    applic_verify_Fsurname2.pack(side=LEFT)
+
+    applic_verify_Mname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_Mname1.pack(side=LEFT,padx=10)
+    applic_verify_Mname2.pack(side=LEFT)
+
+    applic_verify_Msurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_Msurname1.pack(side=LEFT,padx=10)
+    applic_verify_Msurname2.pack(side=LEFT)
+
+    applic_verify_Apply.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_Apply1.pack(side=LEFT,padx=10)
+    applic_verify_Apply2.pack(side=LEFT)
+
+    applic_verify_ID.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    applic_verify_ID1.pack(side=LEFT,padx=10)
+    applic_verify_ID2.pack(side=LEFT)
+
+    buttton_accept.pack(side=RIGHT,padx=25)
+    buttton_deny.pack(side=RIGHT, padx=25)
+    buttton_back_to_statement.pack(side=RIGHT)
+
+    # -------------------------------ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ----------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
