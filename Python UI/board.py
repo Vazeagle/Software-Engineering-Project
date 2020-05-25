@@ -252,6 +252,8 @@ def main():
     pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
     pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
 
+
+
     btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
     pending_applic_all.pack(side=TOP,fill=BOTH, expand=1)
@@ -306,14 +308,20 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
+
     department_sumbit= Label(department_submit_Frame, bg="floral white")
+    department_sumbit_a_top = Label(department_sumbit, bg="floral white")
+    department_sumbit_at_top = Label(department_sumbit_a_top, bg="floral white", text="Ημερομηνία Υποβολής",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    department_sumbit_at_bottom = Label(department_sumbit_a_top, bg="floral white")
+    #department_sumbit_a_bottom = Label(department_sumbit_at_bottom, bg="floral white")
+
     
-    department_date = Label(department_sumbit, text="Ημερομηνία Υποβολής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    department_date_l = Label(department_date, bg="floral white")
-    department_date_2 = Label(department_date, bg="floral white")
-    department_date_3 = Label(department_date, bg="floral white")
-    department_date_space1 = Label(department_date, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    department_date_space2 = Label(department_date, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    #department_date = Label(department_sumbit, text="Ημερομηνία Υποβολής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_l = Label(department_sumbit_at_bottom, bg="floral white")
+    department_date_2 = Label(department_sumbit_at_bottom, bg="floral white")
+    department_date_3 = Label(department_sumbit_at_bottom, bg="floral white")
+    department_date_space1 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_space2 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
   
     
     datetime_initialise()#kalesma synarthshs gia hmeromhnia
@@ -334,8 +342,12 @@ def main():
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
     year_choice.config(bg="snow")
 
-    department_sumbit.pack(side=TOP,pady=15,expand=1,fill=X, padx=30)
-    department_date.pack(side=LEFT)
+    department_sumbit.pack(side=TOP,expand=1,fill=BOTH)
+    department_sumbit_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    department_sumbit_at_top.pack(side=TOP)
+    department_sumbit_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    
+    #department_date.pack(side=LEFT)
     department_date_l.pack(side=LEFT)
     department_date_space1.pack(side=LEFT)
     department_date_2.pack(side=LEFT)
