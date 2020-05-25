@@ -81,13 +81,13 @@ all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
 application_Frame=Frame(all_Frame, bg="floral white")
-statement_Frame1=Frame(all_Frame, bg="floral white") #aitiseis
+pending_applic_Frame=Frame(all_Frame, bg="floral white") #aitiseis
 statement_Frame2=Frame(all_Frame, bg="floral white")#pendingaitiseis
 statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
 statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
 panexams_program_Frame=Frame(all_Frame, bg="floral white")
-statement_Frame6=Frame(all_Frame, bg="floral white")#programma
+department_Frame=Frame(all_Frame, bg="floral white")#programma
 statement_Frame7=Frame(all_Frame, bg="floral white")#eksetastiko kentro
 statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
 statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
@@ -156,7 +156,7 @@ def main():
     butttonNext0.pack(side=TOP,pady=2,ipady=5)
     butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext1.pack(side=TOP,pady=2,ipady=5)
-    butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext2.pack(side=TOP,pady=2,ipady=5)
     butttonNext3 = Button(label_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext3.pack(side=TOP,pady=2,ipady=5)
@@ -198,10 +198,9 @@ def main():
     application_am_bot = Label(application_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     application_all_mid_top= Label(application_all, bg="floral white")
 
-    #btn_exams_program = Button(application_am_bot, text="Πρόγραμμα Πανελληνίων Εξετάσεων", command=lambda: raiseNdrop_frame(panexams_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    #btn_grade_center = Button(application_am_bot, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    #btn_grader = Button(application_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-
+    btn_application_list = Button(application_am_bot, text="Εκκρεμείς Αιτήσεις", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_application_history = Button(application_am_bot, text="Ιστορικό Αιτήσεων", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    
     application_all.pack(side=TOP,expand=1,fill=BOTH)
 
     application_all.pack(side = TOP, fill=BOTH, expand=1)
@@ -211,16 +210,73 @@ def main():
     application_am_top.pack(side = TOP)
     application_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    #btn_exams_program.pack(side = TOP,pady=80)
-    #btn_grade_center.pack(side = TOP,pady=100)
-    #btn_grader.pack(side = TOP)
+    btn_application_list.pack(side = TOP,pady=80)
+    btn_application_history.pack(side = TOP,pady=100)
+
+    # -------------------------------ΑΙΤΗΣΕΙΣ END, Start of ΕΚΡΕΜΜΕΙΣ ΑΙΤΗΣΕΙΣ--------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    
+    pending_applic_all = Label(pending_applic_Frame, bg="floral white")
+    pending_applic_a_top = Label(pending_applic_all, bg="floral white")
+    pending_applic_at_top = Label(pending_applic_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
+    pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
+
+    btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    pending_applic_all.pack(side=TOP,fill=BOTH, expand=1)
+    pending_applic_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    pending_applic_at_top.pack(side=TOP)
+    pending_applic_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    pending_applic_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    btn2_return_program.pack(side=RIGHT)
+
+
+
+
+    # -------------------------------ΕΚΚΡΕΜΕΙΣ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ-------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+
+    department_all=Label(department_Frame,bg="floral white")
+
+    department_all_top = Label(department_all, bg="floral white")
+    department_at_top = Label(department_all_top, text="Θέσεις Τμημάτων:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    department_all_mid =  Label(department_all, bg="floral white")
+    department_am_top = Label(department_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+    department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    department_all_mid_top= Label(department_all, bg="floral white")
+
+    btn_department_list = Button(department_am_bot, text="Ημερομηνία Έναρξης", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    
+    department_all.pack(side=TOP,expand=1,fill=BOTH)
+
+    department_all.pack(side = TOP, fill=BOTH, expand=1)
+    department_all_top.pack(side = TOP, fill=X, ipady=50)
+    department_at_top.pack(side = TOP)
+    department_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    department_am_top.pack(side = TOP)
+    department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+
+    btn_department_list.pack(side = TOP,pady=80)
+    btn_department_history.pack(side = TOP,pady=100)
 
 
 
 
 
 
-    # -------------------------------ΑΙΤΗΣΕΙΣ END, Start of ΠΑΝΕΛΛΗΝΙΕΣ------------------------
+    # -------------------------------_________________ END, Start of ΠΑΝΕΛΛΗΝΙΕΣ------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
