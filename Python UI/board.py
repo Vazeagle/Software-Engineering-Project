@@ -100,11 +100,11 @@ Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
 panexams_program_Frame=Frame(all_Frame, bg="floral white")
 department_Frame=Frame(all_Frame, bg="floral white")#programma
 department_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
-statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
-statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
-statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
-statement_Frame11=Frame(all_Frame, bg="floral white") #provlimata
-statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
+graderslist_frame=Frame(all_Frame, bg="floral white") #vathmologites
+acceptdeny_frame=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
+processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
+problems_frame=Frame(all_Frame, bg="floral white") #provlimata
+exit_frame=Frame(all_Frame, bg="floral white") #eksodos
 
 folder_path_form = StringVar()#(ypovoli programmatos)
 folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
@@ -627,6 +627,7 @@ def main():
 
     #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
 
+
     ############## CALENDAR################
     cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
     date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
@@ -636,6 +637,22 @@ def main():
     cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
 
     cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+
+    #graderslist_frame
+    label_graderslist_all= Label(panexams_program_Frame,bg="floral white")
+    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
+    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
+    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
+
+    btn3_return_list = Button(label_graderlist_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+
+
+
+
 
     #pack()
     cal_panexams.pack(fill="both", expand=1)
@@ -647,7 +664,7 @@ def main():
     label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     btn2_return_program.pack(side=RIGHT)
-
+    btn3_return_list.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
