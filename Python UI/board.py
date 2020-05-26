@@ -79,6 +79,15 @@ load3 = Image.open('user_blank.png')
 load3 = load3.resize((102, 72), Image.ANTIALIAS)
 render3 = ImageTk.PhotoImage(load3)
 
+####################################  DHLWSH
+folder_path_list= StringVar()#label_graderslist
+folder_path_list.set("")
+
+
+
+
+
+
 ####classes#####
 
 #cur_Admin="Γεώργιος Δημητρόπουλος"
@@ -249,6 +258,24 @@ def main():
     raiseNdrop_frame(all_Frame,none)
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
+
+
+
+
+    ############################# SINARTISI############
+
+    def browse_list():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
+        global folder_path_form
+        filename_form = filedialog.askopenfilename()
+        file_type2=filename_form.split(".")
+        if(file_type2[-1]=="xls"): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
+            folder_path_form.set(filename_form)
+        else:
+            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
+            filename_ID=""
+
+
 
     # -------------------------------First Frame END, Start of ΑΙΤΗΣΕΙΣ------------------------
     #---------------------------------------------------------------------------------------------------
@@ -646,7 +673,7 @@ def main():
     label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
     label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
 
-    btn3_return_list = Button(label_graderlist_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn3_return_list = Button(label_graderslist_a_bottom, text="Επιστροφή", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
 
@@ -663,6 +690,8 @@ def main():
     label_panexams_at_top.pack(side=TOP)
     label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     btn2_return_program.pack(side=RIGHT)
     btn3_return_list.pack(side=RIGHT)
 
