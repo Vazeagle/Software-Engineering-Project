@@ -79,6 +79,15 @@ load3 = Image.open('user_blank.png')
 load3 = load3.resize((102, 72), Image.ANTIALIAS)
 render3 = ImageTk.PhotoImage(load3)
 
+####################################  DHLWSH
+folder_path_list= StringVar()#label_graderslist
+folder_path_list.set("")
+
+
+
+
+
+
 ####classes#####
 
 #cur_Admin="Γεώργιος Δημητρόπουλος"
@@ -100,11 +109,11 @@ Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
 panexams_program_Frame=Frame(all_Frame, bg="floral white")
 department_Frame=Frame(all_Frame, bg="floral white")#programma
 department_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
-statement_Frame8=Frame(all_Frame, bg="floral white") #vathmologites
-statement_Frame9=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
-statement_Frame10=Frame(all_Frame, bg="floral white") #epeksergasia
-statement_Frame11=Frame(all_Frame, bg="floral white") #provlimata
-statement_Frame12=Frame(all_Frame, bg="floral white") #eksodos
+graderslist_frame=Frame(all_Frame, bg="floral white") #vathmologites
+acceptdeny_frame=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
+processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
+problems_frame=Frame(all_Frame, bg="floral white") #provlimata
+exit_frame=Frame(all_Frame, bg="floral white") #eksodos
 
 folder_path_form = StringVar()#(ypovoli programmatos)
 folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
@@ -249,6 +258,24 @@ def main():
     raiseNdrop_frame(all_Frame,none)
     raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
+
+
+
+
+    ############################# SINARTISI############
+
+    def browse_list():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
+        global folder_path_form
+        filename_form = filedialog.askopenfilename()
+        file_type2=filename_form.split(".")
+        if(file_type2[-1]=="xls"): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
+            folder_path_form.set(filename_form)
+        else:
+            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
+            filename_ID=""
+
+
 
     # -------------------------------First Frame END, Start of ΑΙΤΗΣΕΙΣ------------------------
     #---------------------------------------------------------------------------------------------------
@@ -627,6 +654,7 @@ def main():
 
     #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
 
+
     ############## CALENDAR################
     cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
     date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
@@ -637,6 +665,22 @@ def main():
 
     cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
+
+    #graderslist_frame
+    label_graderslist_all= Label(panexams_program_Frame,bg="floral white")
+    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
+    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
+    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
+
+    btn3_return_list = Button(label_graderslist_a_bottom, text="Επιστροφή", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+
+
+
+
+
     #pack()
     cal_panexams.pack(fill="both", expand=1)
     ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
@@ -646,8 +690,10 @@ def main():
     label_panexams_at_top.pack(side=TOP)
     label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     btn2_return_program.pack(side=RIGHT)
-
+    btn3_return_list.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()

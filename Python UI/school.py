@@ -22,7 +22,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-main_window.attributes('-fullscreen', True)
+#main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -40,7 +40,7 @@ school_exams_Frame = Frame(school_Frame, bg="floral white")
 school_program_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_create_Frame = Frame(school_Frame, bg="floral white")
-school_std_reg_edit_Frame = Frame(school_Frame, bg="floral white")
+#school_std_reg_edit_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_fin_Frame = Frame(school_Frame, bg="floral white")
 
 def ExitApp():
@@ -260,25 +260,62 @@ def main():
 
     school_exams_ammm_bot = Label(school_exams_amm_mid, bg="floral white")#date
     school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
-    school_exams_ammmb_right = Text(school_exams_ammm_bot, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    school_exams_ammmb_right = Text(school_exams_ammm_bot, state=NORMAL, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    #ανάκτηση ημερομηνίας μεταβλητη
+    cur_exam_date = StringVar()
+    cur_exam_date.set("")
 
     def conf_school_exams():
+        event_ids = cal_exams.get_calevents()
+        print("events:",event_ids)
         print("school exams confirmed")
 
     def add_school_exams():
+        message = school_exams_ammmt_right.get("1.0",'end-1c')
+        reminder = school_exams_ammmm_right.get("1.0",'end-1c')
+        date = school_exams_ammmb_right.get("1.0",'end-1c')
+        flag=0
+        if (date!=""):
+            date_time_obj = datetime.strptime(date, '%d/%m/%Y')
+        if(date==""):
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
+        else:
+            if(message!=""):
+                cal_exams.calevent_create(date_time_obj, message, 'message')
+            if(reminder!=""):
+                cal_exams.calevent_create(date_time_obj, reminder, 'reminder')
+            if(message=="" and reminder==""):
+                flag=1
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ένα μήνυμα ή υπενθύμιση για την τρέχουσα ημερομηνία και δοκιμάστε να ξανακάνετε προσθήκη!',icon='warning')
+        school_exams_ammmt_right.delete('1.0', END)
+        school_exams_ammmm_right.delete('1.0', END)
+        if(flag==0):
+            school_exams_ammmb_right.delete('1.0', END)
         print("school exams added")
 
     def delete_school_exams():
-        print("school exams deleted")
+        #cal_exams.selection_clear(cur_exam_date.get())
+        date_rem = datetime.strptime(cur_exam_date.get(), '%d/%m/%Y')
+        cal_exams.calevent_remove(date=date_rem)
+        #print("deleted:",cur_exam_date.get())
+        print("school exams selected event deleted")
+        cal_exams.selection_clear()
+
+    def delete_school_exams_calendar():
+        cal_exams.calevent_remove('all')
+        print("all school exams calendar events are deleted")
 
     #add 4 buttons
     btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
     
+
     #ορισμος ημερολογιου
-    cal_exams = Calendar(school_exams_am_top, selectmode='day')
+    cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
     date_exams = cal_exams.datetime.today() + cal_exams.timedelta(days=2)
     cal_exams.calevent_create(date_exams, 'Hello World', 'message')
     cal_exams.calevent_create(date_exams, 'Reminder 2', 'reminder')
@@ -319,6 +356,7 @@ def main():
     #κουμπιά μενού
     btn_confirm_cal.pack(side=RIGHT, padx=100)
     btn_return_cal.pack(side=RIGHT)
+    btn_delete_cal_all.pack(side=LEFT, padx=100)
 
 
     #---------------------------------------------------------------------------------------------------
@@ -429,8 +467,8 @@ def main():
     #student_reg_ambt_left = Label(student_reg_amb_top, bg="floral white")
     #student_reg_ambtl_top = Label(student_reg_ambt_left, bg="floral white")
     #student_reg_ambtl_bot = Label(student_reg_ambt_left, bg="floral white")
-    btn_reg_create = Button(student_reg_am_bot, text="Δημιουργία Εγγραφής", command=lambda: raiseNdrop_frame(school_std_reg_create_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_reg_edit = Button(student_reg_am_bot, text="Επεξεργασία Εγγραφών", command=lambda: raiseNdrop_frame(school_std_reg_edit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_reg_create = Button(student_reg_am_bot, text="Δημιουργία/Επεξεργασία Εγγραφής", command=lambda: raiseNdrop_frame(school_std_reg_create_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    #btn_reg_edit = Button(student_reg_am_bot, text="Επεξεργασία Εγγραφών", command=lambda: raiseNdrop_frame(school_std_reg_edit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_reg_spectate = Button(student_reg_am_bot, text="Ολοκληρωμένες Εγγραφές", command=lambda: raiseNdrop_frame(school_std_reg_fin_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     #pack-εμφάνιση στοιχείων
@@ -446,7 +484,7 @@ def main():
     #student_reg_ambtl_bot.pack(side = TOP)
     #Buttons pack
     btn_reg_create.pack(side = TOP,pady=50)
-    btn_reg_edit.pack(side = TOP)
+    #btn_reg_edit.pack(side = TOP)
     btn_reg_spectate.pack(side = TOP,pady=50)
 
     #---------------------------------------------------------------------------------------------------
@@ -490,7 +528,7 @@ def main():
     std_reg_create_abtltl_r4.config(state=DISABLED)
 
     #Δήλωση textvariables sos πριν το καλεσμα τους
-    register_list = StringVar()#(label_Statement1_all_mt8l_left)
+    register_list = StringVar()
     register_list.set("")
 
     std_reg_create_ab_mid = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="blue")#include announcements
