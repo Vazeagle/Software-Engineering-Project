@@ -275,10 +275,11 @@ def main():
         message = school_exams_ammmt_right.get("1.0",'end-1c')
         reminder = school_exams_ammmm_right.get("1.0",'end-1c')
         date = school_exams_ammmb_right.get("1.0",'end-1c')
-        date_time_obj = datetime.strptime(date, '%d/%m/%Y')
         flag=0
+        if (date!=""):
+            date_time_obj = datetime.strptime(date, '%d/%m/%Y')
         if(date==""):
-                 messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
         else:
             if(message!=""):
                 cal_exams.calevent_create(date_time_obj, message, 'message')
