@@ -103,7 +103,7 @@ intro_Frame = Frame(all_Frame, bg="floral white")
 application_Frame=Frame(all_Frame, bg="floral white")
 pending_applic_Frame=Frame(all_Frame, bg="floral white") #aitiseis
 applic_verify_Frame=Frame(all_Frame, bg="floral white")#pendingaitiseis
-statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
+states_Frame=Frame(all_Frame, bg="floral white")#theseis
 statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
 panexams_program_Frame=Frame(all_Frame, bg="floral white")
@@ -619,7 +619,7 @@ def main():
 
     btn_exams_program = Button(panexams_am_bot, text="Πρόγραμμα Πανελληνίων Εξετάσεων", command=lambda: raiseNdrop_frame(panexams_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_grade_center = Button(panexams_am_bot, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_grader = Button(panexams_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_grader = Button(panexams_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: raiseNdrop_frame(label_graderslist_all,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     panexams_all.pack(side=TOP,expand=1,fill=BOTH)
 
@@ -667,14 +667,14 @@ def main():
 
 
     #graderslist_frame
-    label_graderslist_all= Label(panexams_program_Frame,bg="floral white")
+    label_graderslist_all= Label(graderslist_frame,bg="floral white")
     label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
     label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
     label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
     label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
 
-    btn3_return_list = Button(label_graderslist_a_bottom, text="Επιστροφή", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
+    btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    button_return  = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
 
@@ -693,7 +693,8 @@ def main():
     label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     btn2_return_program.pack(side=RIGHT)
-    btn3_return_list.pack(side=RIGHT)
+    btn3_search_list.pack(side=TOP)
+    button_return.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
