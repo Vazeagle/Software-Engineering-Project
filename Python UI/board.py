@@ -115,10 +115,9 @@ processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
 problems_frame=Frame(all_Frame, bg="floral white") #provlimata
 exit_frame=Frame(all_Frame, bg="floral white") #eksodos
 
-folder_path_form = StringVar()#(ypovoli programmatos)
-folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
-folder_path_form.set("")
-folder_path_ID.set("")
+folder_path_list = StringVar()#(ypovoli programmatos)
+folder_path_list.set("")
+
 
 
 def datetime_initialise(): #### χρειάζεται για το drop down menu στο ui δηλωση συμμετοχης
@@ -266,11 +265,18 @@ def main():
 
     def browse_list():  #filedialog documentation  για λεπτομερειες 
     # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
-        global folder_path_form
+        global folder_path_list
         filename_form = filedialog.askopenfilename()
         file_type2=filename_form.split(".")
-        if(file_type2[-1]=="xls"): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
-            folder_path_form.set(filename_form)
+        if(file_type2[-1]=="xlsx" ): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
+            folder_path_list.set(filename_form)
+            msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
+            if msg_confirmation == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!')
+                raiseNdrop_frame(Panhellenic_Frame,previous_frame) 
+            else:
+                browse_list()
+
         else:
             msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
             filename_ID=""
