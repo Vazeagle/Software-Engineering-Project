@@ -565,7 +565,7 @@ def main():
     department_sumbit_at_mid.pack(side=TOP)
     department_sumbit_at_bottom.pack(side=TOP)
     
-    department_date_lbl.pack(side=LEFT)
+    department_date_lbl.pack(side=TOP)
     department_date_0.pack(side=LEFT)
     department_date_l.pack(side=LEFT)
     department_date_space1.pack(side=LEFT)
