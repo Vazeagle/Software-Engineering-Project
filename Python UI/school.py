@@ -29,7 +29,13 @@ previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
 stoixeia=[]#sos sos delete ειναι σαν temp για εισαγωγή data για email για έναν χρήστη
-
+selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
+hour_1=['08:00-09:00','','','','','']#arxikopoihsh pinaka
+hour_2=['09:00-10:00','','','','','']
+hour_3=['10:00-11:00','','','','','']
+hour_4=['11:00-12:00','','','','','']
+hour_5=['12:00-13:00','','','','','']
+hour_6=['13:00-14:00','','','','','']
 
 #Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
@@ -118,7 +124,7 @@ def main():
     scrollh = Scrollbar(initialSchool_abb_bot, orient="horizontal", command=ministry_news_list.xview)
     scrollv= Scrollbar(initialSchool_abb_bot, orient="vertical", command=ministry_news_list.yview)
     initialSchool_abb_bot.bind("<Configure>",lambda e: ministry_news_list.configure(scrollregion=ministry_news_list.bbox("all")))
-    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Calibri", 36))
+    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Calibri", 18))
     initialSchool_abb_bot.bind("<MouseWheel>", scrollv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
     
     #ορισμος ημερολογιου
@@ -251,16 +257,16 @@ def main():
     school_exams_amm_bot = Label(school_exams_am_mid, bg="floral white")#buttons add/delete
 
     school_exams_ammm_top = Label(school_exams_amm_mid, bg="floral white")#message
-    school_exams_ammmt_left = Label(school_exams_ammm_top, text="Μήνυμα:\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmt_left = Label(school_exams_ammm_top, text="Μήνυμα:\t\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
     school_exams_ammmt_right = Text(school_exams_ammm_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
     
 
     school_exams_ammm_mid = Label(school_exams_amm_mid, bg="floral white")#reminder
-    school_exams_ammmm_left = Label(school_exams_ammm_mid, text="Υπενθύμιση:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmm_left = Label(school_exams_ammm_mid, text="Υπενθύμιση:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
     school_exams_ammmm_right = Text(school_exams_ammm_mid, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
     school_exams_ammm_bot = Label(school_exams_amm_mid, bg="floral white")#date
-    school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
     school_exams_ammmb_right = Text(school_exams_ammm_bot, state=NORMAL, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
     #ανάκτηση ημερομηνίας μεταβλητη
@@ -373,62 +379,230 @@ def main():
     school_program_amm_bot = Label(school_program_am_mid, bg="floral white")#buttons add/delete
 
     school_program_ammm_top0 = Label(school_program_amm_mid, bg="floral white")#Ώρα
-    school_program_ammmt0_left = Label(school_program_ammm_top0, text="Ώρα:\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmt0_left = Label(school_program_ammm_top0, text="Ώρα:\t\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmt0_right = Text(school_program_ammm_top0, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
     school_program_ammm_top = Label(school_program_amm_mid, bg="floral white")#Δευτέρα
-    school_program_ammmt_left = Label(school_program_ammm_top, text="Δευτέρα:\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmt_left = Label(school_program_ammm_top, text="Δευτέρα:\t\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmt_right = Text(school_program_ammm_top, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
     
     school_program_ammm_mid = Label(school_program_amm_mid, bg="floral white")#Τρίτη
-    school_program_ammmm_left = Label(school_program_ammm_mid, text="Τρίτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmm_left = Label(school_program_ammm_mid, text="Τρίτη:\t\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmm_right = Text(school_program_ammm_mid, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
     school_program_ammm_bot = Label(school_program_amm_mid, bg="floral white")#Τετάρτη
-    school_program_ammmb_left = Label(school_program_ammm_bot, text="Τετάρτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb_left = Label(school_program_ammm_bot, text="Τετάρτη:\t\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmb_right = Text(school_program_ammm_bot, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
     school_program_ammm_bot2 = Label(school_program_amm_mid, bg="floral white")#Πέμπτη
-    school_program_ammmb2_left = Label(school_program_ammm_bot2, text="Πέμπτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb2_left = Label(school_program_ammm_bot2, text="Πέμπτη:\t\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmb2_right = Text(school_program_ammm_bot2, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
     school_program_ammm_bot3 = Label(school_program_amm_mid, bg="floral white")#Παρασκευή
-    school_program_ammmb3_left = Label(school_program_ammm_bot3, text="Παρασκευή:", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb3_left = Label(school_program_ammm_bot3, text="Παρασκευή:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
     school_program_ammmb3_right = Text(school_program_ammm_bot3, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
+    #MAKE TEXT UNEDITABLE
+    school_program_ammmt0_right.config(state=DISABLED)
+    school_program_ammmt_right.config(state=DISABLED)
+    school_program_ammmm_right.config(state=DISABLED)
+    school_program_ammmb_right.config(state=DISABLED)
+    school_program_ammmb2_right.config(state=DISABLED)
+    school_program_ammmb3_right.config(state=DISABLED)
+
+    #ορισμος εβδομαδιαίου ημερολογίου με treectrl
+    cal_program = treectrl.MultiListbox(school_program_am_top)
+    titles=['Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή']
+    #hour_1=['08:00-09:00','','','','','']
+    #hour_2=['09:00-10:00','','','','','']
+    #hour_3=['10:00-11:00','','','','','']
+    #hour_4=['11:00-12:00','','','','','']
+    #hour_5=['12:00-13:00','','','','','']
+    #hour_6=['13:00-14:00','','','','','']
+
+    #def get_From_db(): #sos zisis stelios prepei na kanei check kai analoga na peirazei ta hour_1-hour_6
+    #   #printf("check db")    
 
     def conf_school_program():
-        
-        print("school program confirmed")
+        print("confirmed")
+        #sos sos zisis stelios 
 
     def select_cmd(selected):
-        print ('Selected items:',selected)
-        selected_row = int(selected[0])
+        print ('Selected items:',selected)#shows tuple row selected
+        global selected_row
+        selected_row = int(selected[0])#shows row selected
         print(hour_1[selected_row])
+        #MAKE TEXT EDITABLE
+        school_program_ammmt0_right.config(state=NORMAL)
+        school_program_ammmt_right.config(state=NORMAL)
+        school_program_ammmm_right.config(state=NORMAL)
+        school_program_ammmb_right.config(state=NORMAL)
+        school_program_ammmb2_right.config(state=NORMAL)
+        school_program_ammmb3_right.config(state=NORMAL)
+        #DELETE OLD TEXT INPUTS
+        school_program_ammmt0_right.delete('1.0', END)
+        school_program_ammmt_right.delete('1.0', END)
+        school_program_ammmm_right.delete('1.0', END)
+        school_program_ammmb_right.delete('1.0', END)
+        school_program_ammmb2_right.delete('1.0', END)
+        school_program_ammmb3_right.delete('1.0', END)
+        #BASE ON ROW SELECTED GET INFO to show on text
         if(selected_row==0):
+            school_program_ammmt0_right.insert(INSERT,hour_1[0])
+            school_program_ammmt_right.insert(INSERT,hour_1[1])
+            school_program_ammmm_right.insert(INSERT,hour_1[2])
+            school_program_ammmb_right.insert(INSERT,hour_1[3])
+            school_program_ammmb2_right.insert(INSERT,hour_1[4])
+            school_program_ammmb3_right.insert(INSERT,hour_1[5])
             print(hour_1)
         elif(selected_row==1):
+            school_program_ammmt0_right.insert(INSERT,hour_2[0])
+            school_program_ammmt_right.insert(INSERT,hour_2[1])
+            school_program_ammmm_right.insert(INSERT,hour_2[2])
+            school_program_ammmb_right.insert(INSERT,hour_2[3])
+            school_program_ammmb2_right.insert(INSERT,hour_2[4])
+            school_program_ammmb3_right.insert(INSERT,hour_2[5])
             print(hour_2)
         elif(selected_row==2):
+            school_program_ammmt0_right.insert(INSERT,hour_3[0])
+            school_program_ammmt_right.insert(INSERT,hour_3[1])
+            school_program_ammmm_right.insert(INSERT,hour_3[2])
+            school_program_ammmb_right.insert(INSERT,hour_3[3])
+            school_program_ammmb2_right.insert(INSERT,hour_3[4])
+            school_program_ammmb3_right.insert(INSERT,hour_3[5])
             print(hour_3)
         elif(selected_row==3):
+            school_program_ammmt0_right.insert(INSERT,hour_4[0])
+            school_program_ammmt_right.insert(INSERT,hour_4[1])
+            school_program_ammmm_right.insert(INSERT,hour_4[2])
+            school_program_ammmb_right.insert(INSERT,hour_4[3])
+            school_program_ammmb2_right.insert(INSERT,hour_4[4])
+            school_program_ammmb3_right.insert(INSERT,hour_4[5])
             print(hour_4)
         elif(selected_row==4):
+            school_program_ammmt0_right.insert(INSERT,hour_5[0])
+            school_program_ammmt_right.insert(INSERT,hour_5[1])
+            school_program_ammmm_right.insert(INSERT,hour_5[2])
+            school_program_ammmb_right.insert(INSERT,hour_5[3])
+            school_program_ammmb2_right.insert(INSERT,hour_5[4])
+            school_program_ammmb3_right.insert(INSERT,hour_5[5])
             print(hour_5)
         elif(selected_row==5):
+            school_program_ammmt0_right.insert(INSERT,hour_6[0])
+            school_program_ammmt_right.insert(INSERT,hour_6[1])
+            school_program_ammmm_right.insert(INSERT,hour_6[2])
+            school_program_ammmb_right.insert(INSERT,hour_6[3])
+            school_program_ammmb2_right.insert(INSERT,hour_6[4])
+            school_program_ammmb3_right.insert(INSERT,hour_6[5])
             print(hour_6)
+        school_program_ammmt0_right.config(state=DISABLED)#SO HOURS WONT BE ABLE TO BE CHANGED
+        
             #TO DO ADD SET FUNCTIONS TO TEXTS IF ALREADY EXIST
             #ADD LABELS AND TEXT        
         #selected= which row is selected 0 to 5
 
     def add_school_program():
-        items= [cal_program.get(idx) for idx in cal_program.curselection()]# βαζει σε λιστα το tuple ου περιέχει το tuple που θέλουμε
-        item_list=items[0][0]
-        print(items)
-        print('item_list',item_list)
-        print("school program added")
-        cal_program.selection_clear()
+        global selected_row
+        global hour_1
+        global hour_2
+        global hour_3
+        global hour_4
+        global hour_5
+        global hour_6
+        #items= [cal_program.get(idx) for idx in cal_program.curselection()]# βαζει σε λιστα το tuple ου περιέχει το tuple που θέλουμε
+        #item_list=items[0][0]#this is a list that contains the selected  row  listname[0]=hour and list[5]=element of friday
+        #print(items)
+        #print('item_list',item_list)
+
+        if(selected_row!=None):
+            #delete row
+            cal_program.delete(selected_row)
+            #GET TEXT INPUTS FROM TEXT LABEL
+            hour_add = school_program_ammmt0_right.get("1.0",'end-1c')
+            monday_add = school_program_ammmt_right.get("1.0",'end-1c')
+            tuesday_add = school_program_ammmm_right.get("1.0",'end-1c')
+            wednesday_add = school_program_ammmb_right.get("1.0",'end-1c')
+            thursday_add = school_program_ammmb2_right.get("1.0",'end-1c')
+            friday_add = school_program_ammmb3_right.get("1.0",'end-1c')
+            #replace row
+            if(selected_row==0):
+                hour_1=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(0,*hour_1)
+            elif(selected_row==1):
+                hour_2=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(1,*hour_2)
+            elif(selected_row==2):
+                hour_3=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(2,*hour_3)
+            elif(selected_row==3):
+                hour_4=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(3,*hour_4)
+            elif(selected_row==4):
+                hour_5=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(4,*hour_5)
+            elif(selected_row==5):
+                hour_6=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(5,*hour_6)
+            print("school program added")
+            cal_program.selection_clear()
+            #DELETE OLD TEXT INPUTS
+            school_program_ammmt0_right.delete('1.0', END)
+            school_program_ammmt_right.delete('1.0', END)
+            school_program_ammmm_right.delete('1.0', END)
+            school_program_ammmb_right.delete('1.0', END)
+            school_program_ammmb2_right.delete('1.0', END)
+            school_program_ammmb3_right.delete('1.0', END)
+            selected_row=None#αρχικοποίηση για να μπορουν να δουλέψουν τα pop ups
+        else:
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε μία σχολική ώρα για προσθήκη',icon='warning')
 
     def delete_school_program():
+        global selected_row
+
+        if(selected_row!=None):
+            #delete row
+            cal_program.delete(selected_row)
+            #replace row
+            if(selected_row==0):
+                hour_zero=['08:00-09:00','','','','','']
+                cal_program.insert(0,*hour_zero)
+            elif(selected_row==1):
+                hour_zero=['09:00-10:00','','','','','']
+                cal_program.insert(1,*hour_zero)
+            elif(selected_row==2):
+                hour_zero=['10:00-11:00','','','','','']
+                cal_program.insert(2,*hour_zero)
+            elif(selected_row==3):
+                hour_zero=['11:00-12:00','','','','','']
+                cal_program.insert(3,*hour_zero)
+            elif(selected_row==4):
+                hour_zero=['12:00-13:00','','','','','']
+                cal_program.insert(4,*hour_zero)
+            elif(selected_row==5):
+                hour_zero=['13:00-14:00','','','','','']
+                cal_program.insert(5,*hour_zero)
+
+            #DESELECT CURRENT ROW
+            cal_program.selection_clear()
+            #Editeble HOUR AT TEXT
+            school_program_ammmt0_right.config(state=NORMAL)
+            #DELETE OLD TEXT INPUTS
+            school_program_ammmt0_right.delete('1.0', END)
+            school_program_ammmt_right.delete('1.0', END)
+            school_program_ammmm_right.delete('1.0', END)
+            school_program_ammmb_right.delete('1.0', END)
+            school_program_ammmb2_right.delete('1.0', END)
+            school_program_ammmb3_right.delete('1.0', END)
+            #MAKE UN EDITABLE AGAIN 
+            school_program_ammmt0_right.config(state=DISABLED)
+            school_program_ammmt_right.config(state=DISABLED)
+            school_program_ammmm_right.config(state=DISABLED)
+            school_program_ammmb_right.config(state=DISABLED)
+            school_program_ammmb2_right.config(state=DISABLED)
+            school_program_ammmb3_right.config(state=DISABLED)     
+            selected_row=None#αρχικοποίηση για να μπορουν να δουλέψουν τα pop ups
+        else:
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ επιλέξτε μία σχολική ώρα προς διαγραφή!',icon='warning')
+        #only delete lessons not hours
         print("school program deleted")
 
     #add 4 buttons
@@ -437,16 +611,8 @@ def main():
     btn_confirm_cal = Button(school_program_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_program(), bg="red3",font=("Calibri", 16, "bold"))
     btn_return_cal = Button(school_program_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     
-    #ορισμος εβδομαδιαίου ημερολογίου με treectrl
-    cal_program = treectrl.MultiListbox(school_program_am_top)
-    titles=['Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή']
-    hour_1=['08:00-09:00','','','','','']
-    hour_2=['09:00-10:00','','','','','']
-    hour_3=['10:00-11:00','','','','','']
-    hour_4=['11:00-12:00','','','','','']
-    hour_5=['12:00-13:00','','','','','']
-    hour_6=['13:00-14:00','','','','','']
 
+    #configurations για εβδομαδιαιο προγραμμα
     cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 20, "bold"),selectmode='single',font=("Times New Roman (Times)", 18, "bold"))
     cal_program.configure(selectcmd=select_cmd)
     cal_program.insert(0,*hour_1)
@@ -460,8 +626,6 @@ def main():
     #print(hour_1)
     #cal_program.delete('end',0)
     #cal_program.insert(0,*hour_1)
-
-    
     
      
     #Εμφάμιση στοιχείων packs
