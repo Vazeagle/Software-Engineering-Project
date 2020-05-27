@@ -23,7 +23,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-main_window.attributes('-fullscreen', True)
+#main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -372,24 +372,61 @@ def main():
     school_program_amm_mid = Label(school_program_am_mid, bg="floral white")#text - input from user
     school_program_amm_bot = Label(school_program_am_mid, bg="floral white")#buttons add/delete
 
-    school_program_ammm_top = Label(school_program_amm_mid, bg="floral white")#message
-    school_program_ammmt_left = Label(school_program_ammm_top, text="Μήνυμα:\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
-    school_program_ammmt_right = Text(school_program_ammm_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    school_program_ammm_top0 = Label(school_program_amm_mid, bg="floral white")#Ώρα
+    school_program_ammmt0_left = Label(school_program_ammm_top0, text="Ώρα:\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmt0_right = Text(school_program_ammm_top0, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
+
+    school_program_ammm_top = Label(school_program_amm_mid, bg="floral white")#Δευτέρα
+    school_program_ammmt_left = Label(school_program_ammm_top, text="Δευτέρα:\t", bg="floral white", font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmt_right = Text(school_program_ammm_top, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
     
+    school_program_ammm_mid = Label(school_program_amm_mid, bg="floral white")#Τρίτη
+    school_program_ammmm_left = Label(school_program_ammm_mid, text="Τρίτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmm_right = Text(school_program_ammm_mid, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
-    school_program_ammm_mid = Label(school_program_amm_mid, bg="floral white")#reminder
-    school_program_ammmm_left = Label(school_program_ammm_mid, text="Υπενθύμιση:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
-    school_program_ammmm_right = Text(school_program_ammm_mid, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    school_program_ammm_bot = Label(school_program_amm_mid, bg="floral white")#Τετάρτη
+    school_program_ammmb_left = Label(school_program_ammm_bot, text="Τετάρτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb_right = Text(school_program_ammm_bot, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
-    school_program_ammm_bot = Label(school_program_amm_mid, bg="floral white")#date
-    school_program_ammmb_left = Label(school_program_ammm_bot, text="Ημερομηνία:", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
-    school_program_ammmb_right = Text(school_program_ammm_bot, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    school_program_ammm_bot2 = Label(school_program_amm_mid, bg="floral white")#Πέμπτη
+    school_program_ammmb2_left = Label(school_program_ammm_bot2, text="Πέμπτη:\t", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb2_right = Text(school_program_ammm_bot2, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
+
+    school_program_ammm_bot3 = Label(school_program_amm_mid, bg="floral white")#Παρασκευή
+    school_program_ammmb3_left = Label(school_program_ammm_bot3, text="Παρασκευή:", bg="floral white" ,font=("Times New Roman (Times)", 14, "bold"))
+    school_program_ammmb3_right = Text(school_program_ammm_bot3, bg="WHITE", fg="black", height=1, width=40, borderwidth=1, highlightthickness=2,font=("Calibri", 14))
 
     def conf_school_program():
+        
         print("school program confirmed")
 
+    def select_cmd(selected):
+        print ('Selected items:',selected)
+        selected_row = int(selected[0])
+        print(hour_1[selected_row])
+        if(selected_row==0):
+            print(hour_1)
+        elif(selected_row==1):
+            print(hour_2)
+        elif(selected_row==2):
+            print(hour_3)
+        elif(selected_row==3):
+            print(hour_4)
+        elif(selected_row==4):
+            print(hour_5)
+        elif(selected_row==5):
+            print(hour_6)
+            #TO DO ADD SET FUNCTIONS TO TEXTS IF ALREADY EXIST
+            #ADD LABELS AND TEXT        
+        #selected= which row is selected 0 to 5
+
     def add_school_program():
+        items= [cal_program.get(idx) for idx in cal_program.curselection()]# βαζει σε λιστα το tuple ου περιέχει το tuple που θέλουμε
+        item_list=items[0][0]
+        print(items)
+        print('item_list',item_list)
         print("school program added")
+        cal_program.selection_clear()
 
     def delete_school_program():
         print("school program deleted")
@@ -402,36 +439,70 @@ def main():
     
     #ορισμος εβδομαδιαίου ημερολογίου με treectrl
     cal_program = treectrl.MultiListbox(school_program_am_top)
-    titles=('Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή')
-    hours=('08:00-09:00','09:00-10:00','10:00-11:00','11:00-12:00','12:00-13:00','13:00-14:00')
-    cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 28, "bold"))# stelios
+    titles=['Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή']
+    hour_1=['08:00-09:00','','','','','']
+    hour_2=['09:00-10:00','','','','','']
+    hour_3=['10:00-11:00','','','','','']
+    hour_4=['11:00-12:00','','','','','']
+    hour_5=['12:00-13:00','','','','','']
+    hour_6=['13:00-14:00','','','','','']
+
+    cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 20, "bold"),selectmode='single',font=("Times New Roman (Times)", 18, "bold"))
+    cal_program.configure(selectcmd=select_cmd)
+    cal_program.insert(0,*hour_1)
+    cal_program.insert(1,*hour_2)
+    cal_program.insert(2,*hour_3)
+    cal_program.insert(3,*hour_4)
+    cal_program.insert(4,*hour_5)
+    cal_program.insert(5,*hour_6)
+    #hour_1.pop(1)
+    #hour_1.insert(1,"Μαθηματικά")
+    #print(hour_1)
+    #cal_program.delete('end',0)
+    #cal_program.insert(0,*hour_1)
+
+    
     
      
     #Εμφάμιση στοιχείων packs
     school_program_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_program_a_top.pack(side=TOP, fill=X)#title label
-    school_program_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=50)#middle labels edit etc
+    school_program_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=20)#middle labels edit etc
     school_program_a_bot.pack(side=TOP, fill=X)#buttons down label
     school_program_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
     cal_program.pack(side=TOP, expand=1, fill=BOTH)
     school_program_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
-    school_program_amm_top.pack(side=TOP, fill=X,  ipady=20)#edit Title
+    school_program_amm_top.pack(side=TOP, fill=X,  ipady=5)#edit Title
     school_program_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
     school_program_amm_bot.pack(side=TOP, fill=X)
 
     #Στοιχεία προς επεξεργασία
-    #μηνυμα
+    #ωρα
+    school_program_ammm_top0.pack(side=TOP, fill=X)
+    school_program_ammmt0_left.pack(side=LEFT,padx=50)
+    school_program_ammmt0_right.pack(side=LEFT)
+    #δευτερα
     school_program_ammm_top.pack(side=TOP, fill=X)
     school_program_ammmt_left.pack(side=LEFT,padx=50)
     school_program_ammmt_right.pack(side=LEFT)
-    #υπενθυμιση
+    #τριτη
     school_program_ammm_mid.pack(side=TOP, fill=X)
     school_program_ammmm_left.pack(side=LEFT,padx=50)
     school_program_ammmm_right.pack(side=LEFT)
-    #ημερομηνία
+    #τεταρτη
     school_program_ammm_bot.pack(side=TOP, fill=X)
     school_program_ammmb_left.pack(side=LEFT,padx=50)
     school_program_ammmb_right.pack(side=LEFT)
+
+    #πεμπτη
+    school_program_ammm_bot2.pack(side=TOP, fill=X)
+    school_program_ammmb2_left.pack(side=LEFT,padx=50)
+    school_program_ammmb2_right.pack(side=LEFT)
+
+    #παρασκευη
+    school_program_ammm_bot3.pack(side=TOP, fill=X)
+    school_program_ammmb3_left.pack(side=LEFT,padx=50)
+    school_program_ammmb3_right.pack(side=LEFT)
 
     #εμφάνιση κουμπιών 
     #κουμπια επεξεργασίας
