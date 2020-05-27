@@ -84,7 +84,7 @@ render2 = ImageTk.PhotoImage(load2)
 
 def main():
 
-    grader_menu = Label(grader_menu_Frame, bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
+    grader_menu = Label(grader_menu_Frame, bg="gray26",font=("Times New Roman (Times)", 24, "bold"))  # aristero menu
     gmenu_l_up = Label(grader_menu, image=render2, borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
     gmenu_l_down = Label(grader_menu, borderwidth=1, highlightthickness=0,bg="gray26")  # button gia menu kai alla frames
 
@@ -111,7 +111,7 @@ def main():
     scrollh = Scrollbar(initialGrader_abb_bot, orient="horizontal", command=ministry_news_list.xview)
     scrollv= Scrollbar(initialGrader_abb_bot, orient="vertical", command=ministry_news_list.yview)
     initialGrader_abb_bot.bind("<Configure>",lambda e: ministry_news_list.configure(scrollregion=ministry_news_list.bbox("all")))
-    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Calibri", 36))
+    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Times New Roman (Times)", 36))
     initialGrader_abb_bot.bind("<MouseWheel>", scrollv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
     
     #ορισμος ημερολογιου
@@ -128,9 +128,10 @@ def main():
 
     #orismos buttons
     btn_next0 = Button(gmenu_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(grader_intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_next1 = Button(gmenu_l_down, text="Πρόγραμματα", command=lambda: raiseNdrop_frame(grader_graderInfo_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_next2 = Button(gmenu_l_down, text="Εγγραφές", command=lambda: raiseNdrop_frame(grader_pexams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
-    btn_next3 = Button(gmenu_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_next1 = Button(gmenu_l_down, text="Στοιχεία Χρήστη", command=lambda: raiseNdrop_frame(grader_graderInfo_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_next2 = Button(gmenu_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(grader_pexams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
+    btn_next3 = Button(gmenu_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(grader_pexams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
+    btn_next4 = Button(gmenu_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     
 
@@ -168,7 +169,8 @@ def main():
     btn_next0.pack(side=TOP,pady=2,ipady=5)
     btn_next1.pack(side=TOP,pady=2,ipady=5)
     btn_next2.pack(side=TOP,pady=2,ipady=5)
-    btn_next3.pack(side=TOP,pady=2,ipady=5)    
+    btn_next3.pack(side=TOP,pady=2,ipady=5)
+    btn_next4.pack(side=TOP,pady=2,ipady=5)    
 
     #add elements to announcements
     ministry_news_list.insert(1, "This is a test to see if the announcements works as it should be")
