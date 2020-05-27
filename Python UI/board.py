@@ -407,7 +407,7 @@ def main():
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def accept():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε αποδεχτείτε αυτή τη δήλωση;',icon='warning')
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
             raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
@@ -415,7 +415,7 @@ def main():
             raiseNdrop_frame(applic_verify_Frame,previous_frame)
 
     def deny():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να κάνετε απορρίψετε αυτή τη δήλωση;',icon='warning')
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να απορρίψετε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
             raiseNdrop_frame(pending_applic_Frame,previous_frame)
@@ -486,52 +486,10 @@ def main():
     department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     #department_all_mid_top= Label(department_all, bg="floral white")
 
-    lbl_department_submit = Label(department_am_bot, text="Υποβολή Ημερομηνίας: 15/07/2020", bg="floral white",height = 2, width = 35,font=("Calibri", 25, "bold"))
-    btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: date_edit(), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
+    btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
     btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
-    def date_edit():
-        department_date_l = Label(department_sumbit_at_bottom, bg="floral white")
-        department_date_2 = Label(department_sumbit_at_bottom, bg="floral white")
-        department_date_3 = Label(department_sumbit_at_bottom, bg="floral white")
-        department_date_space1 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-        department_date_space2 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-
-
-
-
-
-        datetime_initialise()#kalesma synarthshs gia hmeromhnia
-
-        date_val = StringVar(department_date_l)
-        date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
-        date_choice = OptionMenu(department_date_l, date_val, *date_options)
-        date_choice.config(bg="snow")
-
-        month_val = StringVar(department_date_2)
-        month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
-        month_choice = OptionMenu(department_date_2, month_val, *month_options)
-        month_choice.config(bg="snow")
-
-
-        year_val = StringVar(department_date_3)
-        year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
-        year_choice = OptionMenu(department_date_3, year_val, *year_options)
-        year_choice.config(bg="snow")
-
-        department_date_l.pack(side=LEFT)
-        department_date_space1.pack(side=LEFT)
-        department_date_2.pack(side=LEFT)
-        department_date_space2.pack(side=LEFT)
-        department_date_3.pack(side=LEFT)
-        date_choice.pack(side=LEFT)
-        month_choice.pack(side=LEFT)
-        year_choice.pack(side=LEFT)
-
-
-
-
-
+    
     department_all.pack(side=TOP,expand=1,fill=BOTH)
 
     department_all.pack(side = TOP, fill=BOTH, expand=1)
@@ -541,7 +499,6 @@ def main():
     department_am_top.pack(side = TOP)
     department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    lbl_department_submit.pack(side = TOP)
     btn_department_editdate.pack(side = TOP,pady=80)
     btn_department_history.pack(side = TOP,pady=100)
 
@@ -559,17 +516,30 @@ def main():
     department_sumbit= Label(department_submit_Frame, bg="floral white")
     department_sumbit_a_top = Label(department_sumbit, bg="floral white")
     department_sumbit_at_top = Label(department_sumbit_a_top, bg="floral white", text="Ημερομηνία Υποβολής",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    department_sumbit_at_bottom = Label(department_sumbit_a_top, bg="floral white")
-    #department_sumbit_a_bottom = Label(department_sumbit_at_bottom, bg="floral white")
+    department_sumbit_at_mid =  Label(department_sumbit, bg="floral white")
+    department_sumbit_at_bottom = Label(department_sumbit, bg="floral white")
 
+
+    department_date_lbl = Label(department_sumbit_at_mid, bg="floral white")
+    department_date_0 = Label(department_date_lbl, text="Νεα Ημερομηνία: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_l = Label(department_date_lbl, bg="floral white")
+    department_date_2 = Label(department_date_lbl, bg="floral white")
+    department_date_3 = Label(department_date_lbl, bg="floral white")
+    department_date_space1 = Label(department_date_lbl, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    department_date_space2 = Label(department_date_lbl, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    buttton_accept_date = Button(department_sumbit_at_bottom, text="Αποδοχή", command=lambda: accept_date(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_department = Button(department_sumbit_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
-    #department_date = Label(department_sumbit, text="Ημερομηνία Υποβολής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    department_date_l = Label(department_sumbit_at_bottom, bg="floral white")
-    department_date_2 = Label(department_sumbit_at_bottom, bg="floral white")
-    department_date_3 = Label(department_sumbit_at_bottom, bg="floral white")
-    department_date_space1 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    department_date_space2 = Label(department_sumbit_at_bottom, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-  
+    #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
+    def accept_date():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να είναι αυτή η ημερομηνία;',icon='warning')
+        if msg_confirmation == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η ημερομηνία έγινε δεκτή με επιτυχία!')
+            raiseNdrop_frame(menu_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+        else:
+            raiseNdrop_frame(department_submit_Frame,previous_frame)
+ 
     
     datetime_initialise()#kalesma synarthshs gia hmeromhnia
 
@@ -592,9 +562,11 @@ def main():
     department_sumbit.pack(side=TOP,expand=1,fill=BOTH)
     department_sumbit_a_top.pack(side=TOP,fill=BOTH, expand=1)
     department_sumbit_at_top.pack(side=TOP)
-    department_sumbit_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    department_sumbit_at_mid.pack(side=TOP)
+    department_sumbit_at_bottom.pack(side=TOP)
     
-    #department_date.pack(side=LEFT)
+    department_date_lbl.pack(side=LEFT)
+    department_date_0.pack(side=LEFT)
     department_date_l.pack(side=LEFT)
     department_date_space1.pack(side=LEFT)
     department_date_2.pack(side=LEFT)
@@ -603,6 +575,9 @@ def main():
     date_choice.pack(side=LEFT)
     month_choice.pack(side=LEFT)
     year_choice.pack(side=LEFT)
+
+    buttton_accept_date.pack(side=RIGHT,padx=25)
+    buttton_back_to_department.pack(side=RIGHT)
 
 
 
@@ -671,24 +646,6 @@ def main():
 
     cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
-
-    #graderslist_frame
-    label_graderslist_all= Label(graderslist_frame,bg="floral white")
-    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
-    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
-    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
-    
-
-    btn3_search_list = Button(label_graderslist_at_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"))
-    button_return  = Button(applic_verify_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
-
-
-
-
-
-    #pack()
     cal_panexams.pack(fill="both", expand=1)
     ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
 
@@ -697,9 +654,30 @@ def main():
     label_panexams_at_top.pack(side=TOP)
     label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+
+
+    # -------------------------------ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ END, Start of ΕΠΙΤΗΡΗΤΕΣ---------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    #---------------------------------------------------------------------------------------------------
+    label_graderslist_all= Label(graderslist_frame,bg="floral white")
+    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
+    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
+    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
+    
+
+    btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"))
+    button_return  = Button(label_graderslist_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+
+    
     label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
     label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
     label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
     label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     btn2_return_program.pack(side=RIGHT)
