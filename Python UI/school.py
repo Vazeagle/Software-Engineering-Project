@@ -10,7 +10,8 @@ from datetime import datetime
 from tkcalendar import Calendar, DateEntry
 import uuid
 import yagmail
-
+from TkTreectrl import *
+import TkTreectrl as treectrl
 
 
 
@@ -22,7 +23,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-#main_window.attributes('-fullscreen', True)
+main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -316,11 +317,6 @@ def main():
 
     #ορισμος ημερολογιου
     cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
-    date_exams = cal_exams.datetime.today() + cal_exams.timedelta(days=2)
-    cal_exams.calevent_create(date_exams, 'Hello World', 'message')
-    cal_exams.calevent_create(date_exams, 'Reminder 2', 'reminder')
-    cal_exams.calevent_create(date_exams + cal_exams.timedelta(days=-2), 'Reminder 1', 'reminder')
-    cal_exams.calevent_create(date_exams + cal_exams.timedelta(days=3), 'Message', 'message')
     cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
     #Εμφάμιση στοιχείων packs
@@ -404,15 +400,13 @@ def main():
     btn_confirm_cal = Button(school_program_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_program(), bg="red3",font=("Calibri", 16, "bold"))
     btn_return_cal = Button(school_program_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     
-    #ορισμος ημερολογιου
-    cal_program = Calendar(school_program_am_top, selectmode='day')
-    date_program = cal_program.datetime.today() + cal_program.timedelta(days=2)
-    cal_program.calevent_create(date_program, 'Hello World', 'message')
-    cal_program.calevent_create(date_program, 'Reminder 2', 'reminder')
-    cal_program.calevent_create(date_program + cal_program.timedelta(days=-2), 'Reminder 1', 'reminder')
-    cal_program.calevent_create(date_program + cal_program.timedelta(days=3), 'Message', 'message')
-    cal_program.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
-
+    #ορισμος εβδομαδιαίου ημερολογίου με treectrl
+    cal_program = treectrl.MultiListbox(school_program_am_top)
+    titles=('Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή')
+    hours=('08:00-09:00','09:00-10:00','10:00-11:00','11:00-12:00','12:00-13:00','13:00-14:00')
+    cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 28, "bold"))# stelios
+    
+     
     #Εμφάμιση στοιχείων packs
     school_program_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_program_a_top.pack(side=TOP, fill=X)#title label
