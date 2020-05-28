@@ -79,9 +79,13 @@ load3 = Image.open('ceid.png')
 #load3 = load3.resize((102, 72), Image.ANTIALIAS)
 render3 = ImageTk.PhotoImage(load3)
 
+load4 = Image.open('ceid_out.png')
+#load3 = load3.resize((102, 72), Image.ANTIALIAS)
+render4 = ImageTk.PhotoImage(load4)
+
 ####################################  DHLWSH
-folder_path_list= StringVar()#label_graderslist
-folder_path_list.set("")
+folder_path_file= StringVar()#label_file
+folder_path_file.set("")
 
 
 
@@ -100,11 +104,20 @@ frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
-capacity_submit_Frame=Frame(all_Frame, bg="floral white") #theseis
-dhmiourgia_Frame=Frame(all_Frame, bg="floral white")#dhmiourgia&epeksergasia
-site_Frame=Frame(all_Frame, bg="floral white")#selidatmhmatos
-problem_Frame=Frame(all_Frame, bg="floral white")#problems
-exitt_frame=Frame(all_Frame, bg="floral white") #eksodos
+application_Frame=Frame(all_Frame, bg="floral white")
+pending_applic_Frame=Frame(all_Frame, bg="floral white") #aitiseis
+applic_verify_Frame=Frame(all_Frame, bg="floral white")#pendingaitiseis
+department_application_Frame=Frame(all_Frame, bg="floral white")#dhlwsh thesewn
+statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
+page_Frame=Frame(all_Frame, bg="floral white")#panellhnies
+panexams_program_Frame=Frame(all_Frame, bg="floral white")
+capacity_Frame=Frame(all_Frame, bg="floral white")#programma
+capacity_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
+graderslist_frame=Frame(all_Frame, bg="floral white") #vathmologites
+acceptdeny_frame=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
+processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
+problems_frame=Frame(all_Frame, bg="floral white") #provlimata
+exit_frame=Frame(all_Frame, bg="floral white") #eksodos
 
 folder_path_list = StringVar()#(ypovoli programmatos)
 folder_path_list.set("")
@@ -158,7 +171,7 @@ def main():
 
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext1 = Button(label_l_down, text="Θέσεις Επιτυχόντων", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext2 = Button(label_l_down, text="Σελίδα Τμήματος", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext2 = Button(label_l_down, text="Σελίδα Τμήματος", command=lambda: raiseNdrop_frame(page_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext3 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext4 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
@@ -224,22 +237,22 @@ def main():
 
     ############################# SINARTISI############
 
-    def browse_list():  #filedialog documentation  για λεπτομερειες 
+    def browse_files():  #filedialog documentation  για λεπτομερειες 
     # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
-        global folder_path_list
+        global folder_path_file
         filename_form = filedialog.askopenfilename()
         file_type2=filename_form.split(".")
-        if(file_type2[-1]=="xlsx" ): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
-            folder_path_list.set(filename_form)
+        if(file_type2[-1]=="pdf" ): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
+            folder_path_file.set(filename_form)
             msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
             if msg_confirmation == 'yes':
                 messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!')
-                raiseNdrop_frame(Panhellenic_Frame,previous_frame) 
+                raiseNdrop_frame(intro_Frame,previous_frame) 
             else:
-                browse_list()
+                browse_files()
 
         else:
-            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
+            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της δήλωσης σας', icon='warning')
             filename_ID=""
 
 
@@ -256,7 +269,7 @@ def main():
     capacity_all=Label(capacity_Frame,bg="floral white")
 
     capacity_all_top = Label(capacity_all, bg="floral white")
-    capacity_at_top = Label(capacity_all_top, text="Θέσεις Επιτυχόντων:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    capacity_at_top = Label(capacity_all_top, text="Θέσεις Επιτυχόντων",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
     capacity_all_mid =  Label(capacity_all, bg="floral white")
     capacity_am_top = Label(capacity_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
     capacity_am_bot = Label(capacity_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
@@ -264,7 +277,6 @@ def main():
     btn_capacity_editdate = Button(capacity_am_bot, text="Υποβολή Θέσεων", command=lambda: raiseNdrop_frame(capacity_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
     btn_capacity_history = Button(capacity_am_bot, text="Τελικά Αποτελέσματα", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
-    capacity_all.pack(side=TOP,expand=1,fill=BOTH)
 
     capacity_all.pack(side = TOP, fill=BOTH, expand=1)
     capacity_all_top.pack(side = TOP, fill=X, ipady=50)
@@ -295,7 +307,7 @@ def main():
     capacity_submit_am_bot = Label(capacity_submit_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     
 
-    capacity_date = Label(capacity_submit_all, text="Ημερομηνία Υποβολής: 15/07/2020",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    capacity_date = Label(capacity_submit_am_bot, text="Ημερομηνία Υποβολής: 15/07/2020",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     capacity_date_check = Label(capacity_submit_am_bot, text="Βάσει ημερομηνίας, η υποβολή είναι:",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     capacity_date_check1 = Label(capacity_submit_am_bot, text="ΕΦΙΚΤΗ", borderwidth=1, highlightthickness=1, relief="groove",bg="green3",font=("Times New Roman (Times)", 14))
     capacity_submit_check = Label(capacity_submit_am_bot, text="Στο σύστημα υπάρχει αίτηση;",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -334,7 +346,7 @@ def main():
 
 
 
-    # -------------------------------ΝΕΑ ΑΙΤΗΣΗ END, Start of _______-----------------------------------
+    # -------------------------------ΝΕΑ ΑΙΤΗΣΗ END, Start of ΣΕΛΙΔΑ ΤΜΗΜΑΤΟΣ---------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -342,31 +354,72 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    panexams_all=Label(Panhellenic_Frame,bg="floral white")
+    page_all=Label(page_Frame,bg="floral white")
 
-    panexams_all_top = Label(panexams_all, bg="floral white")
-    panexams_at_top = Label(panexams_all_top, text="Πανελλήνιες Εξετάσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    panexams_all_mid =  Label(panexams_all, bg="floral white")
-    panexams_am_top = Label(panexams_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    panexams_am_bot = Label(panexams_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    panexams_all_mid_top= Label(panexams_all, bg="floral white")
+    page_all_top = Label(page_all, bg="floral white")
+    page_at_top = Label(page_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    page_all_mid =  Label(page_all, bg="floral white")
+    page_am_bot = Label(page_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
 
-    btn_exams_program = Button(panexams_am_bot, text="Πρόγραμμα Πανελληνίων Εξετάσεων", command=lambda: raiseNdrop_frame(panexams_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_grade_center = Button(panexams_am_bot, text="Υποβολή Βαθμολογικών Κέντρων", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_grader = Button(panexams_am_bot, text="Υποβολή Βαθμολογητών", command=lambda: browse_list(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    page_cover = Label(page_am_bot,image=render4, borderwidth=0, highlightthickness=0, bg="floral white")
+    
+    page_label1 = Label(page_am_bot, bg="floral white")
+    page_depart_logo= Label(page_label1,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")
+    page_depart_title = Label(page_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 32, "bold"),fg="black")
+    
+    page_label2 = Label(page_am_bot, bg="floral white")
+    page_depart_city = Label(page_label2, text="Έδρα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_city1 = Label(page_label2, text="Πανεπιστήμιο Πατρών, Πάτρα, Αχαΐα",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
+    
+    page_label3 = Label(page_am_bot, bg="floral white")
+    page_depart_orientaion = Label(page_label3, text="Κατευθύνσεις:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_orientation1 = Label(page_label3, text="Θετική",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
+    
+    page_label4 = Label(page_am_bot, bg="floral white")
+    page_depart_vasi = Label(page_label4, text="Βάσεις 2019:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_vasi1 = Label(page_label4, text="14.082",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
 
-    panexams_all.pack(side=TOP,expand=1,fill=BOTH)
+    page_label5 = Label(page_am_bot, bg="floral white")
+    page_depart_descr = Label(page_label5, text="Περιγραφή:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_descr1 = Label(page_label5, text=" ", borderwidth=1, highlightthickness=1, relief="groove",bg="white", font=("Times New Roman (Times)", 14))
 
-    panexams_all.pack(side = TOP, fill=BOTH, expand=1)
-    panexams_all_top.pack(side = TOP, fill=X, ipady=50)
-    panexams_at_top.pack(side = TOP)
-    panexams_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    panexams_am_top.pack(side = TOP)
-    panexams_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    page_label6 = Label(page_am_bot, bg="floral white")
+    btn_page_edit = Button(page_label6, text="Επεξεργασία", command=lambda: raiseNdrop_frame(page_all,previous_frame), bg="gray",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
-    btn_exams_program.pack(side = TOP,pady=80)
-    btn_grade_center.pack(side = TOP,pady=100)
-    btn_grader.pack(side = TOP)
+    page_all.pack(side=TOP,expand=1,fill=BOTH)
+
+    page_all.pack(side = TOP, fill=BOTH, expand=1)
+    page_all_top.pack(side = TOP, fill=X, ipady=50)
+    page_at_top.pack(side = TOP)
+    page_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=15)
+    page_am_bot.pack(side = LEFT, fill=BOTH, expand=1)
+
+    page_cover.pack(side = TOP)
+
+    page_label1.pack(side=TOP)
+    page_depart_logo.pack(side = LEFT, padx=10)
+    page_depart_title.pack(side = LEFT, padx=10)
+
+    page_label2.pack(side=TOP)
+    page_depart_city.pack(side = LEFT, padx=10)
+    page_depart_city1.pack(side = LEFT, padx=10)
+    
+    page_label3.pack(side=TOP)
+    page_depart_orientaion.pack(side = LEFT, padx=10)
+    page_depart_orientation1.pack(side = LEFT, padx=10)
+    
+    page_label4.pack(side=TOP)
+    page_depart_vasi.pack(side = LEFT, padx=10)
+    page_depart_vasi1.pack(side = LEFT, padx=10) 
+
+    page_label5.pack(side=TOP)
+    page_depart_descr.pack(side = TOP, padx=10)
+    page_depart_descr1.pack(side = TOP, padx=10)
+
+    page_label6.pack(side=RIGHT)
+    btn_page_edit.pack(side=RIGHT)
+
+    
 
     # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
     #---------------------------------------------------------------------------------------------------
@@ -376,58 +429,74 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    #school_exams_program_Frame
-    label_panexams_all = Label(panexams_program_Frame, bg="floral white")
-    label_panexams_a_top = Label(label_panexams_all, bg="floral white")
-    label_panexams_at_top = Label(label_panexams_a_top, bg="floral white", text="Πρόγραμμα Πανελλήνιων Εξεταστικής ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_panexams_at_bottom = Label(label_panexams_a_top, bg="floral white")
-    label_panexams_a_bottom = Label(label_panexams_at_bottom, bg="floral white")
-
-    btn2_return_program = Button(label_panexams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
-
-    #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
-
-
-    ############## CALENDAR################
-    cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
-    date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
-    cal_panexams.calevent_create(date, 'Hello World', 'message')
-    cal_panexams.calevent_create(date, 'Reminder 2', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=-2), 'Reminder 1', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
-
-    cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+    #dhlwsh thesewn
+    label_department_application_all = Label(department_application_Frame, bg="floral white")
+    label_department_application_a_top = Label(label_department_application_all, bg="floral white")
+    label_department_application_top = Label(label_department_application_top, bg="floral white", text="Δήλωση Θέσεων ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    label_department_application_a_bottom = Label(label_department_application_a_top, bg="floral white")
+    label_department_application_bottom = Label(label_department_application_a_bottom, bg="floral white")
+    
+    label_application_number = Label(label_department_application_bottom, bg="floral white")
+    label_application_number1 = Label(label_application_number, text="Υποβολή Αριθμού Θέσεων: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_number = Text(label_application_number, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
 
-    #graderslist_frame
-    label_graderslist_all= Label(panexams_program_Frame,bg="floral white")
-    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
-    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
-    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
+    label_application_file = Label(label_department_application_bottom, bg="floral white")
+    label_application_file1 = Label(label_application_file, text="Υποβολή Αρχείου: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_application_file2=  Label(label_application_file, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_file)# η μεταβλητη εχει οριστει πανω απο την συναρτηση που καλειται browse_form
+    #pdf selected from user browse
+ 
 
-    btn3_return_list = Button(label_graderslist_a_bottom, text="Επιστροφή", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    label_application_comments = Label(label_department_application_bottom, bg="floral white")
+    label_application_comments1 = Label(label_application_comments, text="Σχόλια: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_comments = Text(label_application_number, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
 
 
 
+    button_accept = Button(label_department_application_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_rtn = Button(label_department_application_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    
+    ##################SINARTISI##############
+   
 
 
+    def accept():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
+            if msg_confirmation== 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
+                raiseNdrop_frame(capacity_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+            else:
+                raiseNdrop_frame(department_application_Frame,previous_frame)
 
     #pack()
-    cal_panexams.pack(fill="both", expand=1)
-    ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
+    
+    label_department_application_all.pack(side=TOP,fill=BOTH, expand=1)
+    label_department_application_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    label_department_application_top.pack(side=TOP)
+    label_department_application_a_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_department_application_bottom.pack(side=TOP,fill=X, expand=0, padx=100)
 
-    label_panexams_all.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_at_top.pack(side=TOP)
-    label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    btn2_return_program.pack(side=RIGHT)
-    btn3_return_list.pack(side=RIGHT)
+
+
+    label_application_number.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_application_number1.pack(side=LEFT,fill=X, expand=0, padx=100)
+    info_number.pack(side=LEFT,fill=X, expand=0, padx=100)
+
+    label_application_file.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_application_file1.pack(side=LEFT,fill=X, expand=0, padx=100)
+    label_application_file2.pack(side=LEFT, fill=BOTH, expand=1, pady=100)
+
+
+    label_application_comments.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    label_application_comments1.pack(side=LEFT, fill=BOTH, expand=1, pady=100)
+    info_comments.pack(side=LEFT,fill=X, expand=0, padx=100)
+
+
+
+    button_accept.pack(side=RIGHT)
+    btn_rtn.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
