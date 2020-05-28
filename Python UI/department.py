@@ -100,20 +100,11 @@ frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(all_Frame, bg="floral white")
-application_Frame=Frame(all_Frame, bg="floral white")
-pending_applic_Frame=Frame(all_Frame, bg="floral white") #aitiseis
-applic_verify_Frame=Frame(all_Frame, bg="floral white")#pendingaitiseis
-statement_Frame3=Frame(all_Frame, bg="floral white")#theseis
-statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
-Panhellenic_Frame=Frame(all_Frame, bg="floral white")#panellhnies
-panexams_program_Frame=Frame(all_Frame, bg="floral white")
-capacity_Frame=Frame(all_Frame, bg="floral white")#programma
-capacity_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
-graderslist_frame=Frame(all_Frame, bg="floral white") #vathmologites
-acceptdeny_frame=Frame(all_Frame, bg="floral white") #apodoxi aporripsi 
-processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
-problems_frame=Frame(all_Frame, bg="floral white") #provlimata
-exit_frame=Frame(all_Frame, bg="floral white") #eksodos
+capacity_submit_Frame=Frame(all_Frame, bg="floral white") #theseis
+dhmiourgia_Frame=Frame(all_Frame, bg="floral white")#dhmiourgia&epeksergasia
+site_Frame=Frame(all_Frame, bg="floral white")#selidatmhmatos
+problem_Frame=Frame(all_Frame, bg="floral white")#problems
+exitt_frame=Frame(all_Frame, bg="floral white") #eksodos
 
 folder_path_list = StringVar()#(ypovoli programmatos)
 folder_path_list.set("")
