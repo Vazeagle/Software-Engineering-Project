@@ -464,11 +464,12 @@ def main():
 
     def accept():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
-            if msg_confirmation== 'yes':
-                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
-                raiseNdrop_frame(capacity_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
-            else:
-                raiseNdrop_frame(department_application_Frame,previous_frame)
+        if msg_confirmation == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
+            raiseNdrop_frame(capacity_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+        else:
+            raiseNdrop_frame(department_application_Frame,previous_frame)
+            
 
     #pack()
     
