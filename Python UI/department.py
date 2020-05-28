@@ -110,7 +110,7 @@ applic_verify_Frame=Frame(all_Frame, bg="floral white")#pendingaitiseis
 department_application_Frame=Frame(all_Frame, bg="floral white")#dhlwsh thesewn
 statement_Frame4=Frame(all_Frame, bg="floral white")#dhmiourgia
 page_Frame=Frame(all_Frame, bg="floral white")#panellhnies
-panexams_program_Frame=Frame(all_Frame, bg="floral white")
+page_edit_Frame=Frame(all_Frame, bg="floral white")
 capacity_Frame=Frame(all_Frame, bg="floral white")#programma
 capacity_submit_Frame=Frame(all_Frame, bg="floral white")#eksetastiko kentro
 graderslist_frame=Frame(all_Frame, bg="floral white") #vathmologites
@@ -255,6 +255,8 @@ def main():
             filename_ID=""
 
 
+    
+
 
     # -------------------------------First Frame END, Start of ΘΕΣΕΙΣ ΕΠΙΤΥΧΟΝΤΩΝ-----------------------
     #---------------------------------------------------------------------------------------------------
@@ -364,7 +366,7 @@ def main():
 
 
 
-    button_accept = Button(label_department_application_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    button_accept = Button(label_department_application_bottom, text="Αποδοχή", command=lambda: accept_cap(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
     btn_rtn = Button(label_department_application_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #####συναρτηση ελεγχου αριθμου#######################################
@@ -382,7 +384,7 @@ def main():
    
 
 
-    def accept():
+    def accept_cap():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation== 'yes':
             std_number = info_number.get('1.0', 'end-1c')
@@ -461,19 +463,24 @@ def main():
     
     page_label3 = Label(page_am_bot, bg="floral white")
     page_depart_orientaion = Label(page_label3, text="Κατευθύνσεις:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
-    page_depart_orientation1 = Label(page_label3, text="Θετική",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
+    page_depart_orientation1 = Label(page_label3, text="Θετική", bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     
     page_label4 = Label(page_am_bot, bg="floral white")
     page_depart_vasi = Label(page_label4, text="Βάσεις 2019:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
-    page_depart_vasi1 = Label(page_label4, text="14.082",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
+    page_depart_vasi1 = Label(page_label4, text="14.082",  bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     page_label5 = Label(page_am_bot, bg="floral white")
-    page_depart_descr = Label(page_label5, text="Περιγραφή:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
-    page_depart_descr1 = Label(page_label5, text=" ", borderwidth=1, highlightthickness=1, relief="groove",bg="white", font=("Times New Roman (Times)", 14))
+    page_depart_site = Label(page_label5, text="Ιστοσελίδα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_site1 = Label(page_label5, text="https://www.ceid.upatras.gr",  bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
     page_label6 = Label(page_am_bot, bg="floral white")
-    btn_page_edit = Button(page_label6, text="Επεξεργασία", command=lambda: raiseNdrop_frame(page_all,previous_frame), bg="gray",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    page_depart_descr = Label(page_label6, text="Περιγραφή:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_depart_descr1 = Label(page_label6, text=" ", bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
 
+    page_label7 = Label(page_am_bot, bg="floral white")
+    btn_page_edit = Button(page_label7, text="Επεξεργασία", command=lambda: raiseNdrop_frame(page_edit_Frame,previous_frame), bg="gray",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+
+    
     page_all.pack(side=TOP,expand=1,fill=BOTH)
 
     page_all.pack(side = TOP, fill=BOTH, expand=1)
@@ -501,15 +508,19 @@ def main():
     page_depart_vasi1.pack(side = LEFT, padx=10) 
 
     page_label5.pack(side=TOP)
+    page_depart_site.pack(side = TOP, padx=10)
+    page_depart_site1.pack(side = TOP, padx=10)
+
+    page_label6.pack(side=TOP)
     page_depart_descr.pack(side = TOP, padx=10)
     page_depart_descr1.pack(side = TOP, padx=10)
 
-    page_label6.pack(side=RIGHT)
+    page_label7.pack(side=RIGHT)
     btn_page_edit.pack(side=RIGHT)
 
     
 
-    # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
+    # -------------------------------ΣΕΛΙΔΑ ΤΜΗΜΑΤΟΣ END, Start of ΕΠΕΞΕΡΓΑΣΙΑ ΣΕΛΙΔΑΣ------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
@@ -517,7 +528,108 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    #dhlwsh thesewn
+    page_edit_all=Label(page_edit_Frame,bg="floral white")
+
+    page_edit_all_top = Label(page_edit_all, bg="floral white")
+    page_edit_at_top = Label(page_edit_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    page_edit_all_mid =  Label(page_edit_all, bg="floral white")
+    page_edit_am_bot = Label(page_edit_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+
+    page_edit_cover = Label(page_edit_am_bot,image=render4, borderwidth=0, highlightthickness=0, bg="floral white")
+    
+    page_edit_label1 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_logo= Label(page_edit_label1,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")
+    page_edit_depart_title = Label(page_edit_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 32, "bold"),fg="black")
+    
+    page_edit_label2 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_city = Label(page_edit_label2, text="Έδρα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_edit_depart_city1 = Label(page_edit_label2, text="Πανεπιστήμιο Πατρών, Πάτρα, Αχαΐα",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="black")
+    
+    page_edit_label3 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_orientaion = Label(page_edit_label3, text="Κατευθύνσεις:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_edit_depart_orientation1 = Text(page_edit_label3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    
+    page_edit_label4 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_vasi = Label(page_edit_label4, text="Βάσεις 2019:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_edit_depart_vasi1 = Text(page_edit_label4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+
+    page_edit_label5 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_site = Label(page_edit_label5, text="Ιστοσελίδα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_edit_depart_site1 = Text(page_edit_label5, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+
+    page_edit_label6 = Label(page_edit_am_bot, bg="floral white")
+    page_edit_depart_descr = Label(page_edit_label6, text="Περιγραφή:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
+    page_edit_depart_descr1 = Text(page_edit_label6, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+
+    page_edit_label7 = Label(page_edit_am_bot, bg="floral white")
+    btn_page_acccept = Button(page_edit_label7, text="Αποδοχή", command=lambda: accept_edit(), bg="green3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_page_rtn = Button(page_edit_label7, text="Επιστροφή", command=lambda: return_edit(), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    
+    def accept_edit():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή την εμφάνιση της σελίδας;',icon='warning')
+        if msg_confirmation == 'yes':
+            messagebox.showinfo('Oλοκλήρωση', 'Η εμφάνιση έγινε δεκτή με επιτυχία!')
+            std_orientation = page_edit_depart_orientation1.get('1.0', 'end-1c')
+            std_vasi = page_edit_depart_vasi1.get('1.0', 'end-1c')
+            std_site = page_edit_depart_site1.get('1.0', 'end-1c')
+            std_descr = page_edit_depart_descr1.get('1.0', 'end-1c')
+
+            page_edit_depart_orientation1.config(state=DISABLED)
+            page_edit_depart_vasi1.config(state=DISABLED)
+            page_edit_depart_site1.config(state=DISABLED)
+            page_edit_depart_descr1.config(state=DISABLED)
+             
+        else:
+            raiseNdrop_frame(page_edit_Frame,previous_frame)
+
+    
+    def return_edit():
+        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να φύγετε από την επεξεργασία; Οι αλλαγές δε θα αποθηκευτόυν.',icon='warning')
+        if msg_confirmation == 'yes':
+            raiseNdrop_frame(page_Frame,previous_frame) 
+        else:
+            raiseNdrop_frame(page_edit_Frame,previous_frame)
+
+
+
+    page_edit_all.pack(side=TOP,expand=1,fill=BOTH)
+
+    page_edit_all.pack(side = TOP, fill=BOTH, expand=1)
+    page_edit_all_top.pack(side = TOP, fill=X, ipady=50)
+    page_edit_at_top.pack(side = TOP)
+    page_edit_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=15)
+    page_edit_am_bot.pack(side = LEFT, fill=BOTH, expand=1)
+
+    page_edit_cover.pack(side = TOP)
+
+    page_edit_label1.pack(side=TOP)
+    page_edit_depart_logo.pack(side = LEFT, padx=10)
+    page_edit_depart_title.pack(side = LEFT, padx=10)
+
+    page_edit_label2.pack(side=TOP)
+    page_edit_depart_city.pack(side = LEFT, padx=10)
+    page_edit_depart_city1.pack(side = LEFT, padx=10)
+    
+    page_edit_label3.pack(side=TOP)
+    page_edit_depart_orientaion.pack(side = LEFT, padx=10)
+    page_edit_depart_orientation1.pack(side = LEFT, padx=10)
+    
+    page_edit_label4.pack(side=TOP)
+    page_edit_depart_vasi.pack(side = LEFT, padx=10)
+    page_edit_depart_vasi1.pack(side = LEFT, padx=10) 
+
+    page_edit_label5.pack(side=TOP)
+    page_edit_depart_site.pack(side = TOP, padx=10)
+    page_edit_depart_site1.pack(side = TOP, padx=10)
+
+    page_edit_label6.pack(side=TOP)
+    page_edit_depart_descr.pack(side = TOP, padx=10)
+    page_edit_depart_descr1.pack(side = TOP, padx=10)
+
+    page_edit_label7.pack(side=RIGHT)
+    btn_page_acccept.pack(side=RIGHT)
+    btn_page_rtn.pack(side=RIGHT)
     
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
