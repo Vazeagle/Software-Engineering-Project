@@ -23,7 +23,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-#main_window.attributes('-fullscreen', True)
+main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -103,20 +103,20 @@ def main():
 
     initialSchool_all = Label(school_intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")  # dexia arxikh selida
     initialSchool_all_top = Label(initialSchool_all, text='Καλώς ορίσατε στον Παρμενίδη!',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 36, "bold"))
-    initialSchool_all_bot = Label(initialSchool_all, borderwidth=1, highlightthickness=0, bg="red")
-    initialSchool_ab_top = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="green")#include user name and calendar
-    initialSchool_abt_left = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="black")#user school name left side
-    initialSchool_abtl_top = Label(initialSchool_abt_left, borderwidth=1, highlightthickness=0, bg="yellow")#user school name top left previous side
-    initialSchool_abtlt_left = Label(initialSchool_abtl_top, borderwidth=1, highlightthickness=0, bg="yellow")#user school name top of left side
+    initialSchool_all_bot = Label(initialSchool_all, borderwidth=1, highlightthickness=0, bg="floral white")
+    initialSchool_ab_top = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include user name and calendar
+    initialSchool_abt_left = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#user school name left side
+    initialSchool_abtl_top = Label(initialSchool_abt_left, borderwidth=1, highlightthickness=0, bg="floral white")#user school name top left previous side
+    initialSchool_abtlt_left = Label(initialSchool_abtl_top, borderwidth=1, highlightthickness=0, bg="floral white")#user school name top of left side
     initialSchool_abtltl_left = Label(initialSchool_abtlt_left, text='Είστε συνδεδεμένοι ως: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     initialSchool_abtltl_right = Label(initialSchool_abtlt_left, text='1o Γενικό Λύκειο Κλειτορίας',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
-    initialSchool_abt_right = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="purple")#calenar and text include
-    initialSchool_abtr_top = Label(initialSchool_abt_right, text='Ημερολόγιο', borderwidth=1, highlightthickness=0, bg="purple",font=("Times New Roman (Times)", 18, "bold"))#calendar text
-    initialSchool_abtr_bot = Label(initialSchool_abt_right, borderwidth=1, highlightthickness=0, bg="red3")#calendar
-    initialSchool_ab_bot = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="blue")#include announcements
-    initialSchool_abb_top = Label(initialSchool_ab_bot, borderwidth=1, highlightthickness=0, bg="blue")
+    initialSchool_abt_right = Label(initialSchool_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#calenar and text include
+    initialSchool_abtr_top = Label(initialSchool_abt_right, text='Ημερολόγιο', borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#calendar text
+    initialSchool_abtr_bot = Label(initialSchool_abt_right, borderwidth=1, highlightthickness=0, bg="floral white")#calendar
+    initialSchool_ab_bot = Label(initialSchool_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include announcements
+    initialSchool_abb_top = Label(initialSchool_ab_bot, borderwidth=1, highlightthickness=0, bg="floral white")
     initialSchool_abbt_left = Label(initialSchool_abb_top, text='Ανακοινώσεις',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
-    initialSchool_abb_bot = Frame(initialSchool_ab_bot, bg="cyan2")#announcement box
+    initialSchool_abb_bot = Frame(initialSchool_ab_bot, bg="floral white")#announcement box
 
     #orismos listbox anakoinwsewn
     ministry_news_list  = Listbox (initialSchool_abb_bot, bg="floral white", borderwidth=2, highlightthickness=0)#width=getRes[0]-50, height=getRes[1]-70
@@ -333,7 +333,7 @@ def main():
     school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
     cal_exams.pack(side=TOP, expand=1, fill=BOTH)
     school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
-    school_exams_amm_top.pack(side=TOP, fill=X, ipady=20)#edit Title
+    school_exams_amm_top.pack(side=TOP, fill=X, ipady=5)#edit Title
     school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
     school_exams_amm_bot.pack(side=TOP, fill=X)
 
@@ -726,17 +726,17 @@ def main():
 
     std_reg_create_all = Label(school_std_reg_create_Frame, borderwidth=0, highlightthickness=0, bg="floral white")  # dexia arxikh selida
     std_reg_create_all_top = Label(std_reg_create_all, text='Δημιουργία Λίστας Εγγραφών',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 36, "bold"))
-    std_reg_create_all_bot = Label(std_reg_create_all, borderwidth=1, highlightthickness=0, bg="red")
-    std_reg_create_ab_top = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="green")#include user name
+    std_reg_create_all_bot = Label(std_reg_create_all, borderwidth=1, highlightthickness=0, bg="floral white")
+    std_reg_create_ab_top = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include user name
 
     #ONOMA LISTAS
-    std_reg_create_abt_top = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#LIST  name
+    std_reg_create_abt_top = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#LIST  name
     #ΣΤΟΙΧΕΙΑ ΜΑΘΗΤΗ
-    std_reg_create_abt_top1 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#student  name 
-    std_reg_create_abt_top2 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#student  lastname 
-    std_reg_create_abt_top3 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#student email 
-    std_reg_create_abt_top4 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#student phone 
-    std_reg_create_abt_top5 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="black")#info
+    std_reg_create_abt_top1 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  name 
+    std_reg_create_abt_top2 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  lastname 
+    std_reg_create_abt_top3 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student email 
+    std_reg_create_abt_top4 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student phone 
+    std_reg_create_abt_top5 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#info
 
     std_reg_create_abtltl_l = Label(std_reg_create_abt_top, text='Όνομα Λίστας*:\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     std_reg_create_abtltl_l1 = Label(std_reg_create_abt_top1, text='Όνομα*:\t\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
@@ -760,13 +760,13 @@ def main():
     register_list = StringVar()
     register_list.set("")
 
-    std_reg_create_ab_mid = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="blue")#include announcements
-    std_reg_create_abm_top = Label(std_reg_create_ab_mid, borderwidth=1, highlightthickness=0, bg="blue")
+    std_reg_create_ab_mid = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include announcements
+    std_reg_create_abm_top = Label(std_reg_create_ab_mid, borderwidth=1, highlightthickness=0, bg="floral white")
     std_reg_create_abmt_left = Label(std_reg_create_abm_top, text='Λίστα Εγγραφών: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
     std_reg_create_abmt_right = Label(std_reg_create_abm_top,textvariable=register_list ,borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
-    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="cyan2")#announcement box
+    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="floral white")#announcement box
 
-    std_reg_create_ab_bot = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="red")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN
+    std_reg_create_ab_bot = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN
     
     
 
