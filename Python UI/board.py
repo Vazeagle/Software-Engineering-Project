@@ -1,6 +1,6 @@
 import os, sys
 from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
+from Classes import Lesson,Orientation,Direction,Department,Student,School,Board
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -177,6 +177,8 @@ applicationsx.append(Seatsapp(department,seats,"-",reasoning))
 
 curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
 
+board = Board("12/6/2002")
+
 #endregion
 
 
@@ -220,7 +222,7 @@ folder_path_list.set("")
 ######################
 
 
-###frames
+#region frames
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
@@ -243,6 +245,7 @@ list_Frame=Frame(pending_applic_Frame,bg="white")
 accept_Frame=Frame(pending_applic_Frame, bg="white")
 dep_Frame = Frame()
 list_Framex = Frame()
+#endregion
 
 folder_path_list = StringVar()#(ypovoli programmatos)
 folder_path_list.set("")
@@ -592,226 +595,6 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    # application_all=Label(application_Frame,bg="floral white")
-
-    # application_all_top = Label(application_all, bg="floral white")
-    # application_at_top = Label(application_all_top, text="Αιτήσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    # application_all_mid =  Label(application_all, bg="floral white")
-    # application_am_top = Label(application_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    # application_am_bot = Label(application_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    # application_all_mid_top= Label(application_all, bg="floral white")
-
-    # btn_application_list = Button(application_am_bot, text="Εκκρεμείς Αιτήσεις", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    # btn_application_history = Button(application_am_bot, text="Ιστορικό Αιτήσεων", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    
-    # application_all.pack(side=TOP,expand=1,fill=BOTH)
-
-    # application_all.pack(side = TOP, fill=BOTH, expand=1)
-    # application_all_top.pack(side = TOP, fill=X, ipady=50)
-    # application_at_top.pack(side = TOP)
-    # application_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    # application_am_top.pack(side = TOP)
-    # application_am_bot.pack(side = TOP, fill=BOTH, expand=1)
-
-    #btn_application_list.pack(side = TOP,pady=80)
-    #btn_application_history.pack(side = TOP,pady=100)
-
-    # -------------------------------ΑΙΤΗΣΕΙΣ END, Start of ΕΚΡΕΜΜΕΙΣ ΑΙΤΗΣΕΙΣ--------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    
-    # pending_applic_all = Label(pending_applic_Frame, bg="floral white")
-    # pending_applic_a_top = Label(pending_applic_all, bg="floral white")
-    # pending_applic_at_top = Label(pending_applic_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    # pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
-    # pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
-
-    # btn_applic_1 = Button(pending_applic_at_bottom, text="Σταυρόπουλος Παναγιώτης", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    # btn_applic_2 = Button(pending_applic_at_bottom, text="Βαζαίος Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    # btn_applic_3 = Button(pending_applic_at_bottom, text="Σβίγγου Αναστασία", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    # btn_applic_4 = Button(pending_applic_at_bottom, text="Στεργιοπούλου Φωτεινή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    # btn_applic_5 = Button(pending_applic_at_bottom, text="Τράμπαρης Ζήσιμος-Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-
-    # btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
-    # pending_applic_all.pack(side=TOP,fill=BOTH, expand=1)
-    # pending_applic_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    # pending_applic_at_top.pack(side=TOP)
-    # pending_applic_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    # pending_applic_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    
-    # btn_applic_1.pack(side=TOP)
-    # btn_applic_2.pack(side=TOP)
-    # btn_applic_3.pack(side=TOP)
-    # btn_applic_4.pack(side=TOP)
-    # btn_applic_5.pack(side=TOP)
-    
-    # btn2_return_program.pack(side=RIGHT)
-
-    # -------------------------------ΕΚΚΡΕΜΕΙΣ ΑΙΤΗΣΕΙΣ END, Start of ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ-------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-
-    # applic_verify_all = Label(applic_verify_Frame, bg="floral white")
-    # applic_verify_a_top = Label(applic_verify_all, bg="floral white")
-    # applic_verify_at_top = Label(applic_verify_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    # applic_verify_at_mid = Label(applic_verify_a_top, bg="floral white")
-    # applic_verify_a_bottom = Label(applic_verify_at_mid, bg="floral white")
-
-    # applic_verify_name = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_name1 = Label(applic_verify_name, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_name2 = Label(applic_verify_name, text="Παναγιώτης", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # applic_verify_surname = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_surname1 = Label(applic_verify_surname, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_surname2 = Label(applic_verify_surname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # applic_verify_birthdate = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_birthdate1 = Label(applic_verify_birthdate, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_birthdate2 = Label(applic_verify_birthdate, text="15/06/1998", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    
-    # applic_verify_Fname = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_Fname1 = Label(applic_verify_Fname, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_Fname2 = Label(applic_verify_Fname, text="Κωνστανίνος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # applic_verify_Fsurname = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_Fsurname1 = Label(applic_verify_Fsurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_Fsurname2 = Label(applic_verify_Fsurname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    
-    # applic_verify_Mname = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_Mname1 = Label(applic_verify_Mname, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_Mname2 = Label(applic_verify_Mname, text="Αναστασία", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # applic_verify_Msurname = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_Msurname1 = Label(applic_verify_Msurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_Msurname2 = Label(applic_verify_Msurname, text="Παλαιοθοδώρου", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
-
-    # applic_verify_Apply = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_Apply1 = Label(applic_verify_Apply, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_Apply2 = Label(applic_verify_Apply, text="dilosi.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # applic_verify_ID = Label(applic_verify_at_mid, bg="floral white")
-    # applic_verify_ID1 = Label(applic_verify_ID, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    # applic_verify_ID2 = Label(applic_verify_ID, text="tautot.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-
-    # buttton_accept = Button(applic_verify_a_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    # buttton_deny = Button(applic_verify_a_bottom, text="Απόρριψη", command=lambda: deny(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    # buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    
-    #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
-    # def accept():
-    #     msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
-    #     if msg_confirmation == 'yes':
-    #         messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
-    #         raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
-    #     else:
-    #         raiseNdrop_frame(applic_verify_Frame,previous_frame)
-
-    # def deny():
-    #     msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να απορρίψετε αυτή τη δήλωση;',icon='warning')
-    #     if msg_confirmation == 'yes':
-    #         messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
-    #         raiseNdrop_frame(pending_applic_Frame,previous_frame)
-    #     else:
-    #         raiseNdrop_frame(applic_verify_Frame,previous_frame)
-
-    
-    # #applic_verify_all.pack(side=TOP,fill=BOTH, expand=1)
-    # applic_verify_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    # applic_verify_at_top.pack(side=TOP)
-    # applic_verify_at_mid.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    # applic_verify_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-
-    # applic_verify_name.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_name1.pack(side=LEFT,padx=10)
-    # applic_verify_name2.pack(side=LEFT)
-
-    # applic_verify_surname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_surname1.pack(side=LEFT,padx=10)
-    # applic_verify_surname2.pack(side=LEFT)
-
-    # applic_verify_birthdate.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_birthdate1.pack(side=LEFT,padx=10)
-    # applic_verify_birthdate2.pack(side=LEFT)
-
-    # applic_verify_Fname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_Fname1.pack(side=LEFT,padx=10)
-    # applic_verify_Fname2.pack(side=LEFT)
-
-    # applic_verify_Fsurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_Fsurname1.pack(side=LEFT,padx=10)
-    # applic_verify_Fsurname2.pack(side=LEFT)
-
-    # applic_verify_Mname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_Mname1.pack(side=LEFT,padx=10)
-    # applic_verify_Mname2.pack(side=LEFT)
-
-    # applic_verify_Msurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_Msurname1.pack(side=LEFT,padx=10)
-    # applic_verify_Msurname2.pack(side=LEFT)
-
-    # applic_verify_Apply.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_Apply1.pack(side=LEFT,padx=10)
-    # applic_verify_Apply2.pack(side=LEFT)
-
-    # applic_verify_ID.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    # applic_verify_ID1.pack(side=LEFT,padx=10)
-    # applic_verify_ID2.pack(side=LEFT)
-
-    # buttton_accept.pack(side=RIGHT,padx=25)
-    # buttton_deny.pack(side=RIGHT, padx=25)
-    # buttton_back_to_statement.pack(side=RIGHT)
-
-    # -------------------------------ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ----------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-
-    # department_all=Label(department_Frame,bg="floral white")
-
-    # department_all_top = Label(department_all, bg="floral white")
-    # department_at_top = Label(department_all_top, text="Θέσεις Τμημάτων:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    # department_all_mid =  Label(department_all, bg="floral white")
-    # department_am_top = Label(department_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    # department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    # #department_all_mid_top= Label(department_all, bg="floral white")
-
-    # btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
-    # btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-
-    
-    # department_all.pack(side=TOP,expand=1,fill=BOTH)
-
-    # department_all.pack(side = TOP, fill=BOTH, expand=1)
-    # department_all_top.pack(side = TOP, fill=X, ipady=50)
-    # department_at_top.pack(side = TOP)
-    # department_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    # department_am_top.pack(side = TOP)
-    # department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
-
-    # btn_department_editdate.pack(side = TOP,pady=80)
-    # btn_department_history.pack(side = TOP,pady=100)
-
-
-
-    # -------------------------------ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ END, Start of ΗΜΕΡΟΜΗΝΙΑ---------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
     global dep_Frame
     global list_Framex
     department_sumbit= Label(department_submit_Frame, bg="floral white")
@@ -832,7 +615,7 @@ def main():
 
         scrollbary= Scrollbar(list_left, orient="vertical", command=application_list.yview)
         scrollbarx= Scrollbar(list_left, orient="horizontal", command=application_list.xview)
-        application_list.configure(xscrollcommand=scrollbary.set,yscrollcommand=scrollbarx.set)
+        application_list.configure(xscrollcommand=scrollbarx.set,yscrollcommand=scrollbary.set)
         scrollbary.pack(side=RIGHT, fill=Y)
         scrollbarx.pack(side=BOTTOM, fill=X)
 
@@ -946,28 +729,30 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να είναι αυτή η ημερομηνία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η ημερομηνία έγινε δεκτή με επιτυχία!')
-            raiseNdrop_frame(menu_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+            board.seatsDue = str(date_val.get()) + "/" + str(month_val.get()) + "/" + str(year_val.get())
+            raiseNdrop_frame(menu_Frame,none) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
         else:
-            raiseNdrop_frame(department_submit_Frame,previous_frame)
+            raiseNdrop_frame(department_submit_Frame,none)
  
     
     datetime_initialise()#kalesma synarthshs gia hmeromhnia
+    dates = board.seatsDue.split("/")
 
     date_val = StringVar(department_date_l)
-    date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    date_val.set(date_options[date_options.index(int(dates[0]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(department_date_l, date_val, *date_options)
-    date_choice.config(bg="snow")
+    date_choice.config(bg="snow",width=5)
 
     month_val = StringVar(department_date_2)
-    month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    month_val.set(month_options[month_options.index(int(dates[1]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(department_date_2, month_val, *month_options)
-    month_choice.config(bg="snow")
+    month_choice.config(bg="snow",width=5)
 
 
     year_val = StringVar(department_date_3)
-    year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    year_val.set(year_options[year_options.index(int(dates[2]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
-    year_choice.config(bg="snow")
+    year_choice.config(bg="snow",width=5)
 
 
 
@@ -1027,46 +812,131 @@ def main():
     btn_grade_center.pack(side = TOP)
     btn_grader.pack(side = TOP,pady=20)
 
-    # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
+    # # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
 
-    #school_exams_program_Frame
-    label_panexams_all = Label(panexams_program_Frame, bg="floral white")
-    label_panexams_a_top = Label(label_panexams_all, bg="floral white")
-    label_panexams_at_top = Label(label_panexams_a_top, bg="floral white", text="Πρόγραμμα Πανελλήνιων Εξεταστικής ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_panexams_at_bottom = Label(label_panexams_a_top, bg="floral white")
-    label_panexams_a_bottom = Label(label_panexams_at_bottom, bg="floral white")
+    
 
-    btn2_return_program = Button(label_panexams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    #region Programma
+    school_exams_all = Label(panexams_program_Frame, bg="floral white")
+    school_exams_a_top = Label(school_exams_all, text="Πρόγραμμα Εξεταστικής", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    school_exams_a_mid = Label(school_exams_all, bg="floral white")
+    school_exams_a_bot = Label(school_exams_all, bg="floral white")
+    school_exams_am_top = Label(school_exams_a_mid, bg="floral white")#calendar
+    school_exams_am_mid = Label(school_exams_a_mid, bg="floral white",relief="groove")#add/edit/delete calendar
+    school_exams_amm_top = Label(school_exams_am_mid, text="Επεξεργασία Προγράμματος", bg="SkyBlue1", font=("Times New Roman (Times)", 20, "bold"))#edit title
+    school_exams_amm_mid = Label(school_exams_am_mid, bg="floral white")#text - input from user
+    school_exams_amm_bot = Label(school_exams_am_mid, bg="floral white")#buttons add/delete
 
+    school_exams_ammm_top = Label(school_exams_amm_mid, bg="floral white")#message
+    school_exams_ammmt_left = Label(school_exams_ammm_top, text="Μήνυμα:\t\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmt_right = Text(school_exams_ammm_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
 
-    #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
+    school_exams_ammm_mid = Label(school_exams_amm_mid, bg="floral white")#reminder
+    school_exams_ammmm_left = Label(school_exams_ammm_mid, text="Υπενθύμιση:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmm_right = Text(school_exams_ammm_mid, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
+    school_exams_ammm_bot = Label(school_exams_amm_mid, bg="floral white")#date
+    school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmb_right = Text(school_exams_ammm_bot, state=NORMAL, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    ############## CALENDAR################
-    cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
-    date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
-    cal_panexams.calevent_create(date, 'Hello World', 'message')
-    cal_panexams.calevent_create(date, 'Reminder 2', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=-2), 'Reminder 1', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
+    #ανάκτηση ημερομηνίας μεταβλητη
+    cur_exam_date = StringVar()
+    cur_exam_date.set("")
 
-    cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+    def conf_school_exams():
+        event_ids = cal_exams.get_calevents()
+        print("events:",event_ids)
+        print("school exams confirmed")
 
-    cal_panexams.pack(fill="both", expand=1)
-    ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
+    def add_school_exams():
+        message = school_exams_ammmt_right.get("1.0",'end-1c')
+        reminder = school_exams_ammmm_right.get("1.0",'end-1c')
+        date = school_exams_ammmb_right.get("1.0",'end-1c')
+        flag=0
+        if (date!=""):
+            date_time_obj = datetime.strptime(date, '%d/%m/%Y')
+        if(date==""):
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
+        else:
+            if(message!=""):
+                cal_exams.calevent_create(date_time_obj, message, 'message')
+            if(reminder!=""):
+                cal_exams.calevent_create(date_time_obj, reminder, 'reminder')
+            if(message=="" and reminder==""):
+                flag=1
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ένα μήνυμα ή υπενθύμιση για την τρέχουσα ημερομηνία και δοκιμάστε να ξανακάνετε προσθήκη!',icon='warning')
+        school_exams_ammmt_right.delete('1.0', END)
+        school_exams_ammmm_right.delete('1.0', END)
+        if(flag==0):
+            school_exams_ammmb_right.delete('1.0', END)
+        print("school exams added")
 
-    label_panexams_all.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_at_top.pack(side=TOP)
-    label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    def delete_school_exams():
+        #cal_exams.selection_clear(cur_exam_date.get())
+        date_rem = datetime.strptime(cur_exam_date.get(), '%d/%m/%Y')
+        cal_exams.calevent_remove(date=date_rem)
+        #print("deleted:",cur_exam_date.get())
+        print("school exams selected event deleted")
+        cal_exams.selection_clear()
 
+    def delete_school_exams_calendar():
+        cal_exams.calevent_remove('all')
+        print("all school exams calendar events are deleted")
+
+    #add 4 buttons
+    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
+    
+
+    #ορισμος ημερολογιου
+    cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
+    cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    #Εμφάμιση στοιχείων packs
+    school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
+    school_exams_a_top.pack(side=TOP, fill=X)#title label
+    school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=50)#middle labels edit etc
+    school_exams_a_bot.pack(side=TOP, fill=X)#buttons down label
+    school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
+    cal_exams.pack(side=TOP, expand=1, fill=BOTH)
+    school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
+    school_exams_amm_top.pack(side=TOP, fill=X, ipady=5)#edit Title
+    school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
+    school_exams_amm_bot.pack(side=TOP, fill=X)
+
+    #Στοιχεία προς επεξεργασία
+    #μηνυμα
+    school_exams_ammm_top.pack(side=TOP, fill=X)
+    school_exams_ammmt_left.pack(side=LEFT,padx=50)
+    school_exams_ammmt_right.pack(side=LEFT)
+    #υπενθυμιση
+    school_exams_ammm_mid.pack(side=TOP, fill=X)
+    school_exams_ammmm_left.pack(side=LEFT,padx=50)
+    school_exams_ammmm_right.pack(side=LEFT)
+    #ημερομηνία
+    school_exams_ammm_bot.pack(side=TOP, fill=X)
+    school_exams_ammmb_left.pack(side=LEFT,padx=50)
+    school_exams_ammmb_right.pack(side=LEFT)
+
+    #εμφάνιση κουμπιών 
+    #κουμπια επεξεργασίας
+    btn_add_cal.pack(side=RIGHT, padx=100)
+    btn_delete_cal.pack(side=RIGHT)
+    #κουμπιά μενού
+    btn_confirm_cal.pack(side=RIGHT, padx=100)
+    btn_return_cal.pack(side=RIGHT)
+    btn_delete_cal_all.pack(side=LEFT, padx=100)
+    #endregion
 
     # -------------------------------ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ END, Start of ΕΠΙΤΗΡΗΤΕΣ---------------------
     #---------------------------------------------------------------------------------------------------
@@ -1087,14 +957,14 @@ def main():
 
 
     
-    label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
-    label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
-    label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    btn2_return_program.pack(side=RIGHT)
-    btn3_search_list.pack(side=TOP)
-    button_return.pack(side=RIGHT)
+    # label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
+    # label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    # label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
+    # label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    # label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    # btn2_return_program.pack(side=RIGHT)
+    # btn3_search_list.pack(side=TOP)
+    # button_return.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()

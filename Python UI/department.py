@@ -76,7 +76,7 @@ load2 = load2.resize((100, 100), Image.ANTIALIAS)
 render2 = ImageTk.PhotoImage(load2)
 
 load3 = Image.open('ceid.png')
-#load3 = load3.resize((102, 72), Image.ANTIALIAS)
+load3 = load3.resize((45, 45), Image.ANTIALIAS)
 render3 = ImageTk.PhotoImage(load3)
 
 load4 = Image.open('ceid_out.png')
@@ -447,7 +447,7 @@ def main():
     page_all=Label(page_Frame,bg="floral white")
 
     page_all_top = Label(page_all, bg="floral white")
-    page_at_top = Label(page_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    page_at_top = Label(page_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     page_all_mid =  Label(page_all, bg="floral white")
     page_am_bot = Label(page_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
 
@@ -455,7 +455,7 @@ def main():
     
     page_label1 = Label(page_am_bot, bg="floral white")
     page_depart_logo= Label(page_label1,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")
-    page_depart_title = Label(page_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 32, "bold"),fg="black")
+    page_depart_title = Label(page_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     
     page_label2 = Label(page_am_bot, bg="floral white")
     page_depart_city = Label(page_label2, text="Έδρα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
@@ -484,7 +484,7 @@ def main():
     page_all.pack(side=TOP,expand=1,fill=BOTH)
 
     page_all.pack(side = TOP, fill=BOTH, expand=1)
-    page_all_top.pack(side = TOP, fill=X, ipady=50)
+    page_all_top.pack(side = TOP, fill=X)
     page_at_top.pack(side = TOP)
     page_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=15)
     page_am_bot.pack(side = LEFT, fill=BOTH, expand=1)
@@ -531,7 +531,7 @@ def main():
     page_edit_all=Label(page_edit_Frame,bg="floral white")
 
     page_edit_all_top = Label(page_edit_all, bg="floral white")
-    page_edit_at_top = Label(page_edit_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    page_edit_at_top = Label(page_edit_all_top, text="Σελίδα Τμήματος:",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     page_edit_all_mid =  Label(page_edit_all, bg="floral white")
     page_edit_am_bot = Label(page_edit_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
 
@@ -539,7 +539,7 @@ def main():
     
     page_edit_label1 = Label(page_edit_am_bot, bg="floral white")
     page_edit_depart_logo= Label(page_edit_label1,image=render3, borderwidth=0, highlightthickness=0, bg="floral white")
-    page_edit_depart_title = Label(page_edit_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 32, "bold"),fg="black")
+    page_edit_depart_title = Label(page_edit_label1, text="Τμήμα Μηχανικών Η/Υ και Πληροφορικής",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     
     page_edit_label2 = Label(page_edit_am_bot, bg="floral white")
     page_edit_depart_city = Label(page_edit_label2, text="Έδρα:",  bg="floral white",font=("Times New Roman (Times)", 16, "bold"),fg="gray")
@@ -579,7 +579,7 @@ def main():
             page_edit_depart_vasi1.config(state=DISABLED)
             page_edit_depart_site1.config(state=DISABLED)
             page_edit_depart_descr1.config(state=DISABLED)
-             
+            raiseNdrop_frame(page_Frame,previous_frame)
         else:
             raiseNdrop_frame(page_edit_Frame,previous_frame)
 
@@ -596,7 +596,7 @@ def main():
     page_edit_all.pack(side=TOP,expand=1,fill=BOTH)
 
     page_edit_all.pack(side = TOP, fill=BOTH, expand=1)
-    page_edit_all_top.pack(side = TOP, fill=X, ipady=50)
+    page_edit_all_top.pack(side = TOP, fill=X)
     page_edit_at_top.pack(side = TOP)
     page_edit_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=15)
     page_edit_am_bot.pack(side = LEFT, fill=BOTH, expand=1)

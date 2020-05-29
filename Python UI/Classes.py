@@ -44,3 +44,7 @@ class Seatsapp:
         self.rseats = rseats
         self.fseats = fseats
         self.reasoning = reasoning
+
+class Board:
+    def __init__(self, seatsDue):
+        self.seatsDue = seatsDue
