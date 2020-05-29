@@ -37,7 +37,7 @@ hour_4=['11:00-12:00','','','','','']
 hour_5=['12:00-13:00','','','','','']
 hour_6=['13:00-14:00','','','','','']
 
-#Frames For Main Window
+#region Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 school_Frame=Frame(main_window, bg="white")
 school_menu_Frame=Frame(school_Frame, bg="gray26")
@@ -49,6 +49,7 @@ school_std_reg_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_create_Frame = Frame(school_Frame, bg="floral white")
 #school_std_reg_edit_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_fin_Frame = Frame(school_Frame, bg="floral white")
+#endregion
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')

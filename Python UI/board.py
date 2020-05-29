@@ -220,7 +220,7 @@ folder_path_list.set("")
 ######################
 
 
-###frames
+#region frames
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 all_Frame=Frame(main_window, bg="white")
 menu_Frame=Frame(all_Frame, bg="gray26")
@@ -243,6 +243,7 @@ list_Frame=Frame(pending_applic_Frame,bg="white")
 accept_Frame=Frame(pending_applic_Frame, bg="white")
 dep_Frame = Frame()
 list_Framex = Frame()
+#endregion
 
 folder_path_list = StringVar()#(ypovoli programmatos)
 folder_path_list.set("")
@@ -832,7 +833,7 @@ def main():
 
         scrollbary= Scrollbar(list_left, orient="vertical", command=application_list.yview)
         scrollbarx= Scrollbar(list_left, orient="horizontal", command=application_list.xview)
-        application_list.configure(xscrollcommand=scrollbary.set,yscrollcommand=scrollbarx.set)
+        application_list.configure(xscrollcommand=scrollbarx.set,yscrollcommand=scrollbary.set)
         scrollbary.pack(side=RIGHT, fill=Y)
         scrollbarx.pack(side=BOTTOM, fill=X)
 
@@ -946,9 +947,9 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να είναι αυτή η ημερομηνία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η ημερομηνία έγινε δεκτή με επιτυχία!')
-            raiseNdrop_frame(menu_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+            raiseNdrop_frame(menu_Frame,none) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
         else:
-            raiseNdrop_frame(department_submit_Frame,previous_frame)
+            raiseNdrop_frame(department_submit_Frame,none)
  
     
     datetime_initialise()#kalesma synarthshs gia hmeromhnia
@@ -956,18 +957,18 @@ def main():
     date_val = StringVar(department_date_l)
     date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(department_date_l, date_val, *date_options)
-    date_choice.config(bg="snow")
+    date_choice.config(bg="snow",width=5)
 
     month_val = StringVar(department_date_2)
     month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(department_date_2, month_val, *month_options)
-    month_choice.config(bg="snow")
+    month_choice.config(bg="snow",width=5)
 
 
     year_val = StringVar(department_date_3)
     year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
-    year_choice.config(bg="snow")
+    year_choice.config(bg="snow",width=5)
 
 
 
@@ -1027,46 +1028,161 @@ def main():
     btn_grade_center.pack(side = TOP)
     btn_grader.pack(side = TOP,pady=20)
 
-    # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
+    # # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
+    # #---------------------------------------------------------------------------------------------------
 
-    #school_exams_program_Frame
-    label_panexams_all = Label(panexams_program_Frame, bg="floral white")
-    label_panexams_a_top = Label(label_panexams_all, bg="floral white")
-    label_panexams_at_top = Label(label_panexams_a_top, bg="floral white", text="Πρόγραμμα Πανελλήνιων Εξεταστικής ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_panexams_at_bottom = Label(label_panexams_a_top, bg="floral white")
-    label_panexams_a_bottom = Label(label_panexams_at_bottom, bg="floral white")
+    # #school_exams_program_Frame
+    # label_panexams_all = Label(panexams_program_Frame, bg="floral white")
+    # label_panexams_a_top = Label(label_panexams_all, bg="floral white")
+    # label_panexams_at_top = Label(label_panexams_a_top, bg="floral white", text="Πρόγραμμα Πανελλήνιων Εξεταστικής ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    # label_panexams_at_bottom = Label(label_panexams_a_top, bg="floral white")
+    # label_panexams_a_bottom = Label(label_panexams_at_bottom, bg="floral white")
 
-    btn2_return_program = Button(label_panexams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-
-
-    #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
+    # btn2_return_program = Button(label_panexams_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
-    ############## CALENDAR################
-    cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
-    date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
-    cal_panexams.calevent_create(date, 'Hello World', 'message')
-    cal_panexams.calevent_create(date, 'Reminder 2', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=-2), 'Reminder 1', 'reminder')
-    cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
+    # #sos sos zisis input data στο calendar για ημερομηνια εξετασης ενδοσχολικων
 
-    cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
-    cal_panexams.pack(fill="both", expand=1)
-    ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
+    # ############## CALENDAR################
+    # cal_panexams = Calendar(label_panexams_at_bottom, selectmode='none')
+    # date = cal_panexams.datetime.today() + cal_panexams.timedelta(days=2)
+    # cal_panexams.calevent_create(date, 'Hello World', 'message')
+    # cal_panexams.calevent_create(date, 'Reminder 2', 'reminder')
+    # cal_panexams.calevent_create(date + cal_panexams.timedelta(days=-2), 'Reminder 1', 'reminder')
+    # cal_panexams.calevent_create(date + cal_panexams.timedelta(days=3), 'Message', 'message')
 
-    label_panexams_all.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_panexams_at_top.pack(side=TOP)
-    label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    # cal_panexams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
 
+    # cal_panexams.pack(fill="both", expand=1)
+    # ttk.Label(label_panexams_at_bottom, text="Hover over the events.").pack()
+
+    # label_panexams_all.pack(side=TOP,fill=BOTH, expand=1)
+    # label_panexams_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    # label_panexams_at_top.pack(side=TOP)
+    # label_panexams_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    # label_panexams_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+
+    #region Programma
+    school_exams_all = Label(panexams_program_Frame, bg="floral white")
+    school_exams_a_top = Label(school_exams_all, text="Πρόγραμμα Εξεταστικής", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    school_exams_a_mid = Label(school_exams_all, bg="floral white")
+    school_exams_a_bot = Label(school_exams_all, bg="floral white")
+    school_exams_am_top = Label(school_exams_a_mid, bg="floral white")#calendar
+    school_exams_am_mid = Label(school_exams_a_mid, bg="floral white",relief="groove")#add/edit/delete calendar
+    school_exams_amm_top = Label(school_exams_am_mid, text="Επεξεργασία Προγράμματος", bg="SkyBlue1", font=("Times New Roman (Times)", 20, "bold"))#edit title
+    school_exams_amm_mid = Label(school_exams_am_mid, bg="floral white")#text - input from user
+    school_exams_amm_bot = Label(school_exams_am_mid, bg="floral white")#buttons add/delete
+
+    school_exams_ammm_top = Label(school_exams_amm_mid, bg="floral white")#message
+    school_exams_ammmt_left = Label(school_exams_ammm_top, text="Μήνυμα:\t\t", bg="floral white", font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmt_right = Text(school_exams_ammm_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    
+
+    school_exams_ammm_mid = Label(school_exams_amm_mid, bg="floral white")#reminder
+    school_exams_ammmm_left = Label(school_exams_ammm_mid, text="Υπενθύμιση:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmm_right = Text(school_exams_ammm_mid, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    school_exams_ammm_bot = Label(school_exams_amm_mid, bg="floral white")#date
+    school_exams_ammmb_left = Label(school_exams_ammm_bot, text="Ημερομηνία:\t", bg="floral white" ,font=("Times New Roman (Times)", 18, "bold"))
+    school_exams_ammmb_right = Text(school_exams_ammm_bot, state=NORMAL, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+
+    #ανάκτηση ημερομηνίας μεταβλητη
+    cur_exam_date = StringVar()
+    cur_exam_date.set("")
+
+    def conf_school_exams():
+        event_ids = cal_exams.get_calevents()
+        print("events:",event_ids)
+        print("school exams confirmed")
+
+    def add_school_exams():
+        message = school_exams_ammmt_right.get("1.0",'end-1c')
+        reminder = school_exams_ammmm_right.get("1.0",'end-1c')
+        date = school_exams_ammmb_right.get("1.0",'end-1c')
+        flag=0
+        if (date!=""):
+            date_time_obj = datetime.strptime(date, '%d/%m/%Y')
+        if(date==""):
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
+        else:
+            if(message!=""):
+                cal_exams.calevent_create(date_time_obj, message, 'message')
+            if(reminder!=""):
+                cal_exams.calevent_create(date_time_obj, reminder, 'reminder')
+            if(message=="" and reminder==""):
+                flag=1
+                messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ένα μήνυμα ή υπενθύμιση για την τρέχουσα ημερομηνία και δοκιμάστε να ξανακάνετε προσθήκη!',icon='warning')
+        school_exams_ammmt_right.delete('1.0', END)
+        school_exams_ammmm_right.delete('1.0', END)
+        if(flag==0):
+            school_exams_ammmb_right.delete('1.0', END)
+        print("school exams added")
+
+    def delete_school_exams():
+        #cal_exams.selection_clear(cur_exam_date.get())
+        date_rem = datetime.strptime(cur_exam_date.get(), '%d/%m/%Y')
+        cal_exams.calevent_remove(date=date_rem)
+        #print("deleted:",cur_exam_date.get())
+        print("school exams selected event deleted")
+        cal_exams.selection_clear()
+
+    def delete_school_exams_calendar():
+        cal_exams.calevent_remove('all')
+        print("all school exams calendar events are deleted")
+
+    #add 4 buttons
+    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
+    
+
+    #ορισμος ημερολογιου
+    cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
+    cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    #Εμφάμιση στοιχείων packs
+    school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
+    school_exams_a_top.pack(side=TOP, fill=X)#title label
+    school_exams_a_mid.pack(side=TOP, expand=1, fill=BOTH, pady=50)#middle labels edit etc
+    school_exams_a_bot.pack(side=TOP, fill=X)#buttons down label
+    school_exams_am_top.pack(side=TOP, expand=1, fill=BOTH, ipady=20)#calendar
+    cal_exams.pack(side=TOP, expand=1, fill=BOTH)
+    school_exams_am_mid.pack(side=TOP, expand=1, fill=BOTH)#edits
+    school_exams_amm_top.pack(side=TOP, fill=X, ipady=5)#edit Title
+    school_exams_amm_mid.pack(side=TOP, expand=1, fill=BOTH)
+    school_exams_amm_bot.pack(side=TOP, fill=X)
+
+    #Στοιχεία προς επεξεργασία
+    #μηνυμα
+    school_exams_ammm_top.pack(side=TOP, fill=X)
+    school_exams_ammmt_left.pack(side=LEFT,padx=50)
+    school_exams_ammmt_right.pack(side=LEFT)
+    #υπενθυμιση
+    school_exams_ammm_mid.pack(side=TOP, fill=X)
+    school_exams_ammmm_left.pack(side=LEFT,padx=50)
+    school_exams_ammmm_right.pack(side=LEFT)
+    #ημερομηνία
+    school_exams_ammm_bot.pack(side=TOP, fill=X)
+    school_exams_ammmb_left.pack(side=LEFT,padx=50)
+    school_exams_ammmb_right.pack(side=LEFT)
+
+    #εμφάνιση κουμπιών 
+    #κουμπια επεξεργασίας
+    btn_add_cal.pack(side=RIGHT, padx=100)
+    btn_delete_cal.pack(side=RIGHT)
+    #κουμπιά μενού
+    btn_confirm_cal.pack(side=RIGHT, padx=100)
+    btn_return_cal.pack(side=RIGHT)
+    btn_delete_cal_all.pack(side=LEFT, padx=100)
+    #endregion
 
     # -------------------------------ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ END, Start of ΕΠΙΤΗΡΗΤΕΣ---------------------
     #---------------------------------------------------------------------------------------------------
@@ -1087,14 +1203,14 @@ def main():
 
 
     
-    label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
-    label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
-    label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    btn2_return_program.pack(side=RIGHT)
-    btn3_search_list.pack(side=TOP)
-    button_return.pack(side=RIGHT)
+    # label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
+    # label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    # label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
+    # label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    # label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    # btn2_return_program.pack(side=RIGHT)
+    # btn3_search_list.pack(side=TOP)
+    # button_return.pack(side=RIGHT)
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
