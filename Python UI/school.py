@@ -28,7 +28,6 @@ none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
-stoixeia=[]#sos sos delete ειναι σαν temp για εισαγωγή data για email για έναν χρήστη
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
 hour_1=['08:00-09:00','','','','','']#arxikopoihsh pinaka
 hour_2=['09:00-10:00','','','','','']
@@ -793,49 +792,65 @@ def main():
         print(list_name)
         print("register_list=",register_list)
 
-    def delete_list():
-        print("deleted list")
     
 
     def add_user():
-        global stoixeia
+        #global stoixeia
         std_name = std_reg_create_abtltl_r1.get('1.0', 'end-1c')    #αντι end-1c αν βαλεις σκετο end βαζει στο τέλος newline 
         std_lastname = std_reg_create_abtltl_r2.get('1.0', 'end-1c')
         std_email = std_reg_create_abtltl_r3.get('1.0', 'end-1c')
         std_phone = std_reg_create_abtltl_r4.get('1.0', 'end-1c')
         if (std_name!="" and std_lastname!="" and std_email!=""):
+            #delete inputs
+            std_reg_create_abtltl_r1.delete('1.0', 'end')
+            std_reg_create_abtltl_r2.delete('1.0', 'end')
+            std_reg_create_abtltl_r3.delete('1.0', 'end')
+            std_reg_create_abtltl_r4.delete('1.0', 'end')
+            #αποθηκευση τελικών στοιχείων
             std_name_ok=std_name
             std_lastname_ok=std_lastname
             std_email_ok=std_email
-            std_phone_ok=std_phone
-            #insert ola ta ok se ΒΔ τα ok σαν attributes
-            password = uuid.uuid4().hex[:10]#random unique 10 digit password will be send via email or phone number
-
-            ###################################to delete just test
-            stoixeia.append(std_name_ok)
-            stoixeia.append(std_lastname_ok)
-            stoixeia.append(password)
-            stoixeia.append(std_email_ok)
-            stoixeia.append(std_phone_ok)
-            print(stoixeia)
-            #--------------------------------------------------
+            #Αν δεν έχει input
+            if(std_phone==""):
+                std_phone_ok="-"
+            else:
+                std_phone_ok=std_phone
+            
+            info_to_add=[]
+            info_to_add.append("Όνομα: " + std_name_ok)
+            info_to_add.append("Επώνυμο: " + std_lastname_ok)
+            info_to_add.append("E-mail: " + std_email_ok)
+            info_to_add.append("Τηλέφωνο: " + std_phone_ok)
+            student_info = ('  |  '.join(info_to_add))
+            print(student_info)
+            #προσθήκη στοιχείων μαθητη listbox:
+            user_list.insert('end', student_info)#end στην τελευταια open θέση δλδ 0,1,2,3,...
+            
         else:
             messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ορθά τα στοιχεία του μαθητή',icon='warning')
 
-        print(std_name_ok)
-        print(std_lastname_ok)
-        print(std_email_ok)
-        print(std_phone_ok)
-        print("password",password) 
-        #https://realpython.com/python-send-email/
-        #sos sos zisis ολα αυτα τα στοιχεια θα δημιουργουνται για την κλαση λιστας και οταν γίνει επιβεβαίωση λιστας θα αποθηκεύεται
-        #  και θα διαβαζει ολους τους μαθητες στην λίστα και θα στέλνει από εκει emails.
+        
+        
+    def delete_user():
+        student_to_remove = [user_list.get(idx) for idx in user_list.curselection()]
+        w=1
+        while (w<=len(student_to_remove)):
+            idx_count=0
+            remove_temp=student_to_remove[w-1]
+            while idx_count<=user_list.size():
+                if(remove_temp==user_list.get(idx_count)):
+                    print(idx_count,"idxc")
+                    user_list.delete(idx_count)
+                idx_count=idx_count+1
+
+            w=w+1
+        print("deleted a user") 
+
         
 
-    def delete_user():
-        print("deleted user")
-
     def confirm_registry():
+        spacer='  |  '
+        final_user_data=[]
         #send email to all students
         #εδω θελουμε μια λίστα που να έχει αποθηκεύσει τα στοιχεία των μαθητών να την τρέχει και να στέλνει email.
         #https://dev.to/davidmm1707/how-to-send-emails-with-just-a-few-lines-of-code-with-yagmail-in-python-25pm
@@ -843,19 +858,64 @@ def main():
         sender_password = "tl2020Parme"
         try:
             yag = yagmail.SMTP(user=sender_email, password=sender_password)
-            subject='Στοιχεία Χρήστη Για Το Σύστημα Παρμενίδης'
-            e1="Όνομα: " + stoixeia[0]
-            e2="Επώνυμο: " + stoixeia[1]
-            e3="Κωδικός Πρόσβασης: " + stoixeia[2]
-            e4="E-mail: " + stoixeia[3]
-            e5="Αριθμός Επικοινωνίας: " + stoixeia[4]
-            contents = ["Καλώς ορίσατε στο ενιαίο Σύστημα Πανελληνίων Παρμενίδης!","Τα στοιχεία σας είναι τα εξής",e1,e2,e3,e4,e5]
-            reciever=stoixeia[3]
-            yag.send(reciever, subject, contents)
+            if (user_list.size()>=1):
+                    msg_conf_student_user = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
+                    if msg_conf_student_user == 'yes':
+                        messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+                        user_list.select_set(0, 'end')
+                        conf_user_list=[user_list.get(idx) for idx in user_list.curselection()]
+                        user_list.select_clear(0,'end')
+                        #spilt τα στοιχεία για να παίρνουμε μεμονομένα το ονομα επωνυμο κλπ
+                        for stoixeio in conf_user_list:
+                            user_data = stoixeio.split(spacer) #καθε index σε αυτο το list περιέχει ονομα επώνυμο κλπ στοιχεία με trash strings
+                            print("stoixeia xrhsth",user_data)
+                            for sub_stoixeio in user_data:
+                                #print("sub_stoixeio=",sub_stoixeio)
+                                splitted_usr = sub_stoixeio.split(" ")
+                                #print("g0",splitted_usr[0])
+                                final_user_data.append(splitted_usr[1])
+                                splitted_usr.clear()
+                            name_ok = final_user_data[0]
+                            lastname_ok = final_user_data[1]
+                            email_ok = final_user_data[2]
+                            phone_ok = final_user_data[3]
+                            password = uuid.uuid4().hex[:10]#random unique 10 digit password will be send via email or phone number
+                            #username sos sos???????
+                            # sos sos zisis pros8ese se klaseis edw ta stoixeia
+                            print("Δήλωση Μαθητών:",final_user_data)
+                            final_user_data.clear()
+                            
+                            #send verification email
+                            subject='Στοιχεία Χρήστη Για Το Σύστημα Παρμενίδης'
+                            e1="Όνομα: " + name_ok
+                            e2="Επώνυμο: " + lastname_ok
+                            e3="Όνομα χρήστη: " + "-"
+                            e4="Κωδικός Πρόσβασης: " + password
+                            e5="E-mail: " + email_ok
+                            e6="Αριθμός Επικοινωνίας: " + phone_ok
+                            contents = ["Καλώς ορίσατε στο ενιαίο Σύστημα Πανελληνίων Παρμενίδης!","Τα στοιχεία σας είναι τα εξής",e1,e2,e3,e4,e5,e6]
+                            reciever=email_ok
+                            yag.send(reciever, subject, contents)                   
+                    else:
+                        messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της λίστας σας!')
+                        print("Ακύρωση από χρήστη της δήλωσης λίστας")
+            else:
+                messagebox.showinfo('Σφάλμα', 'Πρέπει να επιλέξετε προσθέσει τουλάχιστον ένα μαθητή  για την υποβολή της λίστας σας!')
+            
         except:
+            messagebox.showinfo('Σφάλμα', 'Αδυναμία αποστολής E-mail!')
             print("Error, email was not sent")
         print("registry confirmed")
 
+    def delete_list():
+
+        del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
+        if del_msg == 'yes':
+            user_list.delete(0,'end')
+            print("deleted user")
+        else:
+           messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 
+    
     #ORISMOS BTNS
     btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red3",height = 1, width = 12,font=("Calibri", 16, "bold"))
     btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=DISABLED, command=lambda: confirm_registry(), bg="red3",font=("Calibri", 16, "bold"))
@@ -865,22 +925,13 @@ def main():
     btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=DISABLED, command=lambda: delete_user(), bg="red3",font=("Calibri", 16, "bold"))
 
     #orismos listbox sos sos edw 8elei tkinterctrl
-    user_list  = Listbox (std_reg_create_abm_bot, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='single')
+    user_list  = Listbox (std_reg_create_abm_bot, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='multiple', export=FALSE, activestyle=none)
     
     scrollh_usr = Scrollbar(std_reg_create_abm_bot, orient="horizontal", command=user_list.xview)
     scrollv_usr= Scrollbar(std_reg_create_abm_bot, orient="vertical", command=user_list.yview)
     std_reg_create_abm_bot.bind("<Configure>",lambda e: user_list.configure(scrollregion=user_list.bbox("all")))
     user_list.configure(yscrollcommand=scrollv_usr.set, xscrollcommand=scrollh_usr.set, font=("Times New Roman (Times)", 16,"bold"))
-    std_reg_create_abm_bot.bind("<MouseWheel>", scrollv_usr)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
-    
-    #add elements to announcements
-    user_list.insert(1, "This is a test to see if the announcements works as it should be")
-    user_list.insert(2, "Ανακοινωση Ημερομηνίας Δηλώσεων")
-    user_list.insert(3, "Πρόγραμμα εξεταστικής έτους 2020-2021")
-    user_list.insert(4, "#ΜΕΝΟΥΜΕ_ΣΠΙΤΙ")
-    user_list.insert(5, "Έναρξη δηλώσεων μαθητών")
-    user_list.insert(6, "ΠΑΡΜΕΝΙΔΗΣ ΜΕ TKINTER ΓΙΑ GUI")
-    user_list.insert(7, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+    std_reg_create_abm_bot.bind("<MouseWheel>", scrollv_usr)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ 
 
     #packs εμφάνιση στοιχείων
     std_reg_create_all.pack(side=TOP,fill=BOTH,expand=1)#δεξιο μενου-αρχικη σελίδα

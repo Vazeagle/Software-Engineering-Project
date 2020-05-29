@@ -58,7 +58,7 @@ orientations = [med_sciences,pos_sciences]
 special_lessons_get = ["Καμία Επιλογή","Ελεύθερο Σχέδιο", "Γραμμικό Σχέδιο"]
 
 cur_school = School("1ο Λύκειο Καισαριανής")
-cur_student = Student("ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[Department("Μαθηματικό(Αθήνας)",[pos_sciences])])
+cur_student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[Department("Μαθηματικό(Αθήνας)",[pos_sciences])])
 
 #-------------------------------------</CLASSES>------------------------------------------------------
 
