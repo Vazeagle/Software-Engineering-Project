@@ -167,7 +167,7 @@ appState = ""
 applicationsx = []
 department = departments[0]
 seats = 100
-reasoning = "Προσφάτως το twitter εγκαινίασε τη διαδικασία του fact-checking, όπως ήδη έχουν κάνει εδώ και αρκετά καιρό άλλα μέσα κοινωνικής δικτύωσης όπως το facebook. Η συγκεκριμένη υπηρεσία του twitter, φαίνεται πως έκρινε ότι οι αναρτήσεις του Ντόναλντ Τραμπ, δεν ήταν ακριβείς, με τη διεύθυνση του ιστοτόπου να τοποθετεί μια ειδοποίηση που καλεί τους χρήστες να «ενημερωθούν για τα γεγονότα», παραπέμποντάς τους σε σελίδα με υλικό που αντικρούει τον ισχυρισμό του Τραμπ, πως η ψηφοφορία μέσω ταχυδρομείου αποτελεί μέρος σχεδίου να γίνει «νοθεία», προκειμένου ο αρχηγός του κράτους να ηττηθεί στην αναμέτρηση του Νοεμβρίου."
+reasoning = "ANNNNNNNNNNNNNNASTASIA SBINGKOU"
 applicationsx.append(Seatsapp(department,seats,"-",reasoning))
 
 department = departments[1]
@@ -1023,9 +1023,9 @@ def main():
     panexams_am_top.pack(side = TOP)
     panexams_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    btn_exams_program.pack(side = TOP,pady=80)
-    btn_grade_center.pack(side = TOP,pady=100)
-    btn_grader.pack(side = TOP)
+    btn_exams_program.pack(side = TOP,pady=20)
+    btn_grade_center.pack(side = TOP)
+    btn_grader.pack(side = TOP,pady=20)
 
     # -------------------------------ΠΑΝΕΛΛΗΝΙΕΣ END, Start of ΠΡΟΓΡΑΜΜΑ ΠΑΝΕΛΛΗΝΙΩΝ------------------------
     #---------------------------------------------------------------------------------------------------
