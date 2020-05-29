@@ -1,6 +1,6 @@
 import os, sys
 from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
+from Classes import Lesson,Orientation,Direction,Department,Student,School,Board
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -176,6 +176,8 @@ reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής
 applicationsx.append(Seatsapp(department,seats,"-",reasoning))
 
 curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
+
+board = Board("12/6/2002")
 
 #endregion
 
@@ -727,26 +729,28 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να είναι αυτή η ημερομηνία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η ημερομηνία έγινε δεκτή με επιτυχία!')
+            board.seatsDue = str(date_val.get()) + "/" + str(month_val.get()) + "/" + str(year_val.get())
             raiseNdrop_frame(menu_Frame,none) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
         else:
             raiseNdrop_frame(department_submit_Frame,none)
  
     
     datetime_initialise()#kalesma synarthshs gia hmeromhnia
+    dates = board.seatsDue.split("/")
 
     date_val = StringVar(department_date_l)
-    date_val.set(date_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    date_val.set(date_options[date_options.index(int(dates[0]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     date_choice = OptionMenu(department_date_l, date_val, *date_options)
     date_choice.config(bg="snow",width=5)
 
     month_val = StringVar(department_date_2)
-    month_val.set(month_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    month_val.set(month_options[month_options.index(int(dates[1]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     month_choice = OptionMenu(department_date_2, month_val, *month_options)
     month_choice.config(bg="snow",width=5)
 
 
     year_val = StringVar(department_date_3)
-    year_val.set(year_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
+    year_val.set(year_options[year_options.index(int(dates[2]))])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
     year_choice.config(bg="snow",width=5)
 
