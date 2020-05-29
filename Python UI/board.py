@@ -53,6 +53,131 @@ def raiseNdrop_frame(frameUp,frameDown):
         frameUp.tkraise()
         frameUp.pack(expand=1,fill=BOTH)
 
+#region Classes
+physics = Lesson("Φυσική")
+chemistry = Lesson("Χημεία")
+language = Lesson("Νεοελληνική Γλώσσα και Λογοτεχνία")
+math_dir = Lesson("Μαθηματικά Κατεύθυνσης")
+biology = Lesson("Βιολογία")
+history = Lesson("Ιστορία")
+ancient = Lesson("Αρχαία Ελλήνικα")
+
+positive = Direction("Θετική",[physics,chemistry,language])
+theoritical = Direction("Θεωρητική",[history,ancient,language])
+
+pos_sciences = Orientation("Θετικών Επιστημών",positive,math_dir)
+med_sciences = Orientation("Επιστήμες Υγείας",positive,biology)
+
+orientations = [med_sciences,pos_sciences]
+
+departments =[]
+departments.append(Department("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ",[pos_sciences]))
+departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
+departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
+departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
+departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
+departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
+departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
+
+students = []
+student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , School("1ο Λύκειο Καισαριανής"), [],[])
+students.append(student)
+student = Student(2,"ΖΗΣΗΣ-ΣΤΥΛΙΑΝΟΣ ΤΡΑΜΠΑΡΗΣ", positive, [pos_sciences] , School("12ο Λύκειο Πάτρων"), [],[])
+students.append(student)
+student = Student(3,"ΠΑΝΑΓΙΩΤΗΣ ΣΤΑΥΡΟΠΟΥΛΟΣ", positive, [pos_sciences] , School("2ο Λύκειο Πάτρων"), [],[])
+students.append(student)
+student = Student(4,"ΦΩΤΕΙΝΉ ΣΤΕΡΓΙΟΠΟΎΛΟΥ", positive, [pos_sciences] , School("3ο Λύκειο Φαρσάλων"), [],[])
+students.append(student)
+student = Student(5,"ΑΝΑΣΑΣΙΑ ΣΒΙΓΓΟΥ", positive, [pos_sciences] , School("1ο Λύκειο Κλειτορίας"), [],[])
+students.append(student)
+student = 0
+
+applications = []
+
+pen = "Pending"
+rej = "Rejected"
+appr = "Sapproved"
+
+data =	{
+    "name"       :  "Στυλιανός",
+    "surname"    :  "Βαζαίος",
+    "fname"      :  "Μπάμπης",
+    "fsurname"   :  "Βαζαίος",
+    "mname"      :  "Καλιοπη",
+    "msurname"   :  "Βαζαιου",
+    "bday"       :  "01/04/1998"
+}
+applications.append(Application(students[0],data,pen))
+
+data =	{
+    "name"       :  "Ζήσης-Στυλιανός",
+    "surname"    :  "Τράμπαρης",
+    "fname"      :  "Αναστάσιος",
+    "fsurname"   :  "Τράμπαρης",
+    "mname"      :  "Αναστασία",
+    "msurname"   :  "Μαγεράκη",
+    "bday"       :  "06/12/1998"
+}
+applications.append(Application(students[1],data,appr))
+
+data =	{
+    "name"       :  "Πάνος",
+    "surname"    :  "Σταυρόπουλος",
+    "fname"      :  "Θεοδωρος",
+    "fsurname"   :  "Σταυρόπουλος",
+    "mname"      :  "Αγγελική",
+    "msurname"   :  "Καλαποδη",
+    "bday"       :  "14/06/1998"
+}
+applications.append(Application(students[2],data,pen))
+
+data =	{
+    "name"       :  "Φωτείνη",
+    "surname"    :  "Στεργιοπούλου",
+    "fname"      :  "Βασίλης",
+    "fsurname"   :  "Στεργιόπουλος",
+    "mname"      :  "Μαρία",
+    "msurname"   :  "Παπα",
+    "bday"       :  "03/09/1998"
+}
+applications.append(Application(students[3],data,rej))
+
+data =	{
+    "name"       :  "Ανναστασία",
+    "surname"    :  "Σβίγκου",
+    "fname"      :  "Μήτσος",
+    "fsurname"   :  "Σβίγκος",
+    "mname"      :  "Ιωάννα",
+    "msurname"   :  "Μητσοτάκη",
+    "bday"       :  "22/02/1896"
+}
+applications.append(Application(students[4],data,pen))
+
+data =	{
+    "name"       :  "",
+    "surname"    :  "",
+    "fname"      :  "",
+    "fsurname"   :  "",
+    "mname"      :  "",
+    "msurname"   :  "",
+    "bday"       :  ""
+}
+appState = ""
+
+applicationsx = []
+department = departments[0]
+seats = 100
+reasoning = "Προσφάτως το twitter εγκαινίασε τη διαδικασία του fact-checking, όπως ήδη έχουν κάνει εδώ και αρκετά καιρό άλλα μέσα κοινωνικής δικτύωσης όπως το facebook. Η συγκεκριμένη υπηρεσία του twitter, φαίνεται πως έκρινε ότι οι αναρτήσεις του Ντόναλντ Τραμπ, δεν ήταν ακριβείς, με τη διεύθυνση του ιστοτόπου να τοποθετεί μια ειδοποίηση που καλεί τους χρήστες να «ενημερωθούν για τα γεγονότα», παραπέμποντάς τους σε σελίδα με υλικό που αντικρούει τον ισχυρισμό του Τραμπ, πως η ψηφοφορία μέσω ταχυδρομείου αποτελεί μέρος σχεδίου να γίνει «νοθεία», προκειμένου ο αρχηγός του κράτους να ηττηθεί στην αναμέτρηση του Νοεμβρίου."
+applicationsx.append(Seatsapp(department,seats,"-",reasoning))
+
+department = departments[1]
+seats = 50
+reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
+applicationsx.append(Seatsapp(department,seats,"-",reasoning))
+
+curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
+
+#endregion
 
 
 #Initialisation
@@ -114,9 +239,185 @@ acceptdeny_frame=Frame(all_Frame, bg="floral white") #apodoxi aporripsi
 processing_frame=Frame(all_Frame, bg="floral white") #epeksergasia
 problems_frame=Frame(all_Frame, bg="floral white") #provlimata
 exit_frame=Frame(all_Frame, bg="floral white") #eksodos
+list_Frame=Frame(pending_applic_Frame,bg="white")
+accept_Frame=Frame(pending_applic_Frame, bg="white")
+dep_Frame = Frame()
+list_Framex = Frame()
 
 folder_path_list = StringVar()#(ypovoli programmatos)
 folder_path_list.set("")
+
+def listsort(list):
+    list.sort(key=lambda x: x.status)
+
+def lsfrm():
+    list_up = Label(list_Frame,bg="white",text ="Αιτήσεις:",font=("Calibri", 24, "bold"))
+    list_left = Label(list_Frame, bg="white",font=("Calibri", 24, "bold")) 
+    application_list = Listbox (list_left,width = 32, bg="white",font=("Calibri", 15, "bold"))
+
+    scrollbar= Scrollbar(list_left, orient="vertical", command=application_list.yview)
+    application_list.configure(yscrollcommand=scrollbar.set)
+    scrollbar.pack(side=RIGHT, fill=Y)
+
+    list_Frame.pack(side=LEFT,fill='y')
+    list_up.pack(side = TOP)
+    list_left.pack(side=LEFT, fill=BOTH, expand=1)
+    application_list.pack(side=LEFT, fill=BOTH, expand=1)
+
+    listsort(applications)
+
+    for i in range(len(applications)):
+        item = str(applications[i].student.name) + " #" + str(applications[i].student.id)
+        application_list.insert(END, item )
+        if applications[i].status is pen:
+            application_list.itemconfig(END, {'bg':'yellow'})
+        if applications[i].status is appr:
+            application_list.itemconfig(END, {'bg':'green'})
+        if applications[i].status is rej:
+            application_list.itemconfig(END, {'bg':'red'})
+
+    def onselect(evt):
+        global accept_Frame
+        global data
+        global appState
+        global curApplication 
+        curApplication = applications[application_list.curselection()[0]]
+        data = curApplication.data
+        appState = curApplication.status
+        accept_Frame.destroy()
+        accept_Frame=Frame(pending_applic_Frame, bg="white")
+        accfrm()
+        
+    application_list.bind('<<ListboxSelect>>', onselect)
+lsfrm()
+
+def edit_app(state):
+    global curApplication
+    global list_Frame
+    global accept_Frame
+    if state == "accept":
+        curApplication.status = appr
+    else:
+        curApplication.status = rej
+    list_Frame.destroy()
+    list_Frame=Frame(pending_applic_Frame, bg="white")
+    accept_Frame.destroy()
+    accept_Frame=Frame(pending_applic_Frame, bg="white")
+    lsfrm()
+    accfrm()
+
+def accfrm():
+    folder_path_form = StringVar()#(label_Statement1_all_mt8l_left)
+    folder_path_ID = StringVar()#(label_Statement1_all_mt9l_left)
+    folder_path_form.set("")
+    folder_path_ID.set("")
+
+    def openapp(event):
+        os.startfile("Tubby.pdf")
+
+    def openid(event):
+        os.startfile("vod.pdf")
+
+    label_Statement1_all = Label(accept_Frame, bg="floral white")
+    label_Statement1_all_top = Label(label_Statement1_all, text="Δήλωση Συμμετοχής",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_Statement1_all_mid_top = Label(label_Statement1_all, relief="groove", borderwidth=2, highlightthickness=2,  bg="floral white")
+    label_Statement1_all_down = Label(label_Statement1_all, bg="floral white")
+
+    label_Statement1_all_m_t1 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt1_left = Label(label_Statement1_all_m_t1, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_name = Label(label_Statement1_all_m_t1, text=data["name"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t2 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt2_left = Label(label_Statement1_all_m_t2, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_surname = Label(label_Statement1_all_m_t2, text=data["surname"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t3 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt3_left = Label(label_Statement1_all_m_t3, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_bday = Label(label_Statement1_all_m_t3, text=data["bday"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t4 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt4_left = Label(label_Statement1_all_m_t4, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Fname = Label(label_Statement1_all_m_t4, text=data["fname"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t5 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt5_left = Label(label_Statement1_all_m_t5, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Fsurname = Label(label_Statement1_all_m_t5, text=data["fsurname"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t6 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt6_left = Label(label_Statement1_all_m_t6, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Mname = Label(label_Statement1_all_m_t6, text=data["mname"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t7 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt7_left = Label(label_Statement1_all_m_t7, text="Επώνυμο Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_Msurname = Label(label_Statement1_all_m_t7, text=data["msurname"],  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t77 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt77_left = Label(label_Statement1_all_m_t77, text="Κατάσταση αίτησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    info_text_State = Label(label_Statement1_all_m_t77, text=appState,  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+
+    label_Statement1_all_m_t8 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt8_left = Label(label_Statement1_all_m_t8, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt8l_left =  Label(label_Statement1_all_m_t8, text="Δήλωση",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
+    label_Statement1_all_mt8l_left.bind("<Button-1>", lambda e:openapp(e))
+
+    label_Statement1_all_m_t9 = Label(label_Statement1_all_mid_top, bg="floral white")
+    label_Statement1_all_mt9_left = Label(label_Statement1_all_m_t9, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, text="Ταυτότητα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
+    label_Statement1_all_mt9l_left.bind("<Button-1>", lambda e:openid(e))
+
+    btn_accept = Button(label_Statement1_all_down, text="Αποδοχή", command=lambda: edit_app("accept"), bg="green3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_reject = Button(label_Statement1_all_down, text="Απόριψη", command=lambda: edit_app("reject"), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+    accept_Frame.pack(side = LEFT,fill=BOTH,expand =1)
+
+    label_Statement1_all.pack(side=TOP, expand=1, fill=BOTH)
+    label_Statement1_all_top.pack(side=TOP)
+    label_Statement1_all_mid_top.pack(side=TOP, expand=1,fill=BOTH, pady=0)
+    label_Statement1_all_down.pack(side=TOP, expand=1,fill=BOTH)
+
+    label_Statement1_all_m_t1.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt1_left.pack(side=LEFT,padx=10)
+    info_text_name.pack(side=LEFT)
+
+    label_Statement1_all_m_t2.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt2_left.pack(side=LEFT,padx=10)
+    info_text_surname.pack(side=LEFT)
+
+    label_Statement1_all_m_t3.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt3_left.pack(side=LEFT,padx=10)
+    info_text_bday.pack(side=LEFT)
+
+    label_Statement1_all_m_t4.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt4_left.pack(side=LEFT,padx=10)
+    info_text_Fname.pack(side=LEFT)
+
+    label_Statement1_all_m_t5.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt5_left.pack(side=LEFT,padx=10)
+    info_text_Fsurname.pack(side=LEFT)
+
+    label_Statement1_all_m_t6.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt6_left.pack(side=LEFT,padx=10)
+    info_text_Mname.pack(side=LEFT)
+
+    label_Statement1_all_m_t7.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt7_left.pack(side=LEFT,padx=10)
+    info_text_Msurname.pack(side=LEFT)
+
+    label_Statement1_all_m_t77.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt77_left.pack(side=LEFT,padx=10)
+    info_text_State.pack(side=LEFT)
+
+    label_Statement1_all_m_t8.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt8_left.pack(side=LEFT,padx=10)
+    label_Statement1_all_mt8l_left.pack(side=LEFT)
+
+    label_Statement1_all_m_t9.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    label_Statement1_all_mt9_left.pack(side=LEFT,padx=10)
+    label_Statement1_all_mt9l_left.pack(side=LEFT)
+
+    btn_accept.pack(side=LEFT)
+    btn_reject.pack(side=LEFT)
+accfrm()
 
 
 
@@ -197,8 +498,8 @@ def main():
     #label_ruu_up = Label(label_right, text="Καλώς ήρθατε!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
 
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext1 = Button(label_l_down, text="Αιτήσεις", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext2 = Button(label_l_down, text="Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext3 = Button(label_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext4 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext5 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
@@ -291,29 +592,29 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    application_all=Label(application_Frame,bg="floral white")
+    # application_all=Label(application_Frame,bg="floral white")
 
-    application_all_top = Label(application_all, bg="floral white")
-    application_at_top = Label(application_all_top, text="Αιτήσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    application_all_mid =  Label(application_all, bg="floral white")
-    application_am_top = Label(application_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    application_am_bot = Label(application_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    application_all_mid_top= Label(application_all, bg="floral white")
+    # application_all_top = Label(application_all, bg="floral white")
+    # application_at_top = Label(application_all_top, text="Αιτήσεις:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    # application_all_mid =  Label(application_all, bg="floral white")
+    # application_am_top = Label(application_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+    # application_am_bot = Label(application_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    # application_all_mid_top= Label(application_all, bg="floral white")
 
-    btn_application_list = Button(application_am_bot, text="Εκκρεμείς Αιτήσεις", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    btn_application_history = Button(application_am_bot, text="Ιστορικό Αιτήσεων", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    # btn_application_list = Button(application_am_bot, text="Εκκρεμείς Αιτήσεις", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    # btn_application_history = Button(application_am_bot, text="Ιστορικό Αιτήσεων", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     
-    application_all.pack(side=TOP,expand=1,fill=BOTH)
+    # application_all.pack(side=TOP,expand=1,fill=BOTH)
 
-    application_all.pack(side = TOP, fill=BOTH, expand=1)
-    application_all_top.pack(side = TOP, fill=X, ipady=50)
-    application_at_top.pack(side = TOP)
-    application_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    application_am_top.pack(side = TOP)
-    application_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    # application_all.pack(side = TOP, fill=BOTH, expand=1)
+    # application_all_top.pack(side = TOP, fill=X, ipady=50)
+    # application_at_top.pack(side = TOP)
+    # application_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    # application_am_top.pack(side = TOP)
+    # application_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    btn_application_list.pack(side = TOP,pady=80)
-    btn_application_history.pack(side = TOP,pady=100)
+    #btn_application_list.pack(side = TOP,pady=80)
+    #btn_application_history.pack(side = TOP,pady=100)
 
     # -------------------------------ΑΙΤΗΣΕΙΣ END, Start of ΕΚΡΕΜΜΕΙΣ ΑΙΤΗΣΕΙΣ--------------------------
     #---------------------------------------------------------------------------------------------------
@@ -323,33 +624,33 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     
-    pending_applic_all = Label(pending_applic_Frame, bg="floral white")
-    pending_applic_a_top = Label(pending_applic_all, bg="floral white")
-    pending_applic_at_top = Label(pending_applic_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
-    pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
+    # pending_applic_all = Label(pending_applic_Frame, bg="floral white")
+    # pending_applic_a_top = Label(pending_applic_all, bg="floral white")
+    # pending_applic_at_top = Label(pending_applic_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    # pending_applic_at_bottom = Label(pending_applic_a_top, bg="floral white")
+    # pending_applic_a_bottom = Label(pending_applic_at_bottom, bg="floral white")
 
-    btn_applic_1 = Button(pending_applic_at_bottom, text="Σταυρόπουλος Παναγιώτης", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    btn_applic_2 = Button(pending_applic_at_bottom, text="Βαζαίος Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    btn_applic_3 = Button(pending_applic_at_bottom, text="Σβίγγου Αναστασία", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    btn_applic_4 = Button(pending_applic_at_bottom, text="Στεργιοπούλου Φωτεινή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
-    btn_applic_5 = Button(pending_applic_at_bottom, text="Τράμπαρης Ζήσιμος-Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    # btn_applic_1 = Button(pending_applic_at_bottom, text="Σταυρόπουλος Παναγιώτης", command=lambda: raiseNdrop_frame(applic_verify_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    # btn_applic_2 = Button(pending_applic_at_bottom, text="Βαζαίος Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    # btn_applic_3 = Button(pending_applic_at_bottom, text="Σβίγγου Αναστασία", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    # btn_applic_4 = Button(pending_applic_at_bottom, text="Στεργιοπούλου Φωτεινή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
+    # btn_applic_5 = Button(pending_applic_at_bottom, text="Τράμπαρης Ζήσιμος-Στυλιανός", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="floral white",height = 2, width = 35,font=("Calibri", 14, "bold"), fg= "dodger blue")
 
-    btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    # btn2_return_program = Button(pending_applic_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(application_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
-    pending_applic_all.pack(side=TOP,fill=BOTH, expand=1)
-    pending_applic_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    pending_applic_at_top.pack(side=TOP)
-    pending_applic_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    pending_applic_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    # pending_applic_all.pack(side=TOP,fill=BOTH, expand=1)
+    # pending_applic_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    # pending_applic_at_top.pack(side=TOP)
+    # pending_applic_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    # pending_applic_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
     
-    btn_applic_1.pack(side=TOP)
-    btn_applic_2.pack(side=TOP)
-    btn_applic_3.pack(side=TOP)
-    btn_applic_4.pack(side=TOP)
-    btn_applic_5.pack(side=TOP)
+    # btn_applic_1.pack(side=TOP)
+    # btn_applic_2.pack(side=TOP)
+    # btn_applic_3.pack(side=TOP)
+    # btn_applic_4.pack(side=TOP)
+    # btn_applic_5.pack(side=TOP)
     
-    btn2_return_program.pack(side=RIGHT)
+    # btn2_return_program.pack(side=RIGHT)
 
     # -------------------------------ΕΚΚΡΕΜΕΙΣ ΑΙΤΗΣΕΙΣ END, Start of ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ-------------------
     #---------------------------------------------------------------------------------------------------
@@ -359,115 +660,115 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    applic_verify_all = Label(applic_verify_Frame, bg="floral white")
-    applic_verify_a_top = Label(applic_verify_all, bg="floral white")
-    applic_verify_at_top = Label(applic_verify_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    applic_verify_at_mid = Label(applic_verify_a_top, bg="floral white")
-    applic_verify_a_bottom = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_all = Label(applic_verify_Frame, bg="floral white")
+    # applic_verify_a_top = Label(applic_verify_all, bg="floral white")
+    # applic_verify_at_top = Label(applic_verify_a_top, bg="floral white", text="Εκκρεμείς Αιτήσεις",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    # applic_verify_at_mid = Label(applic_verify_a_top, bg="floral white")
+    # applic_verify_a_bottom = Label(applic_verify_at_mid, bg="floral white")
 
-    applic_verify_name = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_name1 = Label(applic_verify_name, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_name2 = Label(applic_verify_name, text="Παναγιώτης", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_name = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_name1 = Label(applic_verify_name, text="Όνομα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_name2 = Label(applic_verify_name, text="Παναγιώτης", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    applic_verify_surname = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_surname1 = Label(applic_verify_surname, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_surname2 = Label(applic_verify_surname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_surname = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_surname1 = Label(applic_verify_surname, text="Επώνυμο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_surname2 = Label(applic_verify_surname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    applic_verify_birthdate = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_birthdate1 = Label(applic_verify_birthdate, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_birthdate2 = Label(applic_verify_birthdate, text="15/06/1998", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_birthdate = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_birthdate1 = Label(applic_verify_birthdate, text="Ημερομηνία Γέννησης: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_birthdate2 = Label(applic_verify_birthdate, text="15/06/1998", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
     
-    applic_verify_Fname = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_Fname1 = Label(applic_verify_Fname, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_Fname2 = Label(applic_verify_Fname, text="Κωνστανίνος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_Fname = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_Fname1 = Label(applic_verify_Fname, text="Όνομα Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_Fname2 = Label(applic_verify_Fname, text="Κωνστανίνος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    applic_verify_Fsurname = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_Fsurname1 = Label(applic_verify_Fsurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_Fsurname2 = Label(applic_verify_Fsurname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_Fsurname = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_Fsurname1 = Label(applic_verify_Fsurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_Fsurname2 = Label(applic_verify_Fsurname, text="Σταυρόπουλος", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
     
-    applic_verify_Mname = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_Mname1 = Label(applic_verify_Mname, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_Mname2 = Label(applic_verify_Mname, text="Αναστασία", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_Mname = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_Mname1 = Label(applic_verify_Mname, text="Όνομα Μητρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_Mname2 = Label(applic_verify_Mname, text="Αναστασία", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    applic_verify_Msurname = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_Msurname1 = Label(applic_verify_Msurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_Msurname2 = Label(applic_verify_Msurname, text="Παλαιοθοδώρου", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
+    # applic_verify_Msurname = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_Msurname1 = Label(applic_verify_Msurname, text="Επώνυμο Πατρός: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_Msurname2 = Label(applic_verify_Msurname, text="Παλαιοθοδώρου", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))  
 
-    applic_verify_Apply = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_Apply1 = Label(applic_verify_Apply, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_Apply2 = Label(applic_verify_Apply, text="dilosi.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_Apply = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_Apply1 = Label(applic_verify_Apply, text="Αίτηση Συμμετοχής: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_Apply2 = Label(applic_verify_Apply, text="dilosi.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    applic_verify_ID = Label(applic_verify_at_mid, bg="floral white")
-    applic_verify_ID1 = Label(applic_verify_ID, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    applic_verify_ID2 = Label(applic_verify_ID, text="tautot.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    # applic_verify_ID = Label(applic_verify_at_mid, bg="floral white")
+    # applic_verify_ID1 = Label(applic_verify_ID, text="Αστυνομική Ταυτότητα: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    # applic_verify_ID2 = Label(applic_verify_ID, text="tautot.pdf", bg="WHITE", height=1, width=40, fg="dodger blue", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
-    buttton_accept = Button(applic_verify_a_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_deny = Button(applic_verify_a_bottom, text="Απόρριψη", command=lambda: deny(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    # buttton_accept = Button(applic_verify_a_bottom, text="Αποδοχή", command=lambda: accept(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    # buttton_deny = Button(applic_verify_a_bottom, text="Απόρριψη", command=lambda: deny(), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    # buttton_back_to_statement = Button(applic_verify_a_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(pending_applic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
-    def accept():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
-        if msg_confirmation == 'yes':
-            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
-            raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
-        else:
-            raiseNdrop_frame(applic_verify_Frame,previous_frame)
+    # def accept():
+    #     msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
+    #     if msg_confirmation == 'yes':
+    #         messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
+    #         raiseNdrop_frame(pending_applic_Frame,previous_frame) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
+    #     else:
+    #         raiseNdrop_frame(applic_verify_Frame,previous_frame)
 
-    def deny():
-        msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να απορρίψετε αυτή τη δήλωση;',icon='warning')
-        if msg_confirmation == 'yes':
-            messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
-            raiseNdrop_frame(pending_applic_Frame,previous_frame)
-        else:
-            raiseNdrop_frame(applic_verify_Frame,previous_frame)
+    # def deny():
+    #     msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να απορρίψετε αυτή τη δήλωση;',icon='warning')
+    #     if msg_confirmation == 'yes':
+    #         messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση απορρίφθηκε με επιτυχία!')
+    #         raiseNdrop_frame(pending_applic_Frame,previous_frame)
+    #     else:
+    #         raiseNdrop_frame(applic_verify_Frame,previous_frame)
 
     
-    applic_verify_all.pack(side=TOP,fill=BOTH, expand=1)
-    applic_verify_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    applic_verify_at_top.pack(side=TOP)
-    applic_verify_at_mid.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    applic_verify_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+    # #applic_verify_all.pack(side=TOP,fill=BOTH, expand=1)
+    # applic_verify_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    # applic_verify_at_top.pack(side=TOP)
+    # applic_verify_at_mid.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+    # applic_verify_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
 
-    applic_verify_name.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_name1.pack(side=LEFT,padx=10)
-    applic_verify_name2.pack(side=LEFT)
+    # applic_verify_name.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_name1.pack(side=LEFT,padx=10)
+    # applic_verify_name2.pack(side=LEFT)
 
-    applic_verify_surname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_surname1.pack(side=LEFT,padx=10)
-    applic_verify_surname2.pack(side=LEFT)
+    # applic_verify_surname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_surname1.pack(side=LEFT,padx=10)
+    # applic_verify_surname2.pack(side=LEFT)
 
-    applic_verify_birthdate.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_birthdate1.pack(side=LEFT,padx=10)
-    applic_verify_birthdate2.pack(side=LEFT)
+    # applic_verify_birthdate.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_birthdate1.pack(side=LEFT,padx=10)
+    # applic_verify_birthdate2.pack(side=LEFT)
 
-    applic_verify_Fname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_Fname1.pack(side=LEFT,padx=10)
-    applic_verify_Fname2.pack(side=LEFT)
+    # applic_verify_Fname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_Fname1.pack(side=LEFT,padx=10)
+    # applic_verify_Fname2.pack(side=LEFT)
 
-    applic_verify_Fsurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_Fsurname1.pack(side=LEFT,padx=10)
-    applic_verify_Fsurname2.pack(side=LEFT)
+    # applic_verify_Fsurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_Fsurname1.pack(side=LEFT,padx=10)
+    # applic_verify_Fsurname2.pack(side=LEFT)
 
-    applic_verify_Mname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_Mname1.pack(side=LEFT,padx=10)
-    applic_verify_Mname2.pack(side=LEFT)
+    # applic_verify_Mname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_Mname1.pack(side=LEFT,padx=10)
+    # applic_verify_Mname2.pack(side=LEFT)
 
-    applic_verify_Msurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_Msurname1.pack(side=LEFT,padx=10)
-    applic_verify_Msurname2.pack(side=LEFT)
+    # applic_verify_Msurname.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_Msurname1.pack(side=LEFT,padx=10)
+    # applic_verify_Msurname2.pack(side=LEFT)
 
-    applic_verify_Apply.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_Apply1.pack(side=LEFT,padx=10)
-    applic_verify_Apply2.pack(side=LEFT)
+    # applic_verify_Apply.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_Apply1.pack(side=LEFT,padx=10)
+    # applic_verify_Apply2.pack(side=LEFT)
 
-    applic_verify_ID.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    applic_verify_ID1.pack(side=LEFT,padx=10)
-    applic_verify_ID2.pack(side=LEFT)
+    # applic_verify_ID.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+    # applic_verify_ID1.pack(side=LEFT,padx=10)
+    # applic_verify_ID2.pack(side=LEFT)
 
-    buttton_accept.pack(side=RIGHT,padx=25)
-    buttton_deny.pack(side=RIGHT, padx=25)
-    buttton_back_to_statement.pack(side=RIGHT)
+    # buttton_accept.pack(side=RIGHT,padx=25)
+    # buttton_deny.pack(side=RIGHT, padx=25)
+    # buttton_back_to_statement.pack(side=RIGHT)
 
     # -------------------------------ΣΕΛΙΔΑ ΑΙΤΗΣΕΙΣ END, Start of ΘΕΣΕΙΣ ΤΜΗΜΑΤΩΝ----------------------
     #---------------------------------------------------------------------------------------------------
@@ -477,30 +778,30 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    department_all=Label(department_Frame,bg="floral white")
+    # department_all=Label(department_Frame,bg="floral white")
 
-    department_all_top = Label(department_all, bg="floral white")
-    department_at_top = Label(department_all_top, text="Θέσεις Τμημάτων:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    department_all_mid =  Label(department_all, bg="floral white")
-    department_am_top = Label(department_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
-    #department_all_mid_top= Label(department_all, bg="floral white")
+    # department_all_top = Label(department_all, bg="floral white")
+    # department_at_top = Label(department_all_top, text="Θέσεις Τμημάτων:",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    # department_all_mid =  Label(department_all, bg="floral white")
+    # department_am_top = Label(department_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+    # department_am_bot = Label(department_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+    # #department_all_mid_top= Label(department_all, bg="floral white")
 
-    btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
-    btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    # btn_department_editdate = Button(department_am_bot, text="Επεξεργασία Ημερομηνίας", command=lambda: raiseNdrop_frame(department_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
+    # btn_department_history = Button(department_am_bot, text="Τελικές Θέσεις Τμημάτων", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     
-    department_all.pack(side=TOP,expand=1,fill=BOTH)
+    # department_all.pack(side=TOP,expand=1,fill=BOTH)
 
-    department_all.pack(side = TOP, fill=BOTH, expand=1)
-    department_all_top.pack(side = TOP, fill=X, ipady=50)
-    department_at_top.pack(side = TOP)
-    department_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    department_am_top.pack(side = TOP)
-    department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
+    # department_all.pack(side = TOP, fill=BOTH, expand=1)
+    # department_all_top.pack(side = TOP, fill=X, ipady=50)
+    # department_at_top.pack(side = TOP)
+    # department_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
+    # department_am_top.pack(side = TOP)
+    # department_am_bot.pack(side = TOP, fill=BOTH, expand=1)
 
-    btn_department_editdate.pack(side = TOP,pady=80)
-    btn_department_history.pack(side = TOP,pady=100)
+    # btn_department_editdate.pack(side = TOP,pady=80)
+    # btn_department_history.pack(side = TOP,pady=100)
 
 
 
@@ -511,13 +812,121 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-
-
+    global dep_Frame
+    global list_Framex
     department_sumbit= Label(department_submit_Frame, bg="floral white")
-    department_sumbit_a_top = Label(department_sumbit, bg="floral white")
-    department_sumbit_at_top = Label(department_sumbit_a_top, bg="floral white", text="Ημερομηνία Υποβολής",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+    department_sumbit_at_top = Label(department_sumbit, bg="floral white")
     department_sumbit_at_mid =  Label(department_sumbit, bg="floral white")
-    department_sumbit_at_bottom = Label(department_sumbit, bg="floral white")
+    
+
+    list_Framex=Frame(department_sumbit_at_top,bg="white")
+    dep_Frame=Frame(department_sumbit_at_top, bg="white")
+
+    def listsortx(list):
+        list.sort(key=lambda x: (x.fseats,x.department.name))
+
+    def lsfrm():
+        list_up = Label(list_Framex,bg="white",text ="Προτάσεις:",font=("Calibri", 24, "bold"))
+        list_left = Label(list_Framex, bg="white",font=("Calibri", 24, "bold")) 
+        application_list = Listbox (list_left,width = 20, bg="white",font=("Calibri", 15, "bold"))
+
+        scrollbary= Scrollbar(list_left, orient="vertical", command=application_list.yview)
+        scrollbarx= Scrollbar(list_left, orient="horizontal", command=application_list.xview)
+        application_list.configure(xscrollcommand=scrollbary.set,yscrollcommand=scrollbarx.set)
+        scrollbary.pack(side=RIGHT, fill=Y)
+        scrollbarx.pack(side=BOTTOM, fill=X)
+
+        list_Framex.pack(side=LEFT,fill='y')
+        list_up.pack(side = TOP)
+        list_left.pack(side=LEFT, fill=BOTH, expand=1)
+        application_list.pack(side=LEFT, fill=BOTH, expand=1)
+
+        listsortx(applicationsx)
+
+        for i in range(len(applicationsx)):
+            if applicationsx[i].fseats is "-":
+                item = str(applicationsx[i].department.name) + ": " + str(applicationsx[i].rseats)
+                application_list.insert(END, item )
+                application_list.itemconfig(END, {'bg':'yellow'})
+            else:
+                item = str(applicationsx[i].department.name) + ": " + str(applicationsx[i].fseats)
+                application_list.insert(END, item )
+                application_list.itemconfig(END, {'bg':'green'})
+            
+
+        def onselectx(evt):
+            global dep_Frame
+            global curApplicationx
+            print(application_list.curselection()[0])
+            curApplicationx = applicationsx[application_list.curselection()[0]]
+            dep_Frame.destroy()
+            dep_Frame=Frame(department_sumbit_at_top, bg="white")
+            depfrm()
+            
+        application_list.bind('<<ListboxSelect>>', onselectx)
+    lsfrm()
+
+    def sinput(seats):
+        global curApplicationx
+        global list_Framex
+        global dep_Frame
+        
+        curApplicationx.fseats = seats
+        list_Framex.destroy()
+        list_Framex=Frame(department_sumbit_at_top,bg="white")
+        dep_Frame.destroy()
+        dep_Frame=Frame(department_sumbit_at_top, bg="white")
+        lsfrm()
+        depfrm()
+
+    def depfrm():
+        label_all = Label(dep_Frame, bg="floral white")
+
+        label_up = Label(label_all, bg="floral white")
+
+        label_head = Label(label_up, text=curApplicationx.department.name,  bg="floral white",font=("Times New Roman (Times)", 25, "bold"),fg="dodger blue")
+        label_pos = Label(label_up, bg="floral white")
+        
+        label_req = Label(label_pos,bg = "floral white")
+        label_req_tex = Label(label_req,text = "Προτεινόμενες θέσεις: "+str(curApplicationx.rseats),font=("Times New Roman (Times)", 18, "bold"),fg="black",bg="floral white")
+        label_final = Label(label_pos, bg = "floral white")
+        label_finseat = Label(label_final,text = "Τελικές Θέσεις: ",font=("Times New Roman (Times)", 18, "bold"),fg="black",bg="floral white")
+        label_finseatin = Entry(label_final, bg="WHITE", fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+        label_finseatin.insert(0,curApplicationx.fseats)
+        button = Button(label_final, text="Καταχώρηση", command=lambda: sinput(label_finseatin.get()), bg="green3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+
+        label_bottom = Label(label_all,  bg="floral white",font=("Times New Roman (Times)", 25, "bold"))
+        
+        label_text_resup = Label(label_bottom, bg="floral white")
+        label_text_res = Label(label_text_resup,text = "Αιτιολογία:",font=("Times New Roman (Times)", 18, "bold"),fg="black",bg="floral white")
+
+        label_reasoning = Text(label_bottom, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        label_reasoning.insert(END, curApplicationx.reasoning)
+        label_reasoning.config(state=DISABLED)
+
+
+        dep_Frame.pack(side = LEFT,fill=BOTH,expand =1)
+
+        label_all.pack(side = TOP, fill = BOTH, expand =1)
+        
+        label_up.pack(side = TOP,fill = 'x')
+        label_bottom.pack(side = BOTTOM)
+
+        label_head.pack(side = TOP)
+        label_pos.pack(side = LEFT,fill = 'x')
+
+        label_req.pack(side = TOP,fill = 'x')
+        label_req_tex.pack(side = LEFT)
+        label_final.pack(side = TOP)
+        label_finseat.pack(side = LEFT)
+        label_finseatin.pack(side = LEFT)
+        button.pack(side = LEFT)
+
+        label_text_resup.pack(side=TOP,fill='x')
+        label_text_res.pack(side = LEFT)
+
+        label_reasoning.pack(side=TOP,fill='x',pady="10px")
+    depfrm()
 
 
     department_date_lbl = Label(department_sumbit_at_mid, bg="floral white")
@@ -527,9 +936,10 @@ def main():
     department_date_3 = Label(department_date_lbl, bg="floral white")
     department_date_space1 = Label(department_date_lbl, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     department_date_space2 = Label(department_date_lbl, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-
+    department_sumbit_at_bottom = Label(department_date_lbl, bg="floral white")
+    
     buttton_accept_date = Button(department_sumbit_at_bottom, text="Αποδοχή", command=lambda: accept_date(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_department = Button(department_sumbit_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    #buttton_back_to_department = Button(department_sumbit_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def accept_date():
@@ -559,11 +969,12 @@ def main():
     year_choice = OptionMenu(department_date_3, year_val, *year_options)
     year_choice.config(bg="snow")
 
+
+
     department_sumbit.pack(side=TOP,expand=1,fill=BOTH)
-    department_sumbit_a_top.pack(side=TOP,fill=BOTH, expand=1)
+    department_sumbit_at_mid.pack(side=TOP)   
+    
     department_sumbit_at_top.pack(side=TOP)
-    department_sumbit_at_mid.pack(side=TOP)
-    department_sumbit_at_bottom.pack(side=TOP)
     
     department_date_lbl.pack(side=TOP)
     department_date_0.pack(side=LEFT)
@@ -575,9 +986,10 @@ def main():
     date_choice.pack(side=LEFT)
     month_choice.pack(side=LEFT)
     year_choice.pack(side=LEFT)
+    department_sumbit_at_bottom.pack(side=LEFT)
 
     buttton_accept_date.pack(side=RIGHT,padx=25)
-    buttton_back_to_department.pack(side=RIGHT)
+    #buttton_back_to_department.pack(side=RIGHT)
 
 
 
@@ -688,4 +1100,3 @@ def main():
     main_window.mainloop()
 
 main()
-
