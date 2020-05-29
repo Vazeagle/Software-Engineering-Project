@@ -177,7 +177,7 @@ applicationsx.append(Seatsapp(department,seats,"-",reasoning))
 
 curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
 
-board = Board("12/6/2002")
+board = Board("12/6/2002","")
 
 #endregion
 
@@ -567,23 +567,7 @@ def main():
 
     ############################# SINARTISI############
 
-    def browse_list():  #filedialog documentation  για λεπτομερειες 
-    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
-        global folder_path_list
-        filename_form = filedialog.askopenfilename()
-        file_type2=filename_form.split(".")
-        if(file_type2[-1]=="xlsx" ): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
-            folder_path_list.set(filename_form)
-            msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
-            if msg_confirmation == 'yes':
-                messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!')
-                raiseNdrop_frame(Panhellenic_Frame,previous_frame) 
-            else:
-                browse_list()
-
-        else:
-            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
-            filename_ID=""
+    
 
 
 
@@ -627,7 +611,7 @@ def main():
         listsortx(applicationsx)
 
         for i in range(len(applicationsx)):
-            if applicationsx[i].fseats is "-":
+            if applicationsx[i].fseats == "-":
                 item = str(applicationsx[i].department.name) + ": " + str(applicationsx[i].rseats)
                 application_list.insert(END, item )
                 application_list.itemconfig(END, {'bg':'yellow'})
@@ -894,7 +878,7 @@ def main():
     btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
     btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
     btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
     
 
@@ -945,26 +929,62 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
-    label_graderslist_all= Label(graderslist_frame,bg="floral white")
-    label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
-    label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
-    label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
-    
+    def openls(event):
+        os.startfile(board.list)
+    def listMk(): 
+        global graderslist_frame   
+        label_graderslist_all= Label(graderslist_frame,bg="floral white")
+        label_graderslist_a_top = Label(label_graderslist_all, bg="floral white")
+        label_graderslist_at_top = Label(label_graderslist_a_top, bg="floral white", text=" Υποβολή Λίστας Βαθμολογητών ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+        label_graderslist_file = Label(label_graderslist_a_top,bg="floral white")
+        label_graderslist_file_text = Label(label_graderslist_file, bg="floral white", text="Αρχείο",font=("Times New Roman (Times)", 20, "bold"),fg="black")
+        label_graderslist_file_file =  Label(label_graderslist_file,width=40, text=board.list,  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
+        label_graderslist_file_file.bind("<Button-1>", lambda e:openls(e))
 
-    btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"))
-    button_return  = Button(label_graderslist_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        label_graderslist_at_bottom = Label(label_graderslist_a_top, bg="floral white")
+        label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
+        
+
+        btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"))
+        button_return  = Button(label_graderslist_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
 
-    
-    # label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
-    # label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    # label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
-    # label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    # label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
-    # btn2_return_program.pack(side=RIGHT)
-    # btn3_search_list.pack(side=TOP)
-    # button_return.pack(side=RIGHT)
+        
+        label_graderslist_all.pack(side=TOP,fill=BOTH,expand=1)
+        label_graderslist_a_top.pack(side=TOP,fill=BOTH, expand=1)
+        label_graderslist_at_top.pack(side=TOP, fill=BOTH, expand=1)
+        label_graderslist_file.pack(side=TOP, fill=BOTH, expand=1,pady = 20)
+        label_graderslist_file_text.pack(side = LEFT)
+        label_graderslist_file_file.pack(side = LEFT,fill = X)
+        label_graderslist_at_bottom.pack(side=TOP, fill=BOTH, expand=1, pady=100)
+        label_graderslist_a_bottom.pack(side=BOTTOM,fill=X, expand=0, padx=100)
+        #btn2_return_program.pack(side=RIGHT)
+        btn3_search_list.pack(side=TOP)
+        button_return.pack(side=RIGHT)
+    listMk()
+    def browse_list():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
+        global folder_path_list
+        global graderslist_frame
+        filename_form = filedialog.askopenfilename()
+        file_type2=filename_form.split(".")
+        if(file_type2[-1]=="xls" ): #αν το τελευταιο στοιχειο της λιστας είναι το string xls
+            folder_path_list.set(filename_form)
+            msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
+            if msg_confirmation == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!')
+                board.list = filename_form
+                graderslist_frame.destroy()
+                graderslist_frame=Frame(all_Frame, bg="floral white") 
+                listMk()
+                raiseNdrop_frame(Panhellenic_Frame,previous_frame) 
+            else:
+                browse_list()
+
+        else:
+            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου xls που να περιέχει τα στοιχεία της λίστας σας', icon='warning')
+            filename_ID=""
+
 
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()

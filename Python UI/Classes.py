@@ -46,5 +46,6 @@ class Seatsapp:
         self.reasoning = reasoning
 
 class Board:
-    def __init__(self, seatsDue):
+    def __init__(self, seatsDue,list):
         self.seatsDue = seatsDue
+        self.list = list
