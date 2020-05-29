@@ -315,11 +315,11 @@ def main():
         print("all school exams calendar events are deleted")
 
     #add 4 buttons
-    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
-    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame),bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="floral white",font=("Times New Roman (Times)", 13, "bold"),height=1 ,width=20)
     
 
     #ορισμος ημερολογιου
@@ -607,10 +607,10 @@ def main():
         print("school program deleted")
 
     #add 4 buttons
-    btn_add_cal = Button(school_program_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_program(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_delete_cal = Button(school_program_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_program(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_confirm_cal = Button(school_program_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_program(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_return_cal = Button(school_program_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
+    btn_add_cal = Button(school_program_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_program(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_delete_cal = Button(school_program_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_program(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_confirm_cal = Button(school_program_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_program(), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_return_cal = Button(school_program_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(school_Dates_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     
 
     #configurations για εβδομαδιαιο προγραμμα
@@ -857,12 +857,12 @@ def main():
         print("registry confirmed")
 
     #ORISMOS BTNS
-    btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red3",height = 1, width = 12,font=("Calibri", 16, "bold"))
-    btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=DISABLED, command=lambda: confirm_registry(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_list_name = Button(std_reg_create_abt_top, text="Δημιουργία Λίστας", command=lambda: confirm_list_name(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=DISABLED, command=lambda: delete_list(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_add = Button(std_reg_create_ab_top, text="Προσθήκη Εγγραφής", state=DISABLED, command=lambda: add_user(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=DISABLED, command=lambda: delete_user(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=DISABLED, command=lambda: confirm_registry(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_list_name = Button(std_reg_create_abt_top, text="Δημιουργία Λίστας", command=lambda: confirm_list_name(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=DISABLED, command=lambda: delete_list(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_add = Button(std_reg_create_ab_top, text="Προσθήκη Εγγραφής", state=DISABLED, command=lambda: add_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
+    btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=DISABLED, command=lambda: delete_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
 
     #orismos listbox sos sos edw 8elei tkinterctrl
     user_list  = Listbox (std_reg_create_abm_bot, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='single')
@@ -952,7 +952,7 @@ def main():
     student_reg_fin_all = Label(school_std_reg_fin_Frame, bg="floral white")
     student_reg_fin_a_bot = Label(student_reg_fin_all, bg="floral white")
     
-    btn_reg_spectate = Button(student_reg_fin_a_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    btn_reg_spectate = Button(student_reg_fin_a_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
     #packs
 
