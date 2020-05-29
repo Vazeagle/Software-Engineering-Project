@@ -44,8 +44,18 @@ class Seatsapp:
         self.rseats = rseats
         self.fseats = fseats
         self.reasoning = reasoning
-
 class Board:
-    def __init__(self, seatsDue,list):
+    def __init__(self, seatsDue,list,examCal):
         self.seatsDue = seatsDue
         self.list = list
+        self.examCal = examCal
+
+class Cal:
+    def __init__(self,events):
+        self.events = events
+
+class calEvent:
+    def __init__(self,date,reminder,message):
+        self.date = date
+        self.reminder = reminder
+        self.message = message

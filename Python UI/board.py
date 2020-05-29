@@ -177,7 +177,10 @@ applicationsx.append(Seatsapp(department,seats,"-",reasoning))
 
 curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
 
-board = Board("12/6/2002","")
+events = [
+    calEvent("12/05/2020","Pliz work","Pliiiiz")
+]
+board = Board("12/6/2002","",Cal(events))
 
 #endregion
 
@@ -839,19 +842,25 @@ def main():
         print("events:",event_ids)
         print("school exams confirmed")
 
+
     def add_school_exams():
         message = school_exams_ammmt_right.get("1.0",'end-1c')
         reminder = school_exams_ammmm_right.get("1.0",'end-1c')
         date = school_exams_ammmb_right.get("1.0",'end-1c')
+
         flag=0
+        event = calEvent(None,None,None)
         if (date!=""):
+            event.date = date
             date_time_obj = datetime.strptime(date, '%d/%m/%Y')
         if(date==""):
             messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε μια ημερομηνία για το μήνυμα ή την υπενθύμιση που θέλετε να προσθέσετε!',icon='warning')
         else:
             if(message!=""):
+                event.message = message
                 cal_exams.calevent_create(date_time_obj, message, 'message')
             if(reminder!=""):
+                event.reminder = reminder
                 cal_exams.calevent_create(date_time_obj, reminder, 'reminder')
             if(message=="" and reminder==""):
                 flag=1
@@ -860,18 +869,21 @@ def main():
         school_exams_ammmm_right.delete('1.0', END)
         if(flag==0):
             school_exams_ammmb_right.delete('1.0', END)
-        print("school exams added")
+        board.examCal.events.append(event)
 
     def delete_school_exams():
         #cal_exams.selection_clear(cur_exam_date.get())
         date_rem = datetime.strptime(cur_exam_date.get(), '%d/%m/%Y')
         cal_exams.calevent_remove(date=date_rem)
-        #print("deleted:",cur_exam_date.get())
+        for i in range(len(board.examCal.events)):
+            if board.examCal.events[i].date == cur_exam_date.get():
+                del board.examCal.events[i]
         print("school exams selected event deleted")
         cal_exams.selection_clear()
 
     def delete_school_exams_calendar():
         cal_exams.calevent_remove('all')
+        board.examCal.events = []
         print("all school exams calendar events are deleted")
 
     #add 4 buttons
@@ -885,7 +897,13 @@ def main():
     #ορισμος ημερολογιου
     cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
     cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
-
+    
+    for i in range(len(board.examCal.events)):
+        event = board.examCal.events[i]
+        date_time_obj = datetime.strptime(event.date, '%d/%m/%Y')
+        cal_exams.calevent_create(date_time_obj, event.message, 'message')
+        cal_exams.calevent_create(date_time_obj, event.reminder, 'reminder')
+    
     #Εμφάμιση στοιχείων packs
     school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
     school_exams_a_top.pack(side=TOP, fill=X)#title label
