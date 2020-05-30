@@ -14,10 +14,21 @@ class Orientation:
         self.lesson = lesson
 
 class Department:
-    def __init__(self, name, orientations):
+    def __init__(self, name, orientations, university, city, site, base):
         self.name = name
         self.orientations = orientations
-        
+        self.university = university
+        self.city = city
+        self.site = site
+        self.base = base
+
+class Site:
+    def __init__(self, coverImage, logoImage, link, description):
+        self.coverImage = coverImage
+        self.logoImage = logoImage
+        self.link = link
+        self.description = description
+
 class Student:
     def __init__(self,id, name, direction, orientations, school, sp_lessons, departments):
         self.name = name

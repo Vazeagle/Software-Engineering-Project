@@ -71,13 +71,44 @@ med_sciences = Orientation("Επιστήμες Υγείας",positive,biology)
 orientations = [med_sciences,pos_sciences]
 
 departments =[]
-departments.append(Department("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ",[pos_sciences]))
-departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
-departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
-departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
-departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
-departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
-departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
+site = Site(
+    'ceid_out.png',
+    'ceid.png',
+    'www.ceid.upatras.gr',
+    'Poli kalo tmima pragmatika'
+)
+department = Department(
+    "Τμήμα Μηχανικών Η\Υ και πληροφορικής",
+    [pos_sciences],
+    "Πανεπιστήμιο Πατρών",
+    "Πάτρα",
+    site,
+    14012
+)
+departments.append(department)
+
+site = Site(
+    '',
+    '',
+    '',
+    ''
+)
+department = Department(
+    "Χημικό",
+    [pos_sciences,med_sciences],
+    "ΕΚΠΑ",
+    "Αθήνα",
+    site,
+    17523
+)
+departments.append(department)
+
+#departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
+# departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
+# departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
+# departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
+# departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
+# departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
 
 students = []
 student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , School("1ο Λύκειο Καισαριανής"), [],[])
@@ -175,7 +206,7 @@ seats = 50
 reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
 applicationsx.append(Seatsapp(department,seats,"-",reasoning,"Old.pdf"))
 
-curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","","")
+curApplicationx = Seatsapp(Department("Τμήμα",None,None,None,None,None),"-","-","","")
 
 events = [
     calEvent("12/05/2020","Pliz work","Pliiiiz")
