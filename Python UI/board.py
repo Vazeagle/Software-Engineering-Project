@@ -168,14 +168,14 @@ applicationsx = []
 department = departments[0]
 seats = 100
 reasoning = "ANNNNNNNNNNNNNNASTASIA SBINGKOU"
-applicationsx.append(Seatsapp(department,seats,"-",reasoning))
+applicationsx.append(Seatsapp(department,seats,"-",reasoning,"Tubby.pdf"))
 
 department = departments[1]
 seats = 50
 reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
-applicationsx.append(Seatsapp(department,seats,"-",reasoning))
+applicationsx.append(Seatsapp(department,seats,"-",reasoning,"Old.pdf"))
 
-curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","")
+curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","","")
 
 events = [
     calEvent("12/05/2020","Pliz work","Pliiiiz")
@@ -322,7 +322,7 @@ def accfrm():
         os.startfile("Tubby.pdf")
 
     def openid(event):
-        os.startfile("vod.pdf")
+        os.startfile("Old.pdf")
 
     label_Statement1_all = Label(accept_Frame, bg="floral white")
     label_Statement1_all_top = Label(label_Statement1_all, text="Δήλωση Συμμετοχής",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
@@ -665,6 +665,14 @@ def main():
         label_finseatin.insert(0,curApplicationx.fseats)
         button = Button(label_final, text="Καταχώρηση", command=lambda: sinput(label_finseatin.get()), bg="green3",font=("Calibri", 14, "bold"),height=1 ,width=12)
 
+        label_application_file  = Label(label_pos, bg = "floral white")
+        label_application_file1 = Label(label_application_file, text="Αρχείο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        label_application_file2 =  Label(label_application_file,text = curApplicationx.file, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
+        label_application_file2.bind("<Button-1>", lambda e:open(e))
+        
+        def open(event):
+            os.startfile(curApplicationx.file)
+
         label_bottom = Label(label_all,  bg="floral white",font=("Times New Roman (Times)", 25, "bold"))
         
         label_text_resup = Label(label_bottom, bg="floral white")
@@ -690,6 +698,11 @@ def main():
         label_final.pack(side = TOP)
         label_finseat.pack(side = LEFT)
         label_finseatin.pack(side = LEFT)
+
+        label_application_file.pack(side=TOP)
+        label_application_file1.pack(side=LEFT)
+        label_application_file2.pack(side=LEFT)
+
         button.pack(side = LEFT)
 
         label_text_resup.pack(side=TOP,fill='x')

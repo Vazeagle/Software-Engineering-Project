@@ -1,4 +1,5 @@
 import os, sys
+from datetime import date
 from Classes import *
 from Classes import Lesson,Orientation,Direction,Department,Student,School
 from tkinter import *
@@ -15,6 +16,139 @@ none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
+
+#region Classes
+physics = Lesson("Φυσική")
+chemistry = Lesson("Χημεία")
+language = Lesson("Νεοελληνική Γλώσσα και Λογοτεχνία")
+math_dir = Lesson("Μαθηματικά Κατεύθυνσης")
+biology = Lesson("Βιολογία")
+history = Lesson("Ιστορία")
+ancient = Lesson("Αρχαία Ελλήνικα")
+
+positive = Direction("Θετική",[physics,chemistry,language])
+theoritical = Direction("Θεωρητική",[history,ancient,language])
+
+pos_sciences = Orientation("Θετικών Επιστημών",positive,math_dir)
+med_sciences = Orientation("Επιστήμες Υγείας",positive,biology)
+
+orientations = [med_sciences,pos_sciences]
+
+departments =[]
+departments.append(Department("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ",[pos_sciences]))
+departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
+departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
+departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
+departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
+departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
+departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
+
+students = []
+student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , School("1ο Λύκειο Καισαριανής"), [],[])
+students.append(student)
+student = Student(2,"ΖΗΣΗΣ-ΣΤΥΛΙΑΝΟΣ ΤΡΑΜΠΑΡΗΣ", positive, [pos_sciences] , School("12ο Λύκειο Πάτρων"), [],[])
+students.append(student)
+student = Student(3,"ΠΑΝΑΓΙΩΤΗΣ ΣΤΑΥΡΟΠΟΥΛΟΣ", positive, [pos_sciences] , School("2ο Λύκειο Πάτρων"), [],[])
+students.append(student)
+student = Student(4,"ΦΩΤΕΙΝΉ ΣΤΕΡΓΙΟΠΟΎΛΟΥ", positive, [pos_sciences] , School("3ο Λύκειο Φαρσάλων"), [],[])
+students.append(student)
+student = Student(5,"ΑΝΑΣΑΣΙΑ ΣΒΙΓΓΟΥ", positive, [pos_sciences] , School("1ο Λύκειο Κλειτορίας"), [],[])
+students.append(student)
+student = 0
+
+applications = []
+
+pen = "Pending"
+rej = "Rejected"
+appr = "Sapproved"
+
+data =	{
+    "name"       :  "Στυλιανός",
+    "surname"    :  "Βαζαίος",
+    "fname"      :  "Μπάμπης",
+    "fsurname"   :  "Βαζαίος",
+    "mname"      :  "Καλιοπη",
+    "msurname"   :  "Βαζαιου",
+    "bday"       :  "01/04/1998"
+}
+applications.append(Application(students[0],data,pen))
+
+data =	{
+    "name"       :  "Ζήσης-Στυλιανός",
+    "surname"    :  "Τράμπαρης",
+    "fname"      :  "Αναστάσιος",
+    "fsurname"   :  "Τράμπαρης",
+    "mname"      :  "Αναστασία",
+    "msurname"   :  "Μαγεράκη",
+    "bday"       :  "06/12/1998"
+}
+applications.append(Application(students[1],data,appr))
+
+data =	{
+    "name"       :  "Πάνος",
+    "surname"    :  "Σταυρόπουλος",
+    "fname"      :  "Θεοδωρος",
+    "fsurname"   :  "Σταυρόπουλος",
+    "mname"      :  "Αγγελική",
+    "msurname"   :  "Καλαποδη",
+    "bday"       :  "14/06/1998"
+}
+applications.append(Application(students[2],data,pen))
+
+data =	{
+    "name"       :  "Φωτείνη",
+    "surname"    :  "Στεργιοπούλου",
+    "fname"      :  "Βασίλης",
+    "fsurname"   :  "Στεργιόπουλος",
+    "mname"      :  "Μαρία",
+    "msurname"   :  "Παπα",
+    "bday"       :  "03/09/1998"
+}
+applications.append(Application(students[3],data,rej))
+
+data =	{
+    "name"       :  "Ανναστασία",
+    "surname"    :  "Σβίγκου",
+    "fname"      :  "Μήτσος",
+    "fsurname"   :  "Σβίγκος",
+    "mname"      :  "Ιωάννα",
+    "msurname"   :  "Μητσοτάκη",
+    "bday"       :  "22/02/1896"
+}
+applications.append(Application(students[4],data,pen))
+
+data =	{
+    "name"       :  "",
+    "surname"    :  "",
+    "fname"      :  "",
+    "fsurname"   :  "",
+    "mname"      :  "",
+    "msurname"   :  "",
+    "bday"       :  ""
+}
+appState = ""
+
+applicationsx = []
+department = departments[0]
+seats = 100
+reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
+file = "Old.pdf"
+applicationsx.append(Seatsapp(department,seats,"-",reasoning,file))
+
+department = departments[1]
+seats = 50
+reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
+file = "Tubby.pdf"
+applicationsx.append(Seatsapp(department,seats,"-",reasoning,file))
+
+curApplicationx = Seatsapp(Department("Τμήμα",None),"-","-","","")
+
+events = [
+    calEvent("12/05/2020","Pliz work","Pliiiiz")
+]
+board = Board("12/6/2020","",Cal(events))
+curDepartment = departments[3]
+#endregion
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -170,7 +304,7 @@ def main():
     #label_ruu_up = Label(label_right, text="Καλώς ήρθατε!\n", borderwidth=0, highlightthickness=0,bg="floral white", font=("Calibri", 24, "bold"))
 
     butttonNext0 = Button(label_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    butttonNext1 = Button(label_l_down, text="Θέσεις Επιτυχόντων", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonNext1 = Button(label_l_down, text="Θέσεις Επιτυχόντων", command=lambda: raiseNdrop_frame(capacity_submit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext2 = Button(label_l_down, text="Σελίδα Τμήματος", command=lambda: raiseNdrop_frame(page_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext3 = Button(label_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     butttonNext4 = Button(label_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
@@ -237,59 +371,10 @@ def main():
 
     ############################# SINARTISI############
 
-    def browse_files():  #filedialog documentation  για λεπτομερειες 
-    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
-        global folder_path_file
-        filename_form = filedialog.askopenfilename()
-        file_type2=filename_form.split(".")
-        if(file_type2[-1]=="pdf" ): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
-            folder_path_file.set(filename_form)
-            msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
-            if msg_confirmation == 'yes':
-                messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!') 
-            else:
-                browse_files()
-
-        else:
-            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της δήλωσης σας', icon='warning')
-            filename_ID=""
-
-
     
 
 
-    # -------------------------------First Frame END, Start of ΘΕΣΕΙΣ ΕΠΙΤΥΧΟΝΤΩΝ-----------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-    #---------------------------------------------------------------------------------------------------
-
-
-    capacity_all=Label(capacity_Frame,bg="floral white")
-
-    capacity_all_top = Label(capacity_all, bg="floral white")
-    capacity_at_top = Label(capacity_all_top, text="Θέσεις Επιτυχόντων",  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    capacity_all_mid =  Label(capacity_all, bg="floral white")
-    capacity_am_top = Label(capacity_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    capacity_am_bot = Label(capacity_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     
-    btn_capacity_editdate = Button(capacity_am_bot, text="Υποβολή Θέσεων", command=lambda: raiseNdrop_frame(capacity_submit_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
-    btn_capacity_history = Button(capacity_am_bot, text="Τελικά Αποτελέσματα", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-
-
-    capacity_all.pack(side = TOP, fill=BOTH, expand=1)
-    capacity_all_top.pack(side = TOP, fill=X, ipady=50)
-    capacity_at_top.pack(side = TOP)
-    capacity_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=50)
-    capacity_am_top.pack(side = TOP)
-    capacity_am_bot.pack(side = TOP, fill=BOTH, expand=1)
-
-    btn_capacity_editdate.pack(side = TOP,pady=80)
-    btn_capacity_history.pack(side = TOP,pady=100)
-
-
 
     # -------------------------------ΘΕΣΕΙΣ ΕΠΙΤΥΧΟΝΤΩΝ END, Start of ΥΠΟΒΟΛΗ---------------------------
     #---------------------------------------------------------------------------------------------------
@@ -299,38 +384,61 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
+    def capMk():
+        global capacity_submit_Frame
+        capacity_submit_all= Label(capacity_submit_Frame, bg="floral white")
+        capacity_submit_a_top = Label(capacity_submit_all, bg="floral white")
+        capacity_submit_at_top = Label(capacity_submit_a_top, bg="floral white", text="Υποβολή Θέσεων",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+        capacity_submit_all_mid =  Label(capacity_submit_all, bg="floral white")
+        capacity_submit_am_top = Label(capacity_submit_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
+        capacity_submit_am_bot = Label(capacity_submit_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+        
 
-    capacity_submit_all= Label(capacity_submit_Frame, bg="floral white")
-    capacity_submit_a_top = Label(capacity_submit_all, bg="floral white")
-    capacity_submit_at_top = Label(capacity_submit_a_top, bg="floral white", text="Υποβολή Θέσεων",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    capacity_submit_all_mid =  Label(capacity_submit_all, bg="floral white")
-    capacity_submit_am_top = Label(capacity_submit_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="black")
-    capacity_submit_am_bot = Label(capacity_submit_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
+        capacity_date = Label(capacity_submit_am_bot, text="Ημερομηνία Υποβολής: "+board.seatsDue,  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        capacity_date_check = Label(capacity_submit_am_bot, text="Βάσει ημερομηνίας, η υποβολή είναι:",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        
+        if datetime.strptime(board.seatsDue, '%d/%m/%Y')>date.today():
+            due = "ΕΦΙΚΤΗ"
+        else:
+            due = "ΑΝΕΦΙΚΤΗ"
+
+        capacity_date_check1 = Label(capacity_submit_am_bot, text = due, borderwidth=1, highlightthickness=1, relief="groove",bg="floral white",font=("Times New Roman (Times)", 14))
+        capacity_submit_check = Label(capacity_submit_am_bot, text="Στο σύστημα υπάρχει αίτηση;",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+    
+        found = False 
+        for i in range(len(applicationsx)):
+            if curDepartment == applicationsx[i].department:
+                exists = "NAI"
+                butOn = "Επεξεργασία Αίτησης"
+                curApplicationx = applicationsx[i]
+                found = True
+                break
+        if not found:
+            exists = "OXI"
+            butOn = "Νεα Αίτηση"
+            applicationsx.append(Seatsapp(curDepartment,"","","",""))
+            curApplicationx = applicationsx[-1]
+
+            
+        capacity_submit_check1 = Label(capacity_submit_am_bot, text=exists, borderwidth=1, highlightthickness=1, relief="groove",bg="floral white",font=("Times New Roman (Times)", 14))
+        btn_new_submission = Button(capacity_submit_am_bot, text=butOn, command=lambda: raiseNdrop_frame(department_application_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
     
 
-    capacity_date = Label(capacity_submit_am_bot, text="Ημερομηνία Υποβολής: 15/07/2020",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    capacity_date_check = Label(capacity_submit_am_bot, text="Βάσει ημερομηνίας, η υποβολή είναι:",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    capacity_date_check1 = Label(capacity_submit_am_bot, text="ΕΦΙΚΤΗ", borderwidth=1, highlightthickness=1, relief="groove",bg="green3",font=("Times New Roman (Times)", 14))
-    capacity_submit_check = Label(capacity_submit_am_bot, text="Στο σύστημα υπάρχει αίτηση;",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    capacity_submit_check1 = Label(capacity_submit_am_bot, text="ΟΧΙ", borderwidth=1, highlightthickness=1, relief="groove",bg="red",font=("Times New Roman (Times)", 14))
-    btn_new_submission = Button(capacity_submit_am_bot, text="Νεα Αίτηση", command=lambda: raiseNdrop_frame(department_application_Frame,previous_frame), bg="gray26",height = 2, width = 25,font=("Calibri", 14, "bold"))
-  
-
-    capacity_submit_all.pack(side=TOP,expand=1,fill=BOTH)
-    capacity_submit_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    capacity_submit_at_top.pack(side=TOP)
-    capacity_submit_all_mid.pack(side = TOP, fill=BOTH, expand=1, pady=25)
-    capacity_submit_am_top.pack(side = TOP)
-    capacity_submit_am_bot.pack(side = LEFT, fill=BOTH, expand=1)
-    
-    capacity_date.pack(side=TOP)
-    capacity_date_check.pack(side=TOP)
-    capacity_date_check1.pack(side=TOP)
-    capacity_submit_check.pack(side=TOP)
-    capacity_submit_check1.pack(side=TOP)
-    
-    btn_new_submission.pack(side=TOP)
-
+        capacity_submit_all.pack(side=TOP,expand=1,fill=BOTH)
+        capacity_submit_a_top.pack(side=TOP)
+        capacity_submit_at_top.pack(side=TOP)
+        capacity_submit_all_mid.pack(side = TOP, fill=BOTH, expand=1)
+        capacity_submit_am_top.pack(side = TOP)
+        capacity_submit_am_bot.pack(side = LEFT, fill=BOTH, expand=1)
+        
+        capacity_date.pack(side=TOP)
+        capacity_date_check.pack(side=TOP)
+        capacity_date_check1.pack(side=TOP)
+        capacity_submit_check.pack(side=TOP)
+        capacity_submit_check1.pack(side=TOP)
+        
+        btn_new_submission.pack(side=TOP)
+    capMk()
 
 
     # -------------------------------ΥΠΟΒΟΛΗ END, Start of ΝΕΑ ΑΙΤΗΣΗ-----------------------------------
@@ -341,34 +449,84 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
 
-    label_department_application_all = Label(department_application_Frame, bg="floral white")
-    label_department_application_a_top = Label(label_department_application_all, bg="floral white")
-    label_department_application_top = Label(label_department_application_a_top, bg="floral white", text="Δήλωση Θέσεων ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
-    label_department_application_mid = Label(label_department_application_all, bg="floral white")
-    label_department_application_bottom = Label(label_department_application_all, bg="floral white")
+    def seatMk():
+        global department_application_Frame
+        label_department_application_all = Label(department_application_Frame, bg="floral white")
+        label_department_application_a_top = Label(label_department_application_all, bg="floral white")
+        label_department_application_top = Label(label_department_application_a_top, bg="floral white", text="Δήλωση Θέσεων ",font=("Times New Roman (Times)", 36, "bold"),fg="black")
+        label_department_application_mid = Label(label_department_application_all, bg="floral white")
+        label_department_application_bottom = Label(label_department_application_all, bg="floral white")
+        
+        label_application_number = Label(label_department_application_mid, bg="floral white")
+        label_application_number1 = Label(label_application_number, text="Υποβολή Αριθμού Θέσεων: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        info_number = Text(label_application_number,bg="WHITE", height=1, width=5, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+        info_number.insert('1.0', curApplicationx.rseats)
+
+        label_application_file = Label(label_department_application_mid, bg="floral white")
+        label_application_file1 = Label(label_application_file, text="Υποβολή Αρχείου: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        label_application_file2=  Label(label_application_file,text = curApplicationx.file, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
+        label_application_file2.bind("<Button-1>", lambda e:open(e))
+        buttton_browse_file = Button(label_application_file, text="Αναζήτηση", command=lambda:browse_files(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
     
-    label_application_number = Label(label_department_application_mid, bg="floral white")
-    label_application_number1 = Label(label_application_number, text="Υποβολή Αριθμού Θέσεων: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_number = Text(label_application_number, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+        def open(event):
+            os.startfile(curApplicationx.file)
 
-
-    label_application_file = Label(label_department_application_mid, bg="floral white")
-    label_application_file1 = Label(label_application_file, text="Υποβολή Αρχείου: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    label_application_file2=  Label(label_application_file, bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",textvariable=folder_path_file)
-    buttton_browse_file = Button(label_application_file, text="Αναζήτηση", command=lambda:browse_files(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
- 
-
-
-    label_application_comments = Label(label_department_application_mid, bg="floral white")
-    label_application_comments1 = Label(label_application_comments, text="Σχόλια: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
-    info_comments = Text(label_application_comments, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+        label_application_comments = Label(label_department_application_mid, bg="floral white")
+        label_application_comments1 = Label(label_application_comments, text="Αιτιολόγηση: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
+        info_comments = Text(label_application_comments, bg="WHITE", height=15, width=50, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+        info_comments.insert('1.0', curApplicationx.reasoning)
 
 
 
+        button_accept = Button(label_department_application_bottom, text="Αποδοχή", command=lambda: accept_cap(info_number,info_comments), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        btn_rtn = Button(label_department_application_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(capacity_submit_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        
+        label_department_application_all.pack(side=TOP,fill=BOTH, expand=1)
+        label_department_application_a_top.pack(side=TOP)
+        label_department_application_top.pack(side=TOP)
+        label_department_application_mid.pack(side=TOP, fill=BOTH, expand=1)
+        label_department_application_bottom.pack(side=TOP,fill=X, expand=0, padx=100)
 
-    button_accept = Button(label_department_application_bottom, text="Αποδοχή", command=lambda: accept_cap(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn_rtn = Button(label_department_application_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(capacity_Frame,previous_frame), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        label_application_number.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+        label_application_number1.pack(side=LEFT,padx=10)
+        info_number.pack(side=LEFT,padx=10)
+
+        label_application_file.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
+        label_application_file1.pack(side=LEFT,padx=10)
+        label_application_file2.pack(side=LEFT,padx=10)
+        buttton_browse_file.pack(side=LEFT,padx=10)
+
+        label_application_comments.pack(side=LEFT,pady=2,expand=1)
+        label_application_comments1.pack(side=TOP)
+        info_comments.pack(side=LEFT)
+
+        button_accept.pack(side=RIGHT)
+        btn_rtn.pack(side=RIGHT)
     
+    seatMk() 
+    
+    def browse_files():  #filedialog documentation  για λεπτομερειες 
+    # Allow user to select a file and store it in global variable folder_path_form  και ασφάλεια από λάθος αρχείο
+        global folder_path_file
+        global department_application_Frame
+        filename_form = filedialog.askopenfilename()
+        file_type2=filename_form.split(".")
+        if(file_type2[-1]=="pdf" ): #αν το τελευταιο στοιχειο της λιστας είναι το string pdf
+            folder_path_file.set(filename_form)
+            msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
+            if msg_confirmation == 'yes':
+                curApplicationx.file = filename_form
+                messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!') 
+                department_application_Frame.destroy()
+                department_application_Frame=Frame(all_Frame, bg="floral white") 
+                seatMk()
+                raiseNdrop_frame(department_application_Frame,previous_frame)
+            else:
+                browse_files()
+
+        else:
+            msg_error_form = messagebox.showerror('Πρόβλημα Αρχείου!', 'Παρακαλώ επιλέξτε ένα αρχείο τύπου pdf που να περιέχει τα στοιχεία της δήλωσης σας', icon='warning')
+            filename_ID=""   
     #####συναρτηση ελεγχου αριθμου#######################################
 
     def is_number(s):
@@ -384,7 +542,9 @@ def main():
    
 
 
-    def accept_cap():
+    def accept_cap(info_number,info_comments):
+        global department_application_Frame
+        global capacity_submit_Frame
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να αποδεχτείτε αυτή τη δήλωση;',icon='warning')
         if msg_confirmation== 'yes':
             std_number = info_number.get('1.0', 'end-1c')
@@ -394,47 +554,19 @@ def main():
 
             else:
                 messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση έγινε δεκτή με επιτυχία!')
-                std_number = info_number.get('1.0', 'end-1c')
-                std_comments = info_comments.get('1.0', 'end-1c')
-
-                info_number.config(state=DISABLED)#to be un editable
-                info_comments.config(state=DISABLED)#to be un editable
+                curApplicationx.rseats = info_number.get('1.0', 'end-1c')
+                curApplicationx.reasoning = info_comments.get('1.0', 'end-1c')
+                department_application_Frame.destroy()
+                department_application_Frame=Frame(all_Frame, bg="floral white") 
+                seatMk()
+                capacity_submit_Frame.destroy()
+                capacity_submit_Frame=Frame(all_Frame, bg="floral white")
+                capMk()
+                raiseNdrop_frame(capacity_submit_Frame,previous_frame)
+                
         else:
             messagebox.showinfo('Αποτυχία', 'Αποτυχία καταχώρησης δήλωσης!')
             
-
-    #pack()
-    
-    label_department_application_all.pack(side=TOP,fill=BOTH, expand=1)
-    label_department_application_a_top.pack(side=TOP,fill=BOTH, expand=1)
-    label_department_application_top.pack(side=TOP)
-    label_department_application_mid.pack(side=TOP, fill=BOTH, expand=1, pady=100)
-    label_department_application_bottom.pack(side=TOP,fill=X, expand=0, padx=100)
-
-
-
-    label_application_number.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    label_application_number1.pack(side=LEFT,padx=10)
-    info_number.pack(side=LEFT,padx=10)
-
-    label_application_file.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    label_application_file1.pack(side=LEFT,padx=10)
-    label_application_file2.pack(side=LEFT,padx=10)
-    buttton_browse_file.pack(side=LEFT,padx=10)
-
-
-    label_application_comments.pack(side=TOP,pady=2,expand=1,fill=X, padx=30)
-    label_application_comments1.pack(side=LEFT,padx=10)
-    info_comments.pack(side=LEFT,padx=10)
-
-
-
-    button_accept.pack(side=RIGHT)
-    btn_rtn.pack(side=RIGHT)
-
-
-
-
 
     # -------------------------------ΝΕΑ ΑΙΤΗΣΗ END, Start of ΣΕΛΙΔΑ ΤΜΗΜΑΤΟΣ---------------------------
     #---------------------------------------------------------------------------------------------------

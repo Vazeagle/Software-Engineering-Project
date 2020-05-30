@@ -39,11 +39,12 @@ class Application:
         self.data = data
 
 class Seatsapp:
-    def __init__(self,department,rseats,fseats,reasoning):
+    def __init__(self,department,rseats,fseats,reasoning,file):
         self.department = department
         self.rseats = rseats
         self.fseats = fseats
         self.reasoning = reasoning
+        self.file = file
 class Board:
     def __init__(self, seatsDue,list,examCal):
         self.seatsDue = seatsDue
