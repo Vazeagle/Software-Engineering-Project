@@ -12,7 +12,7 @@ import uuid
 import yagmail
 from TkTreectrl import *
 import TkTreectrl as treectrl
-
+import os
 
 
 #Initialisation
@@ -28,6 +28,8 @@ none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
+mydir=os.getcwd()
+memory_dir=None
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
 hour_1=['08:00-09:00','','','','','']#arxikopoihsh pinaka
 hour_2=['09:00-10:00','','','','','']
@@ -49,6 +51,23 @@ school_std_reg_create_Frame = Frame(school_Frame, bg="floral white")
 #school_std_reg_edit_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_fin_Frame = Frame(school_Frame, bg="floral white")
 #endregion
+
+def create_memory():    #function to create a folder that contains txts with memory
+    try:
+        if not os.path.exists('Memory'):
+            os.makedirs('Memory')
+            messagebox.showinfo('Προσοχή',"Ο φάκελος Memory\n")
+            memory_dir = mydir+"\Memory"
+        else:
+            messagebox.showinfo('Προσοχή'," Folder Memory already exists\n")
+            print(mydir)
+            memory_dir = mydir+"\Memory"
+    except OSError:
+        messagebox.showinfo('Προσοχή',"Error creating directory "+(mydir)+"\Memory")
+#decrypt_save_directory = (mydir + "\\Decrypted Documents" + "\\" + "Decryption_text_string_" + date_time + ".txt")
+#decrypt_file = open(decrypt_save_directory, "w")
+#Decrypt_cipher_result_string = ''.join(Decrypt_cipher_result)  # make bit sequense as one string 
+
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -746,11 +765,11 @@ def main():
     std_reg_create_abtltl_l5 = Label(std_reg_create_abt_top5, text='(*Υποχρεωτικά πεδία)',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 12, "bold"))
     
     #TEXTS AS INPUTS!!!!!!!!!!!
-    std_reg_create_abtltl_r = Text(std_reg_create_abt_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r1 = Text(std_reg_create_abt_top1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r2 = Text(std_reg_create_abt_top2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r3 = Text(std_reg_create_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r4 = Text(std_reg_create_abt_top4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    std_reg_create_abtltl_r = Text(std_reg_create_abt_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    std_reg_create_abtltl_r1 = Text(std_reg_create_abt_top1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    std_reg_create_abtltl_r2 = Text(std_reg_create_abt_top2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    std_reg_create_abtltl_r3 = Text(std_reg_create_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    std_reg_create_abtltl_r4 = Text(std_reg_create_abt_top4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     std_reg_create_abtltl_r1.config(state=DISABLED)
     std_reg_create_abtltl_r2.config(state=DISABLED)
     std_reg_create_abtltl_r3.config(state=DISABLED)
@@ -758,14 +777,15 @@ def main():
 
     #Δήλωση textvariables sos πριν το καλεσμα τους
     register_list = StringVar()
-    register_list.set("")
+    register_list.set("\t\t\ts")
+    #std_reg_create_abmt_right
 
     std_reg_create_ab_mid = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include announcements
     std_reg_create_abm_top = Label(std_reg_create_ab_mid, borderwidth=1, highlightthickness=0, bg="floral white")
-    std_reg_create_abmt_left = Label(std_reg_create_abm_top, text='Λίστα Εγγραφών: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
-    std_reg_create_abmt_right = Label(std_reg_create_abm_top,textvariable=register_list ,borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
-    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="floral white")#announcement box
-
+    std_reg_create_abmt_left = Label(std_reg_create_abm_top, text='Λίστα Εγγραφών: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 16, "bold"))#announcement title
+    std_reg_create_abmt_right = Text(std_reg_create_abm_top, borderwidth=1, highlightthickness=0, height=1, width=40, bg="floral white",font=("Times New Roman (Times)", 16, "bold"))#announcement title
+    std_reg_create_abmt_right.config(state=DISABLED)
+    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="floral white")#Listbox
     std_reg_create_ab_bot = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN
     
     
@@ -775,7 +795,10 @@ def main():
         list_name = std_reg_create_abtltl_r.get('1.0', 'end-1c')
         if (list_name!=""):#Αν δεν ειναι κενο το input
             std_reg_create_abtltl_r.config(state=DISABLED)
-            register_list.set(list_name)
+            std_reg_create_abmt_right.config(state=NORMAL)
+            std_reg_create_abmt_right.insert('1.0',list_name)
+            std_reg_create_abmt_right.config(state=DISABLED)#onoma listas
+            #koumpia xrhsth
             std_reg_create_abtltl_r1.config(state=NORMAL)
             std_reg_create_abtltl_r2.config(state=NORMAL)
             std_reg_create_abtltl_r3.config(state=NORMAL)
@@ -790,7 +813,7 @@ def main():
         else:
             messagebox.showinfo('Σφάλμα', 'Παρακαλώ δημιουργείστε μία λίστα για τα στοιχεία των μαθητών!',icon='warning')
         print(list_name)
-        print("register_list=",register_list)
+
 
     
 
@@ -912,7 +935,37 @@ def main():
         del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
         if del_msg == 'yes':
             user_list.delete(0,'end')
-            print("deleted user")
+            #make text editable
+            std_reg_create_abtltl_r.config(state=NORMAL)#orismos onomatos listas
+            std_reg_create_abtltl_r.delete('1.0', END)
+
+            std_reg_create_abmt_right.config(state=NORMAL)#onoma listas
+            std_reg_create_abmt_right.delete('1.0', END)
+            std_reg_create_abmt_right.config(state=DISABLED)
+
+            #αδειασμα text inputs
+            std_reg_create_abtltl_r1.config(state=NORMAL)
+            std_reg_create_abtltl_r2.config(state=NORMAL)
+            std_reg_create_abtltl_r3.config(state=NORMAL)
+            std_reg_create_abtltl_r4.config(state=NORMAL)
+            std_reg_create_abtltl_r1.delete('1.0', END)
+            std_reg_create_abtltl_r2.delete('1.0', END)
+            std_reg_create_abtltl_r3.delete('1.0', END)
+            std_reg_create_abtltl_r4.delete('1.0', END)
+            std_reg_create_abtltl_r1.config(state=DISABLED)
+            std_reg_create_abtltl_r2.config(state=DISABLED)
+            std_reg_create_abtltl_r3.config(state=DISABLED)
+            std_reg_create_abtltl_r4.config(state=DISABLED)
+    
+
+            #diable btns
+            btn_reg_create_return.config(state=DISABLED)
+            btn_reg_create_confirm.config(state=DISABLED)
+            btn_reg_list_name.config(state=NORMAL)
+            btn_reg_delete_list.config(state=DISABLED)
+            btn_reg_add.config(state=DISABLED)
+            btn_reg_delete.config(state=DISABLED)
+            print("deleted list")
         else:
            messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 
     
@@ -1013,4 +1066,5 @@ def main():
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
+create_memory()
 main()
