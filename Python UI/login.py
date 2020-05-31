@@ -16,6 +16,7 @@ init_pass=0
 mydir=os.getcwd()
 memory_dir=None
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
+users=[]
 user1=[]#arxikopoihsh pinaka
 user2=[]
 user3=[]
@@ -119,6 +120,15 @@ def memory():    #function to create a folder that contains txts with memory
                     elif(line_count==5):
                         user5 = cur_user.split(",")
 
+                n = 5
+                m = 1
+                users = [[0] * m for i in range(n)]
+                users[0]=user1
+                users[1]=user2
+                users[2]=user3
+                users[3]=user4
+                users[4]=user5
+
             else:
                 print ("File login created")#created
                 login_data = open(login_path, "w")
@@ -160,24 +170,26 @@ def main():
         usr_name = login_usr2.get('1.0', 'end-1c')
         usr_pass = login_passw2.get('1.0', 'end-1c')
         
+        for i in users:
+            if users[i][0]==usr_name and users[i][1]==usr_pass:
+                if users[i][3]=='id(1)':
+                    main_window.destroy()
+                    from initUI import main
+                elif users[i][3]=='id(2)':
+                    main_window.destroy()
+                    from department import main
+                elif users[i][3]=='id(3)':
+                    main_window.destroy()
+                    from school import main
+                elif users[i][3]=='id(4)':
+                    main_window.destroy()
+                    from Grader import main
+                elif users[i][3]=='id(5)':
+                    main_window.destroy()
+                    from board import main
 
-        if arr[0][0]==usr_name and arr[0][1]==usr_pass:
-            main_window.destroy()
-            from initUI import main
-        elif arr[1][0]==usr_name and arr[1][1]==usr_pass:
-            main_window.destroy()
-            from department import main
-        elif arr[2][0]==usr_name and arr[2][1]==usr_pass:
-            main_window.destroy()
-            from school import main
-        elif arr[3][0]==usr_name and arr[3][1]==usr_pass:
-            main_window.destroy()
-            from Grader import main
-        elif arr[4][0]==usr_name and arr[4][1]==usr_pass:
-            main_window.destroy()
-            from board import main    
-        else:
-            messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
+            else:
+                messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
 
 
 
