@@ -24,7 +24,7 @@ main_window.geometry(resolution) ###########################################reso
 main_window.title("Parmenidis")
 main_window.configure()
 main_window.state("zoomed")
-main_window.attributes('-fullscreen', True)
+#main_window.attributes('-fullscreen', True)
 none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
@@ -32,12 +32,13 @@ init_pass=0
 mydir=os.getcwd()
 memory_dir=None
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
-hour_1=['08:00-09:00','','','','','']#arxikopoihsh pinaka
-hour_2=['09:00-10:00','','','','','']
-hour_3=['10:00-11:00','','','','','']
-hour_4=['11:00-12:00','','','','','']
-hour_5=['12:00-13:00','','','','','']
-hour_6=['13:00-14:00','','','','','']
+hour_1=[]#arxikopoihsh pinaka
+hour_2=[]
+hour_3=[]
+hour_4=[]
+hour_5=[]
+hour_6=[]
+hour_7=[]
 
 #region Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
@@ -52,21 +53,84 @@ school_std_reg_create_Frame = Frame(school_Frame, bg="floral white")
 school_std_reg_fin_Frame = Frame(school_Frame, bg="floral white")
 #endregion
 
-def create_memory():    #function to create a folder that contains txts with memory
+def memory():    #function to create a folder that contains txts with memory
+    global hour_1#arxikopoihsh pinaka
+    global hour_2
+    global hour_3
+    global hour_4
+    global hour_5
+    global hour_6
+    global hour_7
     try:
         if not os.path.exists('Memory'):
             os.makedirs('Memory')
-            messagebox.showinfo('Προσοχή',"Ο φάκελος Memory\n")
+            messagebox.showinfo('Προσοχή',"Ο φάκελος Memory μόλις δημιουργήθηκε\n")
             memory_dir = mydir+"\Memory"
+            #αρχικοποίηση στοιχείων-data
+            hour_1=['08:15-09:00','','','','','']#arxikopoihsh pinaka
+            hour_2=['09:10-09:50','','','','','']
+            hour_3=['10:00-10:40','','','','','']
+            hour_4=['10:50-11:30','','','','','']
+            hour_5=['11:35-12:15','','','','','']
+            hour_6=['12:20-13:00','','','','','']
+            hour_7=['13:05-13:40','','','','','']
         else:
-            messagebox.showinfo('Προσοχή'," Folder Memory already exists\n")
-            print(mydir)
+            #messagebox.showinfo('Προσοχή'," Folder Memory already exists\n")
             memory_dir = mydir+"\Memory"
+
+            #path arxeiwn
+            school_week_path = memory_dir + "\school_week.txt"
+            school_exams_path = memory_dir + "\school_exams.txt"
+            std_list_path = memory_dir +  "\std_list.txt"
+
+            #check if all needed files exist!
+            if os.path.isfile(school_week_path):
+                print ("File school_week exist")#read
+                school_week = open(school_week_path, "r")
+                print(school_week)
+                week_program = school_week.readlines()
+                line_count=0
+                for hour_program in week_program:
+                    line_count+=1
+                    cur_hour = hour_program.strip()#removes\n from each line of the text
+                    if(line_count==1):
+                       hour_1 = cur_hour.split(",")
+                    elif(line_count==2):
+                        hour_2 = cur_hour.split(",")
+                    elif(line_count==3):
+                        hour_3 = cur_hour.split(",")
+                    elif(line_count==4):
+                        hour_4 = cur_hour.split(",")
+                    elif(line_count==5):
+                        hour_5 = cur_hour.split(",")
+                    elif(line_count==6):
+                        hour_6 = cur_hour.split(",")
+                    elif(line_count==7):
+                        hour_7 = cur_hour.split(",")
+
+
+            else:
+                print ("File school_week created")#created
+                school_week = open(school_week_path, "w")
+                school_week.close()
+
+            if os.path.isfile(school_exams_path):
+                print ("File school_exams exist")#read
+                school_exams = open(school_exams_path, "r")
+            else:
+                print ("File school_exams created")#created
+                school_exams = open(school_exams_path, "w")
+                school_exams.close()
+
+            if os.path.isfile(std_list_path):
+                print ("File std_list exist")#read
+                std_list = open(std_list_path, "r")
+            else:
+                print ("File std_list created")#created
+                std_list = open(std_list_path, "w")
+                std_list.close()
     except OSError:
         messagebox.showinfo('Προσοχή',"Error creating directory "+(mydir)+"\Memory")
-#registry_save_directory = (mydir + "\\Memory" + "\\" + "Decryption_text_string_" + date_time + ".txt")
-#registry_file = open(registry_save_directory, "w")
-#result = ''.join(registry_file)  # make as one string 
 
 
 def ExitApp():
@@ -374,6 +438,8 @@ def main():
     #---------------------------------------------------------------------------------------------------
     #---------------------------------------------------------------------------------------------------
     #school_program_Frame
+
+
     school_program_all = Label(school_program_Frame, bg="floral white")
     school_program_a_top = Label(school_program_all, text="Εβδομαδιαίο Πρόγραμμα", bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     school_program_a_mid = Label(school_program_all, bg="floral white")
@@ -418,14 +484,8 @@ def main():
     #ορισμος εβδομαδιαίου ημερολογίου με treectrl
     cal_program = treectrl.MultiListbox(school_program_am_top)
     titles=['Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή']
-    #hour_1=['08:00-09:00','','','','','']
-    #hour_2=['09:00-10:00','','','','','']
-    #hour_3=['10:00-11:00','','','','','']
-    #hour_4=['11:00-12:00','','','','','']
-    #hour_5=['12:00-13:00','','','','','']
-    #hour_6=['13:00-14:00','','','','','']
 
-    #def check_memory(): #sos zisis stelios prepei na kanei check kai analoga na peirazei ta hour_1-hour_6
+    #def check_memory(): #sos zisis stelios prepei na kanei check kai analoga na peirazei ta hour_1-hour_7
     #   #printf("check db")    
 
     def conf_school_program():
@@ -436,7 +496,7 @@ def main():
         print ('Selected items:',selected)#shows tuple row selected
         global selected_row
         selected_row = int(selected[0])#shows row selected
-        print(hour_1[selected_row])
+        print(selected_row)
         #MAKE TEXT EDITABLE
         school_program_ammmt0_right.config(state=NORMAL)
         school_program_ammmt_right.config(state=NORMAL)
@@ -500,6 +560,14 @@ def main():
             school_program_ammmb2_right.insert(INSERT,hour_6[4])
             school_program_ammmb3_right.insert(INSERT,hour_6[5])
             print(hour_6)
+        elif(selected_row==6):
+            school_program_ammmt0_right.insert(INSERT,hour_7[0])
+            school_program_ammmt_right.insert(INSERT,hour_7[1])
+            school_program_ammmm_right.insert(INSERT,hour_7[2])
+            school_program_ammmb_right.insert(INSERT,hour_7[3])
+            school_program_ammmb2_right.insert(INSERT,hour_7[4])
+            school_program_ammmb3_right.insert(INSERT,hour_7[5])
+            print(hour_7)
         school_program_ammmt0_right.config(state=DISABLED)#SO HOURS WONT BE ABLE TO BE CHANGED
         
             #TO DO ADD SET FUNCTIONS TO TEXTS IF ALREADY EXIST
@@ -514,6 +582,7 @@ def main():
         global hour_4
         global hour_5
         global hour_6
+        global hour_7
 
         if(selected_row!=None):
             #delete row
@@ -544,6 +613,9 @@ def main():
             elif(selected_row==5):
                 hour_6=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
                 cal_program.insert(5,*hour_6)
+            elif(selected_row==6):
+                hour_7=[hour_add,monday_add,tuesday_add,wednesday_add,thursday_add,friday_add]
+                cal_program.insert(6,*hour_7)
             print("school program added")
             cal_program.selection_clear()
             #DELETE OLD TEXT INPUTS
@@ -565,23 +637,26 @@ def main():
             cal_program.delete(selected_row)
             #replace row
             if(selected_row==0):
-                hour_zero=['08:00-09:00','','','','','']
+                hour_zero=['08:15-09:00','','','','','']
                 cal_program.insert(0,*hour_zero)
             elif(selected_row==1):
-                hour_zero=['09:00-10:00','','','','','']
+                hour_zero=['09:10-09:50','','','','','']
                 cal_program.insert(1,*hour_zero)
             elif(selected_row==2):
-                hour_zero=['10:00-11:00','','','','','']
+                hour_zero=['10:00-10:40','','','','','']
                 cal_program.insert(2,*hour_zero)
             elif(selected_row==3):
-                hour_zero=['11:00-12:00','','','','','']
+                hour_zero=['10:50-11:30','','','','','']
                 cal_program.insert(3,*hour_zero)
             elif(selected_row==4):
-                hour_zero=['12:00-13:00','','','','','']
+                hour_zero=['11:35-12:15','','','','','']
                 cal_program.insert(4,*hour_zero)
             elif(selected_row==5):
-                hour_zero=['13:00-14:00','','','','','']
+                hour_zero=['12:20-13:00','','','','','']
                 cal_program.insert(5,*hour_zero)
+            elif(selected_row==6):
+                hour_zero=['13:05-13:40','','','','','']
+                cal_program.insert(6,*hour_zero)
 
             #DESELECT CURRENT ROW
             cal_program.selection_clear()
@@ -615,7 +690,7 @@ def main():
     
 
     #configurations για εβδομαδιαιο προγραμμα
-    cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 20, "bold"),selectmode='single',font=("Times New Roman (Times)", 18, "bold"))
+    cal_program.config(columns=titles,headerfont=("Times New Roman (Times)", 20, "bold"),selectmode='single',font=("Times New Roman (Times)", 16, "bold"))
     cal_program.configure(selectcmd=select_cmd)
     cal_program.insert(0,*hour_1)
     cal_program.insert(1,*hour_2)
@@ -623,6 +698,7 @@ def main():
     cal_program.insert(3,*hour_4)
     cal_program.insert(4,*hour_5)
     cal_program.insert(5,*hour_6)
+    cal_program.insert(6,*hour_7)
 
     
      
@@ -1026,5 +1102,5 @@ def main():
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 
-create_memory()
+memory()
 main()
