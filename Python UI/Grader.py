@@ -36,8 +36,7 @@ grader_menu_Frame=Frame(grader_Frame, bg="gray26")
 grader_intro_Frame = Frame(grader_Frame, bg="floral white")
 graderInfo_Frame = Frame(grader_Frame, bg="floral white") 
 pexams_Frame = Frame(grader_Frame, bg="floral white") #Πανελλήνιες
-grader_grading_Frame=Frame(grader_Frame, bg="floral white") #εκχώρηση βαθμολογιών  
-grader_problems_Frame = Frame(grader_Frame, bg="floral white") #προβλήματα με την εφαρμογή
+problems_Frame = Frame(grader_Frame, bg="floral white") #προβλήματα με την εφαρμογή
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -100,7 +99,8 @@ def main():
     initialGrader_abtl_top = Label(initialGrader_abt_left, borderwidth=1, highlightthickness=0, bg="floral white")#user grader name top left previous side
     initialGrader_abtlt_left = Label(initialGrader_abtl_top, borderwidth=1, highlightthickness=0, bg="floral white")#user grader name top of left side
     initialGrader_abtltl_left = Label(initialGrader_abtlt_left, text='Είστε συνδεδεμένοι ως: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
-    initialGrader_abtltl_right = Label(initialGrader_abtlt_left, text='Σβίγγου Αναστασία',borderwidth=1, highlightthickness=0, bg="cyan2",font=("Times New Roman (Times)", 18, "bold"))
+     
+    initialGrader_abtltl_right = Label(initialGrader_abtlt_left, text='Σβίγγου Αναστασία',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     initialGrader_abt_right = Label(initialGrader_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#calenar and text include
     initialGrader_abtr_top = Label(initialGrader_abt_right, text='Ημερολόγιο', borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#calendar text
     initialGrader_abtr_bot = Label(initialGrader_abt_right, borderwidth=1, highlightthickness=0, bg="floral white")#calendar
@@ -115,7 +115,7 @@ def main():
     scrollh = Scrollbar(initialGrader_abb_bot, orient="horizontal", command=ministry_news_list.xview)
     scrollv= Scrollbar(initialGrader_abb_bot, orient="vertical", command=ministry_news_list.yview)
     initialGrader_abb_bot.bind("<Configure>",lambda e: ministry_news_list.configure(scrollregion=ministry_news_list.bbox("all")))
-    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Times New Roman (Times)", 36))
+    ministry_news_list.configure(yscrollcommand=scrollv.set, xscrollcommand=scrollh.set, font=("Times New Roman (Times)", 18))
     initialGrader_abb_bot.bind("<MouseWheel>", scrollv)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
     
     #ορισμος ημερολογιου
@@ -134,7 +134,7 @@ def main():
     btn_next0 = Button(gmenu_l_down, text="Αρχική Σελίδα", command=lambda: raiseNdrop_frame(grader_intro_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_next1 = Button(gmenu_l_down, text="Στοιχεία Χρήστη", command=lambda: raiseNdrop_frame(graderInfo_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_next2 = Button(gmenu_l_down, text="Πανελλήνιες", command=lambda: raiseNdrop_frame(pexams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
-    btn_next3 = Button(gmenu_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(pexams_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
+    btn_next3 = Button(gmenu_l_down, text="Προβλήματα", command=lambda: raiseNdrop_frame(problems_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold")) 
     btn_next4 = Button(gmenu_l_down, text="Έξοδος", command=lambda: ExitApp(), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     
@@ -373,7 +373,7 @@ def main():
     pexams_ab_top = Label(pexams_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include user name
 
     #ONOMA LISTAS
-    std_reg_create_abt_top = Label(pexams_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#LIST  name
+    grd_pexams_create_abt_top = Label(pexams_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#LIST  name
     #ΣΤΟΙΧΕΙΑ ΜΑΘΗΤΗ
     pexams_abt_top1 = Label(pexams_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  name 
     pexams_abt_top2 = Label(pexams_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  lastname 
@@ -385,15 +385,15 @@ def main():
     
     
     #TEXTS AS INPUTS!!!!!!!!!!!
-    std_reg_create_abtltl_r1 = Text(pexams_abt_top1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r2 = Label(pexams_abt_top2, bg="WHITE", fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
-    std_reg_create_abtltl_r3 = Text(pexams_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    grd_pexams_create_abtltl_r1 = Text(pexams_abt_top1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    grd_pexams_create_abtltl_r2 = Label(pexams_abt_top2, bg="WHITE", fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
+    grd_pexams_create_abtltl_r3 = Text(pexams_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
     #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
-    lesson_choice=["Μαθηματικά", "Φυσική", "Χημεία"]
-    lesson_var = StringVar(std_reg_create_abtltl_r2)
+    lesson_choice=["-","Μαθηματικά", "Φυσική", "Χημεία"]
+    lesson_var = StringVar(grd_pexams_create_abtltl_r2)
     lesson_var.set(lesson_choice[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
-    lesson_choice = OptionMenu(std_reg_create_abtltl_r2, lesson_var, *lesson_choice)
+    lesson_choice = OptionMenu(grd_pexams_create_abtltl_r2, lesson_var, *lesson_choice)
     lesson_choice.config(bg="snow", width=20)
     
 
@@ -401,57 +401,17 @@ def main():
     std_reg_create_ab_mid = Label(pexams_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include announcements
     std_reg_create_abm_top = Label(std_reg_create_ab_mid, borderwidth=1, highlightthickness=0, bg="floral white")
     std_reg_create_abmt_left = Label(std_reg_create_abm_top, text='Λίστα Βαθμαλογιών: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#announcement title
-    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="floral white")#announcement box
+    std_reg_create_abm_bot = Label(std_reg_create_ab_mid, bg="floral white")#list box
 
-    std_reg_create_ab_bot = Label(pexams_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN
-    
-    
+    grd_exams_create_ab_bot = Label(pexams_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN     
 
-
-    def confirm_list_name():
-        list_name = std_reg_create_abtltl_r.get('1.0', 'end-1c')
-        if (list_name!=""):#Αν δεν ειναι κενο το input
-            std_reg_create_abtltl_r.config(state=DISABLED)
-            register_list.set(list_name)
-            std_reg_create_abtltl_r1.config(state=NORMAL)
-            std_reg_create_abtltl_r2.config(state=NORMAL)
-            std_reg_create_abtltl_r3.config(state=NORMAL)
-            std_reg_create_abtltl_r4.config(state=NORMAL)
-
-            btn_reg_create_return.config(state=NORMAL)
-            btn_reg_create_confirm.config(state=NORMAL)
-            btn_reg_delete_list.config(state=NORMAL)
-            btn_reg_add.config(state=NORMAL)
-            btn_reg_delete.config(state=NORMAL)
-        else:
-            messagebox.showinfo('Σφάλμα', 'Παρακαλώ δημιουργείστε μία λίστα για τα στοιχεία των μαθητών!',icon='warning')
-        print(list_name)
-        print("register_list=",register_list)
-
-    def delete_list():
-        print("deleted list")
-    
-
-    def add_user():
-        global stoixeia
-        std_name = std_reg_create_abtltl_r1.get('1.0', 'end-1c')    #αντι end-1c αν βαλεις σκετο end βαζει στο τέλος newline 
-        std_lastname = std_reg_create_abtltl_r2.get('1.0', 'end-1c')
-        std_email = std_reg_create_abtltl_r3.get('1.0', 'end-1c')
-
-
-    def delete_user():
-        print("deleted user")
-
-    def confirm_registry():
-
-       print("registry confirmed")
 
     #ORISMOS BTNS
-    btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red3",height = 1, width = 12,font=("Calibri", 16, "bold"))
-    btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=DISABLED, command=lambda: confirm_registry(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=DISABLED, command=lambda: delete_list(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_add = Button(pexams_ab_top, text="Προσθήκη Εγγραφής", state=DISABLED, command=lambda: add_user(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_reg_delete = Button(pexams_ab_top, text="Διαγραφή Εγγραφής", state=DISABLED, command=lambda: delete_user(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_grd_create_return = Button(grd_exams_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(grader_intro_Frame ,previous_frame),bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_grd_create_confirm = Button(grd_exams_create_ab_bot, text="Επιβεβαίωση",  command=lambda: confirm_registry(), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_grd_delete_list = Button(grd_exams_create_ab_bot, text="Διαγραφή Λίστας", command=lambda: delete_list(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_grd_add = Button(pexams_ab_top, text="Προσθήκη Εγγραφής",  command=lambda: add_user(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
+    btn_grd_delete = Button(pexams_ab_top, text="Διαγραφή Εγγραφής", command=lambda: delete_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
 
     #orismos listbox sos sos edw 8elei tkinterctrl
     user_list  = Listbox (std_reg_create_abm_bot, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='single')
@@ -461,15 +421,100 @@ def main():
     std_reg_create_abm_bot.bind("<Configure>",lambda e: user_list.configure(scrollregion=user_list.bbox("all")))
     user_list.configure(yscrollcommand=scrollv_usr.set, xscrollcommand=scrollh_usr.set, font=("Times New Roman (Times)", 16,"bold"))
     std_reg_create_abm_bot.bind("<MouseWheel>", scrollv_usr)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
+
+
+    def add_user():
     
-    #add elements to announcements
-    user_list.insert(1, "This is a test to see if the announcements works as it should be")
-    user_list.insert(2, "Ανακοινωση Ημερομηνίας Δηλώσεων")
-    user_list.insert(3, "Πρόγραμμα εξεταστικής έτους 2020-2021")
-    user_list.insert(4, "#ΜΕΝΟΥΜΕ_ΣΠΙΤΙ")
-    user_list.insert(5, "Έναρξη δηλώσεων μαθητών")
-    user_list.insert(6, "ΠΑΡΜΕΝΙΔΗΣ ΜΕ TKINTER ΓΙΑ GUI")
-    user_list.insert(7, "Πεισσότερες Ανακοινώσεις για να δούμε σε πράξη το κάθετο scroll και το horizontal scroll")
+        grd_sname = grd_pexams_create_abtltl_r1.get('1.0', 'end-1c')    #αντι end-1c αν βαλεις σκετο end βαζει στο τέλος newline 
+        grd_sgrade = grd_pexams_create_abtltl_r3.get('1.0', 'end-1c')
+        lesson = lesson_var.get()
+
+        if (grd_sname!="" and grd_sgrade!="" and lesson!="-"):
+            #delete inputs
+            grd_pexams_create_abtltl_r1.delete('1.0', 'end')
+            grd_pexams_create_abtltl_r3.delete('1.0', 'end')
+
+            #αποθηκευση τελικών στοιχείων
+            grd_sname_ok=grd_sname
+            grd_sgrade_ok=grd_sgrade
+            lesson_ok=lesson
+
+           
+            
+            info_to_add=[]
+            info_to_add.append("Κωδικός_Υποψηφίου: " + grd_sname_ok)
+            info_to_add.append("Μάθημα: " + lesson_ok)
+            info_to_add.append("Βαθμός: " + grd_sgrade_ok)
+
+            student_grade = ('  |  '.join(info_to_add))
+            print(student_grade)
+            #προσθήκη στοιχείων μαθητη listbox:
+            user_list.insert('end', student_grade)#end στην τελευταια open θέση δλδ 0,1,2,3,...
+            
+        else:
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ορθά τα στοιχεία του μαθητή',icon='warning')
+
+        
+        
+    def delete_user():
+        student_grade_to_remove = [user_list.get(idx) for idx in user_list.curselection()]
+        w=1
+        while (w<=len(student_grade_to_remove)):
+            idx_count=0
+            remove_temp=student_grade_to_remove[w-1]
+            while idx_count<=user_list.size():
+                if(remove_temp==user_list.get(idx_count)):
+                    print(idx_count,"idxc")
+                    user_list.delete(idx_count)
+                idx_count=idx_count+1
+
+            w=w+1
+        print("deleted a user") 
+
+        
+
+    def confirm_registry():
+        spacer='  |  '
+        final_user_data=[]
+        if (user_list.size()>=1):
+            msg_conf_student_user = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
+            if msg_conf_student_user == 'yes':
+                messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
+                user_list.select_set(0, 'end')
+                conf_user_list=[user_list.get(idx) for idx in user_list.curselection()]
+                user_list.select_clear(0,'end')
+                #spilt τα στοιχεία για να παίρνουμε μεμονομένα το ονομα επωνυμο κλπ
+                for stoixeio in conf_user_list:
+                    user_data = stoixeio.split(spacer) #καθε index σε αυτο το list περιέχει ονομα επώνυμο κλπ στοιχεία με trash strings
+                    print("stoixeia xrhsth",user_data)
+                    for sub_stoixeio in user_data:
+                        #print("sub_stoixeio=",sub_stoixeio)
+                        splitted_usr = sub_stoixeio.split(" ")
+                        #print("g0",splitted_usr[0])
+                        final_user_data.append(splitted_usr[1])
+                        splitted_usr.clear()
+                    sname_ok = final_user_data[0]
+                    lesson_ok = final_user_data[1]
+                    sgrade_ok = final_user_data[2]
+
+                    # sos sos zisis pros8ese se klaseis edw ta stoixeia
+                    print("Δήλωση Βαθμολογιών:",final_user_data)
+                    final_user_data.clear()
+            else:
+                messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της λίστας σας!')
+                print("Ακύρωση από χρήστη της δήλωσης λίστας")
+        else:
+            messagebox.showinfo('Σφάλμα', 'Πρέπει να επιλέξετε προσθέσει τουλάχιστον ένα μαθητή  για την υποβολή της λίστας σας!')
+            
+
+    def delete_list():
+
+        del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
+        if del_msg == 'yes':
+            user_list.delete(0,'end')
+            print("deleted user")
+        else:
+           messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 
 
     #packs εμφάνιση στοιχείων
     pexams_all.pack(side=TOP,fill=BOTH,expand=1)#δεξιο μενου-αρχικη σελίδα
@@ -479,7 +524,7 @@ def main():
     pexams_ab_top.pack(side=TOP, fill=X, ipady=10)#expand=1
     
     #αριστερη πλευρα με  στοιχεια εγγραφης
-    std_reg_create_abt_top.pack(side=TOP, fill=X)
+    grd_pexams_create_abt_top.pack(side=TOP, fill=X)
     pexams_abt_top1.pack(side=TOP, fill=X)
     pexams_abt_top2.pack(side=TOP, fill=X)
     pexams_abt_top3.pack(side=TOP, fill=X)
@@ -490,30 +535,30 @@ def main():
     
 
 
-    std_reg_create_abtltl_r1.pack(side=LEFT)#ονομα
-    std_reg_create_abtltl_r2.pack(side=LEFT)#επωνυμο
-    std_reg_create_abtltl_r3.pack(side=LEFT)#e-mail
+    grd_pexams_create_abtltl_r1.pack(side=LEFT)#ονομα
+    grd_pexams_create_abtltl_r2.pack(side=LEFT)#επωνυμο
+    grd_pexams_create_abtltl_r3.pack(side=LEFT)#e-mail
     lesson_choice.pack()
     
     #κατω πλευρα με Λίστα
     std_reg_create_ab_mid.pack(side=TOP, fill=BOTH,expand=1)#,ipady=100)#, expand=1, fill=X)#BOTH
     std_reg_create_abm_top.pack(side=TOP, fill=X)
     std_reg_create_abmt_left.pack(side=LEFT,padx=10)
-    #std_reg_create_abm_bot.pack(side=TOP, expand=1, fill=BOTH)#BOTH
+    std_reg_create_abm_bot.pack(side=TOP, expand=1, fill=BOTH)#BOTH
     scrollv_usr.pack(side=RIGHT, fill=Y)
     scrollh_usr.pack(side=BOTTOM, fill=X)
     user_list.pack(side=BOTTOM, expand=1, fill=BOTH)#BOTH
     #std_reg_create_abm_bot.pack(side=BOTTOM, expand=1, fill=BOTH)#BOTH
 
     #κατω πλευρα με buttons σελιδας
-    std_reg_create_ab_bot.pack(side= TOP, fill=X)
+    grd_exams_create_ab_bot.pack(side= TOP, fill=X)
 
     #buttons MENU
-    btn_reg_create_confirm.pack(side=RIGHT, padx=50)
-    btn_reg_create_return.pack(side=RIGHT)
-    btn_reg_add.pack(side=RIGHT, padx=50)
-    btn_reg_delete.pack(side=RIGHT) 
-    btn_reg_delete_list.pack(side=LEFT, padx=50) 
+    btn_grd_create_confirm.pack(side=RIGHT, padx=50)
+    btn_grd_create_return.pack(side=RIGHT)
+    btn_grd_add.pack(side=RIGHT, padx=50)
+    btn_grd_delete.pack(side=RIGHT) 
+    btn_grd_delete_list.pack(side=LEFT, padx=50) 
     
 
     #ΑΡΧΙΚΑ FRAMES ΕΜΦΑΝΙΣΗ
