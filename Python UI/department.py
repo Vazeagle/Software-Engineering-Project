@@ -52,8 +52,8 @@ department = Department(
 departments.append(department)
 
 site = Site(
-    '',
-    '',
+    'ceid_out.png',
+    'ceid.png',
     '',
     ''
 )
@@ -178,7 +178,7 @@ events = [
     calEvent("12/05/2020","Pliz work","Pliiiiz")
 ]
 board = Board("12/6/2020","",Cal(events))
-curDepartment = departments[0]
+curDepartment = departments[1]
 #endregion
 
 def ExitApp():
