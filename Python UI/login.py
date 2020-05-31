@@ -1,11 +1,4 @@
 import os, sys
-from board import *
-from department import *
-from Grader import *
-from initUI import *
-from school import *
-from Classes import *
-from Classes import Lesson,Orientation,Direction,Department,Student,School
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -50,13 +43,13 @@ def raiseNdrop_frame(frameUp,frameDown):
     
  
 
-    if(frameUp==menu_Frame):
-        frameUp.tkraise()
-        frameUp.pack(side=LEFT, fill=Y)
-        init_pass=1
-    else:
-        frameUp.tkraise()
-        frameUp.pack(expand=1,fill=BOTH)
+    #if(frameUp==menu_Frame):
+     #   frameUp.tkraise()
+      #  frameUp.pack(side=LEFT, fill=Y)
+       # init_pass=1
+    #else:
+    frameUp.tkraise()
+    frameUp.pack(expand=1,fill=BOTH)
 
 
 
@@ -96,10 +89,10 @@ arr[4][1] = "asdfghjkl"
 
 ###frames
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
-all_Frame=Frame(main_window, bg="white")
-menu_Frame=Frame(all_Frame, bg="gray26")
-intro_Frame = Frame(all_Frame, bg="floral white")
-exit_frame=Frame(all_Frame, bg="floral white") #eksodos
+#all_Frame=Frame(main_window, bg="white")
+#menu_Frame=Frame(all_Frame, bg="gray26")
+intro_Frame = Frame(main_window, bg="floral white")
+#exit_frame=Frame(all_Frame, bg="floral white") #eksodos
 
 
 def main():
@@ -107,8 +100,8 @@ def main():
     login_all=Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")
     
     label_top = Label(login_all, borderwidth=1, highlightthickness=0,bg="floral white")  # kalos orisate+ to eniaio susthma klp
-    label_pic = Label(label_top, image=render2, borderwidth=1, highlightthickness=0, bg="floral white")
-    label_parmen = Label(label_top, text="ΣΥΣΤΗΜΑ ΠΑΡΜΕΝΙΔΗΣ\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
+    label_pic = Label(label_top, borderwidth=1, highlightthickness=0, bg="floral white")
+    label_parmen = Label(label_top, image=render2, text="ΣΥΣΤΗΜΑ ΠΑΡΜΕΝΙΔΗΣ\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
     label_top3 = Label(login_all,bg="white", borderwidth=2, highlightthickness=2, relief="groove")
 
     
@@ -130,14 +123,22 @@ def main():
         usr_pass = login_passw2.get('1.0', 'end-1c')
 
         if arr[0][0]==usr_name and arr[0][1]==usr_pass:
+            print("sakat")
             initUI.main()
         elif arr[1][0]==usr_name and arr[1][1]==usr_pass:
-            department.main()
+            print("sakat")
+            main_window.destroy()
+            from department import main
+            #department.main()
+
         elif arr[2][0]==usr_name and arr[2][1]==usr_pass:
+            print("sakat")
             school.main()
         elif arr[3][0]==usr_name and arr[3][1]==usr_pass:
+            print("sakat")
             Grader.main()
         elif arr[4][0]==usr_name and arr[4][1]==usr_pass:
+            print("sakat")
             board.main()    
         else:
             messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
@@ -166,8 +167,8 @@ def main():
     btn_exit.pack(side = LEFT, padx=10)
 
 
-    raiseNdrop_frame(all_Frame,none)
-    raiseNdrop_frame(menu_Frame,none)
+    #raiseNdrop_frame(all_Frame,none)
+    #raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
 
     
