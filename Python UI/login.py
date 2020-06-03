@@ -13,6 +13,16 @@ none="none" # προσωρινο για μεταβαση σε frames
 previous_frame="previous_frame"
 frame_counter=0
 init_pass=0
+mydir=os.getcwd()
+memory_dir=None
+selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
+users=[]
+user1=[]#arxikopoihsh pinaka
+user2=[]
+user3=[]
+user4=[]
+user5=[]
+
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -41,13 +51,7 @@ def raiseNdrop_frame(frameUp,frameDown):
         frame_temp=frameUp
         #print("memory",frame_temp)
     
- 
 
-    #if(frameUp==menu_Frame):
-     #   frameUp.tkraise()
-      #  frameUp.pack(side=LEFT, fill=Y)
-       # init_pass=1
-    #else:
     frameUp.tkraise()
     frameUp.pack(expand=1,fill=BOTH)
 
@@ -71,28 +75,72 @@ load2 = load2.resize((100, 100), Image.ANTIALIAS)
 render2 = ImageTk.PhotoImage(load2)
 
 
-n = 5
-m = 2
-arr = [[0] * m for i in range(n)]
-arr[0][0] = "vastyl"
-arr[0][1] = "24682468"
-arr[1][0] = "ceidupatras"
-arr[1][1] = "244466666"
-arr[2][0] = "1gelklytorias"
-arr[2][1] = "qwerty"
-arr[3][0] = "sviganast"
-arr[3][1] = "1357913579"
-arr[4][0] = "dimitrog"
-arr[4][1] = "asdfghjkl"
+def memory():    #function to create a folder that contains txts with memory
+    global user1#arxikopoihsh pinaka
+    global user2
+    global user3
+    global user4
+    global user5
+    try:
+        if not os.path.exists('Memory'):
+            os.makedirs('Memory')
+            messagebox.showinfo('Προσοχή',"Ο φάκελος Memory μόλις δημιουργήθηκε\n")
+            memory_dir = mydir+"\Memory"
+            #αρχικοποίηση στοιχείων-data
+            user1=['vastyl','24682468','id(1)']#arxikopoihsh pinaka
+            user2=['ceidupatras','244466666','id(2)']
+            user3=['1gelklytorias','qwerty','id(3)']
+            user4=['sviganast','1357913579','id(4)']
+            user5=['dimitrog','helpme','id(5)']
+        else:
+            #messagebox.showinfo('Προσοχή'," Folder Memory already exists\n")
+            memory_dir = mydir+"\Memory"
 
+            #path arxeiwn
+            login_path = memory_dir + "\login.txt"
+
+            #check if all needed files exist!
+            if os.path.isfile(login_path):
+                print ("File login exist")#read
+                login_path = open(login_path, "r")
+                print(login_path)
+                login_data = login_path.readlines()
+                line_count=0
+                for usrline in login_data:
+                    line_count+=1
+                    cur_user = usrline.strip()#removes\n from each line of the text
+                    if(line_count==1):
+                       user1 = cur_user.split(",")
+                    elif(line_count==2):
+                        user2 = cur_user.split(",")
+                    elif(line_count==3):
+                        user3 = cur_user.split(",")
+                    elif(line_count==4):
+                        user4 = cur_user.split(",")
+                    elif(line_count==5):
+                        user5 = cur_user.split(",")
+
+                n = 5
+                m = 1
+                users = [[0] * m for i in range(n)]
+                users[0]=user1
+                users[1]=user2
+                users[2]=user3
+                users[3]=user4
+                users[4]=user5
+
+            else:
+                print ("File login created")#created
+                login_data = open(login_path, "w")
+                login_data.close()
+    except OSError:
+        messagebox.showinfo('Προσοχή',"Error creating directory "+(mydir)+"\Memory")
 
 
 ###frames
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
-#all_Frame=Frame(main_window, bg="white")
-#menu_Frame=Frame(all_Frame, bg="gray26")
 intro_Frame = Frame(main_window, bg="floral white")
-#exit_frame=Frame(all_Frame, bg="floral white") #eksodos
+exit_frame=Frame(intro_Frame, bg="floral white") #eksodos
 
 
 def main():
@@ -100,8 +148,8 @@ def main():
     login_all=Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")
     
     label_top = Label(login_all, borderwidth=1, highlightthickness=0,bg="floral white")  # kalos orisate+ to eniaio susthma klp
-    label_pic = Label(label_top, borderwidth=1, highlightthickness=0, bg="floral white")
-    label_parmen = Label(label_top, image=render2, text="ΣΥΣΤΗΜΑ ΠΑΡΜΕΝΙΔΗΣ\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
+    label_pic = Label(label_top, image=render2, borderwidth=1, highlightthickness=0, bg="floral white")
+    label_parmen = Label(label_top, text="ΣΥΣΤΗΜΑ ΠΑΡΜΕΝΙΔΗΣ\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
     label_top3 = Label(login_all,bg="white", borderwidth=2, highlightthickness=2, relief="groove")
 
     
@@ -121,27 +169,27 @@ def main():
     def datacheck():
         usr_name = login_usr2.get('1.0', 'end-1c')
         usr_pass = login_passw2.get('1.0', 'end-1c')
+        
+        for i in users:
+            if users[i][0]==usr_name and users[i][1]==usr_pass:
+                if users[i][3]=='id(1)':
+                    main_window.destroy()
+                    from initUI import main
+                elif users[i][3]=='id(2)':
+                    main_window.destroy()
+                    from department import main
+                elif users[i][3]=='id(3)':
+                    main_window.destroy()
+                    from school import main
+                elif users[i][3]=='id(4)':
+                    main_window.destroy()
+                    from Grader import main
+                elif users[i][3]=='id(5)':
+                    main_window.destroy()
+                    from board import main
 
-        if arr[0][0]==usr_name and arr[0][1]==usr_pass:
-            print("sakat")
-            initUI.main()
-        elif arr[1][0]==usr_name and arr[1][1]==usr_pass:
-            print("sakat")
-            main_window.destroy()
-            from department import main
-            #department.main()
-
-        elif arr[2][0]==usr_name and arr[2][1]==usr_pass:
-            print("sakat")
-            school.main()
-        elif arr[3][0]==usr_name and arr[3][1]==usr_pass:
-            print("sakat")
-            Grader.main()
-        elif arr[4][0]==usr_name and arr[4][1]==usr_pass:
-            print("sakat")
-            board.main()    
-        else:
-            messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
+            else:
+                messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
 
 
 
@@ -155,20 +203,18 @@ def main():
 
     
     login_usr.pack(side=TOP)
-    login_usr1.pack(side = LEFT, padx=10)
-    login_usr2.pack(side = LEFT, padx=10)
+    login_usr1.pack(side = LEFT, ipadx=35)
+    login_usr2.pack(side = LEFT, ipadx=35)
     
     login_passw.pack(side=TOP)
-    login_passw1.pack(side = LEFT, padx=10)
-    login_passw2.pack(side = LEFT, padx=10)
+    login_passw1.pack(side = LEFT, ipadx=35)
+    login_passw2.pack(side = LEFT, ipadx=35)
 
     label_buttons.pack(side=TOP)
     btn_acccept.pack(side = LEFT, padx=10)
     btn_exit.pack(side = LEFT, padx=10)
 
 
-    #raiseNdrop_frame(all_Frame,none)
-    #raiseNdrop_frame(menu_Frame,none)
     raiseNdrop_frame(intro_Frame,none)
 
     
@@ -177,5 +223,6 @@ def main():
 ##### AUTO EINAI TO TELEUTAIO KOMMATI TOU KWDIKA
     main_window.mainloop()
 
+memory()
 main()
 
