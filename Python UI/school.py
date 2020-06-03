@@ -1,4 +1,4 @@
-#extra need yagmail from pip import and import os and treectrl
+#extra need yagmail from pip import and import os and treectrl, validate_email, py3DNS
 
 #region imports
 from tkinter import *
@@ -14,6 +14,7 @@ import yagmail
 from TkTreectrl import *
 import TkTreectrl as treectrl
 import os
+from validate_email import *
 #endregion
 
 #Initialisation
@@ -31,7 +32,12 @@ frame_counter=0
 init_pass=0
 mydir=os.getcwd()
 memory_dir=None
+school_week_path = None
+school_exams_path = None
+std_list_path = None
+login_path=None
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
+std_counter=None
 hour_1=[]#arxikopoihsh pinaka
 hour_2=[]
 hour_3=[]
@@ -39,6 +45,9 @@ hour_4=[]
 hour_5=[]
 hour_6=[]
 hour_7=[]
+exams_dates=[]
+std_users=[]
+login_list=[]
 
 #region Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
@@ -61,6 +70,17 @@ def memory():    #function to create a folder that contains txts with memory
     global hour_5
     global hour_6
     global hour_7
+
+    global memory_dir
+    global school_week_path
+    global school_exams_path
+    global std_list_path
+    global login_path
+
+    global exams_dates
+    global std_counter
+    global std_users
+    global login_List
     try:
         if not os.path.exists('Memory'):
             os.makedirs('Memory')
@@ -82,8 +102,24 @@ def memory():    #function to create a folder that contains txts with memory
             school_week_path = memory_dir + "\school_week.txt"
             school_exams_path = memory_dir + "\school_exams.txt"
             std_list_path = memory_dir +  "\std_list.txt"
+            login_path = memory_dir +  "\login.txt"
 
             #check if all needed files exist!
+            #region login
+            if os.path.isfile(login_path):
+                print ("File login exist")
+                login_file = open(login_path, "r")
+                login_line_list = login_file.readlines()#this list contains rows with \n
+                for login_info in login_line_list:
+                    cur_login = login_info.strip()#removes\n from each line of the text returns string
+                    cur_login_list = cur_login.split(",")#returns list with splitted elements of notification
+                    login_list.append(cur_login_list)
+                print("\nlogin_list=",login_list)
+            else:
+                print ("File login created")#created
+            #endregion
+
+            #region school_week
             if os.path.isfile(school_week_path):
                 print ("File school_week exist")#read
                 school_week = open(school_week_path, "r")
@@ -107,28 +143,69 @@ def memory():    #function to create a folder that contains txts with memory
                         hour_6 = cur_hour.split(",")
                     elif(line_count==7):
                         hour_7 = cur_hour.split(",")
-
+                school_week.close()#close file
 
             else:
                 print ("File school_week created")#created
                 school_week = open(school_week_path, "w")
                 school_week.close()
+            #endregion
 
+            #region school_exams
             if os.path.isfile(school_exams_path):
                 print ("File school_exams exist")#read
                 school_exams = open(school_exams_path, "r")
+                print(school_exams)
+                exams_program = school_exams.readlines()
+                for notification in exams_program:
+                    exams_count=1
+                    cur_notification = notification.strip()#removes\n from each line of the text returns string
+                    cur_notif_list = cur_notification.split(",")#returns list with splitted elements of notification
+                    exams_dates.append(cur_notif_list)
+                print(exams_dates)
+                school_exams.close()
             else:
                 print ("File school_exams created")#created
                 school_exams = open(school_exams_path, "w")
                 school_exams.close()
+            #endregion
 
+            #region school_insert_user
             if os.path.isfile(std_list_path):
                 print ("File std_list exist")#read
                 std_list = open(std_list_path, "r")
+                student_list = std_list.readlines()
+                print('\nstdlist=',student_list)
+                temp_id_counter=None
+                temp_id_str=None
+                temp_idx=0
+                std_counter=0
+                for std in student_list:
+                    exams_count=1
+                    cur_student = std.strip()#removes\n from each line of the text returns string
+                    cur_student_list = cur_student.split(",")#returns list with splitted elements of notification
+                    std_users.append(cur_student_list)
+                    #get max id num to know next id counter
+                    temp_id_str=std_users[temp_idx][0]
+                    usrn_list=list(temp_id_str)
+                    usrn_list.pop(0)#remove s
+                    usrn_list.pop(0)#remove t
+                    usrn_list.pop(0)#remove d
+                    temp_id_counter="".join(usrn_list)
+                    temp_id_compare = int(temp_id_counter)
+                    if(temp_id_compare > std_counter):#find max id number
+                        std_counter=temp_id_compare
+                    temp_idx+=1#increase to get new idx
+                    #----------
+                print("\nstd_users=",std_users)
+                std_list.close()
+                print("\nstdcounter",std_counter)
             else:
                 print ("File std_list created")#created
                 std_list = open(std_list_path, "w")
+                std_counter=0
                 std_list.close()
+            #endregion
     except OSError:
         messagebox.showinfo('Προσοχή',"Error creating directory "+(mydir)+"\Memory")
 
@@ -179,6 +256,7 @@ load0 = load0.resize((getRes[0], getRes[1]), Image.ANTIALIAS)
 render0 = ImageTk.PhotoImage(load0)
 
 def main():
+    global exams_dates#list containing data from memory exams school
 
     school_menu = Label(school_menu_Frame, bg="gray26",font=("Calibri", 24, "bold"))  # aristero menu
     smenu_l_up = Label(school_menu, image=render2, borderwidth=1, highlightthickness=0, bg="gray26")  # photo parmenidi
@@ -344,9 +422,25 @@ def main():
     cur_exam_date.set("")
 
     def conf_school_exams():
+        global school_exams_path
         event_ids = cal_exams.get_calevents()
         print("events:",event_ids)
         print("school exams confirmed")
+        write_exams_program = open(school_exams_path,"w").close()#διαγραφή περιεχομένου  αρχείου εβδομαδιαίου προγράμματος
+        for id in event_ids:
+            #date = cal_exams.calevent_cget(id,'date')
+            date = datetime.strptime(str(cal_exams.calevent_cget(id,'date')), '%Y-%m-%d').strftime('%d/%m/%Y')#μετατροπη date απο y-m-d σε d/m/y
+            print("date:",date)
+            text = cal_exams.calevent_cget(id,'text')
+            print("text:",text)
+            tag_list = cal_exams.calevent_cget(id,'tags')
+            tag=tag_list[0]#γιατι θέλουμε το message ή reminder σαν string
+            print("tag:",tag)
+            exam_row = str(date) + "," + str(text) + "," + str(tag) + "\n"
+            write_exam_program = open(school_exams_path,"a")#εισαγωγή δεδομένων σε αρχείο εβδομαδιαίου προγράμματος
+            write_exam_program.write(exam_row)
+        write_exam_program.close()
+        #options= "text", "tags" and "date".
 
     def add_school_exams():
         message = school_exams_ammmt_right.get("1.0",'end-1c')
@@ -391,9 +485,22 @@ def main():
     btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="floral white",font=("Times New Roman (Times)", 13, "bold"),height=1 ,width=20)
     
 
-    #ορισμος ημερολογιου
+    #ορισμος ημερολογιου και αρχικοποίηση τιμών μέσω memory
     cal_exams = Calendar(school_exams_am_top, selectmode='day',textvariable=cur_exam_date, date_pattern='dd/mm/y')
     cal_exams.tag_config('reminder', background='red', normalforeground ='black', weekendforeground='black', weekendbackground='gray63', foreground='yellow')
+
+    def check_exam_dates(date_list):#ADDS EVENTS FROM MEMORY
+        for elem in date_list:
+            # date message reminder με αυτη την σειρα έιναι τα data
+            datetime_obj = datetime.strptime(elem[0], '%d/%m/%Y')
+            if(elem[2]=="message"):#Ωστε να μην κανει insert το κενό
+                cal_exams.calevent_create(datetime_obj, elem[1], 'message')
+            elif(elem[2]=="reminder"):
+                cal_exams.calevent_create(datetime_obj, elem[1], 'reminder')
+            
+            print("inserted exams dates from memory")
+    check_exam_dates(exams_dates)
+
 
     #Εμφάμιση στοιχείων packs
     school_exams_all.pack(side=TOP, expand=1, fill=BOTH)#contains all labels
@@ -484,13 +591,43 @@ def main():
     #ορισμος εβδομαδιαίου ημερολογίου με treectrl
     cal_program = treectrl.MultiListbox(school_program_am_top)
     titles=['Ωράριο', 'Δευτέρα','Τρίτη','Τετάρτη','Πέμπτη','Παρασκευή']
-
-    #def check_memory(): #sos zisis stelios prepei na kanei check kai analoga na peirazei ta hour_1-hour_7
-    #   #printf("check db")    
+   
 
     def conf_school_program():
-        print("confirmed")
-        #sos sos zisis stelios 
+        global school_week_path
+        global hour_1
+        global hour_2
+        global hour_3
+        global hour_4
+        global hour_5
+        global hour_6
+        global hour_7
+        temp_1=",".join(hour_1)
+        temp_2=",".join(hour_2)
+        temp_3=",".join(hour_3)
+        temp_4=",".join(hour_4)
+        temp_5=",".join(hour_5)
+        temp_6=",".join(hour_6)
+        temp_7=",".join(hour_7)
+        #fix data with \n to be readable by memory function
+        h1=temp_1 +"\n"
+        h2=temp_2 +"\n"
+        h3=temp_3 +"\n"
+        h4=temp_4 +"\n"
+        h5=temp_5 +"\n"
+        h6=temp_6 +"\n"
+        h7=temp_7 +"\n"
+        write_week_program = open(school_week_path,"w").close()#διαγραφή περιεχομένου  αρχείου εβδομαδιαίου προγράμματος
+        write_week_program = open(school_week_path,"a")#εισαγωγή δεδομένων σε αρχείο εβδομαδιαίου προγράμματος
+        write_week_program.write(h1)
+        write_week_program.write(h2)
+        write_week_program.write(h3)
+        write_week_program.write(h4)
+        write_week_program.write(h5)
+        write_week_program.write(h6)
+        write_week_program.write(h7)
+        write_week_program.close()
+        print("Αποθήκευση νέου εβδομαδιαίου προγράμματος με επιτυχία!")
 
     def select_cmd(selected):
         print ('Selected items:',selected)#shows tuple row selected
@@ -570,9 +707,6 @@ def main():
             print(hour_7)
         school_program_ammmt0_right.config(state=DISABLED)#SO HOURS WONT BE ABLE TO BE CHANGED
         
-            #TO DO ADD SET FUNCTIONS TO TEXTS IF ALREADY EXIST
-            #ADD LABELS AND TEXT        
-        #selected= which row is selected 0 to 5
 
     def add_school_program():
         global selected_row
@@ -631,32 +765,40 @@ def main():
 
     def delete_school_program():
         global selected_row
+        global hour_1
+        global hour_2
+        global hour_3
+        global hour_4
+        global hour_5
+        global hour_6
+        global hour_7
 
         if(selected_row!=None):
             #delete row
             cal_program.delete(selected_row)
             #replace row
             if(selected_row==0):
-                hour_zero=['08:15-09:00','','','','','']
-                cal_program.insert(0,*hour_zero)
+                hour_1=['08:15-09:00','','','','','']
+                print("test")
+                cal_program.insert(0,*hour_1)
             elif(selected_row==1):
-                hour_zero=['09:10-09:50','','','','','']
-                cal_program.insert(1,*hour_zero)
+                hour_2=['09:10-09:50','','','','','']
+                cal_program.insert(1,*hour_2)
             elif(selected_row==2):
-                hour_zero=['10:00-10:40','','','','','']
-                cal_program.insert(2,*hour_zero)
+                hour_3=['10:00-10:40','','','','','']
+                cal_program.insert(2,*hour_3)
             elif(selected_row==3):
-                hour_zero=['10:50-11:30','','','','','']
-                cal_program.insert(3,*hour_zero)
+                hour_4=['10:50-11:30','','','','','']
+                cal_program.insert(3,*hour_4)
             elif(selected_row==4):
-                hour_zero=['11:35-12:15','','','','','']
-                cal_program.insert(4,*hour_zero)
+                hour_5=['11:35-12:15','','','','','']
+                cal_program.insert(4,*hour_5)
             elif(selected_row==5):
-                hour_zero=['12:20-13:00','','','','','']
-                cal_program.insert(5,*hour_zero)
+                hour_6=['12:20-13:00','','','','','']
+                cal_program.insert(5,*hour_6)
             elif(selected_row==6):
-                hour_zero=['13:05-13:40','','','','','']
-                cal_program.insert(6,*hour_zero)
+                hour_7=['13:05-13:40','','','','','']
+                cal_program.insert(6,*hour_7)
 
             #DESELECT CURRENT ROW
             cal_program.selection_clear()
@@ -796,8 +938,6 @@ def main():
     std_reg_create_all_bot = Label(std_reg_create_all, borderwidth=1, highlightthickness=0, bg="floral white")
     std_reg_create_ab_top = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include user name
 
-    #ONOMA LISTAS
-    std_reg_create_abt_top = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#LIST  name
     #ΣΤΟΙΧΕΙΑ ΜΑΘΗΤΗ
     std_reg_create_abt_top1 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  name 
     std_reg_create_abt_top2 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student  lastname 
@@ -805,7 +945,6 @@ def main():
     std_reg_create_abt_top4 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#student phone 
     std_reg_create_abt_top5 = Label(std_reg_create_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#info
 
-    std_reg_create_abtltl_l = Label(std_reg_create_abt_top, text='Όνομα Λίστας*:\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     std_reg_create_abtltl_l1 = Label(std_reg_create_abt_top1, text='Όνομα*:\t\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     std_reg_create_abtltl_l2 = Label(std_reg_create_abt_top2, text='Επώνυμο*:\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     std_reg_create_abtltl_l3 = Label(std_reg_create_abt_top3, text='E-mail*:\t\t',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
@@ -813,15 +952,11 @@ def main():
     std_reg_create_abtltl_l5 = Label(std_reg_create_abt_top5, text='(*Υποχρεωτικά πεδία)',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 12, "bold"))
     
     #TEXTS AS INPUTS!!!!!!!!!!!
-    std_reg_create_abtltl_r = Text(std_reg_create_abt_top, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     std_reg_create_abtltl_r1 = Text(std_reg_create_abt_top1, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     std_reg_create_abtltl_r2 = Text(std_reg_create_abt_top2, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     std_reg_create_abtltl_r3 = Text(std_reg_create_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
     std_reg_create_abtltl_r4 = Text(std_reg_create_abt_top4, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
-    std_reg_create_abtltl_r1.config(state=DISABLED)
-    std_reg_create_abtltl_r2.config(state=DISABLED)
-    std_reg_create_abtltl_r3.config(state=DISABLED)
-    std_reg_create_abtltl_r4.config(state=DISABLED)
+
 
 
     std_reg_create_ab_mid = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#include announcements
@@ -833,6 +968,7 @@ def main():
     std_reg_create_ab_bot = Label(std_reg_create_all_bot, borderwidth=1, highlightthickness=0, bg="floral white")#ΚΑΤΩ ΠΛΕΥΡΑ ΜΕ ΚΟΥΜΠΙΑ NEXT KAI RETURN
     
     
+
 
 
     def confirm_list_name():
@@ -862,43 +998,58 @@ def main():
     
 
     def add_user():
-        #global stoixeia
+        global std_users
+        duplicate=0
         std_name = std_reg_create_abtltl_r1.get('1.0', 'end-1c')    #αντι end-1c αν βαλεις σκετο end βαζει στο τέλος newline 
         std_lastname = std_reg_create_abtltl_r2.get('1.0', 'end-1c')
         std_email = std_reg_create_abtltl_r3.get('1.0', 'end-1c')
         std_phone = std_reg_create_abtltl_r4.get('1.0', 'end-1c')
-        if (std_name!="" and std_lastname!="" and std_email!=""):
-            #delete inputs
-            std_reg_create_abtltl_r1.delete('1.0', 'end')
-            std_reg_create_abtltl_r2.delete('1.0', 'end')
-            std_reg_create_abtltl_r3.delete('1.0', 'end')
-            std_reg_create_abtltl_r4.delete('1.0', 'end')
-            #αποθηκευση τελικών στοιχείων
-            std_name_ok=std_name
-            std_lastname_ok=std_lastname
-            std_email_ok=std_email
-            #Αν δεν έχει input
-            if(std_phone==""):
-                std_phone_ok="-"
+        is_valid = validate_email(std_email,verify=True)#if email exists
+        if(is_valid):#αν υπάρχει το email
+            #check if email already exists
+            for elem in std_users:
+                if (elem[3]==std_email):
+                    duplicate=1#σαν flag
+            if(duplicate==0):
+                if (std_name!="" and std_lastname!="" and std_email!=""):
+                    #delete inputs
+                    std_reg_create_abtltl_r1.delete('1.0', 'end')
+                    std_reg_create_abtltl_r2.delete('1.0', 'end')
+                    std_reg_create_abtltl_r3.delete('1.0', 'end')
+                    std_reg_create_abtltl_r4.delete('1.0', 'end')
+                    #αποθηκευση τελικών στοιχείων
+                    std_name_ok=std_name
+                    std_lastname_ok=std_lastname
+                    std_email_ok=std_email
+                    #Αν δεν έχει input
+                    if(std_phone==""):
+                        std_phone_ok="-"
+                    else:
+                        std_phone_ok=std_phone    
+                    info_to_add=[]
+                    info_to_add.append("Όνομα: " + std_name_ok)
+                    info_to_add.append("Επώνυμο: " + std_lastname_ok)
+                    info_to_add.append("E-mail: " + std_email_ok)
+                    info_to_add.append("Τηλέφωνο: " + std_phone_ok)
+                    student_info = ('  |  '.join(info_to_add))
+                    print(student_info)
+                    #προσθήκη στοιχείων μαθητη listbox:
+                    user_list.insert('end', student_info)#end στην τελευταια open θέση δλδ 0,1,2,3,...   
+                else:
+                    messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ορθά τα στοιχεία του μαθητή',icon='warning')
             else:
-                std_phone_ok=std_phone
-            
-            info_to_add=[]
-            info_to_add.append("Όνομα: " + std_name_ok)
-            info_to_add.append("Επώνυμο: " + std_lastname_ok)
-            info_to_add.append("E-mail: " + std_email_ok)
-            info_to_add.append("Τηλέφωνο: " + std_phone_ok)
-            student_info = ('  |  '.join(info_to_add))
-            print(student_info)
-            #προσθήκη στοιχείων μαθητη listbox:
-            user_list.insert('end', student_info)#end στην τελευταια open θέση δλδ 0,1,2,3,...
-            
+                messagebox.showinfo('Σφάλμα', 'Υπάρχει ήδη λογαριασμός μαθητή με αυτό το email!\nΠαρακαλώ ελέξυε τα στοιχεία σας και ξαναπροσπαθήστε!',icon='warning')
         else:
-            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ορθά τα στοιχεία του μαθητή',icon='warning')
+            messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ένα email που να υπάρχει!',icon='warning')
+        
 
         
         
     def delete_user():
+        global login_path
+        global login_list
+        global std_list_path 
+        global std_users
         student_to_remove = [user_list.get(idx) for idx in user_list.curselection()]
         w=1
         while (w<=len(student_to_remove)):
@@ -911,16 +1062,32 @@ def main():
                 idx_count=idx_count+1
 
             w=w+1
+        print("\n",student_to_remove)
+        #να σπασω από αυτα που επιλέγονται και να πάρω το email σαν Key
+        #αν αυτά τα στοιχεία υπάρχουν στην std_list με βάση email kane flag=1 και αφαιρεσε
+        #αλλιως print it was'nt saved simple delete from listbox
+        #με βάση το email να δώ την std_list να διαγράψω αυτά τα στοιχεία να πάρω το username τους να το αποθηκεύσω σε list και μετά κάνω delete το std_list
+        # και μετα να το ανεβάσω πάλι με τα  στοιχεία που αφαιρέσαμε στο std_txt
+        #μετα με την λίστα που εχουμε με τα username κανω προσπέλαση το login_list διαγραφω αυτά και μετά προχωράω σε delete txt και ξαναπέρασμα
+        #να παρω το email
+        #συγκρινε τις δυο λίστες αφάιρεσαι με pop το std ου λείπει και κάνε πάλι insert
+        #ισως χρειάζεται κάλεσμα η memory για να δεί  τα νέα
+        #τι γίνεται με τα νεα που δεν έχουν γίνει save?
         print("deleted a user") 
 
         
 
     def confirm_registry():
+        global std_counter
+        global std_users
+        global std_list_path
+        global login_path
+        global login_list
         spacer='  |  '
         final_user_data=[]
+        std_id="5"
         #send email to all students
         #εδω θελουμε μια λίστα που να έχει αποθηκεύσει τα στοιχεία των μαθητών να την τρέχει και να στέλνει email.
-        #https://dev.to/davidmm1707/how-to-send-emails-with-just-a-few-lines-of-code-with-yagmail-in-python-25pm
         sender_email = "parmenidis.gr@gmail.com"
         sender_password = "tl2020Parme"
         try:
@@ -934,35 +1101,77 @@ def main():
                         user_list.select_clear(0,'end')
                         #spilt τα στοιχεία για να παίρνουμε μεμονομένα το ονομα επωνυμο κλπ
                         for stoixeio in conf_user_list:
+                            existing_std_flag=0#flag για να δω αν υπάρχει ο χρηστης αυτός ήδη
                             user_data = stoixeio.split(spacer) #καθε index σε αυτο το list περιέχει ονομα επώνυμο κλπ στοιχεία με trash strings
                             print("stoixeia xrhsth",user_data)
                             for sub_stoixeio in user_data:
-                                #print("sub_stoixeio=",sub_stoixeio)
+                                print("sub_stoixeio=",sub_stoixeio)
                                 splitted_usr = sub_stoixeio.split(" ")
                                 #print("g0",splitted_usr[0])
                                 final_user_data.append(splitted_usr[1])
                                 splitted_usr.clear()
-                            name_ok = final_user_data[0]
-                            lastname_ok = final_user_data[1]
+
+                            #για να μην κάνει insert παλι και αλλάξει password σε υπάρχων χρήστη με βάση το email που είναι μοναδικό
+                            print('\n\n\nfinal_user_data=',final_user_data)
                             email_ok = final_user_data[2]
-                            phone_ok = final_user_data[3]
-                            password = uuid.uuid4().hex[:10]#random unique 10 digit password will be send via email or phone number
-                            #username = "std" +counter #sos???????
-                            # sos sos zisis pros8ese se klaseis edw ta stoixeia
-                            print("Δήλωση Μαθητών:",final_user_data)
-                            final_user_data.clear()
-                            
-                            #send verification email
-                            subject='Στοιχεία Χρήστη Για Το Σύστημα Παρμενίδης'
-                            e1="Όνομα: " + name_ok
-                            e2="Επώνυμο: " + lastname_ok
-                            e3="Όνομα χρήστη: " + "-"
-                            e4="Κωδικός Πρόσβασης: " + password
-                            e5="E-mail: " + email_ok
-                            e6="Αριθμός Επικοινωνίας: " + phone_ok
-                            contents = ["Καλώς ορίσατε στο ενιαίο Σύστημα Πανελληνίων Παρμενίδης!","Τα στοιχεία σας είναι τα εξής",e1,e2,e3,e4,e5,e6]
-                            reciever=email_ok
-                            yag.send(reciever, subject, contents)                   
+                            for existing_std in std_users:
+                                if (existing_std[3]==email_ok):
+                                    print("existingtest=",existing_std)
+                                    print("emailcmp",email_ok)
+                                    existing_std_flag=1
+                                    print("skip this user")
+                                    print("Δήλωση Μαθητών:",final_user_data)
+                                    final_user_data.clear()
+                            if(existing_std_flag==0): #αν είναι νεος χρήστης κάνε εισαγωγή
+                                name_ok = final_user_data[0]
+                                lastname_ok = final_user_data[1]
+                                phone_ok = final_user_data[3]
+                                password = uuid.uuid4().hex[:10]#random unique 10 digit password will be send via email or phone number
+                                username = "std" +str(std_counter+1)# to std_counter περιέχει το max num tou id opote 9eloume +1
+                                std_add= username + "," + name_ok + "," + lastname_ok + "," + email_ok + "," + phone_ok
+                                std_add_list=std_add.split(",")#για να εινια η μορφη που θέμε που χωρίζεται με κομμα
+                                print('\nsossososos\n\n',std_add_list)
+                                #add the new students into the array
+                                std_users.append(std_add_list)
+                                print("\nstd_user_new",std_users)
+                                std_counter+=1#αυξηση counter για username
+
+                                #προσθηκη σε login
+                                std_login = username + "," + password + "," + std_id
+                                std_login_insert = std_login + "\n"
+                                write_std_login = open(login_path,"a")#εισαγωγή δεδομένων σε αρχείο login
+                                write_std_login.write(std_login_insert)
+                                write_std_login.close()
+                                #εισαγωγή δεδομένων στην δυναμική λιστα στοιχείων login ,login_list
+                                cur_std_login_list = std_login.split(",")
+                                print("\cur_std_login_list=",cur_std_login_list)
+                                login_list.append(cur_std_login_list)
+                                print("\nnew_login_list=",login_list)
+
+                                print("Δήλωση Μαθητών:",final_user_data)
+                                final_user_data.clear()#clear list για αρχικοποίηση
+
+                                #send verification email
+                                subject='Στοιχεία Χρήστη Για Το Σύστημα Παρμενίδης'
+                                e1="Όνομα: " + name_ok
+                                e2="Επώνυμο: " + lastname_ok
+                                e3="Όνομα χρήστη: " + username
+                                e4="Κωδικός Πρόσβασης: " + password
+                                e5="E-mail: " + email_ok
+                                e6="Αριθμός Επικοινωνίας: " + phone_ok
+                                contents = ["Καλώς ορίσατε στο ενιαίο Σύστημα Πανελληνίων Παρμενίδης!","Τα στοιχεία σας είναι τα εξής",e1,e2,e3,e4,e5,e6]
+                                reciever=email_ok
+                                yag.send(reciever, subject, contents)
+                        del_std_users = open(std_list_path,"w").close()#διαγραφή περιεχομένου  λίστας μαθητών
+                        write_std = open(std_list_path,"a")#εισαγωγή δεδομένων σε αρχείο λίστας μαθητών
+                        #προσπέλαση λίστας και εισαγωγή data στην fake ΒΔ
+                        for row in std_users:
+                            new_std_list=",".join(row)
+                            print("\n\nnewlist",new_std_list)
+                            new_std_list = new_std_list + "\n"
+                            write_std.write(new_std_list)
+                        write_std.close()
+               
                     else:
                         messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της λίστας σας!')
                         print("Ακύρωση από χρήστη της δήλωσης λίστας")
@@ -975,51 +1184,48 @@ def main():
         print("registry confirmed")
 
     def delete_list():
-
+        global login_path
+        global login_list
+        global std_list_path
         del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
         if del_msg == 'yes':
             user_list.delete(0,'end')
-            #make text editable
-            std_reg_create_abtltl_r.config(state=NORMAL)#orismos onomatos listas
-            std_reg_create_abtltl_r.delete('1.0', END)
+            for data in login_list:
+                login_username = list(data[0])# retturns list with splited each letter id πχ['s','t','d','1']
+                if (login_username[0]=="s" and login_username[1]=="t" and login_username[2]=="d"):
+                    login_list.remove(data)
+                    print("std_removed=",data)
+            print("\nremoved std login list=",login_list)
 
-            std_reg_create_abmt_right.config(state=NORMAL)#onoma listas
-            std_reg_create_abmt_right.delete('1.0', END)
-            std_reg_create_abmt_right.config(state=DISABLED)
+            #διαγραφή περιεχομένου  std_list
+            del_std_list = open(std_list_path,"w").close()
+            #διαγραφή περιεχομένου  login
+            del_login = open(login_path,"w").close()
+            #άνοιγμα εισαγωγής δεδομένων σε αρχείο login
+            write_login = open(login_path,"a")
+            #insert to login.txt
+            for new_login_list in login_list:
+                new_login_str = ",".join(new_login_list)#ενωση στοιχείων σαν string με κομμα aka username,password,id
+                new_login_row = new_login_str + "\n"
+                write_login.write(new_login_row)
+            write_login.close()
 
             #αδειασμα text inputs
-            std_reg_create_abtltl_r1.config(state=NORMAL)
-            std_reg_create_abtltl_r2.config(state=NORMAL)
-            std_reg_create_abtltl_r3.config(state=NORMAL)
-            std_reg_create_abtltl_r4.config(state=NORMAL)
             std_reg_create_abtltl_r1.delete('1.0', END)
             std_reg_create_abtltl_r2.delete('1.0', END)
             std_reg_create_abtltl_r3.delete('1.0', END)
             std_reg_create_abtltl_r4.delete('1.0', END)
-            std_reg_create_abtltl_r1.config(state=DISABLED)
-            std_reg_create_abtltl_r2.config(state=DISABLED)
-            std_reg_create_abtltl_r3.config(state=DISABLED)
-            std_reg_create_abtltl_r4.config(state=DISABLED)
-    
-
-            #diable btns
-            btn_reg_create_return.config(state=DISABLED)
-            btn_reg_create_confirm.config(state=DISABLED)
-            btn_reg_list_name.config(state=NORMAL)
-            btn_reg_delete_list.config(state=DISABLED)
-            btn_reg_add.config(state=DISABLED)
-            btn_reg_delete.config(state=DISABLED)
             print("deleted list")
         else:
            messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 
     
     #ORISMOS BTNS
     btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
-    btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=DISABLED, command=lambda: confirm_registry(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
-    btn_reg_list_name = Button(std_reg_create_abt_top, text="Δημιουργία Λίστας", command=lambda: confirm_list_name(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
-    btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=DISABLED, command=lambda: delete_list(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
-    btn_reg_add = Button(std_reg_create_ab_top, text="Προσθήκη Εγγραφής", state=DISABLED, command=lambda: add_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
-    btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=DISABLED, command=lambda: delete_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
+    btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: confirm_registry(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    #btn_reg_list_name = Button(std_reg_create_abt_top, text="Δημιουργία Λίστας", command=lambda: confirm_list_name(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=NORMAL, command=lambda: delete_list(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reg_add = Button(std_reg_create_ab_top, text="Προσθήκη Εγγραφής", state=NORMAL, command=lambda: add_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
+    btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=NORMAL, command=lambda: delete_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
 
     #orismos listbox sos sos edw 8elei tkinterctrl
     user_list  = Listbox (std_reg_create_abm_bot, bg="floral white", borderwidth=2, highlightthickness=0, selectmode='multiple', export=FALSE, activestyle=none)
@@ -1030,6 +1236,15 @@ def main():
     user_list.configure(yscrollcommand=scrollv_usr.set, xscrollcommand=scrollh_usr.set, font=("Times New Roman (Times)", 16,"bold"))
     std_reg_create_abm_bot.bind("<MouseWheel>", scrollv_usr)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ 
 
+    #συναρτηση για check λίστας και εμφάνιση-γέμισαμ στοιχείων από μνήμη
+    def check_std_list(alist):
+        spacer="  |  "
+        for std in alist:
+            std_info = "Όνομα: " + std[1]+ spacer + "Επώνυμο: " + std[2] + spacer + "E-mail: " + std[3] + spacer + "Τηλέφωνο: " +std[4]
+            user_list.insert('end', std_info)#end στην τελευταια open θέση δλδ 0,1,2,3,..
+
+    check_std_list(std_users)
+
     #packs εμφάνιση στοιχείων
     std_reg_create_all.pack(side=TOP,fill=BOTH,expand=1)#δεξιο μενου-αρχικη σελίδα
     std_reg_create_all_top.pack(side=TOP,fill=X)
@@ -1038,21 +1253,18 @@ def main():
     std_reg_create_ab_top.pack(side=TOP, fill=X)#expand=1
     
     #αριστερη πλευρα με  στοιχεια εγγραφης
-    std_reg_create_abt_top.pack(side=TOP, fill=X)
     std_reg_create_abt_top1.pack(side=TOP, fill=X)
     std_reg_create_abt_top2.pack(side=TOP, fill=X)
     std_reg_create_abt_top3.pack(side=TOP, fill=X)
     std_reg_create_abt_top4.pack(side=TOP, fill=X)
     std_reg_create_abt_top5.pack(side=TOP, fill=X)
 
-    std_reg_create_abtltl_l.pack(side=LEFT, padx=50)#ονομα λίστας
     std_reg_create_abtltl_l1.pack(side=LEFT, padx=50)#ονομα
     std_reg_create_abtltl_l2.pack(side=LEFT, padx=50)#επωνυμο
     std_reg_create_abtltl_l3.pack(side=LEFT, padx=50)#e-mail
     std_reg_create_abtltl_l4.pack(side=LEFT, padx=50)#τηλ επικ
     std_reg_create_abtltl_l5.pack(side=LEFT, padx=50)#info
 
-    std_reg_create_abtltl_r.pack(side=LEFT)#ονομα λίστας
     std_reg_create_abtltl_r1.pack(side=LEFT)#ονομα
     std_reg_create_abtltl_r2.pack(side=LEFT)#επωνυμο
     std_reg_create_abtltl_r3.pack(side=LEFT)#e-mail
@@ -1067,7 +1279,6 @@ def main():
     scrollv_usr.pack(side=RIGHT, fill=Y)
     scrollh_usr.pack(side=BOTTOM, fill=X)
     user_list.pack(side=BOTTOM, expand=1, fill=BOTH)#BOTH
-    #std_reg_create_abm_bot.pack(side=BOTTOM, expand=1, fill=BOTH)#BOTH
 
     #κατω πλευρα με buttons σελιδας
     std_reg_create_ab_bot.pack(side= TOP, fill=X)
@@ -1077,7 +1288,6 @@ def main():
     btn_reg_create_return.pack(side=RIGHT)
     btn_reg_add.pack(side=RIGHT, padx=50)
     btn_reg_delete.pack(side=RIGHT) 
-    btn_reg_list_name.pack(side=LEFT, padx=30) 
     btn_reg_delete_list.pack(side=LEFT, padx=50) 
 
     #---------------------------------------------------------------------------------------------------

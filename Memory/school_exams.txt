@@ -1,0 +1,5 @@
+01/06/2020,wwww,message
+01/06/2020,ssssssssss,reminder
+02/06/2020,Αυτο είναι ενα τεστ για μήνημα,message
+05/06/2020,Αυτό είναι ένα τεστ για υπενθύμιση,reminder
+10/06/2020,test to se date,message
