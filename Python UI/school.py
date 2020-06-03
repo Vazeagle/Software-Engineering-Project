@@ -909,7 +909,6 @@ def main():
     student_reg_am_top = Label(student_reg_all_mid, text="Επιλογές: ", bg="floral white",font=("Times New Roman (Times)", 30, "bold"),fg="dodger blue")
     student_reg_am_bot = Label(student_reg_all_mid,bg="floral white", borderwidth=2, highlightthickness=2, relief="groove")
     btn_reg_create = Button(student_reg_am_bot, text="Δημιουργία/Επεξεργασία Εγγραφής", command=lambda: raiseNdrop_frame(school_std_reg_create_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
-    #btn_reg_edit = Button(student_reg_am_bot, text="Επεξεργασία Εγγραφών", command=lambda: raiseNdrop_frame(school_std_reg_edit_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
     btn_reg_spectate = Button(student_reg_am_bot, text="Ολοκληρωμένες Εγγραφές", command=lambda: raiseNdrop_frame(school_std_reg_fin_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     #pack-εμφάνιση στοιχείων
@@ -922,7 +921,6 @@ def main():
 
     #Buttons pack
     btn_reg_create.pack(side = TOP,pady=50)
-    #btn_reg_edit.pack(side = TOP)
     btn_reg_spectate.pack(side = TOP,pady=50)
 
     #---------------------------------------------------------------------------------------------------
@@ -1050,6 +1048,10 @@ def main():
         global login_list
         global std_list_path 
         global std_users
+        pending_user_data=[]
+        spacer = "  |  "
+        std_new = []
+        login_new = []
         student_to_remove = [user_list.get(idx) for idx in user_list.curselection()]
         w=1
         while (w<=len(student_to_remove)):
@@ -1059,10 +1061,72 @@ def main():
                 if(remove_temp==user_list.get(idx_count)):
                     print(idx_count,"idxc")
                     user_list.delete(idx_count)
-                idx_count=idx_count+1
-
+                idx_count+=1
+                    
             w=w+1
+
+        for cur_std_remove in student_to_remove:
+            std_data = cur_std_remove.split(spacer)#καθε index σε αυτο το list περιέχει ονομα επώνυμο κλπ στοιχεία με trash strings
+            print("stoixeia xrhsth= ",cur_std_remove)
+            for sub_data in std_data:
+                print("sub_stoixeio=",sub_data)
+                splitted_std = sub_data.split(" ")
+                pending_user_data.append(splitted_std[1])
+                splitted_std.clear()
+
+            email_key = pending_user_data[2]
+            pending_user_data.clear()
+
+            for elem in std_users:
+                print("\nelem3",elem[3])
+                print("\nkey",email_key)
+                if elem[3]==email_key:
+                    print("email key ",email_key ," found!")
+                    std_remove_id=elem[0]
+                    print("id of user to remove=",std_remove_id)
+                else:
+                    std_new.append(elem)#φτιαχνω λίστα που περιέχει όλα τα στοιχεία εκτός από αυτό με το συγκεκριμένο email
+
+            ######std remove and insert modified data
+            std_users.clear()
+            std_users = std_new.copy()#ωστε το παλιο std να έχει τα data που θέλουμε
+            std_new.clear()
+            #διαγραφή περιεχομένου  std_list
+            del_std_list = open(std_list_path,"w").close()
+            write_std = open(std_list_path,"a")
+            #insert to std_list.txt
+            for new_std_user in std_users:
+                new_std_str = ",".join(new_std_user)#ενωση στοιχείων σαν string με κομμα aka username,password,id
+                new_std_row = new_std_str + "\n"
+                write_std.write(new_std_row)
+            write_std.close()
+
+            ##### delete from login specific student user
+            for data in login_list:
+                login_username = data[0]# retturns current student username πχ std1
+                print("\nlogin_username=",login_username)
+                if (login_username==std_remove_id):
+                    print("\nstd_removed=",login_username)
+                else:   #αν δεν είναι το std που ψάχνουμε
+                    login_new.append(data)
+            
+            print("\n\n new lsit =",login_new)
+            login_list.clear()
+            login_list = login_new.copy()#ωστε το login να μην έχει std
+            login_new.clear()
+            print("\n\n\nlogin lsit new = ",login_list)
+            #διαγραφή περιεχομένου  login
+            del_login = open(login_path,"w").close()
+            #άνοιγμα εισαγωγής δεδομένων σε αρχείο login
+            write_login = open(login_path,"a")
+            #insert to login.txt
+            for new_login_user in login_list:
+                new_login_str = ",".join(new_login_user)#ενωση στοιχείων σαν string με κο��μα aka username,password,id
+                new_login_row = new_login_str + "\n"
+                write_login.write(new_login_row)
+            write_login.close()
         print("\n",student_to_remove)
+
         #να σπασω από αυτα που επιλέγονται και να πάρω το email σαν Key
         #αν αυτά τα στοιχεία υπάρχουν στην std_list με βάση email kane flag=1 και αφαιρεσε
         #αλλιως print it was'nt saved simple delete from listbox
@@ -1070,9 +1134,7 @@ def main():
         # και μετα να το ανεβάσω πάλι με τα  στοιχεία που αφαιρέσαμε στο std_txt
         #μετα με την λίστα που εχουμε με τα username κανω προσπέλαση το login_list διαγραφω αυτά και μετά προχωράω σε delete txt και ξαναπέρασμα
         #να παρω το email
-        #συγκρινε τις δυο λίστες αφάιρεσαι με pop το std ου λείπει και κάνε πάλι insert
-        #ισως χρειάζεται κάλεσμα η memory για να δεί  τα νέα
-        #τι γίνεται με τα νεα που δεν έχουν γίνει save?
+        #συγκρινε τις δυο λίστες αφάιρεσαι το std ου λείπει και κάνε πάλι insert
         print("deleted a user") 
 
         
@@ -1107,7 +1169,6 @@ def main():
                             for sub_stoixeio in user_data:
                                 print("sub_stoixeio=",sub_stoixeio)
                                 splitted_usr = sub_stoixeio.split(" ")
-                                #print("g0",splitted_usr[0])
                                 final_user_data.append(splitted_usr[1])
                                 splitted_usr.clear()
 
@@ -1190,13 +1251,20 @@ def main():
         del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
         if del_msg == 'yes':
             user_list.delete(0,'end')
+            new_login_list=[]
             for data in login_list:
                 login_username = list(data[0])# retturns list with splited each letter id πχ['s','t','d','1']
+                print("\nlogin_username=",login_username)
                 if (login_username[0]=="s" and login_username[1]=="t" and login_username[2]=="d"):
-                    login_list.remove(data)
-                    print("std_removed=",data)
-            print("\nremoved std login list=",login_list)
+                    print("\nstd_removed=",data)
+                else:   #αν δεν είναι std
+                    new_login_list.append(data)
 
+            print("\n\n new lsit =",new_login_list)
+            login_list.clear()
+            login_list = new_login_list.copy()#ωστε το login να μην έχει std
+            new_login_list.clear()
+            print("\n\n\nlogin lsit new = ",login_list)
             #διαγραφή περιεχομένου  std_list
             del_std_list = open(std_list_path,"w").close()
             #διαγραφή περιεχομένου  login
@@ -1204,8 +1272,8 @@ def main():
             #άνοιγμα εισαγωγής δεδομένων σε αρχείο login
             write_login = open(login_path,"a")
             #insert to login.txt
-            for new_login_list in login_list:
-                new_login_str = ",".join(new_login_list)#ενωση στοιχείων σαν string με κομμα aka username,password,id
+            for new_login_user in login_list:
+                new_login_str = ",".join(new_login_user)#ενωση στοιχείων σαν string με κομμα aka username,password,id
                 new_login_row = new_login_str + "\n"
                 write_login.write(new_login_row)
             write_login.close()
@@ -1222,7 +1290,6 @@ def main():
     #ORISMOS BTNS
     btn_reg_create_return = Button(std_reg_create_ab_bot, text="Επιστροφή", command=lambda: raiseNdrop_frame(school_std_reg_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     btn_reg_create_confirm = Button(std_reg_create_ab_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: confirm_registry(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
-    #btn_reg_list_name = Button(std_reg_create_abt_top, text="Δημιουργία Λίστας", command=lambda: confirm_list_name(),bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     btn_reg_delete_list = Button(std_reg_create_ab_bot, text="Διαγραφή Λίστας", state=NORMAL, command=lambda: delete_list(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     btn_reg_add = Button(std_reg_create_ab_top, text="Προσθήκη Εγγραφής", state=NORMAL, command=lambda: add_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
     btn_reg_delete = Button(std_reg_create_ab_top, text="Διαγραφή Εγγραφής", state=NORMAL, command=lambda: delete_user(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=17)
