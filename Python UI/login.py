@@ -147,7 +147,7 @@ def main():
     
     login_all=Label(intro_Frame, borderwidth=1, highlightthickness=0, bg="floral white")
     
-    label_top = Label(login_all, borderwidth=1, highlightthickness=0,bg="floral white")  # kalos orisate+ to eniaio susthma klp
+    label_top = Label(login_all, borderwidth=1, highlightthickness=0,bg="floral white")  
     label_pic = Label(label_top, image=render2, borderwidth=1, highlightthickness=0, bg="floral white")
     label_parmen = Label(label_top, text="ΣΥΣΤΗΜΑ ΠΑΡΜΕΝΙΔΗΣ\n", borderwidth=0,highlightthickness=0, bg="floral white", font=("Times New Roman (Times)", 24, "bold"))
     label_top3 = Label(login_all,bg="white", borderwidth=2, highlightthickness=2, relief="groove")
