@@ -17,11 +17,7 @@ mydir=os.getcwd()
 memory_dir=None
 selected_row=None  #αρχικοποίηση μεταβλητης για να παίρνω το row που έχει επιλεχθεί στα προγράμματα
 users=[]
-user1=[]#arxikopoihsh pinaka
-user2=[]
-user3=[]
-user4=[]
-user5=[]
+
 
 
 def ExitApp():
@@ -76,22 +72,14 @@ render2 = ImageTk.PhotoImage(load2)
 
 
 def memory():    #function to create a folder that contains txts with memory
-    global user1#arxikopoihsh pinaka
-    global user2
-    global user3
-    global user4
-    global user5
+    global users#arxikopoihsh pinaka
     try:
         if not os.path.exists('Memory'):
             os.makedirs('Memory')
             messagebox.showinfo('Προσοχή',"Ο φάκελος Memory μόλις δημιουργήθηκε\n")
             memory_dir = mydir+"\Memory"
             #αρχικοποίηση στοιχείων-data
-            user1=['vastyl','24682468','id(1)']#arxikopoihsh pinaka
-            user2=['ceidupatras','244466666','id(2)']
-            user3=['1gelklytorias','qwerty','id(3)']
-            user4=['sviganast','1357913579','id(4)']
-            user5=['dimitrog','helpme','id(5)']
+            
         else:
             #messagebox.showinfo('Προσοχή'," Folder Memory already exists\n")
             memory_dir = mydir+"\Memory"
@@ -107,27 +95,12 @@ def memory():    #function to create a folder that contains txts with memory
                 login_data = login_path.readlines()
                 line_count=0
                 for usrline in login_data:
-                    line_count+=1
+                    
                     cur_user = usrline.strip()#removes\n from each line of the text
-                    if(line_count==1):
-                       user1 = cur_user.split(",")
-                    elif(line_count==2):
-                        user2 = cur_user.split(",")
-                    elif(line_count==3):
-                        user3 = cur_user.split(",")
-                    elif(line_count==4):
-                        user4 = cur_user.split(",")
-                    elif(line_count==5):
-                        user5 = cur_user.split(",")
-
-                n = 5
-                m = 1
-                users = [[0] * m for i in range(n)]
-                users[0]=user1
-                users[1]=user2
-                users[2]=user3
-                users[3]=user4
-                users[4]=user5
+                    cur_user_list=cur_user.split(",")
+                    users.append(cur_user_list)
+                    
+                print(users)
 
             else:
                 print ("File login created")#created
@@ -167,29 +140,39 @@ def main():
 
 
     def datacheck():
+        global users
         usr_name = login_usr2.get('1.0', 'end-1c')
         usr_pass = login_passw2.get('1.0', 'end-1c')
+        flag_found = 0
         
-        for i in users:
-            if users[i][0]==usr_name and users[i][1]==usr_pass:
-                if users[i][3]=='id(1)':
-                    main_window.destroy()
-                    from initUI import main
-                elif users[i][3]=='id(2)':
-                    main_window.destroy()
-                    from department import main
-                elif users[i][3]=='id(3)':
-                    main_window.destroy()
-                    from school import main
-                elif users[i][3]=='id(4)':
-                    main_window.destroy()
-                    from Grader import main
-                elif users[i][3]=='id(5)':
-                    main_window.destroy()
-                    from board import main
+        for user in users:
 
-            else:
-                messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
+            if user[0]==usr_name and user[1]==usr_pass: 
+                if(user[2]=="1"):
+                    flag_found = 1
+                    main_window.destroy()
+                    import board 
+                elif(user[2]=="2"):
+                    flag_found = 1
+                    main_window.destroy()
+                    import school
+                elif(user[2]=="3"):
+                    flag_found = 1
+                    main_window.destroy()
+                    import Grader
+                elif(user[2]=="4"):
+                    flag_found = 1
+                    main_window.destroy()
+                    import department 
+                elif(user[2]=="5"):
+                    flag_found = 1
+                    main_window.destroy()
+                    import initUI
+        if flag_found==1:
+            print("Login Successful!")
+            flag_found=0
+        else:
+            messagebox.showinfo('Ανεπιτυχής Σύνδεση', 'Παρακαλώ πληκτρολογείστε τα σωστά στοιχεία.', icon='error')
 
 
 
