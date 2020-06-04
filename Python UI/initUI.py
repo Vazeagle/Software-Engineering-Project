@@ -57,8 +57,26 @@ orientations = [med_sciences,pos_sciences]
 
 special_lessons_get = ["Καμία Επιλογή","Ελεύθερο Σχέδιο", "Γραμμικό Σχέδιο"]
 
+departments =[]
+site = Site(
+    'ceid_out.png',
+    'ceid.png',
+    'www.ceid.upatras.gr',
+    'Poli kalo tmima pragmatika'
+)
+department = Department(
+    "Τμήμα Μηχανικών Η\Υ και πληροφορικής",
+    [pos_sciences],
+    "Πανεπιστήμιο Πατρών",
+    "Πάτρα",
+    site,
+    14012
+)
+departments.append(department)
+
+
 cur_school = School("1ο Λύκειο Καισαριανής")
-cur_student = Student("ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[Department("Μαθηματικό(Αθήνας)",[pos_sciences])])
+cur_student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[departments[0]])
 
 #-------------------------------------</CLASSES>------------------------------------------------------
 
@@ -1088,13 +1106,77 @@ def main():
         global departments
         departments.clear()
         department_list.delete(0,'end')
-        departments.append(Department("Τμήμα Μηχανικών Η\Υ και πληροφορικής(Πάτρα) ",[pos_sciences]))
-        departments.append(Department("Φυσικο(Αθήνας)",[pos_sciences]))
-        departments.append(Department("Φυσικο(Πάτρας)",[pos_sciences]))
-        departments.append(Department("Χημικό(Αθήνας)",[med_sciences]))
-        departments.append(Department("Χημικό(Πάτρας)",[med_sciences]))
-        departments.append(Department("Μαθηματικό(Αθήνας)",[pos_sciences]))
-        departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
+        departments.append(
+            Department(
+                "Τμήμα Μηχανικών Η\Υ και πληροφορικής",
+                [pos_sciences],
+                "Πανεπιστήμιο Πατρών",
+                "Πάτρα",
+                None,
+                14012
+            )
+        )
+        departments.append(
+            Department(
+                "Φυσικό",
+                [pos_sciences],
+                "Πανεπιστήμιο Πατρών",
+                "Πάτρα",
+                None,
+                14623
+            )
+        )
+        departments.append(
+            Department(
+                "Φυσικό",
+                [pos_sciences],
+                "ΕΚΠΑ",
+                "Αθήνα",
+                None,
+                15564
+            )
+        )
+        departments.append(
+            Department(
+                "Χημικό Αθήνας",
+                [pos_sciences,med_sciences],
+                "ΕΚΠΑ",
+                "Αθήνα",
+                None,
+                17645
+            )
+        )
+        departments.append(
+            Department(
+                "Χημικό",
+                [pos_sciences,med_sciences],
+                "Πανεπιστήμιο Πατρών",
+                "Πάτρα",
+                None,
+                16754
+            )
+        )
+        departments.append(
+            Department(
+                "Μαθηματικό",
+                [pos_sciences],
+                "Πανεπιστήμιο Πατρών",
+                "Πάτρα",
+                None,
+                13980
+            )
+        )
+        departments.append(
+            Department(
+                "Μαθηματικό",
+                [pos_sciences],
+                "ΕΚΠΑ",
+                "Αθήνα",
+                None,
+                14365
+            )
+        )
+        
         z=0
         while (z<len(departments)):
             if any(orientation in cur_student.orientations for orientation in departments[z].orientations):
