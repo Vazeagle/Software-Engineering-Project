@@ -1,5 +1,6 @@
 #extra need yagmail from pip import
-
+from Classes import *
+from Classes import Lesson,Orientation,Direction,Department,Student,School,Board,Grader,Script
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
@@ -37,6 +38,35 @@ grader_intro_Frame = Frame(grader_Frame, bg="floral white")
 graderInfo_Frame = Frame(grader_Frame, bg="floral white") 
 pexams_Frame = Frame(grader_Frame, bg="floral white") #Πανελλήνιες
 problems_Frame = Frame(grader_Frame, bg="floral white") #προβλήματα με την εφαρμογή
+
+#region Classes
+physics = Lesson("Φυσική")
+chemistry = Lesson("Χημεία")
+language = Lesson("Νεοελληνική Γλώσσα και Λογοτεχνία")
+math_dir = Lesson("Μαθηματικά Κατεύθυνσης")
+lessons = [physics,chemistry,language,math_dir]
+
+data = {
+    "password" : "imerominiagennisismou",
+    "school" : "7o epal",
+    "email" : "textme@ceid.uk",
+    "number" : "6352526989",
+}
+scripts = [
+    Script(
+        "5",
+        "Μαθηματικά",
+        "3"
+    ),
+    Script(
+        "12",
+        "Φυσική",
+        "3"
+    )
+]
+curGrader = Grader('Σβίγγου Αναστασία',1,scripts,data,lessons)
+
+#endregion
 
 def ExitApp():
     MsgBox = messagebox.askquestion('Έξοδος Εφαρμογής!', 'Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το σύστημα Παρμενίδης ;', icon='warning')
@@ -100,7 +130,7 @@ def main():
     initialGrader_abtlt_left = Label(initialGrader_abtl_top, borderwidth=1, highlightthickness=0, bg="floral white")#user grader name top of left side
     initialGrader_abtltl_left = Label(initialGrader_abtlt_left, text='Είστε συνδεδεμένοι ως: ',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
      
-    initialGrader_abtltl_right = Label(initialGrader_abtlt_left, text='Σβίγγου Αναστασία',borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
+    initialGrader_abtltl_right = Label(initialGrader_abtlt_left, text=curGrader.name,borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))
     initialGrader_abt_right = Label(initialGrader_ab_top, borderwidth=1, highlightthickness=0, bg="floral white")#calenar and text include
     initialGrader_abtr_top = Label(initialGrader_abt_right, text='Ημερολόγιο', borderwidth=1, highlightthickness=0, bg="floral white",font=("Times New Roman (Times)", 18, "bold"))#calendar text
     initialGrader_abtr_bot = Label(initialGrader_abt_right, borderwidth=1, highlightthickness=0, bg="floral white")#calendar
@@ -210,24 +240,28 @@ def main():
     graderinfo_id = Label(graderinfo_am_gen_info_left, bg="floral white")
     graderinfo_id_left = Label(graderinfo_id, bg="floral white", text="ID Χρήστη:\t",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_id_right = Text(graderinfo_id, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_id_right.insert(END, curGrader.id)
     graderinfo_id_right.config(state=DISABLED)
     
     #password
     graderinfo_password = Label(graderinfo_am_gen_info_left, bg="floral white")
     graderinfo_pass_left = Label(graderinfo_password, bg="floral white", text="Κωδικός:\t",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_pass_right = Text(graderinfo_password, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_pass_right.insert(END, curGrader.data["password"])
     graderinfo_pass_right.config(state=DISABLED)
 
     #fullname
     graderinfo_fullname = Label(graderinfo_am_gen_info_left, bg="floral white")
     graderinfo_fullname_left = Label(graderinfo_fullname, bg="floral white", text="Ονοματεπώνυμο:\t",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_fullname_right = Text(graderinfo_fullname, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_fullname_right.insert(END, curGrader.name)
     graderinfo_fullname_right.config(state=DISABLED)
     
     #school
     graderinfo_school = Label(graderinfo_am_gen_info_left, bg="floral white")
     graderinfo_school_left = Label(graderinfo_school, bg="floral white", text="Σχολείο:\t\t",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_school_right = Text(graderinfo_school, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_school_right.insert(END, curGrader.data["school"])
     graderinfo_school_right.config(state=DISABLED)
     
     #photo
@@ -245,12 +279,14 @@ def main():
     graderinfo_contact_email = Label(graderinfo_contact_all, bg="floral white")#email container
     graderinfo_contact_email_left = Label(graderinfo_contact_email, bg="floral white", text="E-mail:\t\t",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_contact_email_right = Text(graderinfo_contact_email, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_contact_email_right.insert(END, curGrader.data["email"])
     graderinfo_contact_email_right.config(state=DISABLED)
    
     #number
     graderinfo_contact_number = Label(graderinfo_contact_all, bg="floral white")#contain number
     graderinfo_contact_number_left = Label(graderinfo_contact_number, bg="floral white", text="Αριθμός Τηλεφώνου:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     graderinfo_contact_number_right = Text(graderinfo_contact_number, bg="WHITE", height=1, width=30, fg="black", borderwidth=1, highlightthickness=2,font=("Times New Roman (Times)", 16))
+    graderinfo_contact_number_right.insert(END, curGrader.data["number"])
     graderinfo_contact_number_right.config(state=DISABLED)
 
     btn_grader_info_edit = Button(graderinfo_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
@@ -290,9 +326,11 @@ def main():
     def save_profile():
         
         global temp_image #Αποθηκευση Φωτογραφίας στη ΒΔ
-        passw = graderinfo_pass_right.get("1.0",'end-1c')
-        email = graderinfo_contact_email_right.get("1.0",'end-1c')
-        phone = graderinfo_contact_number_right.get("1.0",'end-1c')
+        curGrader.data["password"] = graderinfo_pass_right.get("1.0",'end-1c')
+        curGrader.data["email"]  = graderinfo_contact_email_right.get("1.0",'end-1c')
+        curGrader.data["number"]  = graderinfo_contact_number_right.get("1.0",'end-1c')
+        # curGrader.name = graderinfo_fullname_right.get("1.0",'end-1c')
+        # curGrader.school = graderinfo_school_right.get("1.0",'end-1c')
 
         btn_grader_save.config(state=DISABLED)
         btn_grader_pic_edit.config(state=DISABLED)
@@ -390,7 +428,9 @@ def main():
     grd_pexams_create_abtltl_r3 = Text(pexams_abt_top3, bg="WHITE", height=1, width=40, fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
 
     #DROP DOWN MENU ΓΙΑ ΕΠΙΛΟΓΗ SELECT ΑΠΟ ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ
-    lesson_choice=["-","Μαθηματικά", "Φυσική", "Χημεία"]
+    lesson_choice=["-"]
+    for lesson in curGrader.lessons:
+        lesson_choice.append(lesson.name)
     lesson_var = StringVar(grd_pexams_create_abtltl_r2)
     lesson_var.set(lesson_choice[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     lesson_choice = OptionMenu(grd_pexams_create_abtltl_r2, lesson_var, *lesson_choice)
@@ -422,7 +462,18 @@ def main():
     user_list.configure(yscrollcommand=scrollv_usr.set, xscrollcommand=scrollh_usr.set, font=("Times New Roman (Times)", 16,"bold"))
     std_reg_create_abm_bot.bind("<MouseWheel>", scrollv_usr)#ΚΑΘΕΤΟ SCROLL ΜΕ ΡΟΔΑ ΠΟΝΤΙΚΙΟΥ
 
+    def addU(grd_sname_ok,lesson_ok,grd_sgrade_ok):
+        info_to_add=[]
+        info_to_add.append("Κωδικός_Υποψηφίου: " + grd_sname_ok)
+        info_to_add.append("Μάθημα: " + lesson_ok)
+        info_to_add.append("Βαθμός: " + grd_sgrade_ok)
 
+        student_grade = ('  |  '.join(info_to_add))
+        print(student_grade)
+        #προσθήκη στοιχείων μαθητη listbox:
+        user_list.insert('end', student_grade)#end στην τελευταια open θέση δλδ 0,1,2,3,...
+    
+    
     def add_user():
     
         grd_sname = grd_pexams_create_abtltl_r1.get('1.0', 'end-1c')    #αντι end-1c αν βαλεις σκετο end βαζει στο τέλος newline 
@@ -438,23 +489,12 @@ def main():
             grd_sname_ok=grd_sname
             grd_sgrade_ok=grd_sgrade
             lesson_ok=lesson
+            addU(grd_sname_ok,lesson_ok,grd_sgrade_ok)
 
-           
-            
-            info_to_add=[]
-            info_to_add.append("Κωδικός_Υποψηφίου: " + grd_sname_ok)
-            info_to_add.append("Μάθημα: " + lesson_ok)
-            info_to_add.append("Βαθμός: " + grd_sgrade_ok)
-
-            student_grade = ('  |  '.join(info_to_add))
-            print(student_grade)
-            #προσθήκη στοιχείων μαθητη listbox:
-            user_list.insert('end', student_grade)#end στην τελευταια open θέση δλδ 0,1,2,3,...
-            
         else:
             messagebox.showinfo('Σφάλμα', 'Παρακαλώ εισάγετε ορθά τα στοιχεία του μαθητή',icon='warning')
 
-        
+    
         
     def delete_user():
         student_grade_to_remove = [user_list.get(idx) for idx in user_list.curselection()]
@@ -471,7 +511,8 @@ def main():
             w=w+1
         print("deleted a user") 
 
-        
+    for script in curGrader.scriptList:
+        addU(script.student,script.lesson,script.grade)  
 
     def confirm_registry():
         spacer='  |  '
@@ -479,6 +520,7 @@ def main():
         if (user_list.size()>=1):
             msg_conf_student_user = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
             if msg_conf_student_user == 'yes':
+                curGrader.scriptList = []
                 messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                 user_list.select_set(0, 'end')
                 conf_user_list=[user_list.get(idx) for idx in user_list.curselection()]
@@ -496,22 +538,23 @@ def main():
                     sname_ok = final_user_data[0]
                     lesson_ok = final_user_data[1]
                     sgrade_ok = final_user_data[2]
-
+                    curGrader.scriptList.append(Script(sname_ok,lesson_ok,sgrade_ok))
                     # sos sos zisis pros8ese se klaseis edw ta stoixeia
-                    print("Δήλωση Βαθμολογιών:",final_user_data)
+                    print(curGrader.scriptList)
                     final_user_data.clear()
             else:
                 messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της λίστας σας!')
                 print("Ακύρωση από χρήστη της δήλωσης λίστας")
         else:
             messagebox.showinfo('Σφάλμα', 'Πρέπει να επιλέξετε προσθέσει τουλάχιστον ένα μαθητή  για την υποβολή της λίστας σας!')
-            
+         
 
     def delete_list():
 
         del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
         if del_msg == 'yes':
             user_list.delete(0,'end')
+            curGrader.scriptList = []
             print("deleted user")
         else:
            messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 
@@ -540,6 +583,7 @@ def main():
     grd_pexams_create_abtltl_r3.pack(side=LEFT)#e-mail
     lesson_choice.pack()
     
+
     #κατω πλευρα με Λίστα
     std_reg_create_ab_mid.pack(side=TOP, fill=BOTH,expand=1)#,ipady=100)#, expand=1, fill=X)#BOTH
     std_reg_create_abm_top.pack(side=TOP, fill=X)
@@ -565,6 +609,9 @@ def main():
     raiseNdrop_frame(grader_Frame,none)
     raiseNdrop_frame(grader_menu_Frame,none)
     raiseNdrop_frame(grader_intro_Frame,none)  
+
+    
+
 
     main_window.mainloop()  # ------------------------------Put always to end of frames
 

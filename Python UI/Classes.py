@@ -71,3 +71,17 @@ class calEvent:
         self.date = date
         self.reminder = reminder
         self.message = message
+
+class Script:
+    def __init__(self,grade,lesson,student):
+        self.grade = grade
+        self.lesson = lesson
+        self.student = student
+
+class Grader:
+    def __init__(self,name,id,scriptList,data,lessons):
+        self.name = name
+        self.id = id
+        self.scriptList = scriptList
+        self.data = data
+        self.lessons = lessons
