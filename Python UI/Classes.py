@@ -13,21 +13,35 @@ class Orientation:
         self.direction = direction
         self.lesson = lesson
 
-class Department:
-    def __init__(self, name, orientations, university, city, site, base):
-        self.name = name
-        self.orientations = orientations
-        self.university = university
-        self.city = city
-        self.site = site
-        self.base = base
-
 class Site:
     def __init__(self, coverImage, logoImage, link, description):
         self.coverImage = coverImage
         self.logoImage = logoImage
         self.link = link
         self.description = description
+class Department:
+    def __init__(self, name, orientations, university, city, base):
+        self.name = name
+        self.orientations = orientations
+        self.university = university
+        self.city = city
+        self.base = base
+        self.site = Site("ceid_out.png","ceid.png","","")
+
+    def siteedit(self, link, description):
+        self.site.link = link
+        self.site.description = description
+
+    def positionsub(self,rseats,reasoning,file):
+        return Seatsapp(self.name,rseats,"",reasoning,file)
+
+class Seatsapp:
+    def __init__(self,department,rseats,fseats,reasoning,file):
+        self.department = department
+        self.rseats = rseats
+        self.fseats = fseats
+        self.reasoning = reasoning
+        self.file = file
 
 class Student:
     def __init__(self,id, name, direction, orientations, school, sp_lessons, departments):
@@ -39,9 +53,17 @@ class Student:
         self.school = school
         self.sp_lessons = sp_lessons
 
+    def choosedep(self,depList):
+        self.departments = depList
+    def chooseles(self, orientations):
+        self.orientations = orientations
+    
 class School:
-    def __init__(self, name):
+    def __init__(self,name,program,examCal,studentList):
         self.name = name
+        self.program = program
+        self.examCal = examCal
+        self.studentList = studentList
 
 class Application:
     def __init__(self,student,data,status):
@@ -49,13 +71,7 @@ class Application:
         self.status = status
         self.data = data
 
-class Seatsapp:
-    def __init__(self,department,rseats,fseats,reasoning,file):
-        self.department = department
-        self.rseats = rseats
-        self.fseats = fseats
-        self.reasoning = reasoning
-        self.file = file
+
 class Board:
     def __init__(self, seatsDue,list,examCal):
         self.seatsDue = seatsDue

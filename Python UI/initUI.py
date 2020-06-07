@@ -75,7 +75,7 @@ department = Department(
 departments.append(department)
 
 
-cur_school = School("1ο Λύκειο Καισαριανής")
+cur_school = School("1ο Λύκειο Καισαριανής",None,None,None)
 cur_student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , cur_school, [],[departments[0]])
 
 #-------------------------------------</CLASSES>------------------------------------------------------
@@ -960,7 +960,7 @@ def main():
                 msg_confirm_exam = messagebox.askquestion('Επιβεβαίωση!',conf_text_final+conf_text4, icon='warning')
                 if msg_confirm_exam == 'yes':
                     messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
-                    cur_student.orientations = cur_orientations
+                    cur_student.chooseles(cur_orientations) 
 
                     #########sos sos sos insert σε βαση δεδομένων
                     ######### sos sos επιστροφη στην αρχικη σελίδα! ίσως όχι απαραίτητο μιας κια έχει πρόσβαση στο menu
@@ -1233,7 +1233,7 @@ def main():
                 messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                 choosen_department_list.select_set(0, END)
                 conf_department=[choosen_department_list.get(idx) for idx in choosen_department_list.curselection()]
-                cur_student.departments = conf_department
+                cur_student.choosedep(conf_department)
                 choosen_department_list.select_clear(0,END)
                 print("Δήλωση Μηχανογραφικού:",conf_department)
             else:

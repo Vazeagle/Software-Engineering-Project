@@ -35,34 +35,21 @@ med_sciences = Orientation("Επιστήμες Υγείας",positive,biology)
 orientations = [med_sciences,pos_sciences]
 
 departments =[]
-site = Site(
-    'ceid_out.png',
-    'ceid.png',
-    'www.ceid.upatras.gr',
-    'Poli kalo tmima pragmatika'
-)
+
 department = Department(
     "Τμήμα Μηχανικών Η\Υ και πληροφορικής",
     [pos_sciences],
     "Πανεπιστήμιο Πατρών",
     "Πάτρα",
-    site,
     14012
 )
 departments.append(department)
 
-site = Site(
-    'ceid_out.png',
-    'ceid.png',
-    '',
-    ''
-)
 department = Department(
     "Χημικό",
     [pos_sciences,med_sciences],
     "ΕΚΠΑ",
     "Αθήνα",
-    site,
     17523
 )
 departments.append(department)
@@ -75,15 +62,15 @@ departments.append(department)
 # departments.append(Department("Μαθηματικό(Πάτρας)",[pos_sciences]))
 
 students = []
-student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , School("1ο Λύκειο Καισαριανής"), [],[])
+student = Student(1,"ΣΤΥΛΙΑΝΟΣ ΒΑΖΑΙΟΣ", positive, [pos_sciences] , School("1ο Λύκειο Καισαριανής",None,None,None), [],[])
 students.append(student)
-student = Student(2,"ΖΗΣΗΣ-ΣΤΥΛΙΑΝΟΣ ΤΡΑΜΠΑΡΗΣ", positive, [pos_sciences] , School("12ο Λύκειο Πάτρων"), [],[])
+student = Student(2,"ΖΗΣΗΣ-ΣΤΥΛΙΑΝΟΣ ΤΡΑΜΠΑΡΗΣ", positive, [pos_sciences] , School("12ο Λύκειο Πάτρων",None,None,None), [],[])
 students.append(student)
-student = Student(3,"ΠΑΝΑΓΙΩΤΗΣ ΣΤΑΥΡΟΠΟΥΛΟΣ", positive, [pos_sciences] , School("2ο Λύκειο Πάτρων"), [],[])
+student = Student(3,"ΠΑΝΑΓΙΩΤΗΣ ΣΤΑΥΡΟΠΟΥΛΟΣ", positive, [pos_sciences] , School("2ο Λύκειο Πάτρων",None,None,None), [],[])
 students.append(student)
-student = Student(4,"ΦΩΤΕΙΝΉ ΣΤΕΡΓΙΟΠΟΎΛΟΥ", positive, [pos_sciences] , School("3ο Λύκειο Φαρσάλων"), [],[])
+student = Student(4,"ΦΩΤΕΙΝΉ ΣΤΕΡΓΙΟΠΟΎΛΟΥ", positive, [pos_sciences] , School("3ο Λύκειο Φαρσάλων",None,None,None), [],[])
 students.append(student)
-student = Student(5,"ΑΝΑΣΑΣΙΑ ΣΒΙΓΓΟΥ", positive, [pos_sciences] , School("1ο Λύκειο Κλειτορίας"), [],[])
+student = Student(5,"ΑΝΑΣΑΣΙΑ ΣΒΙΓΓΟΥ", positive, [pos_sciences] , School("1ο Λύκειο Κλειτορίας",None,None,None), [],[])
 students.append(student)
 student = 0
 
@@ -172,7 +159,7 @@ reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής
 file = "Tubby.pdf"
 applicationsx.append(Seatsapp(department,seats,"-",reasoning,file))
 
-curApplicationx = Seatsapp(Department("Τμήμα",None,None,None,None,None),"-","-","","")
+curApplicationx = Seatsapp(Department("Τμήμα",None,None,None,None),"-","-","","")
 
 events = [
     calEvent("12/05/2020","Pliz work","Pliiiiz")
@@ -449,7 +436,7 @@ def main():
         if not found:
             exists = "OXI"
             butOn = "Νεα Αίτηση"
-            applicationsx.append(Seatsapp(curDepartment,"","","",""))
+            applicationsx.append(curDepartment.positionsub("","",""))
             curApplicationx = applicationsx[-1]
 
             
@@ -731,8 +718,7 @@ def main():
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η εμφάνιση έγινε δεκτή με επιτυχία!')
             
-            curDepartment.site.link = page_edit_depart_site1.get('1.0', 'end-1c')
-            curDepartment.site.description = page_edit_depart_descr1.get('1.0', 'end-1c')
+            curDepartment.siteedit(page_edit_depart_site1.get('1.0', 'end-1c'),page_edit_depart_descr1.get('1.0', 'end-1c'))
 
             page_Frame.destroy()
             page_Frame=Frame(all_Frame, bg="floral white")

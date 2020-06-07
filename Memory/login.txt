@@ -6,5 +6,3 @@ ceidupatras,244466666,4
 1gelklytorias,qwerty,2
 sviganast,1357913579,3
 dimitrog,helpme,1
-std1,dfde6b2e4e,5
-std2,8824118fef,5

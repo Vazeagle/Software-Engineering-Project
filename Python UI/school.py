@@ -49,6 +49,7 @@ exams_dates=[]
 std_users=[]
 login_list=[]
 
+
 #region Frames For Main Window
 frame_temp=Frame()#Frame to get as temp to successfull change between frames
 school_Frame=Frame(main_window, bg="white")
