@@ -46,25 +46,12 @@ language = Lesson("Νεοελληνική Γλώσσα και Λογοτεχνί
 math_dir = Lesson("Μαθηματικά Κατεύθυνσης")
 lessons = [physics,chemistry,language,math_dir]
 
-data = {
-    "password" : "imerominiagennisismou",
-    "school" : "7o epal",
-    "email" : "textme@ceid.uk",
-    "number" : "6352526989",
-}
-scripts = [
-    Script(
-        "5",
-        "Μαθηματικά",
-        "3"
-    ),
-    Script(
-        "12",
-        "Φυσική",
-        "3"
-    )
-]
-curGrader = Grader('Σβίγγου Αναστασία',1,scripts,data,lessons)
+
+curGrader = Grader('Σβίγγου Αναστασία',1,lessons)
+curGrader.editdata("imerominiagennisismou","7o epal","textme@ceid.uk","6352526989")
+curGrader.submitgrade("5","Μαθηματικά","3")
+curGrader.submitgrade("12","Φυσική","3")
+
 
 #endregion
 
@@ -326,11 +313,7 @@ def main():
     def save_profile():
         
         global temp_image #Αποθηκευση Φωτογραφίας στη ΒΔ
-        curGrader.data["password"] = graderinfo_pass_right.get("1.0",'end-1c')
-        curGrader.data["email"]  = graderinfo_contact_email_right.get("1.0",'end-1c')
-        curGrader.data["number"]  = graderinfo_contact_number_right.get("1.0",'end-1c')
-        # curGrader.name = graderinfo_fullname_right.get("1.0",'end-1c')
-        # curGrader.school = graderinfo_school_right.get("1.0",'end-1c')
+        curGrader.editdata(graderinfo_pass_right.get("1.0",'end-1c'),curGrader.data["school"],graderinfo_contact_email_right.get("1.0",'end-1c'),graderinfo_contact_number_right.get("1.0",'end-1c'))
 
         btn_grader_save.config(state=DISABLED)
         btn_grader_pic_edit.config(state=DISABLED)
@@ -520,7 +503,7 @@ def main():
         if (user_list.size()>=1):
             msg_conf_student_user = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να κάνετε υποβολή δήλωσης με αυτά τα στοιχεία;', icon='warning')
             if msg_conf_student_user == 'yes':
-                curGrader.scriptList = []
+                curGrader.deletelist()
                 messagebox.showinfo('Oλοκλήρωση', 'Η δήλωση καταχωρήθηκε με επιτυχία!')
                 user_list.select_set(0, 'end')
                 conf_user_list=[user_list.get(idx) for idx in user_list.curselection()]
@@ -538,9 +521,8 @@ def main():
                     sname_ok = final_user_data[0]
                     lesson_ok = final_user_data[1]
                     sgrade_ok = final_user_data[2]
-                    curGrader.scriptList.append(Script(sname_ok,lesson_ok,sgrade_ok))
+                    curGrader.submitgrade(sname_ok,lesson_ok,sgrade_ok)
                     # sos sos zisis pros8ese se klaseis edw ta stoixeia
-                    print(curGrader.scriptList)
                     final_user_data.clear()
             else:
                 messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνεχίστε στην επεξεργασία της λίστας σας!')
@@ -554,7 +536,7 @@ def main():
         del_msg = messagebox.askquestion('Προσοχή!', 'Είστε σίγουροι ότι θέλετε να διαγράψετε την τρέχουσα λίστα;\n Τα τρέχουσα στοιχεία της λίστας θα διαγραφτούν μόνιμα αν δεν τα έχετε υποβάλει!', icon='warning')
         if del_msg == 'yes':
             user_list.delete(0,'end')
-            curGrader.scriptList = []
+            curGrader.deletelist()
             print("deleted user")
         else:
            messagebox.showinfo('Επιστροφή', 'Παρακαλώ συνέχίστε με την συμπλήρωση της λίστας!',icon='warning') 

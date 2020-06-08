@@ -95,9 +95,26 @@ class Script:
         self.student = student
 
 class Grader:
-    def __init__(self,name,id,scriptList,data,lessons):
+    def __init__(self,name,id,lessons):
         self.name = name
         self.id = id
-        self.scriptList = scriptList
-        self.data = data
+        self.scriptList = []
+        self.data ={
+            "password" : "",
+            "school" : "",
+            "email" : "",
+            "number" : "",
+        }
         self.lessons = lessons
+
+    def submitgrade(self,grade,lesson,student):
+        self.scriptList.append(Script(grade,lesson,student))
+
+    def deletelist(self):
+        self.scriptList = []
+
+    def editdata(self,password,school,email,number):
+        self.data["password"] = password
+        self.data["school"] = school
+        self.data["email"] = email
+        self.data["number"] = number
