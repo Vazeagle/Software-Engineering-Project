@@ -58,21 +58,25 @@ orientations = [med_sciences,pos_sciences]
 special_lessons_get = ["Καμία Επιλογή","Ελεύθερο Σχέδιο", "Γραμμικό Σχέδιο"]
 
 departments =[]
-site = Site(
-    'ceid_out.png',
-    'ceid.png',
-    'www.ceid.upatras.gr',
-    'Poli kalo tmima pragmatika'
-)
+
 department = Department(
     "Τμήμα Μηχανικών Η\Υ και πληροφορικής",
     [pos_sciences],
     "Πανεπιστήμιο Πατρών",
     "Πάτρα",
-    site,
     14012
 )
 departments.append(department)
+
+department = Department(
+    "Χημικό",
+    [pos_sciences,med_sciences],
+    "ΕΚΠΑ",
+    "Αθήνα",
+    17523
+)
+departments.append(department)
+
 
 
 cur_school = School("1ο Λύκειο Καισαριανής",None,None,None)
@@ -1112,7 +1116,6 @@ def main():
                 [pos_sciences],
                 "Πανεπιστήμιο Πατρών",
                 "Πάτρα",
-                None,
                 14012
             )
         )
@@ -1122,7 +1125,6 @@ def main():
                 [pos_sciences],
                 "Πανεπιστήμιο Πατρών",
                 "Πάτρα",
-                None,
                 14623
             )
         )
@@ -1132,7 +1134,6 @@ def main():
                 [pos_sciences],
                 "ΕΚΠΑ",
                 "Αθήνα",
-                None,
                 15564
             )
         )
@@ -1142,7 +1143,6 @@ def main():
                 [pos_sciences,med_sciences],
                 "ΕΚΠΑ",
                 "Αθήνα",
-                None,
                 17645
             )
         )
@@ -1152,7 +1152,6 @@ def main():
                 [pos_sciences,med_sciences],
                 "Πανεπιστήμιο Πατρών",
                 "Πάτρα",
-                None,
                 16754
             )
         )
@@ -1162,7 +1161,6 @@ def main():
                 [pos_sciences],
                 "Πανεπιστήμιο Πατρών",
                 "Πάτρα",
-                None,
                 13980
             )
         )
@@ -1172,7 +1170,6 @@ def main():
                 [pos_sciences],
                 "ΕΚΠΑ",
                 "Αθήνα",
-                None,
                 14365
             )
         )
