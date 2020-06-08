@@ -197,7 +197,7 @@ curApplicationx = Seatsapp(Department("Τμήμα",None,None,None,None),"-","-",
 events = [
     calEvent("12/05/2020","Pliz work","Pliiiiz")
 ]
-board = Board("12/6/2002","",Cal(events))
+board = Board("12/6/2002",Cal(events))
 
 #endregion
 
@@ -319,9 +319,9 @@ def edit_app(state):
     global list_Frame
     global accept_Frame
     if state == "accept":
-        curApplication.status = appr
+        board.reviewapp(True,curApplication)
     else:
-        curApplication.status = rej
+        board.reviewapp(False,curApplication)
     list_Frame.destroy()
     list_Frame=Frame(pending_applic_Frame, bg="white")
     accept_Frame.destroy()
@@ -746,7 +746,7 @@ def main():
         msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να είναι αυτή η ημερομηνία;',icon='warning')
         if msg_confirmation == 'yes':
             messagebox.showinfo('Oλοκλήρωση', 'Η ημερομηνία έγινε δεκτή με επιτυχία!')
-            board.seatsDue = str(date_val.get()) + "/" + str(month_val.get()) + "/" + str(year_val.get())
+            board.changedue("seats",str(date_val.get()) + "/" + str(month_val.get()) + "/" + str(year_val.get()))
             raiseNdrop_frame(menu_Frame,none) ###ενδεχομενως να βαλουμε εδω να διαγραφεται η αιτηση και να πηγαινει στο ιστορικο
         else:
             raiseNdrop_frame(department_submit_Frame,none)
@@ -1021,7 +1021,7 @@ def main():
             msg_confirmation = messagebox.askquestion('Επιβεβαίωση!', 'Είστε σίγουροι ότι θέλετε να υποβάλετε αυτό το αρχείο;',icon='warning')
             if msg_confirmation == 'yes':
                 messagebox.showinfo('Oλοκλήρωση', 'Επιτυχής υποβολή αρχείου!')
-                board.list = filename_form
+                board.listedit(filename_form)
                 graderslist_frame.destroy()
                 graderslist_frame=Frame(all_Frame, bg="floral white") 
                 listMk()

@@ -33,7 +33,7 @@ class Department:
         self.site.description = description
 
     def positionsub(self,rseats,reasoning,file):
-        return Seatsapp(self,rseats,"",reasoning,file)
+        return Seatsapp(self,rseats,"-",reasoning,file)
 
 class Seatsapp:
     def __init__(self,department,rseats,fseats,reasoning,file):
@@ -71,13 +71,6 @@ class Application:
         self.status = status
         self.data = data
 
-
-class Board:
-    def __init__(self, seatsDue,list,examCal):
-        self.seatsDue = seatsDue
-        self.list = list
-        self.examCal = examCal
-
 class Cal:
     def __init__(self,events):
         self.events = events
@@ -87,6 +80,24 @@ class calEvent:
         self.date = date
         self.reminder = reminder
         self.message = message
+
+class Board:
+    def __init__(self, seatsDue,examCal):
+        self.seatsDue = seatsDue
+        self.list = ""
+        self.examCal = examCal
+
+    def listedit(self,list):
+        self.list = list
+    def reviewapp(self,status,application):
+        if status is True:
+            application.status = "Sapproved" 
+        else:
+            application.status = "Rejected"
+    def changedue(self,due,date):
+        if due == "seats":
+            self.seatsDue = date
+            
 
 class Script:
     def __init__(self,grade,lesson,student):
