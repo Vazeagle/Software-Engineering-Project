@@ -185,12 +185,12 @@ applicationsx = []
 department = departments[0]
 seats = 100
 reasoning = "ANNNNNNNNNNNNNNASTASIA SBINGKOU"
-applicationsx.append(curDepartment.positionsub(seats,"-",reasoning,"Tubby.pdf"))
+applicationsx.append(department.positionsub(seats,reasoning,"Tubby.pdf"))
 
 department = departments[1]
 seats = 50
 reasoning = "Αφού πάρθηκε η απόφαση της Κεντρικής Επιτροπής Μεταγωγών για να γυρίσει ο Βασίλης Δημάκης στο κελί του καθώς και μετά την ανακοίνωση του συνηγόρου του ότι προτίθεται να κινηθεί ποινικά για συκοφαντική δυσφήμιση απέναντι στα ψέματα του υπουργείου, η γενική γραμματέας Αντεγκληματικής Πολιτικής, Σοφία Νικολάου, εξέδωσε μια λιτή ανακοίνωση στην οποία παραδέχεται ότι ήταν ανακριβής η πληροφορία που το ίδιο το Υπουργείο Προστασίας του Πολίτη είχε υποστηρίξει, όταν χρέωνε στον Δημάκη ληστείες με Καλάσνικοφ. "
-applicationsx.append(curDepartment.positionsub(seats,"-",reasoning,"Old.pdf"))
+applicationsx.append(department.positionsub(seats,reasoning,"Old.pdf"))
 
 curApplicationx = Seatsapp(Department("Τμήμα",None,None,None,None),"-","-","","")
 

@@ -33,7 +33,7 @@ class Department:
         self.site.description = description
 
     def positionsub(self,rseats,reasoning,file):
-        return Seatsapp(self.name,rseats,"",reasoning,file)
+        return Seatsapp(self,rseats,"",reasoning,file)
 
 class Seatsapp:
     def __init__(self,department,rseats,fseats,reasoning,file):
