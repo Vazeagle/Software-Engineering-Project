@@ -488,7 +488,7 @@ def main():
     sortBy_var.set(sort_options[0])#ΑΡΧΙΚΗ ΤΙΜΗ ΤΑ ΝΕΟΤΕΡΑ
     sort_choice = OptionMenu(label_sortBy2, sortBy_var, *sort_options)
     sort_choice.config(bg="snow", width=20)
-    buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements, bg="red3",font=("Times New Roman (Times)", 14, "bold"))
+    buttton_sort = Button(label_sortBy2, text="Επιβεβαίωση", command=lambda: sort_announcements,bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def sort_announcements():
@@ -698,11 +698,11 @@ def main():
 
 
     #browse_ID
-    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
-    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="red3",font=("Times New Roman (Times)", 14, "bold"))
+    buttton_browse_form = Button(label_Statement1_all_m_t8, text="Αναζήτηση", command=lambda:browse_form(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    buttton_browse_ID = Button(label_Statement1_all_m_t9, text="Αναζήτηση", command=lambda:browse_ID(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
-    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
-    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    buttton_confirm = Button(label_Statement1_all_down, text="Επιβεβαίωση", command=lambda: confirm_choice(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    buttton_back_to_statement = Button(label_Statement1_all_down, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
     def confirm_choice():
@@ -876,9 +876,9 @@ def main():
     direction_choice = OptionMenu(label_Statement2_mmt_right, direction_val, *direction_names)
     direction_choice.config(bg="snow", width=20)
 
-    btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
-    btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
-    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_conf_direction = Button(label_Statement2_mm_top, text="Επιβεβαίωση", command=lambda: refresh_choice_exams(), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_confirm2 = Button(label_Statement2_m_bottom, text="Επιβεβαίωση", command=lambda: confirm_choice_exam(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_back_to_statement2 = Button(label_Statement2_m_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
     def refresh_choice_exams(): #sos sos proxeira topo8ethsh
         global lessons
@@ -1082,8 +1082,8 @@ def main():
     btn_add = Button(label_Statement3_amt_mid, image=render5, command=lambda: add_department())
     btn_remove = Button(label_Statement3_amt_mid, image=render6, command=lambda: remove_department())
     #conf-exit btns
-    btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
-    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_confirm3 = Button(label_Statement3_am_bottom, text="Επιβεβαίωση", command=lambda: confirm_department_choice(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn3_back_to_statement = Button(label_Statement3_am_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(statement_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
 
     #LIST  για τα διαθεσιμα τμηματα 
@@ -1316,13 +1316,13 @@ def main():
     #stelios αποτελέσματα++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-    label_Results_all = Label(results_Frame, bg="cyan3")
+    label_Results_all = Label(results_Frame, bg="floral white")
     #top label- title
-    label_Results_a_top = Label(label_Results_all, text='Αποτελέσματα',  bg="yellow",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
+    label_Results_a_top = Label(label_Results_all, text='Αποτελέσματα',  bg="floral white",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
     #middle container
-    label_Results_a_mid = Label(label_Results_all, bg="blue")
+    label_Results_a_mid = Label(label_Results_all, bg="floral white")
     #student information
-    label_Results_am_top = Label(label_Results_a_mid, bg="red")
+    label_Results_am_top = Label(label_Results_a_mid, bg="floral white")
     #student name
     label_Results_amt_top = Label(label_Results_am_top, bg="floral white")
     label_Results_amtt_left = Label(label_Results_amt_top, bg="floral white", text='Ονοματεπώνυμο: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -1341,7 +1341,7 @@ def main():
     label_Results_amtb2_right = Label(label_Results_amt_bot2, bg="floral white")
 
     #mid label-rop info mid lessons bot school
-    label_Results_am_mid = Label(label_Results_a_mid, bg="green")#-----------------------
+    label_Results_am_mid = Label(label_Results_a_mid, bg="floral white")#-----------------------
     #κατευθυνση
     label_Results_amm_top = Label(label_Results_am_mid, bg="floral white")
     label_Results_ammt_left = Label(label_Results_amm_top, bg="floral white", text='Κατεύθυνση: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -1352,7 +1352,7 @@ def main():
     label_Results_ammm_right = Label(label_Results_amm_mid, bg="gold", text='ZISIS2')# sos sos zisis array
 
     #αποτελεσματα σχολης!
-    label_Results_am_bot = Label(label_Results_a_mid, bg="purple")
+    label_Results_am_bot = Label(label_Results_a_mid, bg="floral white")
     label_Results_amb_top = Label(label_Results_am_bot, bg="floral white")
     label_Results_ambt_left = Label(label_Results_amb_top, bg="floral white", text='Τμήμα Επιτυχίας: ',font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_Results_amb_bot = Label(label_Results_am_bot, bg="floral white")  # sos sos zisis array sxolhs
@@ -1432,9 +1432,9 @@ def main():
     label_Program_b3_left = Label(label_Program_b3, bg="floral white")
 
     
-    butttonProgram1 = Button(label_Program_b1_left, text="Σχολικό Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
-    butttonProgram2 = Button(label_Program_b2_left, text="Πρόγραμμα Σχολικής Εξέταστικής", command=lambda: raiseNdrop_frame(school_exams_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
-    butttonProgram3 = Button(label_Program_b3_left, text="Πρόγραμμα Πανελλήνιων Εξετάσεων", command=lambda: raiseNdrop_frame(nationwide_exams_program_Frame,previous_frame), bg="floral white",font=("Times New Roman (Times)", 16, "bold"),height = 2, width = 35)
+    butttonProgram1 = Button(label_Program_b1_left, text="Σχολικό Εβδομαδιαίο Πρόγραμμα", command=lambda: raiseNdrop_frame(weekly_program_Frame,previous_frame), bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonProgram2 = Button(label_Program_b2_left, text="Πρόγραμμα Σχολικής Εξέταστικής", command=lambda: raiseNdrop_frame(school_exams_program_Frame,previous_frame),  bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
+    butttonProgram3 = Button(label_Program_b3_left, text="Πρόγραμμα Πανελλήνιων Εξετάσεων", command=lambda: raiseNdrop_frame(nationwide_exams_program_Frame,previous_frame),  bg="gray26",height = 2, width = 35,font=("Calibri", 14, "bold"))
 
     label_Program_all.pack(side=TOP,fill=BOTH, expand=1)####TO DO NA TO SPASW SE DUO KOMMATIA TOP KAI DOWN KAI AUTO EDW NA EINAI TO DOWN KAI TO TOP NA EINIA APLA TITLOS
     label_Program_all_top.pack(side=TOP,fill=BOTH, expand=1)
@@ -1450,7 +1450,7 @@ def main():
     label_Program_b2_left.pack(side=LEFT)
     
     label_Program_b3.pack(side=TOP,pady=30,expand=1,fill=X, padx=30)
-    label_Program_b3_left.pack(side=LEFT)
+    label_Program_b3_left.pack(side=LEFT) 
 
     
     butttonProgram1.pack()
@@ -1584,10 +1584,10 @@ def main():
 
     label_student_info_all = Label(info_Frame, bg="floral white")
     label_student_info_a_top = Label(label_student_info_all, bg="floral white", text="Πληροφορίες Χρήστη",font=("Times New Roman (Times)", 36, "bold"),fg="dodger blue")
-    label_student_info_a_mid = Label(label_student_info_all, bg="red")#info
+    label_student_info_a_mid = Label(label_student_info_all, bg="floral white")#info
     label_student_info_a_bot = Label(label_student_info_a_mid, bg="floral white")# buttons
 
-    label_student_info_am_general = Label(label_student_info_a_mid, bg="green")
+    label_student_info_am_general = Label(label_student_info_a_mid, bg="floral white")
     label_student_info_am_gen_title = Label(label_student_info_am_general, bg="white", text="Γενικά:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_student_info_am_gen_info = Label(label_student_info_am_general, bg="floral white")# containt text and photo
 
@@ -1631,7 +1631,7 @@ def main():
     label_student_info_am_contact_info = Label(label_student_info_a_mid, bg="floral white")
     label_student_contact = Label(label_student_info_am_contact_info, bg="white", text="Επικοινωνία:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
 
-    label_student_contact_all = Label(label_student_info_am_contact_info, bg="blue")#contain email and number
+    label_student_contact_all = Label(label_student_info_am_contact_info, bg="floral white")#contain email and number
     #email
     label_student_contact_email = Label(label_student_contact_all, bg="floral white")#email container
     label_student_contact_email_left = Label(label_student_contact_email, bg="floral white", text="E-mail: ",font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -1641,7 +1641,7 @@ def main():
     label_student_contact_number_left = Label(label_student_contact_number, bg="floral white", text="Αριθμός Τηλεφώνου:",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     label_student_contact_number_right = Label(label_student_contact_number, bg="floral white")# stelios zisis sos sos μηπως Text αντι για  Label????
 
-    btn_student_info_edit = Button(label_student_info_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="red3",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
+    btn_student_info_edit = Button(label_student_info_a_bot, text="Επεξεργασία", command=lambda: edit_profile(), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=12)
 
     def edit_profile():
         #kane editable ta Text 

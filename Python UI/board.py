@@ -388,8 +388,8 @@ def accfrm():
     label_Statement1_all_mt9l_left = Label(label_Statement1_all_m_t9, text="Ταυτότητα",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="blue",cursor="hand2")
     label_Statement1_all_mt9l_left.bind("<Button-1>", lambda e:openid(e))
 
-    btn_accept = Button(label_Statement1_all_down, text="Αποδοχή", command=lambda: edit_app("accept"), bg="green3",font=("Calibri", 14, "bold"),height=1 ,width=12)
-    btn_reject = Button(label_Statement1_all_down, text="Απόριψη", command=lambda: edit_app("reject"), bg="red3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    btn_accept = Button(label_Statement1_all_down, text="Αποδοχή", command=lambda: edit_app("accept"), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_reject = Button(label_Statement1_all_down, text="Απόριψη", command=lambda: edit_app("reject"), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
     accept_Frame.pack(side = LEFT,fill=BOTH,expand =1)
 
@@ -680,7 +680,7 @@ def main():
         label_finseat = Label(label_final,text = "Τελικές Θέσεις: ",font=("Times New Roman (Times)", 18, "bold"),fg="black",bg="floral white")
         label_finseatin = Entry(label_final, bg="WHITE", fg="black", borderwidth=1, highlightthickness=2,font=("Calibri", 16))
         label_finseatin.insert(0,curApplicationx.fseats)
-        button = Button(label_final, text="Καταχώρηση", command=lambda: sinput(label_finseatin.get()), bg="green3",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        button = Button(label_final, text="Καταχώρηση", command=lambda: sinput(label_finseatin.get()), bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
         label_application_file  = Label(label_pos, bg = "floral white")
         label_application_file1 = Label(label_application_file, text="Αρχείο: ",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
@@ -738,7 +738,7 @@ def main():
     department_date_space2 = Label(department_date_lbl, text="/",  bg="floral white",font=("Times New Roman (Times)", 18, "bold"),fg="black")
     department_sumbit_at_bottom = Label(department_date_lbl, bg="floral white")
     
-    buttton_accept_date = Button(department_sumbit_at_bottom, text="Αποδοχή", command=lambda: accept_date(), bg="green",font=("Calibri", 14, "bold"),height=1 ,width=12)
+    buttton_accept_date = Button(department_sumbit_at_bottom, text="Αποδοχή", command=lambda: accept_date(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
     #buttton_back_to_department = Button(department_sumbit_at_bottom, text="Επιστροφή", command=lambda: raiseNdrop_frame(department_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
     
     #ΠΡΟΧΕΙΡΗ ΤΟΠΟΘΕΤΗΣΗ ΣΥΝΑΡΤΗΣΗΣ----------------------------------------------------------
@@ -917,11 +917,11 @@ def main():
         print("all school exams calendar events are deleted")
 
     #add 4 buttons
-    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(), bg="red3",font=("Calibri", 16, "bold"))
-    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red3",font=("Calibri", 16, "bold"))
-    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="red3",font=("Calibri", 16, "bold"))
+    btn_add_cal = Button(school_exams_amm_bot, text="Προσθήκη", state=NORMAL, command=lambda: add_school_exams(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_delete_cal = Button(school_exams_amm_bot, text="Διαγραφή", state=NORMAL, command=lambda: delete_school_exams(),bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_confirm_cal = Button(school_exams_a_bot, text="Επιβεβαίωση", state=NORMAL, command=lambda: conf_school_exams(),bg="green4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_return_cal = Button(school_exams_a_bot, text="Επιστροφή", state=NORMAL, command=lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+    btn_delete_cal_all = Button(school_exams_a_bot, text="Διαγραφή Ημερολογίου ", state=NORMAL, command=lambda: delete_school_exams_calendar(), bg="floral white",font=("Times New Roman (Times)", 10, "bold"),height=1 ,width=20)
     
 
     #ορισμος ημερολογιου
@@ -993,8 +993,8 @@ def main():
         label_graderslist_a_bottom = Label(label_graderslist_at_bottom, bg="floral white")
         
 
-        btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="red3",font=("Calibri", 14, "bold"))
-        button_return  = Button(label_graderslist_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="gray",font=("Calibri", 14, "bold"),height=1 ,width=12)
+        btn3_search_list = Button(label_graderslist_a_bottom, text="Αναζήτηση Αρχείου", command=lambda: browse_list(), bg="floral white",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
+        button_return  = Button(label_graderslist_a_bottom, text="Επιστροφή", command= lambda: raiseNdrop_frame(Panhellenic_Frame,previous_frame), bg="red4",font=("Times New Roman (Times)", 14, "bold"),height=1 ,width=15)
 
 
         
